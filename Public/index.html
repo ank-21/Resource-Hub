@@ -28,10 +28,27 @@
     <link rel="stylesheet" href="css/slick.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- Modal CSS -->
-    <link rel="stylesheet" href="css/modal.css">
-    <!-- Sign Up -->
-    <link rel="stylesheet" href="css/signup.css">
+    <style>
+    	form {
+	background-color: #FFFFFF;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 50px;
+	height: 100%;
+	text-align: center;
+}
+
+input {
+	background-color: #eee;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 100%;
+}
+
+    </style>
 </head>
 
 <body>
@@ -84,76 +101,7 @@
                                 </li> -->
                             </ul>
                         </div>
-                        <div id="modal-container">
-  <div class="modal-background">
-    <div class="modal">
-        <div class="col-md-2" style="position: relative;left: 85%;top: -3vh;">
-            <div id="close" class="d-none d-sm-block btn_1 home_page_btn button col-md-2" style="padding-right: 75px;">CLOSE</div>
-        </div>
-      <div class="sign-container" id="container">
-    <div class="form-container sign-up-container col-md-8">
-        <form action="/users/register" method="post">
-            <h1>Create Account</h1>
-            <!-- <div class="social-container">
-                <a href="#" class="social"><img src="img/facebook.png"></a>
-                <a href="#" class="social"><img src="img/googleplus.png"></a>
-                <a href="#" class="social"><img src="img/linkedin.png"></a>
-            </div> -->
-            <div class="social-container1">
-                <a class="sociallinkbtn" href="#"><i class="fab fa-facebook-f"></i></a>
-                <a class="sociallinkbtn" href="#"><i class="fab fa-google-plus-g"></i></a>
-                <a class="sociallinkbtn" href="#"><i class="fab fa-linkedin"></i></a>
-            </div>
-            <span>or use your email for registration</span>
-            <input type="text" placeholder="name" />
-            <input type="email" placeholder="email" />
-            <input type="password" placeholder="password" />
-            <input type="password2" placeholder=" Confirm password" />
-            <button type="submit">Sign Up</button>
-        </form>
-    </div>
-    <div class="form-container sign-in-container">
-        <form action="/users/login" method="post">
-            <h1>Sign in</h1>
-            <div class="social-container1">
-                <a class="sociallinkbtn" href="#"><i class="fab fa-facebook-f"></i></a>
-                <a class="sociallinkbtn" href="#"><i class="fab fa-google-plus-g"></i></a>
-                <a  class="sociallinkbtn"href="#"><i class="fab fa-linkedin"></i></a>
-            </div>
-            <span>or use your account</span>
-            <input type="email" placeholder="email" />
-            <input type="password" placeholder="password" />
-            <a href="#">Forgot your password?</a>
-            <button type="submit">Sign In</button>
-        </form>
-    </div>
-    <div class="overlay-container">
-        <div class="overlay">
-            <div class="overlay-panel overlay-left">
-                <h1>Welcome Back!</h1>
-                <p>To keep connected with us please login with your personal info</p>
-                <button class="ghost" id="signIn">Sign In</button>
-            </div>
-            <div class="overlay-panel overlay-right">
-                <h1>Hello, Friend!</h1>
-                <p>Enter your personal details and start journey with us</p>
-                <button class="ghost" id="signUp">Sign Up</button>
-            </div>
-        </div>
-    </div>
-</div>
-      <svg class="modal-svg" xmlns="" width="100%" height="100%" preserveAspectRatio="none">
-		<rect x="0" y="0" fill="none" width="226" height="162" rx="3" ry="3"></rect>
-							</svg>
-    </div>
-  </div>
-</div>
-                        <div class="content">
-  							<div class="buttons">
-    							<div id="one" class="d-none d-sm-block btn_2 home_page_btn button">Log In</div>
-                        <!-- <a href="" class="d-none d-sm-block btn_1 home_page_btn button"id="one">SIGN UP</a> -->
-                    </div>
-                </div>
+                        <a href="signup.html" class="d-none d-sm-block btn_1 home_page_btn button"id="one">Login</a>
                     </nav>
                 </div>
             </div>
@@ -670,31 +618,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/mail-script.js"></script>
     <!-- custom js -->
     <script src="js/custom.js"></script>
-    <script>
-    	$('.button').click(function(){
-  var buttonId = $(this).attr('id');
-  $('#modal-container').removeAttr('class').addClass(buttonId);
-  $('body').addClass('modal-active');
-});
-
-$('#close').click(function(){
-  $('#modal-container').addClass('out');
-   $('body').removeClass('modal-active');
-});
-    </script>
-    <script>
-    const signUpButton = document.getElementById('signUp');
-    const signInButton = document.getElementById('signIn');
-    const container = document.getElementById('container');
-
-    signUpButton.addEventListener('click', () => {
-    container.classList.add("right-panel-active");
-    });
-
-    signInButton.addEventListener('click', () => {
-    container.classList.remove("right-panel-active");
-    });
-    </script>
 </body>
 
 </html>

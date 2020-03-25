@@ -2,12 +2,16 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - Responsive Signup/Login form</title>
+  <title>Signup/Login</title>
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway:300,600" rel="stylesheet">
-<meta name="viewport" content="width=device-width, initial-scale=1"><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'><link rel="stylesheet" href="./style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'><link rel="stylesheet" href="css/signup.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
 <style>
-	.social-container {
-	margin: 20px 0;
+	/*.social-container {
+	    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .social-container a {
@@ -19,11 +23,88 @@
 	margin: 0 5px;
 	height: 40px;
 	width: 40px;
+}*/
+/* *************Sign Up form**************** */
+.social-container1 {
+  /* position: absolute;
+  top: 50%;
+  transform: translateY(-50%); */
+  /* width: 100%; */
+  text-align: center;
 }
+.sociallinkbtn {
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  background: #f1f1f1;
+  margin: 10px;
+  border-radius: 30%;
+  box-shadow: 0 5px 15px -5px #00000070;
+  color: #562fc7;
+  overflow: hidden;
+  position: relative;
+}
+.sociallinkbtn i {
+  line-height: 60px;
+  font-size: 26px;
+  transition: 0.2s linear;
+}
+.sociallinkbtn:hover i {
+  transform: scale(1.3);
+  color: #f1f1f1;
+}
+.sociallinkbtn::before {
+  content: "";
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  background: #562fc7;
+  transform: rotate(45deg);
+  left: -110%;
+  top: 90%;
+}
+.sociallinkbtn:hover::before{
+  animation: aaa 0.7s 1;
+  top: -10%;
+  left: -10%;
+}
+@keyframes aaa {
+  0% {
+    left: -110%;
+    top: 90%;
+  }
+  50% {
+    left: 10%;
+    top: -30%;
+  }
+  100% {
+    top: -10%;
+    left: -10%;
+  }
+}
+
 
 </style>
 </head>
 <body>
+<nav class="navbar">
+    <label class="navbar-toggle" id="js-navbar-toggle" for="chkToggle">
+            <img src="img/bars.png" alt="" style="position: absolute;top: 20px;">
+        </label>
+    <a href="#" class="logo">Resource Hub</a>
+    <input type="checkbox" id="chkToggle"></input>
+    <ul class="main-nav" id="js-menu">
+      <li>
+        <a href="index.html" class="nav-links">Home</a>
+      </li>
+      <li>
+        <a href="index.html" class="nav-links">About</a>
+      </li>
+      <li>
+        <a href="index.html" class="nav-links">Contact Us</a>
+      </li>
+    </ul>
+  </nav>
 <!-- partial:index.partial.html -->
 <div class="container">
    <section id="formHolder">
@@ -31,18 +112,9 @@
       <div class="row">
 
          <!-- Brand Box -->
-         <div class="col-sm-6 brand">
-          <!--   <a href="#" class="logo">MR <span>.</span></a>
-
-            <div class="heading">
-               <h2>Marina</h2>
-               <p>Your Right Choice</p>
-            </div>
-
-            <div class="success-msg">
-               <p>Great! You are one of our members now</p>
-               <a href="#" class="profile">Your Profile</a>
-            </div> -->
+         <div class="col-sm-6 brand cover">
+         	<video src="img/particle.mp4" muted="" autoplay="" loop></video>
+          <h3 class="tag"><span>R</span>esource <span>H</span>ub <span>N</span>ITS</h3>
          </div>
 
 
@@ -51,14 +123,14 @@
 
             <!-- Login Form -->
             <div class="login form-peice switched">
-               <form class="login-form" action="#" method="post">
-               	<h3>Sign In</h3>
-               	 <div class="social-container">
-                	<a href="#" class="social"><img src="img/facebook.png"></a>
-                	<a href="#" class="social"><img src="img/googleplus.png"></a>
-                	<a href="#" class="social"><img src="img/linkedin.png"></a>
+               <form class="login-form" action="#" method="post" style="top:40%;">
+               	<h3 class="heading">Sign In</h3>
+               	 <div class="social-container1">
+                	<a class="sociallinkbtn" href="#"><i class="fab fa-facebook-f"></i></a>
+                	<a class="sociallinkbtn" href="#"><i class="fab fa-google-plus-g"></i></a>
+                	<a class="sociallinkbtn" href="#"><i class="fab fa-linkedin"></i></a>
             	</div>
-            	<h5>Or Sign in using email</h5>
+            	<span class="heading">or use your email for registration</span>
                   <div class="form-group">
                      <label for="loginemail">Email Adderss</label>
                      <input type="email" name="loginemail" id="loginemail" required>
@@ -71,7 +143,7 @@
 
                   <div class="CTA">
                      <input type="submit" value="Login">
-                     <a href="#" class="switch"><b>New Account</b></a>
+                     <a href="#" class="switch"><b>Sign Up</b></a>
                   </div>
                </form>
             </div><!-- End Login Form -->
@@ -80,13 +152,13 @@
             <!-- Signup Form -->
             <div class="signup form-peice">
                <form class="signup-form" action="#" method="post">
-               	<h3>Create Account</h3>
-               	<div class="social-container">
-                	<a href="#" class="social"><img src="img/facebook.png"></a>
-                	<a href="#" class="social"><img src="img/googleplus.png"></a>
-                	<a href="#" class="social"><img src="img/linkedin.png"></a>
-            	</div>
-            	<h5>Or SignUp using email</h5>
+               	<h3 class="heading">Create Account</h3>
+               	<div class="social-container1">
+                	<a class="sociallinkbtn" href="#"><i class="fab fa-facebook-f"></i></a>
+                	<a class="sociallinkbtn" href="#"><i class="fab fa-google-plus-g"></i></a>
+                	<a class="sociallinkbtn" href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+            	<span class="heading">Or SignUp using email</span>
                   <div class="form-group">
                      <label for="name">Full Name</label>
                      <input type="text" name="username" id="name" class="name">
@@ -110,14 +182,14 @@
                      <span class="error"></span>
                   </div>
 
-                  <!-- <div class="form-group">
+                  <div class="form-group">
                      <label for="passwordCon">Confirm Password</label>
                      <input type="password" name="passwordCon" id="passwordCon" class="passConfirm">
                      <span class="error"></span>
-                  </div> -->
+                  </div>
 
                   <div class="CTA">
-                     <input type="submit" value="Signup Now" id="submit">
+                     <input type="submit" value="Signup" id="submit">
                      <a href="#" class="switch"><b>Login</b></a>
                   </div>
                </form>
@@ -131,7 +203,7 @@
 </div>
 <!-- partial -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script><script  src="./script.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script><script  src="js/signup.js"></script>
 
 </body>
 </html>
