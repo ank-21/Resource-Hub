@@ -5,17 +5,12 @@ const passport = require('passport');
 const bcrypt = require('bcryptjs');
 
 
-//login Route
-// userRouter.get('/login',(req,res)=>{
-//     res.render('login');
-// })
+//signup Route
+userRouter.get('/signup',(req,res)=>{
+    res.render('signup'); 
+})
 
-//register Route
-// userRouter.get('/register',(req,res)=>{
-//     res.render('register');
-// })
-
-userRouter.post('/register',(req,res)=>{
+userRouter.post('/signup',(req,res)=>{
     console.log("req.body ",req.body);
     const { name,email,password,password2} = req.body;  
     let errors = [];
@@ -30,7 +25,7 @@ userRouter.post('/register',(req,res)=>{
     }
 
     if(errors.length>0){
-        res.render('register',{
+        res.render('signup',{
             errors,
             name,
             email,
@@ -48,7 +43,7 @@ userRouter.post('/register',(req,res)=>{
                 if(user) {
                     //user exists
                     errors.push( { msg: "Email Already exists."})
-                    res.render('register',{
+                    res.render('signup',{
                         errors,
                         name,
                         email,
@@ -69,11 +64,11 @@ userRouter.post('/register',(req,res)=>{
                             newUser.save()
                                 .then(user => {
                                 console.log("New user: ",user);
-                                req.flash('success_msg', 'You are now registered and can log in');   
+                                // req.flash('success_msg', 'You are now registered and can log in');   
                                 //to display the flash message we will use messages.ejs in partials
                                 
                                 //redirect to login page
-                                res.redirect('/users/login');
+                                res.redirect('/index.html');
                                 })
                                 .catch(err => console.log(err));                    
                         });
@@ -87,7 +82,7 @@ userRouter.post('/register',(req,res)=>{
 userRouter.post('/login', (req,res,next)=> {
     passport.authenticate('local', {
         successRedirect: '/dashboard',
-        failureRedirect: '/users/login',
+        failureRedirect: '/users/signup',
         failureFlash : true
     })(req,res,next);
 });
