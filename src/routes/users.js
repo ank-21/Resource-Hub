@@ -7,6 +7,7 @@ const bcrypt = require('bcryptjs');
 
 //signup Route
 userRouter.get('/signup',(req,res)=>{
+    let flag= req.query.flag;
     res.render('signup'); 
 })
 
@@ -42,7 +43,7 @@ userRouter.post('/signup',(req,res)=>{
             .then(user => {
                 if(user) {
                     //user exists
-                    errors.push( { msg: "Email Already exists."})
+                    errors.push( { msg: "Email Address Already exists."})
                     res.render('signup',{
                         errors,
                         name,
@@ -68,11 +69,7 @@ userRouter.post('/signup',(req,res)=>{
                                 //to display the flash message we will use messages.ejs in partials
                                 
                                 //redirect to login page
-                                res.render("signup",{
-                                    name:user.name,
-                                    email:user.email,
-                                    password:user.password
-                                })
+                                res.redirect('/users/signup?flag=1');
                                 })
                                 .catch(err => console.log(err));                    
                         });
@@ -85,7 +82,7 @@ userRouter.post('/signup',(req,res)=>{
 
 userRouter.post('/login', (req,res,next)=> {
     passport.authenticate('local', {
-        successRedirect: '/dashboard',
+        successRedirect: '/profile',
         failureRedirect: '/users/signup',
         failureFlash : true
     })(req,res,next);
@@ -111,7 +108,7 @@ userRouter.get('/google',
 );
 
 userRouter.get('/google/callback', passport.authenticate('google'), (req, res) => {
-    res.redirect('/dashboard');
+    res.redirect('/profile');
 });
 
 //Logout handle
