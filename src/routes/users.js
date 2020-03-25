@@ -12,7 +12,7 @@ userRouter.get('/signup',(req,res)=>{
 
 userRouter.post('/signup',(req,res)=>{
     console.log("req.body ",req.body);
-    const { name,email,password,password2} = req.body;  
+    const {name,email,password,password2} = req.body;  
     let errors = [];
     //error handling
 
