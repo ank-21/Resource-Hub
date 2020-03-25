@@ -64,11 +64,15 @@ userRouter.post('/signup',(req,res)=>{
                             newUser.save()
                                 .then(user => {
                                 console.log("New user: ",user);
-                                // req.flash('success_msg', 'You are now registered and can log in');   
+                                req.flash('success_msg', 'You are now registered and can log in');   
                                 //to display the flash message we will use messages.ejs in partials
                                 
                                 //redirect to login page
-                                res.redirect('/index.html');
+                                res.render("signup",{
+                                    name:user.name,
+                                    email:user.email,
+                                    password:user.password
+                                })
                                 })
                                 .catch(err => console.log(err));                    
                         });
@@ -115,7 +119,7 @@ userRouter.get('/google/callback', passport.authenticate('google'), (req, res) =
 userRouter.get('/logout',(req,res)=>{
     req.logout();
     req.flash('success_msg', 'You are logged out');
-    res.redirect('/users/login');
+    res.redirect('/users/signup');
 })
 
 
