@@ -113,6 +113,8 @@
 
       <div class="row">
 
+        
+
          <!-- Brand Box -->
          <div class="col-sm-6 brand cover">
          	<video src="/img/particle.mp4" muted="" autoplay="" loop></video>
@@ -124,7 +126,6 @@
          <div class="col-sm-6 form">
 
             <!-- Login Form -->
-            <%- include ('./partials/messages') %>
 
             <div class="login form-peice switched">
                <form class="login-form" action="/users/login" method="post" style="top:40%;">
@@ -161,8 +162,11 @@
 
             <!-- Signup Form -->
             <div class="signup form-peice">
+                <div style="position: relative;float: right;">
+                    <%- include ('./partials/messages') %>
+                </div>
+                
 
-                <%- include ('./partials/messages') %>
                 
                <form class="signup-form" action="/users/signup" method="post">
                    <h3 class="heading" style="font-size: 3.6vh;">Create Account</h3>
