@@ -1138,6 +1138,10 @@ h5.breadcrumbs-header {
   top: -40px;
   right: -18px;
   margin-right: 10px !important;
+  border-radius: 20px !important;
+  width: 130px;
+  height: 48px;
+  text-align: center;
 }
 
 

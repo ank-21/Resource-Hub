@@ -368,7 +368,12 @@ function closeModal(){
 
 window.addEventListener('click', clickOutside);
 function clickOutside(e){
-  if(e.target == modal1){
+  if(e.target == modal){
     modal.style.display = 'none';
+  }
+}
+window.onkeyup = function (e){
+  if(e.keyCode == 27){
+    this.modal.style.display = 'none';
   }
 }
