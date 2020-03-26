@@ -9,25 +9,28 @@ html,body {
 }
 
 .container {
-    width: 250px;
-    height: 350px;
+    width: 16.5vw;
+    height: 48.5vh;
     background: #2e517d;
-    position: relative;
-    left: 50%;
-    top: 50%;
+    position: absolute;
+    left: 50vw;
+    top: 50vh;
     transform: translate(-50%, -50%);
     perspective: 1000px;
+    box-shadow: 2px 3px 5px rgba(0,0,0,0.8);
 }
 
 .cover {
-    width: 210px;
-    height: 100%;
+    width: 14vw;
+    height: 48.5vh;
+    top: 0vh;
     position: absolute;
-    left: 40px;
+    left: 2.5vw;
     background-color: #345b8c;
-    transform: rotateY(20deg);
+    transform: rotateY(12deg);
     transform-style: preserve-3d;
     transform-origin: left;
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.6);
     transition: all .5s ease-in-out;
 }
 
@@ -51,4 +54,24 @@ figure.front {
 figure.back {
     background: cornflowerblue;
     transform: rotateY(180deg);
+}
+.heading{
+    display: flex;
+    position: relative;
+    top: 20vh;
+    margin-top: auto;
+    font-size: 2rem;
+    align-self: center;
+    color: white;
+    justify-content: center;
+}
+.content{
+    top: 15vh;
+    font-size: 1.3rem;
+    text-align: center;
+    line-height: 3rem;
+    color: white;
+    justify-content: center;
+    left: 1.1vw;
+    position: relative;
 }
