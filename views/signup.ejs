@@ -127,7 +127,7 @@
             <!-- Login Form -->
 
             <div class="login form-peice switched">
-               <form class="login-form" action="/users/login" method="post" style="top:50%;">
+               <form class="login-form" action="/users/login" method="post" style="top:43%;">
                    <h3 class="heading" style="font-size: 4.2vh;">Sign In</h3>
                    <p class="heading" style="font-size: 2.3vh;color:#562FC7">using</p>
                	 <div class="social-container1">
@@ -161,13 +161,13 @@
 
             <!-- Signup Form -->
             <div class="signup form-peice">
-                <div style="position: relative;float: right;left:-0.8vw;" id="partials">
+                <div class="error-scroll" id="error">
                     <%- include('./partials/messages') %>
                 </div>
                 
 
                 
-               <form class="signup-form" action="/users/signup" method="post">
+               <form class="signup-form" action="/users/signup" method="post" style="position:absolute;">
                    <h3 class="heading" style="font-size: 3.6vh;">Create Account</h3>
                    <p class="heading" style="font-size: 1.7vh;color:#562FC7">using</p>
                	<div class="social-container1">
@@ -175,12 +175,7 @@
                 	<a class="sociallinkbtn" href="/users/google"><i class="fab fa-google-plus-g"></i></a>
                 	<a class="sociallinkbtn" href="#"><i class="fab fa-linkedin"></i></a>
                 </div>
-                <h2 style=" width: 100%; 
-                text-align: center; 
-                border-bottom: 1px solid #000; 
-                line-height: 0.1em;
-                margin: 2.6vh 0 10px;"><span style="background:#fff; 
-                padding:0 10px;">or use your Email</span></h2>  
+                <h2 style=" width: 100%;text-align: center;border-bottom: 1px solid #000; line-height: 0.1em;margin: 2.6vh 0 10px;"><span style="background:#fff;padding:0 10px;">or use your Email</span></h2>  
                                 
                 <div class="form-group">
                      <label for="name">Name</label>
@@ -207,7 +202,7 @@
                   </div>
                   
                   <div class="CTA">
-                    <input type="submit" value="Sign Up">
+                    <input type="submit" id="sub" value="Sign Up">
                      <a href="#" class="switch"><b>Login</b></a>
                   </div>
                </form>

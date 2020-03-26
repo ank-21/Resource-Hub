@@ -36,7 +36,7 @@ section#formHolder {
   background-size: cover;
   background-position: center center;
   color: #fff;
-  min-height: 103vh;
+  min-height: 108vh;
   position: relative;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
   transition: all 0.6s cubic-bezier(1, -0.375, 0.285, 0.995);
@@ -134,7 +134,7 @@ section#formHolder {
 }
 .form .form-peice {
   background: #fff;
-  min-height: 95vh;
+  min-height: 100vh;
   margin-top: 30px;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
   color: #bbbbbb;
@@ -157,7 +157,7 @@ section#formHolder {
   margin: 0;
   width: 70%;
   position: absolute;
-  top: 60%;
+  top: 48%;
   left: 60%;
   transform: translate(-50%, -50%);
 }
@@ -477,4 +477,25 @@ video{
 	pointer-events:none;
 	z-index:2;
 	mix-blend-mode:screen;
+}
+
+.error-scroll{
+  position: relative;
+  float: right;
+  left:-0.8vw;
+  overflow-y:scroll;
+  height:8vh;
+}
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #562fc7; 
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px #562fc7; 
 }
