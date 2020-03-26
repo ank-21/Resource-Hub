@@ -8,6 +8,7 @@
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/chartist/0.9.7/chartist.min.css'>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jvectormap/2.0.4/jquery-jvectormap.min.css'>
   <link rel="stylesheet" href="/css/profile.css">
+  <link rel="stylesheet" href="/css/signup.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function(){
@@ -18,6 +19,35 @@
   </script>
 </head>
 <body>
+  <div id="simpleModal" class="modal1">
+    <div class="modal-content fold1">
+      <form>
+        <p id="closeBtn">&times;</p>
+        <input type="text" name="" placeholder="Branch">
+        <input type="text" name="" placeholder="Semester">
+        <input type="text" name="" placeholder="Contact Number">
+        <p style="text-align: center; display: block;"><input type="submit" name="" value="Edit"></p>
+      </form>
+    </div>
+  </div>
+  <nav class="navbar">
+    <label class="navbar-toggle" id="js-navbar-toggle" for="chkToggle">
+            <img src="/img/bars.png" alt="" style="position: absolute;top: 20px;">
+        </label>
+    <a href="/index.html" class="logo">Resource Hub</a>
+    <input type="checkbox" id="chkToggle"></input>
+    <ul class="main-nav" id="js-menu">
+      <li>
+        <a href="/index.html" class="nav-links">Home</a>
+      </li>
+      <li>
+        <a href="/index.html#about" class="nav-links">About</a>
+      </li>
+      <li>
+        <a href="/index.html#contact" class="nav-links">Contact Us</a>
+      </li>
+    </ul>
+  </nav>
 <!-- START MAIN -->
 <div id="main">
   <!-- START WRAPPER -->
@@ -279,7 +309,7 @@
                 </div>
                 <div class="card-content">
                   <img src="/img/avatar.png" alt="" class="circle responsive-img card-profile-image">
-                  <a class="btn-floating activator btn-move-up waves-effect waves-light darken-2 right">
+                  <a id="modalBtn" class="btn-floating activator btn-move-up waves-effect waves-light darken-2 right">
                     <i class="mdi-action-account-circle"></i>
                   </a>
 
