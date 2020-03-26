@@ -1,11 +1,10 @@
 {
   "name": "resource-hub",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
-    "start":"node src/app.js",
-    "dev":"nodemon src/app.js"
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
   },
   "author": "",
   "license": "ISC",
@@ -24,5 +23,14 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ank-21/Resource-Hub.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ank-21/Resource-Hub/issues"
+  },
+  "homepage": "https://github.com/ank-21/Resource-Hub#readme",
+  "description": ""
 }
