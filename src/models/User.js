@@ -23,6 +23,18 @@ const UserSchema = new mongoose.Schema({
     date:{
         type:Date,
         default: Date.now()
+    },
+    branch:{
+        type:String
+    },
+    semester:{
+        type:String
+    },
+    phnNo:{
+        type:String
+    },
+    uploads:{
+        type:Number
     }
 })
 

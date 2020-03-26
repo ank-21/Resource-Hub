@@ -25,6 +25,7 @@ mongoose.connect('mongodb://localhost:27017/ResourceHub',{
 
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/users');
+const profileRouter = require('./routes/profile');
 
 //EJS
 
@@ -76,7 +77,7 @@ app.use(express.static(publicDirectoryPath));
 //for Routes
 app.use('/',indexRouter);
 app.use('/users',userRouter);
-
+app.use('/users',profileRouter);
 
 
 

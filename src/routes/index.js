@@ -7,7 +7,7 @@ const { ensureAuthenticated } = require('../../config/auth');
 // })
 
 router.get('/profile',ensureAuthenticated,(req,res)=>{
-    console.log(req);
+    console.log(req.user);
     res.render('profile',{
         user:req.user
     });

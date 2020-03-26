@@ -21,12 +21,13 @@
 <body>
   <div id="simpleModal" class="modal1">
     <div class="modal-content fold1">
-      <form>
+      <form action="/users/profile/<%= user._id %>" method="post">
         <p id="closeBtn">&times;</p>
-        <input type="text" name="" placeholder="Branch">
-        <input type="text" name="" placeholder="Semester">
-        <input type="text" name="" placeholder="Contact Number">
-        <p style="text-align: center; display: block;"><input type="submit" name="" value="Edit"></p>
+        <input type="text" name="branch" placeholder="Branch">
+        <input type="text" name="semester" placeholder="Semester">
+        <input type="text" name="phnNo" placeholder="Contact Number">
+        <p style="text-align: center; display: block;">
+        <input type="submit" value="Edit Details"></p>
       </form>
     </div>
   </div>
@@ -42,6 +43,9 @@
       </li>
       <li>
         <a href="/index.html#about" class="nav-links">About</a>
+      </li>
+      <li>
+        <a href="/index.html#contact" class="nav-links">Notes</a>
       </li>
       <li>
         <a href="/index.html#contact" class="nav-links">Contact Us</a>
@@ -315,7 +319,7 @@
 
                   <span class="card-title activator grey-text text-darken-4"><%= user.name %></span>
                   <p><i class="mdi-action-perm-identity cyan-text text-darken-2"></i> Project Manager</p>
-                  <p><i class="mdi-action-perm-phone-msg cyan-text text-darken-2"></i> +1 (612) 222 8989</p>
+                  <p><i class="mdi-action-perm-phone-msg cyan-text text-darken-2"></i>Contact Number : <%= user.phnNo%></p>
                   <p><i class="mdi-communication-email cyan-text text-darken-2"></i>Email Id: <%= user.email%></p>
 
                 </div>
@@ -341,7 +345,7 @@
                 <li class="collection-item">
                   <div class="row">
                     <div class="col s6">
-                      <span style="font-size: 4vh;font-weight: normal;position: relative;top:2px">Branch - </span> <span style="font-size: 3vh;">CSE</span>
+                      <span style="font-size: 4vh;font-weight: normal;position: relative;top:2px">Branch - </span> <span style="font-size: 3vh;"><%= user.branch %></span>
                     </div>
                     <div class="col s3">
                       <span class="task-cat cyan">Development</span>
@@ -354,7 +358,7 @@
                 <li class="collection-item">
                     <div class="row">
                       <div class="col s6">
-                          <span style="font-size: 4vh;font-weight: normal;position: relative;top:2px">Semester - </span> <span style="font-size: 3vh;">3rd</span>
+                          <span style="font-size: 4vh;font-weight: normal;position: relative;top:2px">Semester - </span> <span style="font-size: 3vh;"><%= user.semester %></span>
                         </div>
                       <div class="col s3">
                         <span class="task-cat green">SEO</span>
@@ -380,7 +384,7 @@
                 <li class="collection-item">
                   <div class="row">
                     <div class="col s6">
-                        <span style="font-size: 4vh;font-weight: normal;position: relative;top:2px">Total Uploads - </span> <span style="font-size: 3vh;">32</span>
+                        <span style="font-size: 4vh;font-weight: normal;position: relative;top:2px">Total Uploads - </span> <span style="font-size: 3vh;"><%= user.uploads%></span>
                       </div>
                     <div class="col s3">
                       <span class="task-cat teal">Marketing</span>
