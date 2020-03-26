@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,body {
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    width: 250px;
+    height: 350px;
+    background: #2e517d;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    perspective: 1000px;
+}
+
+.cover {
+    width: 210px;
+    height: 100%;
+    position: absolute;
+    left: 40px;
+    background-color: #345b8c;
+    transform: rotateY(20deg);
+}
