@@ -17,8 +17,7 @@ $(document).ready(function () {
     $('input').focus(function () {
 
         $(this).siblings('label').addClass('active');
-    });
-
+    })
     // Form validation
     // $('input').blur(function () {
 
