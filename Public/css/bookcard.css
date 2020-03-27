@@ -8,24 +8,75 @@ html,body {
     height: 100%;
 }
 
-.container {
-    width: 16.5vw;
-    height: 48.5vh;
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    padding: 30px;
+    margin: auto;
+}
+
+@media only screen and (max-width : 1150px){
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        padding: 30px;
+        margin: auto;
+    }
+}
+
+@media only screen and (max-width : 950px){
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto auto;
+        padding: 30px;
+        margin: auto;
+    }
+}
+@media only screen and (max-width : 600px){
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto auto;
+        padding: 15px;
+        margin: auto;
+    }
+}
+
+@media only screen and (max-width : 570px){
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto;
+        padding: 15px;
+        margin: auto;
+    }
+}
+
+.container1 {
+    /* width: 16.5vw;
+    height: 48.5vh; */
+    width: 250px;
+    height: 350px;
     background: #2e517d;
-    position: absolute;
+    /* position: absolute;
     left: 50vw;
     top: 50vh;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
     perspective: 1000px;
     box-shadow: 2px 3px 5px rgba(0,0,0,0.8);
+    /* margin: 20px; */
+    margin: 20px auto;
+    border-top: 2px solid white;
+    border-right: 2px solid white;
 }
 
 .cover {
-    width: 14vw;
-    height: 48.5vh;
+    /* width: 14vw;
+    height: 48.5vh; */
+    width: 234px;
+    height: 350px;
     top: 0vh;
     position: absolute;
-    left: 2.5vw;
+    /* left: 2.5vw; */
+    left: 15px;
     background-color: #345b8c;
     transform: rotateY(12deg);
     transform-style: preserve-3d;
@@ -34,7 +85,7 @@ html,body {
     transition: all .5s ease-in-out;
 }
 
-.container:hover .cover {
+.container1:hover .cover {
     transform: rotateY(-180deg);
 }
 
@@ -48,14 +99,14 @@ figure {
 }
 
 figure.front {
-    background: blueviolet;
+    background: linear-gradient(to top right, cornflowerblue, purple);
 }
 
 figure.back {
     background: cornflowerblue;
     transform: rotateY(180deg);
 }
-.heading{
+.heading1{
     display: flex;
     position: relative;
     top: 20vh;
@@ -65,13 +116,43 @@ figure.back {
     color: white;
     justify-content: center;
 }
+
+.sem {
+    color: purple;
+    background: white;
+    width: 38px;
+    left: 100px;
+    margin-top: 10px;
+    border-radius: 50%;
+}
 .content{
-    top: 15vh;
+    top: 10vh;
     font-size: 1.3rem;
     text-align: center;
     line-height: 3rem;
     color: white;
     justify-content: center;
-    left: 1.1vw;
+    left: 10px;
     position: relative;
+}
+
+.notes {
+    border: 2px solid white;
+    background: white;
+    width: 150px;
+    left: 50px;
+    border-radius: 50px;
+    margin-top: 20px;
+}
+.notes a{
+    color: purple;
+}
+.notes:hover{
+    
+    color: red;
+    cursor: pointer;
+    transition: .5s ease-in-out;
+}
+.notes a:hover{
+    color: red;
 }
