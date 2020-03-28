@@ -4,7 +4,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node src/app.js",
-    "dev": "nodemon src/app.js -e ejs,css,html"
+    "dev": "nodemon src/app.js"
   },
   "author": "",
   "license": "ISC",
@@ -25,7 +25,9 @@
     "uuid": "^7.0.2",
     "validator": "^13.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ank-21/Resource-Hub.git"
