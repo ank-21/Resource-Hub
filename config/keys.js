@@ -9,5 +9,9 @@ module.exports = {
     facebook: {
         clientID: '212069590044352',
         clientSecret: '21b3e9380ec4568346bccb810c8fbb9b'
+    },
+    linkedin:{
+        clientID: '814k69c3repwa7',
+        clientSecret: '4IeyHji9LeGS5TAj'
     }
 };

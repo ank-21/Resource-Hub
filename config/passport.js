@@ -5,6 +5,8 @@ const GoogleStrategy = require('passport-google-oauth20');
 const FacebookStrategy = require('passport-facebook')
 const keys = require('../config/keys');
 const User = require('../src/models/User');
+var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy; 
+
 
 module.exports = function(passport) {
     passport.use(
@@ -101,14 +103,54 @@ module.exports = function(passport) {
       }
     ));
 
+
+   passport.use(new LinkedInStrategy({
+        clientID: keys.linkedin.clientID,
+        clientSecret: keys.linkedin.clientSecret,
+        callbackURL: "http://localhost:3000/users/linkedin/callback",
+        scope: ['r_emailaddress', 'r_liteprofile'],
+      }, function(accessToken, refreshToken, profile, done) {
+        // asynchronous verification, for effect...
+        process.nextTick(function () {
+            console.log("profile",profile);
+            
+            
+            User.findOne({linkedinId:profile.id})
+            .then(currentUser => {
+                if(currentUser){
+                    //already have a user
+                    console.log('user is', currentUser);
+                    return done(null,currentUser);    
+                }else{
+                    //create user in the db
+                    const user = new User({
+                        name: profile.displayName,
+                        linkedinId:profile.id,
+                        email:profile.emails[0].value
+                    })
+                    user.save()
+                        .then(newUser => {
+                            console.log('new user created',newUser);    
+                            return done(null,newUser);
+                            //from here it will go to serialize user
+                        })
+                        .catch(err => console.log(err));
+                }
+            })
+        })
+      }));
+
     passport.serializeUser((user, done) => {
         done(null, user.id);
       });
       
     passport.deserializeUser((id, done) => {
-        User.findById(id, (err, user)=> {
-          done(err, user);
-        });
+        if (id.match(/^[0-9a-fA-F]{24}$/)) {
+            User.findById(id, (err, user)=> {
+                done(err, user);
+              });
+        }
+        
     });
 }
 

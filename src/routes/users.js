@@ -123,6 +123,14 @@ userRouter.get('/facebook/callback', passport.authenticate("facebook", {
   }));
 
 
+  userRouter.get('/linkedin',
+  passport.authenticate('linkedin')
+);
+
+userRouter.get('/linkedin/callback', passport.authenticate("linkedin", {
+  successRedirect: "/profile",
+  failureRedirect: "/users/signup"
+}));
 
 //Logout handle
 
