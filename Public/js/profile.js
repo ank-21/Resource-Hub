@@ -377,3 +377,12 @@ window.onkeyup = function (e){
     this.modal.style.display = 'none';
   }
 }
+
+$('#file-upload1').bind('change', function() { 
+  var fileName = ''; 
+  fileName = $(this).val(); $('#file-selected1').html(fileName); 
+})
+$('#file-upload2').bind('change', function() { 
+  var fileName = ''; 
+  fileName = $(this).val(); $('#file-selected2').html(fileName); 
+})
