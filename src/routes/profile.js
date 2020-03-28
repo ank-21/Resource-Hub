@@ -6,7 +6,7 @@ const multer = require('multer');
 const path = require('path');
 const {checkFileType} = require('../../config/checkFileType');
 const async = require('async');
-const { ensureAuthenticated } = require('../../config/auth');
+const {ensureAuthenticated } = require('../../config/auth');
 const fs = require('fs');
 
 //set disk storage

@@ -7,6 +7,7 @@
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css'>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/chartist/0.9.7/chartist.min.css'>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jvectormap/2.0.4/jquery-jvectormap.min.css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
   <link rel="stylesheet" href="/css/profile.css">
   <link rel="stylesheet" href="/css/signup.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -23,13 +24,22 @@
     <div class="modal-content fold1">
       <form action="/users/profile/<%= user._id %>" method="post" enctype="multipart/form-data">
         <p id="closeBtn">&times;</p>
+        <h5><b>COMPLETE YOUR PROFILE</b></h5>
         <input type="text" name="branch" placeholder="Branch">
         <input type="text" name="semester" placeholder="Semester">
         <input type="text" name="phnNo" placeholder="Contact Number">
-        <div class="">
-          <span style="color: #fff;text-decoration: underline;">Upload Image : </span>
+        <!-- <div class="">
+          <span style="color: #fff; font-size: 20px;">Upload Image : </span>
           <input name="profileImage" type="file" class="file-path validate" style="position: relative;left:0.2vw">
-        </div>
+        </div> -->
+        <label class="custom-file-upload">
+          
+          <input name="profileImage" type="file" id="file-upload2" class="file-path validate" style="position: relative;left:0.2vw">
+          <span><i class="fas fa-upload"></i></span>
+          Upload Profile Image
+          <hr>
+          <span id="file-selected2"></span>
+        </label>
         <p style="text-align: center; display: block;">
         <input type="submit" value="Edit Details"></p>
       </form>
@@ -548,6 +558,14 @@
                   <input type="text" name="semester" placeholder="Semester">
                   <input type="text" name="subject" placeholder="Subject">
                   <input type="text" name="profName" placeholder="Professor Name">
+                  <label class="custom-file-upload">
+          
+                    <input name="" type="file" id="file-upload1" class="file-path validate" style="position: relative;left:0.2vw">
+                    <span><i class="fas fa-upload"></i></span>
+                    Upload Files
+                    <hr>
+                    <span id="file-selected1"></span>
+                  </label>
                   <p style="text-align: center; display: block;"><input type="submit" value="Upload"></p>
                 </form>
               </div>
