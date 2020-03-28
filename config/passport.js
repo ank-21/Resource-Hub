@@ -2,6 +2,7 @@ const localStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const GoogleStrategy = require('passport-google-oauth20');
+const FacebookStrategy = require('passport-facebook')
 const keys = require('../config/keys');
 const User = require('../src/models/User');
 
@@ -65,6 +66,40 @@ module.exports = function(passport) {
                 })   
         })
     )
+
+
+    passport.use(new FacebookStrategy({
+        clientID: keys.facebook.clientID,
+        clientSecret: keys.facebook.clientSecret,
+        callbackURL: 'http://localhost:3000/users/facebook/callback',
+        profileFields: ["email","name"]
+      },(accessToken, refreshToken, profile, done) => {
+        console.log("profile",profile);
+        
+        User.findOne({facebookId:profile.id})
+            .then(currentUser => {
+                if(currentUser){
+                    //already have a user
+                    console.log('user is', currentUser);
+                    done(null,currentUser);
+                    
+                }else{
+                    //create user in the db
+                    const user = new User({
+                        name:`${profile._json.first_name} ${profile._json.last_name}`,
+                        facebookId:profile.id,
+                    })
+                    user.save()
+                        .then(newUser => {
+                            console.log('new user created',newUser);    
+                            done(null,newUser);
+                            //from here it will go to serialize user
+                        })
+                        .catch(err => console.log(err));
+                }
+            })
+      }
+    ));
 
     passport.serializeUser((user, done) => {
         done(null, user.id);
