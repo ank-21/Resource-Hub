@@ -111,6 +111,19 @@ userRouter.get('/google/callback', passport.authenticate('google'), (req, res) =
     res.redirect('/profile');
 });
 
+//facebook login
+
+userRouter.get('/facebook',
+    passport.authenticate('facebook')
+);
+
+userRouter.get('/facebook/callback', passport.authenticate("facebook", {
+    successRedirect: "/profile",
+    failureRedirect: "/users/signup"
+  }));
+
+
+
 //Logout handle
 
 userRouter.get('/logout',(req,res)=>{
