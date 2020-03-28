@@ -35,6 +35,9 @@ const UserSchema = new mongoose.Schema({
     },
     uploads:{
         type:Number
+    },
+    avatar:{
+        type:String
     }
 })
 

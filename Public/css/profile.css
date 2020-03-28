@@ -88,11 +88,25 @@ body {
   background: transparent;
   border: 1px solid #fff;
 }
+.fold1 form input[type="file"] {
+  width: 74%;
+  margin-bottom: 20px;
+  height: 40px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  border-radius: 40px;
+  box-shadow: none;
+  outline: none;
+  color: #fff;
+  background: transparent;
+  border: 1px solid #fff;
+}
 ::placeholder {
   color: #fff;
 }
 .fold1 form input[type="submit"]{
   display: block;
+  margin: 5vh auto 0;
   padding: 12px 40px;
   border-radius: 40px;
   box-shadow: none;
