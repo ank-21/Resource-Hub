@@ -105,7 +105,7 @@ profile.post('/profile/:id',async function(req,res){
             user.save()
                 .then(user => {
                     console.log("fun",avatar);
-                    req.flash('success_msg', 'Profile Updated!');
+                    req.flash('profile_msg', 'Profile Updated!');
                     res.redirect('/profile');
                 })
                 .catch(err =>{
