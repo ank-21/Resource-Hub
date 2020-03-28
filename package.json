@@ -17,11 +17,8 @@
     "express": "^4.17.1",
     "express-session": "^1.17.0",
     "mongoose": "^5.9.6",
-<<<<<<< HEAD
     "nodemon": "^2.0.2",
-=======
     "multer": "^1.4.2",
->>>>>>> 6156c4a47f6b89a8e9e732df4068981e2ff25ac2
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
