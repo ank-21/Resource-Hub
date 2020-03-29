@@ -21,7 +21,7 @@ const NotesSchema = new mongoose.Schema({
     },
     downloadCount:{
         type:Number
-    } 
+    }
 })
 
 const Notes = mongoose.model('Notes',NotesSchema);

@@ -177,31 +177,30 @@ profile.post('/notes/:id',async function(req,res){
                     cb(notes);
                 }else{
                     notes = `/uploadsNotes/${req.user._id}/${req.file.filename}`;
+                    originalName = `${req.file.originalname}`
                     console.log("notes",notes);
                     cb(notes);  
                 }
             }
       }) 
     },(notes)=>{
-        User.findOneAndUpdate({_id:id},{ $inc: { uploadsCount: 1 } })
+        User.findById({_id:id})
             .then(user => {
                 if(!user){
                     errors.push({msg:'No Records of user found at this moment'})
                     res.render('signup',{
                         errors
                     })
-                }
-                
+                }                
+                user.uploadsCount = user.uploadsCount + 1;                
                 user.save()
-                    .then(user => {
+                    .then(user => {                        
                         if(!notes){
                             req.flash('profile_msg', 'your Notes Couldnot be uploaded! Please Try again');
                             res.redirect('/profile');
                         }
                         
-                        else{
-                            console.log("about branch",req.body);
-                            
+                        else{                            
                             const newNotes = new Notes({
                                 userName:user.name,
                                 branch:req.body.branch,
@@ -212,10 +211,8 @@ profile.post('/notes/:id',async function(req,res){
                             })
 
                             newNotes.save()
-                                .then(note=> {
-                                    console.log("saved note",note);
-                                    
-                                    req.flash('profile_msg', 'Your notes is uploaded.You can check it at notes section!');
+                                .then(note=> {                                    
+                                    req.flash('profile_msg', `Your notes is uploaded.You can check it at notes section!`);
                                     res.redirect('/profile');
                                 })
                                 .catch(err => {
