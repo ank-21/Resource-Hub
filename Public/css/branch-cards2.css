@@ -438,9 +438,9 @@ body::-webkit-scrollbar-thumb {
       left: -20%;
       font-size: 22px;
     }
-    #chkToggle:checked + ul.main-nav {
+    /* #chkToggle:checked + ul.main-nav {
       display: flex;
-    }
+    } */
   
     .main-nav {
       display: flex;
@@ -461,9 +461,9 @@ body::-webkit-scrollbar-thumb {
       margin-top: 0;
     }
   
-    .navbar-toggle {
+    /* .navbar-toggle {
       display: none;
-    }
+    } */
   
     .logo:hover,
     .nav-links:hover {
