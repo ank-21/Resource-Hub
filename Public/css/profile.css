@@ -1049,6 +1049,11 @@ h5.breadcrumbs-header {
 .fold.active {
   transform: perspective(2000px) rotateX(0deg);
 }
+
+.fold form select{
+  width: 100%;
+  height: 100%;
+}
 .fold form input[type="text"] {
   width: 100%;
   margin-bottom: 20px;
@@ -1083,6 +1088,24 @@ h5.breadcrumbs-header {
 }
 .fold form input[type="submit"]:hover{
   background: #247ebf;
+}
+#selectBranch {
+  margin-bottom: 10px;
+  position: relative;
+  font-family: Arial;
+}
+
+#selectSem {
+  margin-bottom: 15px;
+  position: relative;
+  font-family: Arial;
+}
+
+#selectSem p {
+  color: white;
+}
+#selectBranch p{
+  color: white;
 }
 
 #flight-card .card-content-bg {

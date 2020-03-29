@@ -585,8 +585,34 @@
               </div>
               <div class="fold">
                 <form>
-                  <input type="text" name="branch" placeholder="Branch">
-                  <input type="text" name="semester" placeholder="Semester">
+                  <div id="selectBranch">
+                    <p>Select Branch:</p>
+                    <select style="display: block;">
+                      <option value="CE">Civil</option>
+                      <option value="ME">Mechanical</option>
+                      <option value="EE">Electrical</option>
+                      <option value="ECE">Electronics & Communication</option>
+                      <option value="CSE">Computer Science</option>
+                      <option value="EIE">Electronics & Instrumentation</option>
+                    </select>
+                  </div>
+
+                  <div id="selectSem">
+                    <p>Select Semester:</p>
+                    <select style="display: block;">
+                      <option value="1">1st</option>
+                      <option value="2">2nd</option>
+                      <option value="3">3rd</option>
+                      <option value="4">4th</option>
+                      <option value="5">5th</option>
+                      <option value="6">6th</option>
+                      <option value="7">7th</option>
+                      <option value="8">8th</option>
+                    </select>
+                  </div>
+                  
+                  <!-- <input type="text" name="branch" placeholder="Branch">
+                  <input type="text" name="semester" placeholder="Semester"> -->
                   <input type="text" name="subject" placeholder="Subject">
                   <input type="text" name="profName" placeholder="Professor Name">
                   <label class="custom-file-upload">
