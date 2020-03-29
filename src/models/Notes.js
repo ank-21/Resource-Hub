@@ -14,7 +14,13 @@ const NotesSchema = new mongoose.Schema({
         type: String
     },
     notesCount:{
-        type:number
+        type:Number
+    },
+    profName:{
+        type:String
+    },
+    userName:{
+        type:String
     }
 })
 

@@ -23,6 +23,9 @@ const UserSchema = new mongoose.Schema({
     facebookId:{
         type:String
     },
+    linkedinId:{
+        type:String
+    },
     date:{
         type:Date,
         default: Date.now()
@@ -36,8 +39,9 @@ const UserSchema = new mongoose.Schema({
     phnNo:{
         type:String
     },
-    uploads:{
-        type:Number
+    uploadsCount:{
+        type:Number,
+        default:0
     },
     avatar:{
         type:String
