@@ -19,6 +19,9 @@ const NotesSchema = new mongoose.Schema({
     userName:{
         type:String
     },
+    userId:{
+        type:String
+    },
     downloadCount:{
         type:Number
     }

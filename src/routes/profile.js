@@ -75,7 +75,7 @@ const storage = multer.diskStorage({
     }
   }).single('notesSelected');
   
-//for uploading image
+//post request for uploading image
 profile.post('/profile/:id',async function(req,res){
     console.log("details of branch",req.body);
     const id = req.params.id;
@@ -155,7 +155,7 @@ profile.post('/profile/:id',async function(req,res){
 });
 
 
-//for uploading notes
+//post request for uploading notes
 profile.post('/notes/:id',async function(req,res){
     const id = req.params.id;
     console.log("id",id);
@@ -203,11 +203,12 @@ profile.post('/notes/:id',async function(req,res){
                         else{                            
                             const newNotes = new Notes({
                                 userName:user.name,
+                                userId:user._id,
                                 branch:req.body.branch,
                                 semester:req.body.semester,
                                 profName:req.body.profName,
                                 subject:req.body.subject,
-                                notesLoc:`${notes}`,
+                                notesLoc:`${notes}`
                             })
 
                             newNotes.save()
@@ -228,7 +229,10 @@ profile.post('/notes/:id',async function(req,res){
                 console.log("error",err);   
             })
     })
-})
+});
+
+
+
 
 
 
