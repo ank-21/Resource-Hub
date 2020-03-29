@@ -434,7 +434,7 @@
                 <li class="collection-item">
                   <div class="row">
                     <div class="col s6">
-                        <span style="font-size: 4vh;font-weight: normal;position: relative;top:2px">Total Uploads - </span> <span style="font-size: 3vh;"><%= user.uploads%></span>
+                        <span style="font-size: 4vh;font-weight: normal;position: relative;top:2px">Total Uploads - </span> <span style="font-size: 3vh;"><%= user.uploadsCount%></span>
                       </div>
                     <div class="col s3">
                       <span class="task-cat teal">Marketing</span>
@@ -584,22 +584,22 @@
                 </div>
               </div>
               <div class="fold">
-                <form>
+                <form action="/users/notes/<%= user._id %>" method="post" enctype="multipart/form-data">
                   <div id="selectBranch">
                     <p>Select Branch:</p>
-                    <select style="display: block;">
-                      <option value="CE">Civil</option>
-                      <option value="ME">Mechanical</option>
-                      <option value="EE">Electrical</option>
-                      <option value="ECE">Electronics & Communication</option>
+                    <select style="display: block;" required="true" name ="branch">
                       <option value="CSE">Computer Science</option>
+                      <option value="ECE">Electronics & Communication</option>
+                      <option value="EE">Electrical</option>
+                      <option value="ME">Mechanical</option>
+                      <option value="CE">Civil</option>
                       <option value="EIE">Electronics & Instrumentation</option>
                     </select>
                   </div>
 
                   <div id="selectSem">
                     <p>Select Semester:</p>
-                    <select style="display: block;">
+                    <select style="display: block;" required="true" name="semester">
                       <option value="1">1st</option>
                       <option value="2">2nd</option>
                       <option value="3">3rd</option>
@@ -617,7 +617,7 @@
                   <input type="text" name="profName" placeholder="Professor Name">
                   <label class="custom-file-upload">
           
-                    <input name="" type="file" id="file-upload1" class="file-path validate" style="position: relative;left:0.2vw">
+                    <input name="notesSelected" type="file" id="file-upload1" class="file-path validate" style="position: relative;left:0.2vw">
                     <span><i class="fas fa-upload"></i></span>
                     Upload Files
                     <hr>
