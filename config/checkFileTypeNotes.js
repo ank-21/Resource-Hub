@@ -4,7 +4,7 @@ module.exports = {
     checkFileTypeNotes: function (file, cb) {
         //allowed ext
       
-        const filetypes = /pdf|doc|docx/;
+        const filetypes = /pdf|doc|docx|pptx|txt/;
       
         //check ext
       

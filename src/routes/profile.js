@@ -75,7 +75,7 @@ const storage = multer.diskStorage({
     }
   }).single('notesSelected');
   
-//for uploading image
+//post request for uploading image
 profile.post('/profile/:id',async function(req,res){
     console.log("details of branch",req.body);
     const id = req.params.id;
@@ -118,7 +118,7 @@ profile.post('/profile/:id',async function(req,res){
                 user.avatar = `${avatar}`;
             }
             else{
-                user.avatar = '/img/avatar.png'  
+                user.avatar = '/img/avatar.png'  //if no image is set then select this for user  
             }
 
             //for branch
@@ -155,7 +155,7 @@ profile.post('/profile/:id',async function(req,res){
 });
 
 
-//for uploading notes
+//post request for uploading notes
 profile.post('/notes/:id',async function(req,res){
     const id = req.params.id;
     console.log("id",id);
@@ -177,42 +177,48 @@ profile.post('/notes/:id',async function(req,res){
                     cb(notes);
                 }else{
                     notes = `/uploadsNotes/${req.user._id}/${req.file.filename}`;
+                    originalName = `${req.file.originalname}`
                     console.log("notes",notes);
                     cb(notes);  
                 }
             }
       }) 
     },(notes)=>{
-        User.findOneAndUpdate({_id:id},{ $inc: { uploadsCount: 1 } })
+        User.findById({_id:id})
             .then(user => {
                 if(!user){
                     errors.push({msg:'No Records of user found at this moment'})
                     res.render('signup',{
                         errors
                     })
-                }
-                
+                }                
+                user.uploadsCount = user.uploadsCount + 1;                
                 user.save()
-                    .then(user => {
-                        const branchTypes = /cse|ece|ee|me|ei|ce/;
-                        const branch = req.body.branch.toLowerCase().test(branchTypes);
-                        if(!branch){
-                            req.flash('profile_msg', 'Please keep the branch name as CSE,ECE,EE,ME,CE only');
-                            res.redirect('/profile');
-                        }
-
-
+                    .then(user => {                        
                         if(!notes){
                             req.flash('profile_msg', 'your Notes Couldnot be uploaded! Please Try again');
                             res.redirect('/profile');
                         }
                         
-                        else{
-                            // const notes = new notes({
-                                
-                            // })
-                            req.flash('profile_msg', 'Your notes is uploaded.You can check it at notes section!');
-                            res.redirect('/profile');
+                        else{                            
+                            const newNotes = new Notes({
+                                userName:user.name,
+                                userId:user._id,
+                                branch:req.body.branch,
+                                semester:req.body.semester,
+                                profName:req.body.profName,
+                                subject:req.body.subject,
+                                notesLoc:`${notes}`
+                            })
+
+                            newNotes.save()
+                                .then(note=> {                                    
+                                    req.flash('profile_msg', `Your notes is uploaded.You can check it at notes section!`);
+                                    res.redirect('/profile');
+                                })
+                                .catch(err => {
+                                    console.log("error in uploading",err);
+                                })    
                         }
                     })
                     .catch(err =>{
@@ -223,7 +229,10 @@ profile.post('/notes/:id',async function(req,res){
                 console.log("error",err);   
             })
     })
-})
+});
+
+
+
 
 
 

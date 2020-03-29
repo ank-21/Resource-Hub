@@ -1,26 +1,29 @@
 const mongoose = require('mongoose');
 
 const NotesSchema = new mongoose.Schema({
-    name: {
-        type:String
-    },
     branch: {
         type:String
     },
     semester: {
         type: String
     },
+    subject:{
+        type:String
+    },
     notesLoc:{
         type: String
-    },
-    notesCount:{
-        type:Number
     },
     profName:{
         type:String
     },
     userName:{
         type:String
+    },
+    userId:{
+        type:String
+    },
+    downloadCount:{
+        type:Number
     }
 })
 
