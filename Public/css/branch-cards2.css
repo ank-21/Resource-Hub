@@ -463,7 +463,6 @@ body::-webkit-scrollbar-thumb {
   #chkToggle {
     display: none;
   }
-
   #navtoggle {
       color: white;
       font-size: 2.4rem;
@@ -475,7 +474,6 @@ body::-webkit-scrollbar-thumb {
   #navtoggle:hover{
       cursor: pointer;
   }
-
   @media screen and (max-width: 768px){
       #navtoggle {
           display: block;
@@ -543,6 +541,7 @@ body::-webkit-scrollbar-thumb {
     }
   }
 
+
   #smallnavbar {
         width: 100vw;
     position: relative;
@@ -551,10 +550,12 @@ body::-webkit-scrollbar-thumb {
     text-align: center;
     line-height: 6vh;
     margin: auto;
+    background: black;
     box-shadow: 2px 2px 10px rgb(165, 162, 162);
     padding: 10px;
     display: none;
   }
+
 
   .smallmain-nav {
       list-style: none;
