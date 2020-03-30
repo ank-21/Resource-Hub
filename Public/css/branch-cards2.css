@@ -650,11 +650,15 @@ body::-webkit-scrollbar-thumb {
    @media (min-width: 768px) {
     
     .grid-item {
-          margin-bottom: 10vh;
-          margin-top: 10vh;
+          margin-bottom: 5vh;
+          margin-top: 5vh;
     }
   }
-  
+  img{
+    height:30vh;
+    border: 1px solid #8a7878;
+    box-shadow: 4px 5px 5px rgba(0,0,0,0.6);
+  }
   
   
   
