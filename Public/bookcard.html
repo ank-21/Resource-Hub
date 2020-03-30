@@ -2,49 +2,21 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title></title>
         <link rel="stylesheet" href="css/bookcard.css">
-        <link rel="stylesheet" href="css/signup.css">
+         <!-- <link rel="stylesheet" href="css/branch-cards2.css"> -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    
-   <style>
-   		.nav-links{
-    font-size: 1.05rem;
-}
-	.navbar {
-    position: relative;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -ms-flex-align: center;
-    align-items: center;
-    -ms-flex-pack: justify;
-    justify-content: space-around;
-    box-shadow: 2px 3px 10px rgba(0,0,0,0.6);
-    }
-   	 @media screen and (min-width: 768px){
-	.logo {
-    display: inline-block;
-    position: relative;
-    left: 0%;
-    font-size: 1.8rem;
-	}
-	.navbar {
-    height: 100px;
-	}
-}
-   </style>
-    
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css">    -->
     </head>
     <body>
-        <nav class="navbar">
-            <label class="navbar-toggle" id="js-navbar-toggle" for="chkToggle">
-                    <img src="/img/bars.png" alt="" style="position: absolute;top: 20px;">
-                </label>
+                <nav class="navbar">
+            <!-- <label class="navbar-toggle" id="js-navbar-toggle" for="chkToggle">
+                    <img src="img/bars.png" alt="" style="position: absolute;top: 20px;">
+                </label> -->
             <a href="/index.html" class="logo">Resource Hub</a>
-            <input type="checkbox" id="chkToggle"></input>
+            <!-- <input type="checkbox" id="chkToggle"></input> -->
             <ul class="main-nav" id="js-menu">
               <li>
                 <a href="/index.html" class="nav-links">Home</a>
@@ -59,7 +31,25 @@
                 <a href="/index.html#contact" class="nav-links">Contact Us</a>
               </li>
             </ul>
-        </nav>
+            <div id="navtoggle"> <i class="fas fa-bars"></i> </div>
+          </nav>
+
+          <div id="smallnavbar">
+            <ul class="smallmain-nav" id="smalljs-menu">
+                <li>
+                  <a href="/index.html" class="nav-links smallnav">Home</a>
+                </li>
+                <li>
+                  <a href="/index.html#about" class="nav-links smallnav">About</a>
+                </li>
+                <li>
+                  <a href="/index.html#contact" class="nav-links smallnav">Notes</a>
+                </li>
+                <li>
+                  <a href="/index.html#contact" class="nav-links smallnav">Contact Us</a>
+                </li>
+              </ul>
+        </div>
         <div class="grid-container">
             <div class="container1 grid-item">
                 <div class="content">No. of subjects : 6</div>
@@ -175,9 +165,9 @@
         </div>
 
          <!--::footer_part start::-->
-    <footer class="footer_part">
-        <div class="container">
-            <div class="row">
+   <footer class="footer_part">
+        <div class="grid-footer">
+            <!-- <div class="row"> -->
                 <div class="col-sm-4 col-md-4 col-lg-3">
                     <div class="single_footer_part">
                         <h4>Developers</h4>
@@ -228,9 +218,11 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            <!-- </div> -->
             <hr>
+        </div>
     </footer>
     <!--::footer_part end::-->
+        <script type="text/javascript" src="js/branch-cards2.js"></script>
     </body>
 </html>
