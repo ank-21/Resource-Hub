@@ -2712,3 +2712,43 @@ header .brand-logo img {
   padding: 10px;
   font-weight: 400;
 }
+
+.navbar {
+  height: 100px;
+}
+
+#smallnavbar {
+  width: 100vw;
+position: relative;
+top: -2vh;
+left: -2.5vw;
+text-align: center;
+line-height: 6vh;
+margin: auto;
+background: black;
+box-shadow: 2px 2px 10px rgb(165, 162, 162);
+padding: 10px;
+display: none;
+}
+.smallmain-nav {
+  list-style: none;
+}
+
+#navtoggle {
+  color: white;
+  font-size: 2.4rem;
+  display: none;
+  float: right;
+  position: absolute;
+  z-index: 999;
+}
+#navtoggle:hover{
+  cursor: pointer;
+}
+@media screen and (max-width: 768px){
+  #navtoggle {
+      display: block;
+      right: 30px;
+      top: 40px;
+  }
+}
