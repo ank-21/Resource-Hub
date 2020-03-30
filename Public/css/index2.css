@@ -4,7 +4,7 @@
 }
 
 .profileicon {
-    margin-top: 50px;
+    margin-top: 25px;
     color: rgb(49, 175, 224);
     z-index: 999;
 }
@@ -16,9 +16,10 @@
 #profilediv {
     display: none;
     border: 1px solid darkgrey;
-    padding: 10px;
+    padding: 15px;
     box-shadow: 2px 2px 10px darkgrey;
-    transform: translateX(-25px);
+    transform: translateX(15px);
+    float: left;
 }
 
 #profilediv p:hover {

@@ -108,11 +108,12 @@ input {
                         </div>
                         <!-- <a href="/users/signup" class="d-none d-sm-block btn_1 home_page_btn button"id="one">Login</a> -->
                         <div class="profileicon"><i onclick="myFunction()" class="fas fa-user-circle profileiconfontaw"></i><br>
-                            <div id="profilediv">
-                                <p class="profile"><i class="fas fa-user"></i>Your Profile</p>
-                                <hr style="color: darkgrey; width: 90%; margin: auto;">
-                                <p class="logout"><i class="fa fa-sign-out"></i>Logout</p>
-                            </div>
+                            
+                        </div>
+                        <div id="profilediv">
+                            <p class="profile"><i class="fas fa-user"></i>Your Profile</p>
+                            <hr style="color: darkgrey; width: 90%; margin: auto;">
+                            <p class="logout"><i class="fas fa-sign-out-alt"></i>Logout</p>
                         </div>
                     </nav>
                 </div>
@@ -607,8 +608,13 @@ input {
         
         function myFunction(){
          var x = document.getElementById("profilediv");
-         x.style.display = "block";
+         if(x.style.display == "none"){
+            x.style.display = "block";
+         } else {
+            x.style.display = "none";
+         }
         }
+        
         
     </script>
 </body>
