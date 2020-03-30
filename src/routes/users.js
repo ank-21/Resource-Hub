@@ -3,13 +3,20 @@ const userRouter = express.Router();
 const User = require('../models/User');
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
+const { ensureAuthenticated } = require('../../config/auth');
 
+
+
+userRouter.get('/home',ensureAuthenticated,(req,res)=>{
+    res.render('index');
+});
 
 //signup Route
 userRouter.get('/signup',(req,res)=>{
     let flag= req.query.flag;
     res.render('signup'); 
-})
+});
+
 
 userRouter.post('/signup',(req,res)=>{
     console.log("req.body ",req.body);
@@ -134,7 +141,7 @@ userRouter.get('/linkedin/callback', passport.authenticate("linkedin", {
 
 //Logout handle
 
-userRouter.get('/logout',(req,res)=>{
+userRouter.get('/logout', ensureAuthenticated,(req,res)=>{
     req.logout();
     req.flash('success_msg', 'You are logged out');
     res.redirect('/users/signup');

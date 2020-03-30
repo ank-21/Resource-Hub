@@ -7,27 +7,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Resource Hub</title>
     <link rel="icon" href="/img/favicon.png">
-    <!-- Bootstrap css/ -->
-    <link rel="stylesheet" href="/css//bootstrap.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
     <!-- animate CSS -->
-    <link rel="stylesheet" href="/css//animate.css">
+    <link rel="stylesheet" href="/css/animate.css">
     <!-- owl carousel CSS -->
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel="stylesheet" href="/css//owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
     <!-- font awesome CSS -->
-    <link rel="stylesheet" href="/css//all.css">
+    <link rel="stylesheet" href="/css/all.css">
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     <!-- flaticon CSS -->
-    <link rel="stylesheet" href="/css//flaticon.css">
-    <link rel="stylesheet" href="/css//themify-icons.css">
+    <link rel="stylesheet" href="/css/flaticon.css">
+    <link rel="stylesheet" href="/css/themify-icons.css">
     <!-- font awesome CSS -->
-    <link rel="stylesheet" href="/css//magnific-popup.css">
+    <link rel="stylesheet" href="/css/magnific-popup.css">
     <!-- swiper CSS -->
-    <link rel="stylesheet" href="/css//slick.css">
+    <link rel="stylesheet" href="/css/slick.css">
     <!-- style CSS -->
-    <link rel="stylesheet" href="/css//style.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/index2.css">
     <style>
     	form {
 	background-color: #FFFFFF;
@@ -58,8 +59,8 @@ input {
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand main_logo" href="/"> <img src="/img/logo.png" alt="logo"> </a>
-                        <a class="navbar-brand single_page_logo" href="/"> <img src="/img/footer_logo.png" alt="logo"> </a>
+                        <a class="navbar-brand main_logo" href="/index.html"> <img src="/img/logo.png" alt="logo"> </a>
+                        <a class="navbar-brand single_page_logo" href="index.html"> <img src="/img/footer_logo.png" alt="logo"> </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -74,9 +75,10 @@ input {
                                 <li class="nav-item">
                                     <a class="nav-link" href="#about">About</a>
                                 </li>
-                                <li>
-                                    <a href="/notes/branch" class="nav-links">Notes</a>
-                                  </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/users/branch">Notes</a>
+                                </li>
+                               
                                 <li class="nav-item">
                                     <a class="nav-link" href="#contact">Contact Us</a>
                                 </li>
@@ -104,7 +106,15 @@ input {
                                 </li> -->
                             </ul>
                         </div>
-                        <a href="/users/signup" class="d-none d-sm-block btn_1 home_page_btn button"id="one">Login</a>
+                        <!-- <a href="/users/signup" class="d-none d-sm-block btn_1 home_page_btn button"id="one">Login</a> -->
+                        <div class="profileicon"><i onclick="myFunction()" class="fas fa-user-circle profileiconfontaw"></i><br>
+                            
+                        </div>
+                        <div id="profilediv">
+                            <p class="profile"><i class="fas fa-user"></i><a href="/profile"  style="color:#FF4800">Your Profile</a></p>
+                            <hr style="color: darkgrey; width: 90%; margin: auto;">
+                            <p class="logout"><i class="fas fa-sign-out-alt"></i><a href="/users/logout" style="color:#FF4800">Logout</a></p>
+                        </div>
                     </nav>
                 </div>
             </div>
@@ -148,7 +158,7 @@ input {
                 <div class="col-lg-4 col-sm-6">
                     <div class="single_feature">
                         <div class="single_feature_part">
-                            <img src="/img/icon/feature_icon_1.png" alt="">
+                            <img src="img/icon/feature_icon_1.png" alt="">
                             <h4>Fully Secured</h4>
                             <p>Made great fish shall beast, fourth land also Doesn
                                 tree without lesser likeness he fruit of called gathering
@@ -510,14 +520,6 @@ input {
     <footer class="footer_part">
         <div class="container">
             <div class="row">
-                <!-- <div class="col-sm-8 col-md-4 col-lg-4">
-                    <div class="single_footer_part">
-                        <a href="index.html" class="footer_logo_iner"> <img src="img/footer_logo.png" alt="#"> </a>
-                        <p>Gathered. Under is whose you'll to make years is mat lights thing together fish made
-                            forth thirds cattle behold won't. Fourth creeping first female.
-                        </p>
-                    </div>
-                </div> -->
                 <div class="col-sm-4 col-md-4 col-lg-3">
                     <div class="single_footer_part">
                         <h4>Developers</h4>
@@ -570,26 +572,6 @@ input {
                 </div>
             </div>
             <hr>
-            <!-- <div class="row">
-                <div class="col-lg-8">
-                    <div class="copyright_text">
-                        <P>
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-</P>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="footer_icon social_icon">
-                        <ul class="list-unstyled">
-                            <li><a href="#" class="single_social_icon"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#" class="single_social_icon"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#" class="single_social_icon"><i class="fas fa-globe"></i></a></li>
-                            <li><a href="#" class="single_social_icon"><i class="fab fa-behance"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div> -->
-        </div>
     </footer>
     <!--::footer_part end::-->
     <!-- jquery plugins here-->
@@ -621,6 +603,20 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="/js/mail-script.js"></script>
     <!-- custom js -->
     <script src="/js/custom.js"></script>
+    <script src="/js/index2.js"></script>
+    <script>
+        
+        function myFunction(){
+         var x = document.getElementById("profilediv");
+         if(x.style.display == "none"){
+            x.style.display = "block";
+         } else {
+            x.style.display = "none";
+         }
+        }
+        
+        
+    </script>
 </body>
 
 </html>
