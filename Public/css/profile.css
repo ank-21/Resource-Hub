@@ -1190,7 +1190,7 @@ h5.breadcrumbs-header {
 }
 
 #profile-card .card-content p {
-  font-size: 1.2rem;
+  font-size: 0.96rem;
   margin: 10px 0 12px 0;
 }
 
@@ -2731,7 +2731,6 @@ header .brand-logo img {
   width: 100vw;
 position: relative;
 top: -2vh;
-left: -2.5vw;
 text-align: center;
 line-height: 6vh;
 margin: auto;
