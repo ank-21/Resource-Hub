@@ -20,7 +20,15 @@ body {
 }
 
 #resource_hub {
-  font-size: 6em;
+  font-size: 4rem;
+  text-align:center;
+}
+@media screen and (min-width: 768px){
+  #resource_hub{
+    font-size:6rem;
+    white-space: nowrap;
+    text-align:left;
+  }
 }
 
 /* line 9, ../../01 cl html template/03_jun 2019/185 Ecobit SAAS html/sass/_common.scss */
@@ -859,6 +867,10 @@ ul {
   .button {
     font-size: 13px;
     padding: 9px 24px;
+  }
+  p{
+    font-size: 1.1rem;
+    color: #464646;
   }
 }
 
