@@ -843,6 +843,7 @@ figcaption a {
   .profileicon:hover .tooltiptext {
     visibility: visible;
   }
+/*Rating stars */
 
   .stars{
     display: flex;
@@ -853,17 +854,17 @@ figcaption a {
     height: 100vh;
 }
 .stars__star-icon{
-  stroke:#EFCE4A;
+  stroke:#FF9900;
   stroke-width: 2px;
   fill: transparent;
   transition: .1s all;
 }
 .stars__star{
-  width: 75px;
-  height: 75px;
+  width: 20px;
+  height: 20px;
   position: relative;
   cursor: pointer;
-  margin: 10px;
+  margin: 2px;
 }
 .stars__checkbox{
   position: absolute;
@@ -873,16 +874,16 @@ figcaption a {
   height: 0;
 }
 .stars__star:hover > .stars__star-icon{
-  fill: #EFCE4A;
+  fill: #FF9900;
 }
 
 .stars__star:hover ~ .stars__star > .stars__star-icon {
-  fill: #EFCE4A;
+  fill: #FF9900;
 }
 .stars__checkbox:checked + .stars__star > .stars__star-icon {
-  fill: #EFCE4A;
+  fill: #FF9900;
 }
 
 .stars__checkbox:checked ~ .stars__star > .stars__star-icon {
-  fill: #EFCE4A;
+  fill: #FF9900;
 }
