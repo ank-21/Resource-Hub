@@ -2729,8 +2729,10 @@ header .brand-logo img {
 
 #smallnavbar {
   width: 100vw;
-position: relative;
-top: -2vh;
+  position: fixed;
+    top: 10vh;
+    left: 0;
+    z-index:100;
 text-align: center;
 line-height: 6vh;
 margin: auto;

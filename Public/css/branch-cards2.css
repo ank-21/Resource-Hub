@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:300,400,500,600,700|Rajdhani:400,500,600,700&display=swap");
 
 body {
-    background-color: black;
+    background-color: #f7edd5;
     font-family: "Barlow Semi Condensed", sans-serif;
 }
 
@@ -179,7 +179,11 @@ img {
     padding-right: 20px;
     line-height: 40px;
 }
-
+@media screen and (max-width: 768px) {
+  .box-1{
+    margin-top:10vh;
+  }
+}
 .box-1 .button-style::after {
    /* content: "";
     background-color: #00BF9C;
@@ -561,8 +565,9 @@ body::-webkit-scrollbar-thumb {
 
   #smallnavbar {
     width: 100vw;
-    position: relative;
-    top: -2vh;
+    position: fixed;
+    top: 10vh;
+    z-index:100;
     left: -2.5vw;
     text-align: center;
     line-height: 6vh;
@@ -718,8 +723,8 @@ body::-webkit-scrollbar-thumb {
    @media (min-width: 768px) {
     
     .grid-item {
-          margin-bottom: 5vh;
-          margin-top: 5vh;
+              margin-bottom: 0vh;
+            margin-top: 10vh;
     }
   }
   img{
