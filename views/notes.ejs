@@ -28,6 +28,8 @@
     -ms-flex-pack: justify;
     justify-content: space-around;
     box-shadow: 2px 3px 10px rgba(0,0,0,0.6);
+    overflow: hidden;
+    z-index: 99;
     }
     @media screen and (min-width: 768px){
 	.logo {
@@ -36,9 +38,9 @@
     left: 0%;
     font-size: 1.8rem;
 	}
-	.navbar {
+	/* .navbar {
     height: 100px;
-	}
+	} */
 	.demo-wrapper{
 		padding-bottom: 20vh;
 	}
@@ -83,13 +85,20 @@
         <a href="/users/home#about" class="nav-links">About</a>
       </li>
       <li>
+        <a href="/profile" class="nav-links"><i class="fas fa-user"></i>Profile</a>
+      </li>
+      <li>
         <a href="/users/branch" class="nav-links">Notes</a>
       </li>
       <li>
         <a href="/users/home#contact" class="nav-links">Contact Us</a>
       </li>
+      <li>
+        <a href="/users/logout" class="nav-links"><i class="fas fa-sign-out-alt"></i>LOGOUT</a>
+      </li>
     </ul>
-    <div class="profileicon"><i onclick="myFunction()" class="fas fa-user-circle profileiconfontaw"></i><br>
+    <!-- <a href="/users/logout" style="color: white; font-weight: bold; text-decoration: none;"><i class="fas fa-sign-out-alt"></i>LOGOUT</a> -->
+    <!-- <div class="profileicon"><i onclick="myFunction()" class="fas fa-user-circle profileiconfontaw"></i><br>
         <span class="tooltiptext">
             <a href="/profile" style="color: white; text-decoration: none;">See Profile</a>
         </span>
@@ -98,8 +107,8 @@
         <p class="profile"><i class="fas fa-user"></i><a href="/profile"  style="color:#FF4800; text-decoration: none;">Your Profile</a></p>
         <hr style="color: darkgrey; width: 90%; margin: auto;">
         <p class="logout"><i class="fas fa-sign-out-alt"></i><a href="/users/logout" style="color:#FF4800; text-decoration: none;">Logout</a></p>
-    </div>
-    <div id="navtoggle"> <i class="fas fa-bars"></i> </div>
+    </div> -->
+    <div id="navtoggle"> <i class="fas fa-bars"></i> </div> 
   </nav>
 
   <div id="smallnavbar">
@@ -111,20 +120,26 @@
           <a href="/users/home#about" class="nav-links smallnav">About</a>
         </li>
         <li>
+            <a href="/profile" class="nav-links smallnav"><i class="fas fa-user"></i>Profile</a>
+          </li>
+        <li>
           <a href="/users/branch" class="nav-links smallnav">Notes</a>
         </li>
         <li>
           <a href="/users/home#contact" class="nav-links smallnav">Contact Us</a>
         </li>
+        <li>
+            <a href="/users/logout" class="nav-links smallnav"><i class="fas fa-sign-out-alt"></i>Logout</a>
+          </li>
       </ul>
 </div>
 <!-- partial:index.partial.html -->
-
+<div class="stickycontent">
 <div class="demo-wrapper">
   
-  <!-- <h1>Horizontal Portfolio Layout With CSS3 Animations and jQuery</h1> -->
-  <%= console.log("notes in ejs of notes",notes) %>
-  <%= console.log(notes.length) %>
+    <!-- <h1>Horizontal Portfolio Layout With CSS3 Animations and jQuery</h1> -->
+    <%= console.log("notes in ejs of notes",notes) %>
+    <%= console.log(notes.length) %>
 
 
     <ul class="portfolio-items">
@@ -135,19 +150,19 @@
             <li class="item">
                 <figure>
                     <div class="view">
-                    <img src="https://s.cdpn.io/9674/1.jpg" />
+                        <img src="https://s.cdpn.io/9674/1.jpg" />
                     </div>
                     <figcaption>
-                    <p><span><a href="<%= note.notesLoc %>" target="_blank"><%= note.subject %></a></span></p>
-                    <!-- <p><span>Professor - <%= note.profName %></span></p> -->
-                    <p><span>By <%= note.userName %></span></p>
+                        <p><span><a href="<%= note.notesLoc %>" target="_blank"><%= note.subject %></a></span></p>
+                        <!-- <p><span>Professor - <%= note.profName %></span></p> -->
+                        <p><span>By <%= note.userName %></span></p>
                     </figcaption>
                 </figure>
                 <div class="date">4.3</div>
-                </li>
+            </li>
         <% }); %>
     </ul>
-  </div>
+</div>
 
    <!--::footer_part start::-->
    <!-- <footer class="footer_part">
@@ -264,6 +279,7 @@
         <hr>
     </div>
 </footer>
+</div>
 <!--::footer_part end::-->
 <!-- partial -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>

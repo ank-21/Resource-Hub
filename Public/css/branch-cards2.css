@@ -428,6 +428,16 @@ body::-webkit-scrollbar-thumb {
     top: -2vh;
     left: -2.5vw;
     width: 100vw;
+    overflow: hidden;
+    z-index: 99;
+  }
+  .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  .sticky + .grid-container {
+    padding-top: 60px;
   }
   .main-nav {
     list-style-type: none;
