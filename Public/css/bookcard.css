@@ -314,8 +314,9 @@ body::-webkit-scrollbar-thumb {
 
   #smallnavbar {
         width: 100vw;
-    position: relative;
-    top: -2vh;
+    position: fixed;
+    top: 10vh;
+    z-index:100;
     left: -2.5vw;
     text-align: center;
     line-height: 6vh;
@@ -418,13 +419,10 @@ body::-webkit-scrollbar-thumb {
    @media (min-width: 768px) {
     
     .grid-item {
-          margin-bottom: 10vh;
-          margin-top: 10vh;
+          margin-bottom: 0vh;
+            margin-top: 10vh;
     }
-  }
-  
-
-  
+  }  
   
   @media (max-width: 576px) {
    

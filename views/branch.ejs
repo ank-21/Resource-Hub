@@ -6,14 +6,22 @@
         <title>Branch</title>
         <link rel="stylesheet" href="/css/branch-cards2.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-        <!-- <link rel="stylesheet" href="/css/index2.css"> -->
+        <style>
+              .logout{
+    color:white !important;
+}
+@media (min-width: 767px){
+.logout{
+    color:black;
+    position:relative;
+    left:10vw;
+    font-weight:700;
+}
+        </style>
     </head>
-    <body>
+    <body style="overflow-x: hidden;">
 
         <nav class="navbar">
-            <!-- <label class="navbar-toggle" id="js-navbar-toggle" for="chkToggle">
-                    <img src="img/bars.png" alt="" style="position: absolute;top: 20px;">
-                </label> -->
             <a href="/users/home" class="logo">Resource Hub</a>
             <!-- <input type="checkbox" id="chkToggle"></input> -->
             <ul class="main-nav" id="js-menu">
@@ -24,7 +32,7 @@
                 <a href="/users/home#about" class="nav-links">About</a>
               </li>
               <li>
-                <a href="/profile" class="nav-links"><i class="fas fa-user"></i>Profile</a>
+                <a href="/profile" class="nav-links"></i>Profile</a>
               </li>
               <li>
                 <a href="/users/branch" class="nav-links">Notes</a>
@@ -33,20 +41,9 @@
                 <a href="/users/home#contact" class="nav-links">Contact Us</a>
               </li>
               <li>
-                <a href="/users/logout" class="nav-links"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                <a href="/users/logout" class="nav-links logout">Logout</a>
               </li>
             </ul>
-            <!-- <a href="/users/logout" style="color: white; font-weight: bold; text-decoration: none;"><i class="fas fa-sign-out-alt"></i>LOGOUT</a> -->
-            <!-- <div class="profileicon"><i onclick="myFunction()" class="fas fa-user-circle profileiconfontaw"></i><br>
-                <span class="tooltiptext">
-                    <a href="/profile" style="color: white; text-decoration: none;">See Profile</a>
-                </span>
-            </div>
-            <div id="profilediv">
-                <p class="profile"><i class="fas fa-user"></i><a href="/profile"  style="color:#FF4800; text-decoration: none;">Your Profile</a></p>
-                <hr style="color: darkgrey; width: 90%; margin: auto;">
-                <p class="logout"><i class="fas fa-sign-out-alt"></i><a href="/users/logout" style="color:#FF4800; text-decoration: none;">Logout</a></p>
-            </div>-->
             <div id="navtoggle"> <i class="fas fa-bars"></i> </div> 
           </nav>
             
@@ -62,7 +59,7 @@
                   <a href="/users/home#about" class="nav-links smallnav">About</a>
                 </li>
                 <li>
-                    <a href="/profile" class="nav-links smallnav"><i class="fas fa-user"></i>Profile</a>
+                    <a href="/profile" class="nav-links smallnav">Profile</a>
                   </li>
                 <li>
                   <a href="/users/branch" class="nav-links smallnav">Notes</a>
@@ -71,7 +68,7 @@
                   <a href="/users/home#contact" class="nav-links smallnav">Contact Us</a>
                 </li>
                 <li>
-                    <a href="/users/logout" class="nav-links smallnav"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                    <a href="/users/logout" class="nav-links smallnav">Logout</a>
                   </li>
               </ul>
         </div>

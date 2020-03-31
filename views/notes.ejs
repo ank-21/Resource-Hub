@@ -9,16 +9,18 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 <link rel="stylesheet" href="/css/cards.css">
-<!-- <link rel="stylesheet" href="/css/signup.css"> -->
-<!-- <link rel="stylesheet" href="/css/bootstrap.min.css"> -->
-    <!-- <link rel="stylesheet" href="/css/style.css"> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
 <style>
 	.nav-links{
     font-size: 1.05rem;
 }
-	.navbar {
+.logo{
     position: relative;
+    left: -15vw;
+    font-size:1.5rem;
+}
+	.navbar {
+        left:0vw;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
@@ -31,52 +33,37 @@
     overflow: hidden;
     z-index: 99;
     }
-    @media screen and (min-width: 768px){
+#navtoggle{
+    right: 30px;
+    top: 20px;
+    font-size: 2.4rem;
+}
+@media screen and (min-width: 768px){
 	.logo {
     display: inline-block;
     position: relative;
     left: 0%;
     font-size: 1.8rem;
 	}
-	/* .navbar {
-    height: 100px;
-	} */
 	.demo-wrapper{
 		padding-bottom: 20vh;
 	}
 }
+  .logout1{
+    color:white !important;
+}
+@media (min-width: 767px){
+.logout1{
+    color:black;
+    position:relative;
+    left:6vw;
+    font-weight:700;
+}
 </style>
 </head>
-<body>
-
-  <!-- <nav class="navbar">
-    <label class="navbar-toggle" id="js-navbar-toggle" for="chkToggle">
-            <img src="/img/bars.png" alt="" style="position: absolute;top: 20px;">
-        </label>
-    <a href="/users/home" class="logo">Resource Hub</a>
-    <input type="checkbox" id="chkToggle"></input>
-    <ul class="main-nav" id="js-menu">
-      <li>
-        <a href="/users/home" class="nav-links">Home</a>
-      </li>
-      <li>
-        <a href="/users/home#about" class="nav-links">About</a>
-      </li>
-      <li>
-        <a href="/users/branch" class="nav-links">Notes</a>
-      </li>
-      <li>
-        <a href="/users/home#contact" class="nav-links">Contact Us</a>
-      </li>
-    </ul>
-  </nav> -->
-
+<body style="background:#f7edd5;">
   <nav class="navbar">
-    <!-- <label class="navbar-toggle" id="js-navbar-toggle" for="chkToggle">
-            <img src="img/bars.png" alt="" style="position: absolute;top: 20px;">
-        </label> -->
     <a href="/users/home" class="logo">Resource Hub</a>
-    <!-- <input type="checkbox" id="chkToggle"></input> -->
     <ul class="main-nav" id="js-menu">
       <li>
         <a href="/users/home" class="nav-links">Home</a>
@@ -85,7 +72,7 @@
         <a href="/users/home#about" class="nav-links">About</a>
       </li>
       <li>
-        <a href="/profile" class="nav-links"><i class="fas fa-user"></i>Profile</a>
+        <a href="/profile" class="nav-links"></i>Profile</a>
       </li>
       <li>
         <a href="/users/branch" class="nav-links">Notes</a>
@@ -94,20 +81,9 @@
         <a href="/users/home#contact" class="nav-links">Contact Us</a>
       </li>
       <li>
-        <a href="/users/logout" class="nav-links"><i class="fas fa-sign-out-alt"></i>LOGOUT</a>
+        <a href="/users/logout" class="nav-links logout1"></i>LOGOUT</a>
       </li>
     </ul>
-    <!-- <a href="/users/logout" style="color: white; font-weight: bold; text-decoration: none;"><i class="fas fa-sign-out-alt"></i>LOGOUT</a> -->
-    <!-- <div class="profileicon"><i onclick="myFunction()" class="fas fa-user-circle profileiconfontaw"></i><br>
-        <span class="tooltiptext">
-            <a href="/profile" style="color: white; text-decoration: none;">See Profile</a>
-        </span>
-    </div>
-    <div id="profilediv">
-        <p class="profile"><i class="fas fa-user"></i><a href="/profile"  style="color:#FF4800; text-decoration: none;">Your Profile</a></p>
-        <hr style="color: darkgrey; width: 90%; margin: auto;">
-        <p class="logout"><i class="fas fa-sign-out-alt"></i><a href="/users/logout" style="color:#FF4800; text-decoration: none;">Logout</a></p>
-    </div> -->
     <div id="navtoggle"> <i class="fas fa-bars"></i> </div> 
   </nav>
 
@@ -120,7 +96,7 @@
           <a href="/users/home#about" class="nav-links smallnav">About</a>
         </li>
         <li>
-            <a href="/profile" class="nav-links smallnav"><i class="fas fa-user"></i>Profile</a>
+            <a href="/profile" class="nav-links smallnav"></i>Profile</a>
           </li>
         <li>
           <a href="/users/branch" class="nav-links smallnav">Notes</a>
@@ -129,7 +105,7 @@
           <a href="/users/home#contact" class="nav-links smallnav">Contact Us</a>
         </li>
         <li>
-            <a href="/users/logout" class="nav-links smallnav"><i class="fas fa-sign-out-alt"></i>Logout</a>
+            <a href="/users/logout" class="nav-links smallnav">Logout</a>
           </li>
       </ul>
 </div>
@@ -154,7 +130,8 @@
                     </div>
                     <figcaption>
                         <p><span><a href="<%= note.notesLoc %>" target="_blank"><%= note.subject %></a></span></p>
-                        <!-- <p><span>Professor - <%= note.profName %></span></p> -->
+                        <p><span>Subject - <%= note.subject %></span></p>
+                        <p><span>Professor - <%= note.profName %></span></p>
                         <p><span>By <%= note.userName %></span></p>
                     </figcaption>
                 </figure>
@@ -163,64 +140,6 @@
         <% }); %>
     </ul>
 </div>
-
-   <!--::footer_part start::-->
-   <!-- <footer class="footer_part">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4 col-md-4 col-lg-3">
-                <div class="single_footer_part">
-                    <h4>Developers</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="">Ankit Srivastava</a></li>
-                        <li><a href="">Ujjawal Jain</a></li>
-                        <li><a href="">Anuva Bhattacharjee</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-sm-4 col-md-4 col-lg-2">
-                <div class="single_footer_part">
-                    <h4>Popular Notes</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="">Topper ke Notes</a></li>
-                        <li><a href="">Topper ke Notes</a></li>
-                        <li><a href="">Topper ke Notes</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-sm-4 col-md-4 col-lg-2">
-                <div class="single_footer_part">
-                    <h4>Recent Uploads</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="">Newbie 1</a></li>
-                        <li><a href="">Newbie 2</a></li>
-                        <li><a href="">Newbie 3</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-sm-4 col-md-4 col-lg-2">
-                <div class="single_footer_part">
-                    <h4>Most Downloaded</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="">Topper ke Notes</a></li>
-                        <li><a href="">Topper ke Notes</a></li>
-                        <li><a href="">Topper ke Notes</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-sm-4 col-md-3 col-lg-3">
-                <div class="single_footer_part">
-                    <h4>Popular Profiles</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="">Topper Nibba 1</a></li>
-                        <li><a href="">Topper Nibba 2</a></li>
-                        <li><a href="">Topper Nibba 3</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <hr>
-</footer> -->
 
 <footer class="footer_part">
     <div class="grid-footer">

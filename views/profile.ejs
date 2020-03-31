@@ -60,8 +60,6 @@
     }
     .navbar{
     width: 100vw;
-/*    left: -8vw;*/
-    position: relative;
     }
     .nav-links{
     padding: 20px 20px;
@@ -70,6 +68,16 @@
   font-size:1.2rem;
 }
   }
+  .logout1{
+    color:white !important;
+}
+@media (min-width: 767px){
+.logout1{
+    color:black;
+    position:relative;
+    left:10vw;
+    font-weight:700;
+}
 </style>
 </head>
 <body>
@@ -112,7 +120,7 @@
         <a href="/users/home#contact" class="nav-links">Contact Us</a>
       </li>
       <li>
-        <a href="/users/logout" class="nav-links">Logout</a>
+        <a href="/users/logout" class="nav-links logout1">Logout</a>
       </li>
     </ul>
     <div id="navtoggle"> <i class="fas fa-bars"></i> </div>
@@ -133,7 +141,7 @@
           <a href="/users/home#contact" class="nav-links smallnav">Contact Us</a>
         </li>
         <li>
-          <a href="/users/logout" class="nav-links smallnav"><i class="fas fa-sign-out-alt"></i>Logout</a>
+          <a href="/users/logout" class="nav-links smallnav">Logout</a>
         </li>
       </ul>
 </div>
@@ -160,7 +168,7 @@
       <!--start container-->
       <div class="container">
 
-        <div id="work-collections">
+        <div id="work-collections" style="margin-top: 6vh;">
           <div class="row">
             <div class="col l2"><h1></h1></div>
             <div class="col s12 m6 l3">
