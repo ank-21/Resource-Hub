@@ -246,21 +246,6 @@ section#formHolder {
   color: #f95959;
 }
 
-/*footer {
-  text-align: center;
-}
-footer p {
-  color: #777;
-}
-footer p a, footer p a:focus {
-  color: #b8b09f;
-  transition: all 0.3s;
-  text-decoration: none !important;
-}
-footer p a:hover, footer p a:focus:hover {
-  color: #f95959;
-}*/
-
 @media (max-width: 768px) {
   .container {
     overflow: hidden;
@@ -344,7 +329,7 @@ footer p a:hover, footer p a:focus:hover {
 .nav-links,
 .logo {
   color: #ffffff;
-    font-size: 14px;
+    font-size: 1em;
     padding: 40px 20px;
     font-family: "Barlow Semi Condensed", sans-serif;
     text-transform: uppercase;
@@ -395,8 +380,8 @@ footer p a:hover, footer p a:focus:hover {
   .logo{
   display: inline-block;
     position: relative;
-    left: -20%;
-    font-size: 22px;
+       left: -15%;
+    font-size: 1.7em;;
 }
   #chkToggle:checked + ul.main-nav {
     display: flex;
