@@ -2715,6 +2715,16 @@ header .brand-logo img {
 
 .navbar {
   height: 100px;
+  overflow: hidden;
+  z-index: 99;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.sticky + .wrapper {
+  padding-top: 60px;
 }
 
 #smallnavbar {

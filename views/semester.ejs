@@ -28,13 +28,20 @@
                 <a href="/users/home#about" class="nav-links">About</a>
               </li>
               <li>
+                <a href="/profile" class="nav-links"><i class="fas fa-user"></i>Profile</a>
+              </li>
+              <li>
                 <a href="/users/branch" class="nav-links">Notes</a>
               </li>
               <li>
                 <a href="/users/home#contact" class="nav-links">Contact Us</a>
               </li>
+              <li>
+                <a href="/users/logout" class="nav-links"><i class="fas fa-sign-out-alt"></i>Logout</a>
+              </li>
             </ul>
-            <div class="profileicon"><i onclick="myFunction()" class="fas fa-user-circle profileiconfontaw"></i><br>
+            <!-- <a href="/users/logout" style="color: white; font-weight: bold; text-decoration: none;"><i class="fas fa-sign-out-alt"></i>LOGOUT</a> -->
+            <!-- <div class="profileicon"><i onclick="myFunction()" class="fas fa-user-circle profileiconfontaw"></i><br>
                 <span class="tooltiptext">
                     <a href="/profile" style="color: white; text-decoration: none;">See Profile</a>
                 </span>
@@ -43,8 +50,8 @@
                 <p class="profile"><i class="fas fa-user"></i><a href="/profile"  style="color:#FF4800; text-decoration: none;">Your Profile</a></p>
                 <hr style="color: darkgrey; width: 90%; margin: auto;">
                 <p class="logout"><i class="fas fa-sign-out-alt"></i><a href="/users/logout" style="color:#FF4800; text-decoration: none;">Logout</a></p>
-            </div>
-            <div id="navtoggle"> <i class="fas fa-bars"></i> </div>
+            </div>-->
+            <div id="navtoggle"> <i class="fas fa-bars"></i> </div> 
           </nav>
 
           <div id="smallnavbar">
@@ -56,11 +63,17 @@
                   <a href="/users/home#about" class="nav-links smallnav">About</a>
                 </li>
                 <li>
+                    <a href="/profile" class="nav-links smallnav"><i class="fas fa-user"></i>Profile</a>
+                  </li>
+                <li>
                   <a href="/users/branch" class="nav-links smallnav">Notes</a>
                 </li>
                 <li>
                   <a href="/users/home#contact" class="nav-links smallnav">Contact Us</a>
                 </li>
+                <li>
+                    <a href="/users/logout" class="nav-links smallnav"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                  </li>
               </ul>
         </div>
         <div class="grid-container">
@@ -248,6 +261,23 @@
                 x.style.display = "none";
              }
             }
+            
+window.onscroll = function() {myfunction()};
+
+// Get the navbar
+var navbar = document.getElementsByClassName("navbar");
+
+// Get the offset position of the navbar
+var sticky = navbar[0].offsetTop;
+
+// Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+function myfunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar[0].classList.add("sticky");
+  } else {
+    navbar[0].classList.remove("sticky");
+  }
+}
             
             
         </script>
