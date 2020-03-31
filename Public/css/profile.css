@@ -2750,5 +2750,15 @@ display: none;
       display: block;
       right: 30px;
       top: 40px;
+      transform: translateX(-90px);
   }
+}
+
+.logout {
+  background: orange;
+  height: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  transform: translateX(100px);
+  border-radius: 20px;
 }

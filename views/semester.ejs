@@ -34,6 +34,16 @@
                 <a href="/users/home#contact" class="nav-links">Contact Us</a>
               </li>
             </ul>
+            <div class="profileicon"><i onclick="myFunction()" class="fas fa-user-circle profileiconfontaw"></i><br>
+                <span class="tooltiptext">
+                    <a href="/profile" style="color: white; text-decoration: none;">See Profile</a>
+                </span>
+            </div>
+            <div id="profilediv">
+                <p class="profile"><i class="fas fa-user"></i><a href="/profile"  style="color:#FF4800; text-decoration: none;">Your Profile</a></p>
+                <hr style="color: darkgrey; width: 90%; margin: auto;">
+                <p class="logout"><i class="fas fa-sign-out-alt"></i><a href="/users/logout" style="color:#FF4800; text-decoration: none;">Logout</a></p>
+            </div>
             <div id="navtoggle"> <i class="fas fa-bars"></i> </div>
           </nav>
 
@@ -227,5 +237,19 @@
     </footer>
     <!--::footer_part end::-->
         <script type="text/javascript" src="/js/branch-cards2.js"></script>
+
+        <script>
+        
+            function myFunction(){
+             var x = document.getElementById("profilediv");
+             if(x.style.display == "none"){
+                x.style.display = "block";
+             } else {
+                x.style.display = "none";
+             }
+            }
+            
+            
+        </script>
     </body>
 </html>

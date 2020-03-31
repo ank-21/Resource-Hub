@@ -480,6 +480,13 @@ body::-webkit-scrollbar-thumb {
           right: 30px;
           top: 40px;
       }
+      .profileicon {
+        float: left;
+        transform: translateX(30px);
+      }
+      #profilediv {
+        margin-left: 18px;
+      }
   }
   
   /*#chkToggle:checked + ul.main-nav {
@@ -499,7 +506,7 @@ body::-webkit-scrollbar-thumb {
       height: 85px;
       align-items: center;
       top: -1vh;
-    left: -0.5vw;
+      left: -0.5vw;
     }
     .logo{
     display: inline-block;
@@ -543,7 +550,7 @@ body::-webkit-scrollbar-thumb {
 
 
   #smallnavbar {
-        width: 100vw;
+    width: 100vw;
     position: relative;
     top: -2vh;
     left: -2.5vw;
@@ -559,6 +566,57 @@ body::-webkit-scrollbar-thumb {
 
   .smallmain-nav {
       list-style: none;
+  }
+
+  .profileiconfontaw{
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.profileicon {
+    margin-top: 25px;
+    color: rgb(49, 175, 224);
+    z-index: 999;
+}
+.profileicon:hover {
+    cursor: pointer;
+    color: midnightblue;
+}
+
+#profilediv {
+    display: none;
+    border: 1px solid darkgrey;
+    /* padding-top: -10px;
+    padding-bottom: -10px; */
+    padding-left: 15px;
+    padding-right: 15px;
+    box-shadow: 2px 2px 10px darkgrey;
+    transform: translateX(15px);
+    /* float: left; */
+    background: white;
+    width: 180px;
+}
+
+#profilediv p:hover {
+    color: mediumblue;
+}
+  
+  .profileicon .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .profileicon:hover .tooltiptext {
+    visibility: visible;
   }
 
   .footer_part {

@@ -18,10 +18,38 @@
     border: 1px solid darkgrey;
     padding: 15px;
     box-shadow: 2px 2px 10px darkgrey;
-    transform: translateX(15px);
-    float: left;
+    /* transform: translateX(15px); */
+    /* float: left; */
 }
 
 #profilediv p:hover {
     color: mediumblue;
 }
+  
+  .profileicon .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+  }
+  /* @media screen and (max-width: 768px){
+    .profileicon {
+      float: center;
+      transform: translateX(-60px);
+      transform: translateY(-25px);
+    }
+    #profilediv {
+      margin-left: 18px;
+    }
+} */
+  
+  .profileicon:hover .tooltiptext {
+    visibility: visible;
+  }
