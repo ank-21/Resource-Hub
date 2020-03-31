@@ -481,8 +481,8 @@ body::-webkit-scrollbar-thumb {
           top: 40px;
       }
       .profileicon {
-        float: left;
-        transform: translateX(30px);
+            float: left;
+            transform: translate(72vw,2vh);
       }
       #profilediv {
         margin-left: 18px;
