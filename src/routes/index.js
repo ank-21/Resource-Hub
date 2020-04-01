@@ -13,7 +13,7 @@ router.get('/',(req,res)=>{
         res.redirect('/users/home');
     }
     else{
-        res.sendFile(path.join(__dirname+'..public/index.html'));
+        res.sendFile(path.join(__dirname+'../../Public/index.html'));
     }
     
 })
