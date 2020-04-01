@@ -8,7 +8,19 @@ const { ensureAuthenticated } = require('../../config/auth');
 
 
 userRouter.get('/home',ensureAuthenticated,(req,res)=>{
-    res.render('index');
+    console.log("in home",req.user);
+    if(req.query.message=='true'){
+        var msg = 'Your request is sent! Check Your Email...'
+    }
+    else if(req.query.message=='false'){
+        var msg = 'Your request could not be sent! Please Try again'
+    }
+    else 
+        var msg = ''
+    res.render('index',{
+        user:req.user,
+        message:msg
+    });
 });
 
 //signup Route
@@ -111,7 +123,15 @@ userRouter.post('/login', (req,res,next)=> {
 //for google
 
 userRouter.get('/google',
-    passport.authenticate('google', { scope: ['profile'] })
+    passport.authenticate('google',
+        { 
+            scope: [
+                'profile',
+                'https://www.googleapis.com/auth/userinfo.profile',
+                'https://www.googleapis.com/auth/userinfo.email'
+            ] 
+        }
+    )
 );
 
 userRouter.get('/google/callback', passport.authenticate('google'), (req, res) => {

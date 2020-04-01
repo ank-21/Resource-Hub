@@ -56,6 +56,7 @@ module.exports = function(passport) {
                         const user = new User({
                             name:profile.displayName,
                             googleId:profile.id,
+                            email:profile.emails[0].value
                         })
                         user.save()
                             .then(newUser => {
