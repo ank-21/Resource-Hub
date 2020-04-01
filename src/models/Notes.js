@@ -23,6 +23,10 @@ const NotesSchema = new mongoose.Schema({
         type:String
     },
     downloadCount:{
+        type:Number,
+        default:0
+    },
+    rating:{
         type:Number
     }
 })
