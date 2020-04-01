@@ -1,0 +1,15 @@
+<div class="card-alert card card-style">
+    <div class="card-content">
+        Notes Page
+    </div>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">×</span>
+    </button>
+</div>
+<script>
+    $(document).ready(function() {
+        $('.card-alert > button').on('click', function(){
+            $(this).closest('div.card-alert').fadeOut('slow');
+        })
+    })
+</script>     
