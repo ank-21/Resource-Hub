@@ -12,7 +12,7 @@ router.get('/branch',ensureAuthenticated,(req,res)=>{
     res.render('branch');
 });
 
-
+//for semester page
 router.get('/branch/semester',ensureAuthenticated, async(req,res)=>{
     const branchname = req.query.branch;
     console.log(branchname);
@@ -48,6 +48,7 @@ router.get('/branch/semester',ensureAuthenticated, async(req,res)=>{
     });
 });
 
+//for getting notes page
 router.get('/branch/semester/notes', ensureAuthenticated ,async(req,res)=>{
     console.log(req.query);
     const branchname = req.query.branch;
@@ -61,6 +62,7 @@ router.get('/branch/semester/notes', ensureAuthenticated ,async(req,res)=>{
     })  
 });
 
+//for downloading notes
 router.get('/branch/semester/notes/download',(req,res)=>{
     Notes.find({branch:req.query.branch,semester:req.query.semester,_id:req.query.noteId})
         .then(note => {
@@ -77,6 +79,14 @@ router.get('/branch/semester/notes/download',(req,res)=>{
         }).catch(e => {
             res.redirect('/users/branch');
         })
+});
+
+//for rating page
+
+router.post('/branch/semester/notes/star_rating/:id',(req,res)=> {
+    console.log("params",req.params);
+    
+    res.send(req.body)
 })
 
 module.exports = router;
