@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Cards</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
-
+ 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 <link rel="stylesheet" href="/css/cards.css">
+<link rel="stylesheet" href="/css/signup.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
 <style>
 	.nav-links{
@@ -182,6 +183,61 @@
         <% }); %>
     </ul>
 </div>
+
+        <div class="col s12 m6 l4">
+            <div id="flight-card" class="card">
+              <div class="card-header">
+                <div class="card-title signIn">
+                  <h4 class="flight-card-title">Add Notes</h4>
+                  <!-- <p class="flight-card-date">June 18, Thu 04:50</p> -->
+                </div>
+              </div>
+              <div class="fold">
+                <form action="" method="post" enctype="multipart/form-data">
+                  <div id="selectBranch">
+                    <p>Select Branch:</p>
+                    <select style="display: block;" required="true" name ="branch">
+                      <option value="CSE">Computer Science</option>
+                      <option value="ECE">Electronics & Communication</option>
+                      <option value="EE">Electrical</option>
+                      <option value="ME">Mechanical</option>
+                      <option value="CE">Civil</option>
+                      <option value="EIE">Electronics & Instrumentation</option>
+                    </select>
+                  </div>
+
+                  <div id="selectSem">
+                    <p>Select Semester:</p>
+                    <select style="display: block;" required="true" name="semester">
+                      <option value="1">1st</option>
+                      <option value="2">2nd</option>
+                      <option value="3">3rd</option>
+                      <option value="4">4th</option>
+                      <option value="5">5th</option>
+                      <option value="6">6th</option>
+                      <option value="7">7th</option>
+                      <option value="8">8th</option>
+                    </select>
+                  </div>
+                  
+                  <!-- <input type="text" name="branch" placeholder="Branch">
+                  <input type="text" name="semester" placeholder="Semester"> -->
+                  <input type="text" name="subject" placeholder="Subject" required>
+                  <input type="text" name="profName" placeholder="Professor Name" required>
+                  <label class="custom-file-upload">
+          
+                    <input name="notesSelected" type="file" id="file-upload1" class="file-path validate" style="position: relative;left:0.2vw" required>
+                    <span><i class="fas fa-upload"></i></span>
+                    Upload Files
+                    <hr>
+                    <span id="file-selected1"></span>
+                  </label>
+                  <p style="text-align: center; display: block;"><input type="submit" value="Upload"></p>
+                </form>
+              </div>
+            </div>
+            <div class="col l2"><h1></h1></div>
+        </div>
 
 <footer class="footer_part">
     <div class="grid-footer">

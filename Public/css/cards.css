@@ -902,3 +902,124 @@ figcaption a {
 .stars__checkbox:checked ~ .stars__star > .stars__star-icon {
   fill: #FF9900;
 }
+
+.card {
+  box-shadow: none;
+  background: #F7EDD5;
+}
+.signIn {
+  position: relative;
+  width: 50%;
+  margin: auto;
+  height: 50%;
+  background: #00BCD4;
+  color: #fff;
+  text-align: center;
+  /* line-height: 60px; */
+  font-size: 40px;
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+  padding: 20px;
+  transform: translateY(-80px);
+}
+
+
+.fold {
+  position: relative;
+  width: 50%;
+  margin: auto;
+  background: #20728A;
+  transform-origin: top;
+  padding: 30px 20px;
+  box-sizing: border-box;
+  transition: 0.5s;
+  /* transform: perspective(2000px) rotateX(90deg); */
+  display: none;
+  transform: translateY(-80px);
+}
+
+@media screen and (max-width : 700px){
+  .signIn {
+    width: 80%;
+    transform: translateY(0px);
+  }
+  .fold {
+    width: 80%;
+    transform: translateY(0px);
+  }
+}
+
+/* .fold.active {
+  transform: perspective(2000px) rotateX(0deg);
+} */
+
+.fold form select{
+  width: 100%;
+  height: 100%;
+}
+.fold form input[type="text"] {
+  width: 100%;
+  margin-bottom: 20px;
+  height: 40px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  border-radius: 40px;
+  box-shadow: none;
+  outline: none;
+  color: #fff;
+  background: transparent;
+  border: 1px solid #fff;
+}
+::placeholder {
+  color: #fff;
+}
+.fold form input[type="file"] {
+  display: none;
+}
+.fold form input[type="submit"]{
+  display: block;
+  padding: 12px 40px;
+  border-radius: 40px;
+  box-shadow: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: #00BCD4;
+  color: #fff;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+
+}
+.fold form input[type="submit"]:hover{
+  background: #247ebf;
+}
+#selectBranch {
+  margin-bottom: 10px;
+  position: relative;
+  font-family: Arial;
+}
+
+#selectSem {
+  margin-bottom: 15px;
+  position: relative;
+  font-family: Arial;
+}
+
+#selectSem p {
+  color: white;
+}
+#selectBranch p{
+  color: white;
+}
+
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  color: white;
+  margin-bottom: 5px;
+}
+.custom-file-upload:hover{
+  border: 2px solid white;
+  transition: .5s ease-in-out;
+}

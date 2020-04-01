@@ -89,6 +89,16 @@ function myfunction() {
     navbar[0].classList.remove("sticky");
   }
 }
+
+var sign = document.getElementsByClassName("signIn");
+sign[0].addEventListener("click", function(){
+  var fold = document.getElementsByClassName("fold");
+  if(fold[0].style.display == "none"){
+    fold[0].style.display =  "block";
+  } else {
+    fold[0].style.display = "none";
+  }
+})
 /*
 Thanks a lot Fabrice Weinberg for helping me organize and oprimize the  JS code :)
 
