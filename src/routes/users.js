@@ -7,19 +7,40 @@ const { ensureAuthenticated } = require('../../config/auth');
 
 
 
-userRouter.get('/home',ensureAuthenticated,(req,res)=>{
-    console.log("in home",req.user);
+userRouter.get('/home',(req,res)=>{
+    
     if(req.query.message=='true'){
         var msg = 'Your request is sent! Check Your Email...'
+        
+        
+        if(req.query.user=="true"){
+            var flag=1;
+        }else if(req.query.user=="false"){
+            var flag=0;
+        }
     }
     else if(req.query.message=='false'){
-        var msg = 'Your request could not be sent! Please Try again'
+        var msg = 'Your request could not be sent! Please Try again';
+        if(req.query.user=="true"){
+            var flag=1;
+        }else if(req.query.user=="false"){
+            var flag=0;
+        }
     }
-    else 
-        var msg = ''
-    res.render('index',{
+    else{
+        var msg = '';
+        if(typeof req.query.user=='undefined'||req.query.user=="true"){
+            var flag=1;
+        }else if(req.query.user=="false"){
+            var flag=0;
+        }
+    }
+        console.log("flag here",flag);
+        console
+        res.render('index',{
         user:req.user,
-        message:msg
+        message:msg,
+        flag
     });
 });
 

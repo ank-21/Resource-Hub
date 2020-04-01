@@ -133,21 +133,30 @@ input {
                                 <li class="nav-item">
                                     <a class="nav-link" href="/users/home#about">About</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/profile"></i>Profile</a>
-                                </li>
+                                <% if(flag==1){ %>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/profile"></i>Profile</a>
+                                    </li>
+                                <% } %>
+                                
                                 <li class="nav-item">
                                     <a class="nav-link" href="/users/branch">Notes</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#contact">Contact Us</a>
                                 </li>
-                                <li class="nav-item">
-                                <a href="/users/logout" class="nav-link logout">Logout</a>
-                                </li>
+                                <% if(flag==1){ %>
+                                    <li class="nav-item">
+                                        <a href="/users/logout" class="nav-link logout">Logout</a>
+                                        </li>
+                                <% } %>
+                                
                             </ul>
                         </div>
-                        <!-- <a href="/logout" class="d-none d-sm-block btn_1 home_page_btn button"id="one">Logout</a> -->
+                        <% if(flag==0){ %>
+                            <a href="/users/signup" class="d-none d-sm-block btn_1 home_page_btn button"id="one">Login</a>
+                        <% } %>
+                        
                     </nav>
                 </div>
             </div>
@@ -169,7 +178,9 @@ input {
                         <div class="banner_text_iner">
                             <h1 id="resource_hub">RESOURCE HUB</h1>
                             <p>Notes, Books, Lectures... Everything at a single Click</p>
-                            <!-- <a href="#" class="btn_2">try for free</a> -->
+                            <% if(flag==0){ %>
+                                <a href="/users/signup" class="d-none d-sm-block btn_1 home_page_btn button"id="one">Login</a>
+                            <% } %>
                         </div>
                     </div>
                 </div>
@@ -182,7 +193,7 @@ input {
         <img src="/img/animate_icon/Ellipse_3.png" alt="" class="feature_icon_5 custom-animation5">
         <img src="/img/animate_icon/Ellipse_4.png" alt="" class="feature_icon_6 custom-animation6">
     </section>
-    <!--::banner part start::-->
+    <!--::banner part end::-->
 
     <!--::about_us part start::-->
     <section class="about_us section_padding" id="about">
@@ -266,12 +277,12 @@ input {
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <input class="form-control" name="name" id="name" type="text" value="<%=user.name %>" readonly="readonly">
+                      <input class="form-control" name="name" id="name" type="text" value="<%= typeof user != 'undefined' ? user.name : '' %>" readonly="readonly">
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <input class="form-control" name="email" id="email" type="email" value="<%=user.email%>" readonly="readonly">
+                      <input class="form-control" name="email" id="email" type="email" value="<%= typeof user != 'undefined' ? user.email : '' %>" readonly="readonly">
                     </div>
                   </div>
                   <div class="col-12">

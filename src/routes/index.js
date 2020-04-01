@@ -8,15 +8,15 @@ const path = require('path');
 const {contactUs} = require('../account/nodemailer');
 
 
-// router.get('/',(req,res)=>{
-//     if(req.user){
-//         res.redirect('/users/home');
-//     }
-//     else{
-//         res.sendFile(path.join(__dirname+'../../Public/index.html'));
-//     }
+router.get('/',(req,res)=>{
+    if(req.user){
+        res.redirect('/users/home?user=true');
+    }
+    else{
+        res.redirect('/users/home?user=false');
+    }
     
-// })
+})
 
 router.get('/profile',ensureAuthenticated, async(req,res)=>{
     console.log("user detail in profie route",req.user);
@@ -45,7 +45,6 @@ router.post('/contactus',(req,res)=>{
     contactUs({ data });
     const report = new Report(req.body);
     console.log("report",report);
-    
     report.save()
         .then(data => {
             console.log("data her",data);
