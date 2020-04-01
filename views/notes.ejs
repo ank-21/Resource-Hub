@@ -197,7 +197,7 @@
                 </div>
               </div>
               <div class="fold">
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="/users/branch/semester/notes/request" method="post">
                   <div id="selectBranch">
                     <p>Select Branch:</p>
                     <select style="display: block;" required="true" name ="branch">
@@ -225,15 +225,7 @@
                   </div>
                   <input type="text" name="subject" placeholder="Subject" required>
                   <input type="text" name="profName" placeholder="Professor Name" required>
-                  <label class="custom-file-upload">
-          
-                    <input name="notesSelected" type="file" id="file-upload1" class="file-path validate" style="position: relative;left:0.2vw" required>
-                    <span><i class="fas fa-upload"></i></span>
-                    Upload Files
-                    <hr>
-                    <span id="file-selected1"></span>
-                  </label>
-                  <p style="text-align: center; display: block;"><input type="submit" value="Upload"></p>
+                  <p style="text-align: center; display: block;"><input type="submit" value="Request Note"></p>
                 </form>
               </div>
             </div>

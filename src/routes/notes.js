@@ -3,7 +3,8 @@ const router = express.Router();
 const { ensureAuthenticated } = require('../../config/auth');
 const User = require('../models/User');
 const Notes = require('../models/Notes');
-
+const RequestNotes = require('../models/RequestNotes');
+const moment = require('moment');
 
 // /notes is in app.use
 //for getting branch page
@@ -87,6 +88,23 @@ router.post('/branch/semester/notes/star_rating/:id',(req,res)=> {
     console.log("params",req.params);
     
     res.send(req.body)
+});
+
+
+router.post('/branch/semester/notes/request', (req,res)=> {
+    console.log("req in body",req.body);
+    const note = new RequestNotes(req.body);
+    note.date = moment().format('MMMM Do YYYY');
+    note.solved = "false";
+    note.save()
+        .then(data => {
+            console.log(data);
+            res.redirect(`/profile`);
+        })
+        .catch(err => {
+            console.log("errror in request note save", err);
+        })
+    
 })
 
 module.exports = router;

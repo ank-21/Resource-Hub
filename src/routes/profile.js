@@ -10,6 +10,7 @@ const {checkFileTypeNotes} = require('../../config/checkFileTypeNotes');
 const async = require('async');
 const {ensureAuthenticated } = require('../../config/auth');
 const fs = require('fs');
+const RequestNotes = require('../models/RequestNotes');
 
 //set disk storage of profile image
 const storage = multer.diskStorage({
@@ -199,7 +200,6 @@ profile.post('/notes/:id',async function(req,res){
                             req.flash('profile_msg', 'your Notes Couldnot be uploaded! Please Try again');
                             res.redirect('/profile');
                         }
-                        
                         else{                            
                             const newNotes = new Notes({
                                 userName:user.name,
@@ -210,7 +210,19 @@ profile.post('/notes/:id',async function(req,res){
                                 subject:req.body.subject,
                                 notesLoc:`${notes}`
                             })
-
+                            RequestNotes.find({
+                                branch:req.body.branch,
+                                semester:req.body.semester,
+                                profName:req.body.profName,
+                                subject:req.body.subject,
+                            }).then(data => {
+                                console.log("data got from req note",data);
+                                if(data.length!=0){
+                                    data[0].solved="true"
+                                    data[0].save();
+                                }
+                            }).catch(err=> console.log(err));
+                            
                             newNotes.save()
                                 .then(note=> {                                    
                                     req.flash('profile_msg', `Your notes is uploaded.You can check it at notes section!`);

@@ -297,31 +297,37 @@
           <div class="col s12 m12 l4">
             <ul id="task-card" class="collection with-header">
               <li class="collection-header cyan">
-                <h4 class="task-card-title">Requests</h4>
+                <h4 class="task-card-title">Request of Notes</h4>
               </li>
-              <li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-                <input type="checkbox" id="task1">
-                <label for="task1" style="text-decoration: none;">Create Mobile App UI. <a href="#" class="secondary-content"><span class="ultra-small">Today</span></a>
-                                        </label>
-                <span class="task-cat teal">Mobile App</span>
-              </li>
-              <li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-                <input type="checkbox" id="task2">
-                <label for="task2" style="text-decoration: none;">Check the new API standerds. <a href="#" class="secondary-content"><span class="ultra-small">Monday</span></a>
-                                        </label>
-                <span class="task-cat purple">Web API</span>
-              </li>
-              <li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-                <input type="checkbox" id="task3" checked="checked">
-                <label for="task3" style="text-decoration: line-through;">Check the new Mockup of ABC. <a href="#" class="secondary-content"><span class="ultra-small">Wednesday</span></a>
-                                        </label>
-                <span class="task-cat pink">Mockup</span>
-              </li>
-              <li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-                <input type="checkbox" id="task4" checked="checked" disabled="disabled">
-                <label for="task4" style="text-decoration: line-through;">I did it !</label>
-                <span class="task-cat cyan">Mobile App</span>
-              </li>
+              <% if(reqNote.length!=0) { %>
+                <% reqNote.forEach((note) => { %>
+                  <li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                  
+                  <label for="task1" style="text-decoration: none;font-size: 2.8vh;padding-bottom: 7px;padding-top: 7px;">Subject - <%= note.subject%>
+                    <a href="#" class="secondary-content" style="margin-top: 4px;"><span class="ultra-small"><%= note.date%></span></a>
+                  </label>
+                  <span class="task-cat teal">Branch - <%=note.branch%></span>
+                  <span class="task-cat purple" style="margin-left: 25px;">Sem - <%= note.semester%></span>
+                  <span class="task-cat cyan"style="margin-left: 25px;">Prof. Name - <%=note.profName %></span>
+                </li>
+                <% }); %>
+              <% } %>
+
+              <% if(doneNote.length!=0) { %>
+                <% doneNote.forEach((note) => { %>
+                  <li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                  
+                  <label for="task1" style="text-decoration: line-through;font-size: 2.8vh;padding-bottom: 7px;padding-top: 7px;">Subject - <%= note.subject%>
+                    <a href="#" class="secondary-content" style="margin-top: 4px;"><span class="ultra-small"><%= note.date%></span></a>
+                  </label>
+                  <span class="task-cat teal">Branch - <%=note.branch%></span>
+                  <span class="task-cat purple" style="margin-left: 25px;">Sem - <%= note.semester%></span>
+                  <span class="task-cat cyan"style="margin-left: 25px;">Prof. Name - <%=note.profName %></span>
+                  <span class="task-cat blue"style="margin-left: 25px;">Uploaded</span>
+                </li>
+                <% }); %>
+              <% } %>
+              
             </ul>
           </div>
 
