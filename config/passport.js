@@ -74,7 +74,7 @@ module.exports = function(passport) {
     passport.use(new FacebookStrategy({
         clientID: keys.facebook.clientID,
         clientSecret: keys.facebook.clientSecret,
-        callbackURL: 'http://localhost:3000/users/facebook/callback',
+        callbackURL: '/users/facebook/callback',
         profileFields: ["email","name"]
       },(accessToken, refreshToken, profile, done) => {
         console.log("profile",profile);
@@ -108,7 +108,7 @@ module.exports = function(passport) {
    passport.use(new LinkedInStrategy({
         clientID: keys.linkedin.clientID,
         clientSecret: keys.linkedin.clientSecret,
-        callbackURL: "http://localhost:3000/users/linkedin/callback",
+        callbackURL: "/users/linkedin/callback",
         scope: ['r_emailaddress', 'r_liteprofile'],
       }, function(accessToken, refreshToken, profile, done) {
         // asynchronous verification, for effect...
@@ -146,11 +146,9 @@ module.exports = function(passport) {
       });
       
     passport.deserializeUser((id, done) => {
-        if (id.match(/^[0-9a-fA-F]{24}$/)) {
             User.findById(id, (err, user)=> {
                 done(err, user);
               });
-        }
         
     });
 }
