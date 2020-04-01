@@ -4,6 +4,7 @@ const { ensureAuthenticated } = require('../../config/auth');
 const Notes = require('../models/Notes');
 const Report = require('../models/Report');
 const RequestNotes = require('../models/RequestNotes');
+const path = require('path');
 const {contactUs} = require('../account/nodemailer');
 
 
