@@ -240,41 +240,46 @@ input {
         <!-- <div> -->
             <!-- <div class="col-20"> -->
               <h2 class="contact-title">Get in Touch</h2>
+              <div style="margin-bottom: 8vh;
+              text-align: center;
+              font-size: 3vh;
+              text-decoration: underline;">
+                <%= message != '' ? message : '' %>
+            </div>
             <!-- </div> -->
             <!-- <div class="col-lg-6"> -->
-              <form class="form-contact contact_form" action="" method="post" id="contactForm"
-                novalidate="novalidate">
+              <form class="form-contact contact_form" action="/contactus" method="post" id="contactForm">
                 <div class="row">
                   <div class="col-12">
                     <div class="form-group">
     
                       <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9"
                         onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'"
-                        placeholder='Enter Message'></textarea>
+                        placeholder='Enter Message' required></textarea>
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <input class="form-control" name="name" id="name" type="text" onfocus="this.placeholder = ''"
-                        onblur="this.placeholder = 'Enter your name'" placeholder='Enter your name'>
+                      <input class="form-control" name="name" id="name" type="text" value="<%=user.name %>" readonly="readonly">
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <input class="form-control" name="email" id="email" type="email" onfocus="this.placeholder = ''"
-                        onblur="this.placeholder = 'Enter email address'" placeholder='Enter email address'>
+                      <input class="form-control" name="email" id="email" type="email" value="<%=user.email%>" readonly="readonly">
                     </div>
                   </div>
                   <div class="col-12">
                     <div class="form-group">
                       <input class="form-control" name="subject" id="subject" type="text" onfocus="this.placeholder = ''"
-                        onblur="this.placeholder = 'Enter Subject'" placeholder='Enter Subject'>
+                        onblur="this.placeholder = 'Enter Subject'" placeholder='Enter Subject' required>
                     </div>
                   </div>
                 </div>
                 <div class="form-group mt-3">
-                  <button type="submit" class="button button-contactForm btn_1">Send Message <i class="flaticon-right-arrow"></i> </button>
+                    <!-- <input type="submit" class="button button-contactForm btn_1" value="Send Message"><i class="flaticon-right-arrow"></i> -->
+                    <button type="submit" class="button button-contactForm btn_1">Send Message <i class="flaticon-right-arrow"></i> </button>
                 </div>
+                
               </form>
     </section>
     
@@ -359,7 +364,7 @@ input {
     <script src="/js/slick.min.js"></script>
     <script src="/js/jquery.counterup.min.js"></script>
     <script src="/js/waypoints.min.js"></script>
-    <script src="/js/contact.js"></script>
+    <!-- <script src="/js/contact.js"></script> -->
     <script src="/js/jquery.ajaxchimp.min.js"></script>
     <script src="/js/jquery.form.js"></script>
     <script src="/js/jquery.validate.min.js"></script>

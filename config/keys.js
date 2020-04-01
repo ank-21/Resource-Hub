@@ -13,5 +13,9 @@ module.exports = {
     linkedin:{
         clientID: '814k69c3repwa7',
         clientSecret: '4IeyHji9LeGS5TAj'
+    },
+    mail:{
+        email: 'resource.hub2020@gmail.com',
+        pass: 'resource2020hub!!',
     }
 };
