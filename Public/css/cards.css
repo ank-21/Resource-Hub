@@ -239,7 +239,20 @@ figcaption a {
   transition: -o-transform 0.5s cubic-bezier(0.12, 1.6, 0.91, 0.92);
   transition: transform 0.5s cubic-bezier(0.12, 1.6, 0.91, 0.92)
 }
-
+  .stars{
+     -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.12, 1.6, 0.91, 0.92);
+  -o-transition: -o-transform 0.5s cubic-bezier(0.12, 1.6, 0.91, 0.92);
+  transition: -webkit-transform 0.5s cubic-bezier(0.12, 1.6, 0.91, 0.92);
+  transition: -ms-transform 0.5s cubic-bezier(0.12, 1.6, 0.91, 0.92);
+  transition: -o-transform 0.5s cubic-bezier(0.12, 1.6, 0.91, 0.92);
+  transition: transform 0.5s cubic-bezier(0.12, 1.6, 0.91, 0.92)
+}
+.item:hover .stars {
+  -webkit-transform: translate3d(0, 70px, 0);
+  -ms-transform: translate3d(0, 70px, 0);
+  -o-transform: translate3d(0, 70px, 0);
+  transform: translate3d(0, 70px, 0)
+}
 @keyframes slideOut {
   0% {
     left: -100%;
@@ -846,16 +859,18 @@ figcaption a {
 /*Rating stars */
 
   .stars{
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     flex-direction: row-reverse;
     justify-content: center;
-    height: 100vh;
+    top: -8vh;
+    left: 3vw;
 }
 .stars__star-icon{
   stroke:#FF9900;
-  stroke-width: 2px;
+  stroke-width: 4px;
   fill: transparent;
   transition: .1s all;
 }
