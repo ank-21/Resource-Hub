@@ -8,7 +8,6 @@ const session = require('express-session');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
 const keys = require('../config/keys');
-const mongoURI = require('../config/keys_dev')
 
 
 //configuring passport
@@ -18,7 +17,7 @@ const app = express();
 
 //configuring db
 
-mongoose.connect('mongodb+srv://resource-hub:resource.hub2020!!@resource-hub-cluster-gmsj7.mongodb.net/test?retryWrites=true&w=majority||mongodb://localhost:27017/ResourceHub',{
+mongoose.connect(process.env.MONGOLAB_URI||'mongodb://localhost:27017/ResourceHub',{
     useNewUrlParser:true,
     useUnifiedTopology:true,
     useFindAndModify:false
