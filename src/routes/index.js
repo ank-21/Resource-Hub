@@ -8,15 +8,15 @@ const path = require('path');
 const {contactUs} = require('../account/nodemailer');
 
 
-// router.get('/',(req,res)=>{
-//     if(req.user){
-//         res.redirect('/users/home?user=true');
-//     }
-//     else{
-//         res.redirect('/users/home?user=false');
-//     }
+router.get('/',(req,res)=>{
+    if(req.user){
+        res.redirect('/users/home?user=true');
+    }
+    else{
+        res.redirect('/users/home?user=false');
+    }
     
-// })
+})
 
 router.get('/profile',ensureAuthenticated, async(req,res)=>{
     console.log("user detail in profie route",req.user);
