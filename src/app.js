@@ -17,7 +17,7 @@ const app = express();
 
 //configuring db
 
-mongoose.connect(process.env.MONGOLAB_URI||'mongodb://localhost:27017/ResourceHub',{
+mongoose.connect(process.env.MONGODB_URI||'mongodb://localhost:27017/ResourceHub',{
     useNewUrlParser:true,
     useUnifiedTopology:true,
     useFindAndModify:false
