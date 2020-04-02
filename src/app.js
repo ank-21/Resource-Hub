@@ -77,11 +77,8 @@ app.use((req,res,next)=>{
 
 
 //for static page
-// const publicDirectoryPath = path.join(__dirname,'../public');
-// app.use(express.static(publicDirectoryPath));
-
-process.env.PWD = process.cwd();
-app.use(express.static(path.join(process.env.PWD,'public')));
+const publicDirectoryPath = path.join(__dirname,'/public');
+app.use(express.static(publicDirectoryPath));
 
 //for Routes
 app.use('/',indexRouter);
