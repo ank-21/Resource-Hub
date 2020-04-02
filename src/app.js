@@ -78,7 +78,7 @@ app.use((req,res,next)=>{
 
 
 //for static page
-const publicDirectoryPath = path.join(__dirname,'../public');
+const publicDirectoryPath = path.join(__dirname,'../Public');
 app.use(express.static(publicDirectoryPath));
 
 //for Routes
