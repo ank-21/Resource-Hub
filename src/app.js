@@ -76,7 +76,7 @@ app.use((req,res,next)=>{
 })
 
 process.env.PWD = process.cwd();
-app.use(express.static(path.join(process.env.PWD, 'public')));
+app.use(express.static(path.join(process.env.PWD, '../public')));
 
 
 //for static page
