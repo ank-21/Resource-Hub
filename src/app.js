@@ -75,6 +75,10 @@ app.use((req,res,next)=>{
     next();
 })
 
+process.env.PWD = process.cwd();
+app.use(express.static(path.join(process.env.PWD, 'public')));
+
+
 //for static page
 const publicDirectoryPath = path.join(__dirname,'../public');
 app.use(express.static(publicDirectoryPath));
