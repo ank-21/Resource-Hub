@@ -145,11 +145,14 @@ input {
                                 <li class="nav-item">
                                     <a class="nav-link" href="#contact">Contact Us</a>
                                 </li>
+                               
                                 <% if(flag==1){ %>
                                     <li class="nav-item">
                                         <a href="/users/logout" class="nav-link logout">Logout</a>
-                                        </li>
+                                    </li>
                                 <% } %>
+                                
+                                
                                 
                             </ul>
                         </div>
@@ -167,7 +170,7 @@ input {
     <!--::banner part start::-->
     <section class="banner_part" id="home">
         <div class="container">
-            <div class="row align-items-center justify-content-between">
+           <div class="row align-items-center justify-content-between">
                 <div class="col-lg-5">
                     <div class="banner_img d-none d-lg-block">
                         <img src="/img/banner_img.png" alt="">
@@ -178,10 +181,15 @@ input {
                         <div class="banner_text_iner">
                             <h1 id="resource_hub">RESOURCE HUB</h1>
                             <p>Notes, Books, Lectures... Everything at a single Click</p>
+                            <div class="searchcontainer">
+                                <input type="text" placeholder="Search...">
+                                <div class="search"></div>
+                              </div>
                             <% if(flag==0){ %>
-                                <a href="/users/signup" class="d-none d-sm-block btn_1 home_page_btn button"id="one">Login</a>
+                                <a href="/users/signup" class="btn_1 home_page_btn button"id="one">Login</a>
                             <% } %>
                         </div>
+                        
                     </div>
                 </div>
             </div>
@@ -401,8 +409,6 @@ input {
             x.style.display = "none";
          }
         }
-        
-        
     </script>
 </body>
 
