@@ -14,6 +14,7 @@ const keys = require('../config/keys');
 require('../config/passport')(passport);
 
 const app = express();
+app.use(express.json())
 
 //configuring db
 
