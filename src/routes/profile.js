@@ -17,14 +17,14 @@ var prod = true;
 const storage = multer.diskStorage({
     destination: function(req,file,cb){
         console.log("inside multer",req.user);
-        var newDestination = `./public/uploads/${req.user._id}`;
-        // if(prod==true)
-        // {
-        //     var newDestination = __dirname + `../../../../../public/uploads/${req.user._id}`;
+        // var newDestination = `./public/uploads/${req.user._id}`;
+        if(prod==true)
+        {
+            var newDestination = __dirname + `../../../../../public/uploads/${req.user._id}`;
             
-        // }else{
-        //     var newDestination = __dirname + `../../../public/uploads/${req.user._id}`;
-        // }
+        }else{
+            var newDestination = __dirname + `../../../public/uploads/${req.user._id}`;
+        }
         var stat = null;
         try {
             stat = fs.statSync(newDestination);
