@@ -16,7 +16,7 @@ const RequestNotes = require('../models/RequestNotes');
 const storage = multer.diskStorage({
     destination: function(req,file,cb){
         console.log("inside multer",req.user);
-        var newDestination = `./public/uploads/${req.user._id}`;
+        var newDestination = __dirname + `../../../public/uploads/${req.user._id}`;
         var stat = null;
         try {
             stat = fs.statSync(newDestination);
