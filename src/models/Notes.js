@@ -26,9 +26,11 @@ const NotesSchema = new mongoose.Schema({
         type:Number,
         default:0
     },
-    rating:{
-        type:Number
-    }
+    ratings: [{                        //array of objects
+        rating: {
+            type:Number            
+        }
+    }],
 })
 
 const Notes = mongoose.model('Notes',NotesSchema);

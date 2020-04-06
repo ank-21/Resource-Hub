@@ -51,13 +51,43 @@ router.get('/branch/semester',ensureAuthenticated, async(req,res)=>{
 
 //for getting notes page
 router.get('/branch/semester/notes', ensureAuthenticated ,async(req,res)=>{
-    console.log(req.query);
+    //console.log(req.query);
     const branchname = req.query.branch;
     const semester = req.query.semester;
+    var rating =0;
+    var passingvalue = [];
+    if(req.query.starvalue)
+        rating = req.query.starvalue;
+    console.log(rating);
+    
+    //now i have to average the total rating
     // const notesCount = req.query.count;
 
     const selectedNotesByBranchAndSemester = await Notes.find({branch:branchname,semester:semester});
     console.log("filtered notes in notes route",selectedNotesByBranchAndSemester);
+
+    //for getting star rating
+    selectedNotesByBranchAndSemester.forEach((note)=>{
+        var count =0;
+        var sum =0;
+        if(note.ratings.length==0){
+            passingvalue.push(0);
+        }else{
+            note.ratings.forEach((rate)=> {
+                sum += rate.rating;
+            })
+            passingvalue.push(sum/note.ratings.length);
+        }
+
+    })
+    console.log(passingvalue);
+    const floorvalue = passingvalue.map((val) => {
+        return Math.floor(val);
+    })
+    //for floor value
+    console.log(floorvalue);
+    
+    
     res.render('notes',{
         notes:selectedNotesByBranchAndSemester
     })  
@@ -82,15 +112,6 @@ router.get('/branch/semester/notes/download',(req,res)=>{
         })
 });
 
-//for rating page
-
-router.post('/branch/semester/notes/star_rating/:id',(req,res)=> {
-    console.log("params",req.params);
-    
-    res.send(req.body)
-});
-
-
 router.post('/branch/semester/notes/request', (req,res)=> {
     console.log("req in body",req.body);
     const note = new RequestNotes(req.body);
@@ -103,8 +124,47 @@ router.post('/branch/semester/notes/request', (req,res)=> {
         })
         .catch(err => {
             console.log("errror in request note save", err);
-        })
-    
+        })  
 })
+
+//for rating page
+
+router.post('/branch/semester/notes/star_rating/:id', (req,res)=> {
+    console.log("params",req.params);
+    const id = req.params.id;
+    const rating = req.body.star;
+    Notes.findById({_id:id})
+        .then(note => {
+            console.log(note);
+            User.findById({_id:note.userId})
+                .then(user => {
+                    console.log(user);
+                    
+                    user.ratings = user.ratings.concat({ rating })
+                    user.save();
+                })
+                .catch(err => {
+                    console.log(err);
+                    res.redirect(`/users/branch/semester/notes?branch=${note.branch}&semester=${note.semester}`);
+                })
+                note.ratings = note.ratings.concat({ rating })
+            note.save()
+                .then(data=>{
+                    res.redirect(`/users/branch/semester/notes?branch=${note.branch}&semester=${note.semester}&starvalue=${rating}`);
+                })
+                .catch(err => {
+                    console.log(err);
+                    res.redirect(`/users/branch/semester/notes?branch=${note.branch}&semester=${note.semester}`);
+                })
+        })
+        .catch(err => {
+            console.log(err);
+            res.redirect(`/users/branch/semester/notes?branch=${note.branch}&semester=${note.semester}`);
+        })
+   
+});
+
+
+
 
 module.exports = router;

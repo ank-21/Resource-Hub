@@ -21,7 +21,10 @@ const storage = multer.diskStorage({
         try {
             stat = fs.statSync(newDestination);
         } catch (err) {
-            fs.mkdirSync(newDestination);
+            fs.mkdir(newDestination,{recursive:true},err =>{
+                console.log("error in making directory",err);
+                
+            });
         }
         if (stat && !stat.isDirectory()) {
             throw new Error('Directory cannot be created because an inode of a different type exists at "' + dest + '"');
