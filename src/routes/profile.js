@@ -20,7 +20,7 @@ const storage = multer.diskStorage({
         // var newDestination = `./public/uploads/${req.user._id}`;
         if(prod==true)
         {
-            var newDestination = __dirname + `../../Public/uploads/${req.user._id}`;
+            var newDestination = __dirname + `/../../Public/uploads/${req.user._id}`;
             console.log("new d",newDestination);
             
             
