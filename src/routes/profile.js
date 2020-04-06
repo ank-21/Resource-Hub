@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
         console.log("inside multer",req.user);
         if(prod==true)
         {
-            var newDestination = __dirname + `../public/uploads/${req.user._id}`;
+            var newDestination = __dirname + `../../../../../public/uploads/${req.user._id}`;
             
         }else{
             var newDestination = __dirname + `../../../public/uploads/${req.user._id}`;
