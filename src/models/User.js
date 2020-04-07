@@ -49,7 +49,12 @@ const UserSchema = new mongoose.Schema({
     },
     avatar:{
         type:String
-    }
+    },
+    ratings: [{
+        rating:{
+            type:Number
+        }
+    }]
 })
 
 const User = mongoose.model('User',UserSchema);

@@ -16,12 +16,21 @@ const RequestNotes = require('../models/RequestNotes');
 const storage = multer.diskStorage({
     destination: function(req,file,cb){
         console.log("inside multer",req.user);
-        var newDestination = `./public/uploads/${req.user._id}`;
+        // var newDestination = `./public/uploads/${req.user._id}`;
+        
+            var newDestination = __dirname + `/../../Public/uploads/${req.user._id}`;
+            console.log("new d",newDestination);
+            
+            
+        
         var stat = null;
         try {
             stat = fs.statSync(newDestination);
         } catch (err) {
-            fs.mkdirSync(newDestination);
+            fs.mkdir(newDestination,{recursive:true},err =>{
+                console.log("error in making directory",err);
+                
+            });
         }
         if (stat && !stat.isDirectory()) {
             throw new Error('Directory cannot be created because an inode of a different type exists at "' + dest + '"');
@@ -49,7 +58,7 @@ const storage = multer.diskStorage({
   const notesStorage = multer.diskStorage({
     destination: function(req,file,cb){
         console.log("inside multer for notes",req.user);
-        var newDestination = `./public/uploadsNotes/${req.user._id}`;
+        var newDestination = __dirname + `/../../Public/uploadsNotes/${req.user._id}`;
         var stat = null;
         try {
             stat = fs.statSync(newDestination);

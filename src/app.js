@@ -14,6 +14,7 @@ const keys = require('../config/keys');
 require('../config/passport')(passport);
 
 const app = express();
+app.use(express.json())
 
 //configuring db
 
@@ -75,8 +76,9 @@ app.use((req,res,next)=>{
     next();
 })
 
+
 //for static page
-const publicDirectoryPath = path.join(__dirname,'../public');
+const publicDirectoryPath = path.join(__dirname,'../Public');
 app.use(express.static(publicDirectoryPath));
 
 //for Routes

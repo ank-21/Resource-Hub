@@ -142,7 +142,6 @@
 <div class="demo-wrapper">
   
     <!-- <h1>Horizontal Portfolio Layout With CSS3 Animations and jQuery</h1> -->
-    <%= console.log("notes in ejs of notes",notes) %>
     <%= console.log("notes length in notes.ejs",notes.length) %>
 
 
@@ -164,43 +163,43 @@
                     </figcaption>
                 </figure>
 
-                <div class="date">4.3</div>
+                <div class="date"><%= floorvalue[count-1] %></div>
                 <form action="/users/branch/semester/notes/star_rating/<%= note._id%>" method="POST">
                     <div class="stars">
-                        <input class="stars__checkbox" type="radio" id="first-star" name="star<%=count%>" value="1" onclick="this.form.submit()">
-                        <label class="stars__star" for="first-star">
+                        <input class="stars__checkbox" type="radio" id="first-star<%=count%>" name="star" value="5" onclick="this.form.submit()">
+                        <label class="stars__star" for="first-star<%=count%>">
                             <svg class="stars__star-icon" version="1.1" id="Capa_1" xmlns="" xmlns:xlink="" x="0px" y="0px"
                                 viewBox="0 0 53.867 53.867" style="enable-background:new 0 0 53.867 53.867;" xml:space="preserve">
                                 <polygon points="26.934,1.318 35.256,18.182 53.867,20.887 40.4,34.013 43.579,52.549 26.934,43.798 
                                     10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "/>
                             </svg>
                         </label>
-                        <input class="stars__checkbox" type="radio" id="second-star"name="star<%=count%>" value="2" onclick="this.form.submit()">
-                        <label class="stars__star" for="second-star">
+                        <input class="stars__checkbox" type="radio" id="second-star<%=count%>"name="star" value="4" onclick="this.form.submit()">
+                        <label class="stars__star" for="second-star<%=count%>">
                             <svg class="stars__star-icon" version="1.1" id="Capa_1" xmlns="" xmlns:xlink="" x="0px" y="0px"
                                 viewBox="0 0 53.867 53.867" style="enable-background:new 0 0 53.867 53.867;" xml:space="preserve">
                                 <polygon points="26.934,1.318 35.256,18.182 53.867,20.887 40.4,34.013 43.579,52.549 26.934,43.798 
                                     10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "/>
                             </svg>
                         </label>
-                        <input class="stars__checkbox" type="radio" id="third-star" name= "star<%=count%>" value="3" onclick="this.form.submit()">
-                        <label class="stars__star" for="third-star">
+                        <input class="stars__checkbox" type="radio" id="third-star<%=count%>" name= "star" value="3" onclick="this.form.submit()">
+                        <label class="stars__star" for="third-star<%=count%>">
                             <svg class="stars__star-icon" version="1.1" id="Capa_1" xmlns="" xmlns:xlink="" x="0px" y="0px"
                                 viewBox="0 0 53.867 53.867" style="enable-background:new 0 0 53.867 53.867;" xml:space="preserve">
                                 <polygon points="26.934,1.318 35.256,18.182 53.867,20.887 40.4,34.013 43.579,52.549 26.934,43.798 
                                     10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "/>
                             </svg>
                         </label>
-                        <input class="stars__checkbox" type="radio" id="fourth-star" name="star<%=count%>"value="4" onclick="this.form.submit()">
-                        <label class="stars__star" for="fourth-star">
+                        <input class="stars__checkbox" type="radio" id="fourth-star<%=count%>" name="star"value="2" onclick="this.form.submit()">
+                        <label class="stars__star" for="fourth-star<%=count%>">
                             <svg class="stars__star-icon" version="1.1" id="Capa_1" xmlns="" xmlns:xlink="" x="0px" y="0px"
                                 viewBox="0 0 53.867 53.867" style="enable-background:new 0 0 53.867 53.867;" xml:space="preserve">
                                 <polygon points="26.934,1.318 35.256,18.182 53.867,20.887 40.4,34.013 43.579,52.549 26.934,43.798 
                                     10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "/>
                             </svg>
                         </label>
-                        <input class="stars__checkbox" type="radio" id="fifth-star" name="star<%=count%>" value="5" onclick="this.form.submit()">
-                        <label class="stars__star" for="fifth-star">
+                        <input class="stars__checkbox" type="radio" id="fifth-star<%=count%>" name="star" value="1" onclick="this.form.submit()">
+                        <label class="stars__star" for="fifth-star<%=count%>">
                             <svg class="stars__star-icon" version="1.1" id="Capa_1" xmlns="" xmlns:xlink="" x="0px" y="0px"
                                 viewBox="0 0 53.867 53.867" style="enable-background:new 0 0 53.867 53.867;" xml:space="preserve">
                                 <polygon points="26.934,1.318 35.256,18.182 53.867,20.887 40.4,34.013 43.579,52.549 26.934,43.798 

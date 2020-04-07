@@ -204,6 +204,17 @@
 <!-- partial -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script><script  src="js/signup.js"></script>
+<script>
+        $(document).mousedown(function (e){
 
+    var container = $("#smallnavbar");
+
+    if (!container.is(e.target) && container.has(e.target).length === 0){
+
+        container.style.display = "none";
+        
+    }
+}); 
+    </script>
 </body>
 </html>

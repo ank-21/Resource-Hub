@@ -201,7 +201,7 @@
             <div class="col s12 m12 l5">
               <ul id="projects-collection" class="collection">
                 <li class="collection-item avatar">
-                  <i class="mdi-file-folder circle light-blue darken-2"><span style="font-size: 1.6rem;font-style: normal;position: relative;top:-2px">4.2</span></i>
+                  <i class="mdi-file-folder circle light-blue darken-2"><span style="font-size: 1.6rem;font-style: normal;position: relative;top:-2px"><%= ratingValue%></span></i>
                   <span class="collection-header" style="position: relative;top:10px;text-transform: uppercase;"><%= user.name %></span>
                   <a href="#" class="secondary-content"><i class="mdi-action-grade"></i></a>
                 </li>
@@ -263,27 +263,31 @@
               <p>Uploaded by you</p>
               <a href="#" class="secondary-content"><i class="mdi-action-grade"></i></a>
             </li>
-
+            <% var countNote =0 %>
             <% notes.forEach((note) => { %>
+              
               <% console.log("note in profile ejs",note) %>
               <li class="collection-item">
               <div class="row">
                 <div class="col s7">
-                  <p class="collections-title">Subject - <%= note.subject%> <span style="margin-left: 2vw;">Branch - <%= note.branch%></span> </p>
+                  <p class="collections-title">Subject - <%= note.subject%> <span style="margin-left: 2vw;">Branch - <%= note.branch%></span> <span style="margin-left: 1.6vw;">Semester - <%= note.semester%></span> </p>
                   <p class="collections-content">Professor Name - <%= note.profName%></p>
                   <a href="<%= note.notesLoc %>" class="collections-title">Click here to view / download the note</a>
                 </div>
                 <div class="col s2" style="margin-top: 7vh;">
-                  <span class="task-cat pink accent-2">4.2</span>
+                  <span class="task-cat pink accent-2"><%= floorvalue[countNote]%></span>
                 </div>
                 <div class="col s3" style="margin-top: 7vh;">
                   <div class="progress">
-                    <% var rating = 4.2 *20 %>
-                    <div class="determinate" style="width: <%= rating %>%"></div>
+                    <% var rating = floorvalue[countNote] %>
+                    <%= console.log("rating alue in profile.ejs",rating) %>
+                    <div class="determinate" style="width: <%= rating * 20 %>%"></div>
                   </div>
                 </div>
               </div>
             </li>
+            <%= console.log(countNote) %>
+            <% countNote = countNote + 1 %>
         <% }); %>
           </ul>
         </div>
