@@ -220,7 +220,8 @@ section#formHolder {
 }
 .form form .CTA {
       margin-top: 40px;
-    margin-left: 29%;
+    /* margin-left: 19%; */
+    text-align: center;
 }
 .form form .CTA input {
       font-size: 12px;
@@ -230,7 +231,7 @@ section#formHolder {
     padding: 10px 30px;
     background: #562fc7;
     color: #fff;
-    margin-right: 20px;
+    /* margin-right: 10px; */
     border: none;
     font-family: "Montserrat", sans-serif;
 }
@@ -308,6 +309,31 @@ section#formHolder {
     font-size: 50px !important;
   }
 }
+
+.eye{
+  float: right;
+  margin-left: 230px;
+}
+
+#hide1 {
+  display: none;
+  cursor: pointer;
+  font-size: 20px;
+}
+#hide2{
+  cursor: pointer;
+  font-size: 20px;
+}
+#hide3 {
+  display: none;
+  cursor: pointer;
+  font-size: 20px;
+}
+#hide4{
+  cursor: pointer;
+  font-size: 20px;
+}
+
 .heading{
 	text-align: center;
 	display:block;

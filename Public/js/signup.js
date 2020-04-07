@@ -112,3 +112,33 @@ $(document).ready(function () {
 
 
 });
+
+function passwordfnlog(){
+    var x = document.getElementById("loginPassword");
+    var y = document.getElementById("hide1");
+    var z = document.getElementById("hide2");
+    if(x.type === 'password'){
+        x.type = "text";
+        y.style.display = "block";
+        z.style.display = "none";
+    } else {
+        x.type = "password";
+        y.style.display = "none";
+        z.style.display = "block";
+    }
+}
+
+function passwordfnsign(){
+    var x1 = document.getElementById("password");
+    var y1 = document.getElementById("hide3");
+    var z1 = document.getElementById("hide4");
+    if(x1.type === 'password'){
+        x1.type = "text";
+        y1.style.display = "block";
+        z1.style.display = "none";
+    } else {
+        x1.type = "password";
+        y1.style.display = "none";
+        z1.style.display = "block";
+    }
+}

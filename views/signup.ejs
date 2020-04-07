@@ -124,18 +124,27 @@
                 margin: 4.2vh 0 20px;"><span style="background:#fff; 
                 padding:0 10px;">or use your Email</span></h2>
                   <div class="form-group">
-                     <label for="loginemail">Email Adderss</label>
+                     <label for="loginemail">Email Address</label>
                      <input type="email" name="email" id="loginemail">
                   </div>
 
                   <div class="form-group">
-                     <label for="loginPassword">Password</label>
+                     <label for="loginPassword">Password
+                      <div class="eye" onclick="passwordfnlog()">
+                        <i id="hide1" class="fa fa-eye"></i>
+                        <i id="hide2" class="fa fa-eye-slash"></i>
+                      </div>
+                     </label>
                      <input type="password" name="password" id="loginPassword">
+                     
                   </div>
 
                   <div class="CTA">
                      <input type="submit" value="Sign In">
+                     <br>
+                    <p style="margin-top: 10px;">Don't have an account?</p>
                      <a href="#" class="switch"><b>Sign Up</b></a>
+                     
                   </div>
                </form>
             </div><!-- End Login Form -->
@@ -164,13 +173,18 @@
                 </div>
 
                   <div class="form-group">
-                     <label for="email">Email Adderss</label>
+                     <label for="email">Email Address</label>
                      <input type="email" name="email" id="email" class="email" value="<%= typeof email != 'undefined' ? email : '' %>" required="true">
                      <span class="error"></span>
                   </div>
 
                   <div class="form-group">
-                     <label for="password">Password</label>
+                     <label for="password">Password
+                      <div class="eye" onclick="passwordfnsign()">
+                        <i id="hide3" class="fa fa-eye"></i>
+                        <i id="hide4" class="fa fa-eye-slash"></i>
+                      </div>
+                     </label>
                      <input type="password" name="password" id="password" class="pass" value="<%= typeof password != 'undefined' ? password : '' %>" required="true">
                      <span class="error"></span>
                   </div>
@@ -183,6 +197,8 @@
                   
                   <div class="CTA">
                     <input type="submit" id="sub" value="Sign Up">
+                    <br>
+                    <p style="margin-top: 10px;">Already have an account?</p>
                      <a href="#" class="switch"><b>Login</b></a>
                   </div>
                </form>
