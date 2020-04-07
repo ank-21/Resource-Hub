@@ -80,9 +80,10 @@
             <% notes.forEach((note) => { %>
             
                 <div class="container1 grid-item">
-                    <div class="content">No. of subjects : 6</div>
+                    
                     <div class="content">No. of notes : <%= note==0 ? 0 : note.length %></div>
                     <div class="content">No. of downloads : <%=downloadCount[count-1]%></div>
+                    <div class="content">Overall Rating : <%= ratingsPerSemFloored[count-1] %></div>
                     <div class="notes content"><a href="/users/branch/semester/notes?branch=<%= branchname %>&semester=<%=count %>&Notescount=<%= note==0 ? 0 : note.length %>">VIEW NOTES</a></div>
                     <div class="cover">
                         <figure class="front">

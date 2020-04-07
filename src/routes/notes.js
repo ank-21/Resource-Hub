@@ -16,14 +16,16 @@ router.get('/branch',ensureAuthenticated,(req,res)=>{
 //for semester page
 router.get('/branch/semester',ensureAuthenticated, async(req,res)=>{
     const branchname = req.query.branch;
-    console.log(branchname);
     const selectedNotesByBranch = await Notes.find({branch:branchname});
     // console.log("all branch note",selectedNotesByBranch);
     //it will give an array of object
     const allSemDetails = [];
     const totalDownloadPerSem = [];
+    const ratingsPerSem = [];
     var result=0;
     for(let i=1;i<=8;i++){
+        var sum =0;
+        var count =0;
         eachsemvariable = selectedNotesByBranch.filter(note => {
             return note.semester == `${i}`;
         });
@@ -31,21 +33,43 @@ router.get('/branch/semester',ensureAuthenticated, async(req,res)=>{
         if(eachsemvariable.length==0){
             allSemDetails.push('0');
             totalDownloadPerSem.push(0);
+            ratingsPerSem.push(0);
         }else{
             allSemDetails.push(eachsemvariable);
             eachsemvariable.forEach(semNote => {
-                result = result + semNote.downloadCount;          
+                result = result + semNote.downloadCount;
+                if(semNote.ratings.length==0)
+                    sum += 0;
+                else{
+                    semNote.ratings.forEach(rate=> {
+                        sum = sum + rate.rating;
+                        count++;
+                    });
+                }
+                        
             });
+            ratingsPerSem.push(sum/count);
             totalDownloadPerSem.push(result);
         }
+
     }
+    console.log("ratings",ratingsPerSem);
+
+    const ratingsPerSemFloored = ratingsPerSem.map((val) => {
+        if(val%1==0){
+            return val;
+        }
+        return val.toFixed(2);
+    })
+    
     //allsemdetails has every details of a particular branch now
-    console.log("all sem detail",allSemDetails);
+    // console.log("all sem detail",allSemDetails);
     
     res.render('semester',{
         notes:allSemDetails,
         branchname,
-        downloadCount:totalDownloadPerSem
+        downloadCount:totalDownloadPerSem,
+        ratingsPerSemFloored
     });
 });
 
