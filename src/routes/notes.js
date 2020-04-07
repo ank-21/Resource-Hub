@@ -53,7 +53,7 @@ router.get('/branch/semester',ensureAuthenticated, async(req,res)=>{
 router.get('/branch/semester/notes', ensureAuthenticated ,async(req,res)=>{
     //console.log(req.query);
     const branchname = req.query.branch;
-    const semester = req.query.semester;
+    const semester = req.query.semester;    
     var rating =0;
     var passingvalue = [];
     if(req.query.starvalue)
@@ -64,11 +64,10 @@ router.get('/branch/semester/notes', ensureAuthenticated ,async(req,res)=>{
     // const notesCount = req.query.count;
 
     const selectedNotesByBranchAndSemester = await Notes.find({branch:branchname,semester:semester});
-    console.log("filtered notes in notes route",selectedNotesByBranchAndSemester);
+    // console.log("filtered notes in notes route",selectedNotesByBranchAndSemester);
 
     //for getting star rating
     selectedNotesByBranchAndSemester.forEach((note)=>{
-        var count =0;
         var sum =0;
         if(note.ratings.length==0){
             passingvalue.push(0);
@@ -82,7 +81,10 @@ router.get('/branch/semester/notes', ensureAuthenticated ,async(req,res)=>{
     })
     console.log(passingvalue);
     const floorvalue = passingvalue.map((val) => {
-        return Math.floor(val);
+        if(val%1==0){
+            return val;
+        }
+        return val.toFixed(2);
     })
     //for floor value
     console.log(floorvalue);
@@ -131,27 +133,53 @@ router.post('/branch/semester/notes/request', (req,res)=> {
 //for rating page
 
 router.post('/branch/semester/notes/star_rating/:id', (req,res)=> {
-    console.log("params",req.params);
+    var alreadyRated = false;
+    var alreadyRatedfornote = false;
     const id = req.params.id;
+    const userloggedinId = req.user._id;
     const rating = req.body.star;
     Notes.findById({_id:id})
         .then(note => {
             console.log(note);
             User.findById({_id:note.userId})
                 .then(user => {
-                    console.log(user);
-                    
-                    user.ratings = user.ratings.concat({ rating })
+                   
+                    if(String(user._id) == String(req.user._id))
+                    {
+                        console.log("you cant rate your own note");
+                        //display msg here
+                    }else{
+                        //somebody else is rating this
+                        //check if note is already rated by the req.user or not
+                        note.usersRated.forEach(person => {
+                            if(String(person.userId) == String(req.user._id))
+                                alreadyRated = true
+                        })
+                        if(alreadyRated == false)
+                        {
+                            note.ratings = note.ratings.concat({rating});
+                            user.ratings = user.ratings.concat({rating});
+                            note.usersRated = note.usersRated.concat({userId:userloggedinId});
+                            console.log("note after detailing");
+                            
+                        }
+                        else{
+                            console.log("already rated",alreadyRated);
+                            //display
+                        }
+                    }
                     user.save();
-                })
-                .catch(err => {
-                    console.log(err);
-                    res.redirect(`/users/branch/semester/notes?branch=${note.branch}&semester=${note.semester}`);
-                })
-                note.ratings = note.ratings.concat({ rating })
-            note.save()
-                .then(data=>{
-                    res.redirect(`/users/branch/semester/notes?branch=${note.branch}&semester=${note.semester}&starvalue=${rating}`);
+
+                    note.save()
+                    .then(data=>{
+                        console.log("data0",data);
+                        
+                        res.redirect(`/users/branch/semester/notes?branch=${note.branch}&semester=${note.semester}&starvalue=${rating}`);
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        res.redirect(`/users/branch/semester/notes?branch=${note.branch}&semester=${note.semester}`);
+                    })
                 })
                 .catch(err => {
                     console.log(err);

@@ -19,22 +19,69 @@ router.get('/',(req,res)=>{
 })
 
 router.get('/profile',ensureAuthenticated, async(req,res)=>{
-    console.log("user detail in profie route",req.user);
+    var ratingValue = 0;
+    var passingvalue = [];
     //for listing of notes
-    const notes = await Notes.find({userId:req.user._id}).sort({_id:-1}).limit(5);
+    const notes = await Notes.find({userId:req.user._id}).sort({_id:-1}); //we have to add limit
     console.log("notes for listing from index.js",notes);
+    //for notes rate
+    notes.forEach((note)=>{
+        var sumofnote =0;
+        if(note.ratings.length==0){
+            passingvalue.push(0);
+        }else{
+            note.ratings.forEach((rate)=> {
+                sumofnote += rate.rating;
+            })
+            passingvalue.push(sumofnote/note.ratings.length);
+        }
+
+    })
+    console.log("passing value",passingvalue);
+    const floorvalue = passingvalue.map((val) => {
+        if(val%1==0){
+            return val;
+        }
+        return val.toFixed(2);
+    })
+    console.log("floor value",floorvalue)
+
+
+
     //for request notes details
     const reqNote = await RequestNotes.find({solved:"false"});
     const doneNote = await RequestNotes.find({solved:"true"});
-    console.log("req note in indexjs for uploaded notes",doneNote);
+    //console.log("req note in indexjs for uploaded notes",doneNote);
+    //console.log("reqNote in index.js",reqNote);
+
+
+    //for rating of user
+    if(req.user.ratings.length != 0){
+        req.user.ratings.forEach(rate => {
+            ratingValue += rate.rating;
+        });
+        ratingValue = ratingValue/req.user.ratings.length;
+    }
+    else{
+        ratingValue = 0;
+    }
     
-    console.log("reqNote in index.js",reqNote);
+
+    if(ratingValue%1!=0){
+        ratingValue = ratingValue.toFixed(1);
+    }
+    console.log("rating value", ratingValue);
+    
+    
+    
     
     res.render('profile',{
         user:req.user,
         notes,
         reqNote,
-        doneNote
+        doneNote,
+        ratingValue,
+        floorvalue
     });
 });
 

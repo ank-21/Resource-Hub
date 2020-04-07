@@ -31,6 +31,11 @@ const NotesSchema = new mongoose.Schema({
             type:Number            
         }
     }],
+    usersRated: [{
+        userId:{
+            type:String
+        }
+    }]
 })
 
 const Notes = mongoose.model('Notes',NotesSchema);

@@ -163,7 +163,7 @@
                     </figcaption>
                 </figure>
 
-                <div class="date">4.3</div>
+                <div class="date"><%= floorvalue[count-1] %></div>
                 <form action="/users/branch/semester/notes/star_rating/<%= note._id%>" method="POST">
                     <div class="stars">
                         <input class="stars__checkbox" type="radio" id="first-star<%=count%>" name="star" value="5" onclick="this.form.submit()">
