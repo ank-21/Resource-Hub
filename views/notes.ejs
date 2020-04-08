@@ -226,30 +226,9 @@
               <div class="fold">
                 <form action="/users/branch/semester/notes/request" method="post">
                   <div id="selectBranch">
-                    <p>Select Branch:</p>
-                    <select style="display: block;" required="true" name ="branch">
-                      <option value="CSE">Computer Science</option>
-                      <option value="ECE">Electronics & Communication</option>
-                      <option value="EE">Electrical</option>
-                      <option value="ME">Mechanical</option>
-                      <option value="CE">Civil</option>
-                      <option value="EIE">Electronics & Instrumentation</option>
-                    </select>
-                  </div>
-
-                  <div id="selectSem">
-                    <p>Select Semester:</p>
-                    <select style="display: block;" required="true" name="semester">
-                      <option value="1">1st</option>
-                      <option value="2">2nd</option>
-                      <option value="3">3rd</option>
-                      <option value="4">4th</option>
-                      <option value="5">5th</option>
-                      <option value="6">6th</option>
-                      <option value="7">7th</option>
-                      <option value="8">8th</option>
-                    </select>
-                  </div>
+                    
+                  <input type="text" name="branch" placeholder="Branch" value="<%= notes[0].branch%>" required readonly="readonly">
+                  <input type="text" name="semester" placeholder="Semester" value="<%= notes[0].semester %>"" required readonly="readonly">
                   <input type="text" name="subject" placeholder="Subject" required>
                   <input type="text" name="profName" placeholder="Professor Name" required>
                   <p style="text-align: center; display: block;"><input type="submit" value="Request Note"></p>
