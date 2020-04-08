@@ -593,7 +593,7 @@ body::-webkit-scrollbar-thumb {
   #smallnavbar {
     width: 100vw;
     position: fixed;
-    top: 10vh;
+    top: 16vh;
     z-index:100;
     left: -2.5vw;
     text-align: center;
