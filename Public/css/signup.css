@@ -144,7 +144,8 @@ section#formHolder {
   top: 0;
   left: -30%;
   width: 130%;
-  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 .form .form-peice.switched {
   transform: translateX(-100%);
@@ -242,6 +243,7 @@ section#formHolder {
   color: blue;
   text-decoration: underline;
   transition: all 0.3s;
+  margin-bottom: 60px;
 }
 .form form .CTA a.switch:hover {
   color: #f95959;
@@ -309,29 +311,39 @@ section#formHolder {
     font-size: 50px !important;
   }
 }
-
-.eye{
+#eye1{
   float: right;
-  margin-left: 230px;
+  margin-left: 245px;
+  display: none;
+}
+
+#eye{
+  float: right;
+  margin-left: 245px;
+  display: none;
 }
 
 #hide1 {
   display: none;
   cursor: pointer;
   font-size: 20px;
+  transform: translateY(30px);
 }
 #hide2{
   cursor: pointer;
   font-size: 20px;
+  transform: translateY(30px);
 }
 #hide3 {
   display: none;
   cursor: pointer;
   font-size: 20px;
+  transform: translateY(30px);
 }
 #hide4{
   cursor: pointer;
   font-size: 20px;
+  transform: translateY(30px);
 }
 
 .heading{
@@ -509,4 +521,36 @@ video{
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px #562fc7; 
+}
+
+#logh3{
+  font-size: 4.2vh;
+}
+
+#logusing{
+  font-size: 2.3vh;
+  color:#562FC7
+}
+
+#signusing{
+  font-size: 2.3vh;
+  color:#562FC7
+}
+
+#signh3{
+  font-size: 3.6vh;
+  margin-top: 10vh;
+}
+
+@media screen and (max-width: 700px) and (min-width: 400px){
+  #signh3{
+    font-size: 3.6vh;
+    margin-top: 15vh;
+  }
+}
+@media screen and (max-width: 400px){
+  #signh3{
+    font-size: 3.6vh;
+    margin-top: 250px;
+  }
 }

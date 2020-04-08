@@ -128,6 +128,18 @@ function passwordfnlog(){
     }
 }
 
+var eye = document.getElementById("eye");
+var x = document.getElementById("password");
+x.addEventListener("click", function(){
+    eye.style.display = "block";
+})
+
+var eye1 = document.getElementById("eye1");
+var x = document.getElementById("loginPassword");
+x.addEventListener("click", function(){
+    eye1.style.display = "block";
+})
+
 function passwordfnsign(){
     var x1 = document.getElementById("password");
     var y1 = document.getElementById("hide3");
