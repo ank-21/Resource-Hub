@@ -72,6 +72,7 @@ app.use((req,res,next)=>{
     res.locals.error_msg = req.flash('error_msg');
     res.locals.error = req.flash('error');
     res.locals.profile_msg = req.flash('profile_msg');
+    res.locals.notes_msg = req.flash('notes_msg');
 
     next();
 })

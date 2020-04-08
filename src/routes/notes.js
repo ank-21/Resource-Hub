@@ -170,8 +170,7 @@ router.post('/branch/semester/notes/star_rating/:id', (req,res)=> {
                    
                     if(String(user._id) == String(req.user._id))
                     {
-                        console.log("you cant rate your own note");
-                        //display msg here
+                        req.flash('notes_msg', 'You can not rate your own note!');                        
                     }else{
                         //somebody else is rating this
                         //check if note is already rated by the req.user or not
@@ -184,26 +183,26 @@ router.post('/branch/semester/notes/star_rating/:id', (req,res)=> {
                             note.ratings = note.ratings.concat({rating});
                             user.ratings = user.ratings.concat({rating});
                             note.usersRated = note.usersRated.concat({userId:userloggedinId});
-                            console.log("note after detailing");
-                            
+                            req.flash('notes_msg', 'Rated Successfully...');
+                            user.save();
+
+                            note.save()
+                            .then(data=>{
+                                console.log("data0",data);
+                                res.redirect(`/users/branch/semester/notes?branch=${note.branch}&semester=${note.semester}&starvalue=${rating}`);
+                            })
+                            .catch(err => {
+                                console.log(err);
+                                res.redirect(`/users/branch/semester/notes?branch=${note.branch}&semester=${note.semester}`);
+                            })
                         }
                         else{
                             console.log("already rated",alreadyRated);
-                            //display
+                            req.flash('notes_msg', 'You can not rate the same note more than once!');
                         }
                     }
-                    user.save();
-
-                    note.save()
-                    .then(data=>{
-                        console.log("data0",data);
-                        
-                        res.redirect(`/users/branch/semester/notes?branch=${note.branch}&semester=${note.semester}&starvalue=${rating}`);
-                    })
-                    .catch(err => {
-                        console.log(err);
-                        res.redirect(`/users/branch/semester/notes?branch=${note.branch}&semester=${note.semester}`);
-                    })
+                    res.redirect(`/users/branch/semester/notes?branch=${note.branch}&semester=${note.semester}`);
+                    
                 })
                 .catch(err => {
                     console.log(err);
@@ -216,8 +215,5 @@ router.post('/branch/semester/notes/star_rating/:id', (req,res)=> {
         })
    
 });
-
-
-
 
 module.exports = router;
