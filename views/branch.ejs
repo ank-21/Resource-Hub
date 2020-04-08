@@ -10,6 +10,7 @@
               .logout{
     color:white !important;
 }
+    .active { color: red; }
 @media (min-width: 767px){
 .logout{
     color:black;
@@ -187,5 +188,20 @@
         
         
     </script>
+<script>
+var arr = document.getElementsByTagName("li");
+
+for(var i=0; i<arr.length; i++){
+    arr[i].addEventListener("click", function(){
+    
+            for(var j=0; j<document.getElementsByTagName("li").length; j++){
+                document.getElementsByTagName("li")[j].className = "";
+                event.target.className = "";
+            };
+    
+        event.target.className = "active"
+    });
+}
+</script>
     </body>
 </html>
