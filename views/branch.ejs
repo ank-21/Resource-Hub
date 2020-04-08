@@ -36,7 +36,7 @@
                 <a href="/profile" class="nav-links"></i>Profile</a>
               </li>
               <li>
-                <a href="/users/branch" class="nav-links">Notes</a>
+                <a href="/users/branch" class="nav-links active">Notes</a>
               </li>
               <li>
                 <a href="/users/home#contact" class="nav-links">Contact Us</a>
@@ -63,7 +63,7 @@
                     <a href="/profile" class="nav-links smallnav">Profile</a>
                   </li>
                 <li>
-                  <a href="/users/branch" class="nav-links smallnav">Notes</a>
+                  <a href="/users/branch" class="nav-links smallnav active">Notes</a>
                 </li>
                 <li>
                   <a href="/users/home#contact" class="nav-links smallnav">Contact Us</a>
@@ -175,7 +175,7 @@
     <!--::footer_part end::-->
 
     <script type="text/javascript" src="/js/branch-cards2.js"></script>
-    <script>
+<!--     <script>
         
         function myFunction(){
          var x = document.getElementById("profilediv");
@@ -187,8 +187,8 @@
         }
         
         
-    </script>
-<script>
+    </script> -->
+<!-- <script>
 var arr = document.getElementsByTagName("li");
 
 for(var i=0; i<arr.length; i++){
@@ -202,6 +202,18 @@ for(var i=0; i<arr.length; i++){
         event.target.className = "active"
     });
 }
+</script> -->
+<script>
+$(function(){
+    var current = location.pathname;
+    $('#js-menu li a').each(function(){
+        var $this = $(this);
+        // if the current path is like this link, make it active
+        if($this.attr('href').indexOf(current) !== -1){
+            $this.addClass('active');
+        }
+    })
+})
 </script>
     </body>
 </html>
