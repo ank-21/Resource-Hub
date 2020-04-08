@@ -151,6 +151,33 @@ img {
             transform: rotateX(15deg) rotateZ(-6deg) rotateY(15deg) scale3d(1, 1, -0.9);
 }
 
+@media screen and (max-width: 650px){
+  .container1 {
+    -webkit-transform: rotateX(0deg) rotateZ(0deg) rotateY(0deg) scale3d(1, 1, -0.9);
+            transform: rotateX(0deg) rotateZ(0deg) rotateY(0deg) scale3d(1, 1, -0.9);
+}
+.container2 {
+    -webkit-transform: rotateX(0deg) rotateZ(0deg) rotateY(0deg) scale3d(1, 1, -0.9);
+            transform: rotateX(0deg) rotateZ(0deg) rotateY(0deg) scale3d(1, 1, -0.9);
+}
+.container3 {
+    -webkit-transform: rotateX(0deg) rotateZ(0deg) rotateY(0deg) scale3d(1, 1, -0.9);
+            transform: rotateX(0deg) rotateZ(0deg) rotateY(0deg) scale3d(1, 1, -0.9);
+}
+.container6 {
+    -webkit-transform: rotateX(0deg) rotateZ(0deg) rotateY(0deg) scale3d(1, 1, -0.9);
+            transform: rotateX(0deg) rotateZ(0deg) rotateY(0deg) scale3d(1, 1, -0.9);
+}
+.container5 {
+    -webkit-transform: rotateX(0deg) rotateZ(0deg) rotateY(0deg) scale3d(1, 1, -0.9);
+            transform: rotateX(0deg) rotateZ(0deg) rotateY(0deg) scale3d(1, 1, -0.9);
+}
+.container4 {
+    -webkit-transform: rotateX(0deg) rotateZ(0deg) rotateY(0deg) scale3d(1, 1, -0.9);
+            transform: rotateX(0deg) rotateZ(0deg) rotateY(0deg) scale3d(1, 1, -0.9);
+}
+}
+
 .box {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -731,6 +758,12 @@ body::-webkit-scrollbar-thumb {
     height:30vh;
     border: 1px solid #8a7878;
     box-shadow: 4px 5px 5px rgba(0,0,0,0.6);
+  }
+
+  @media screen and (max-width: 650px){
+    img{
+      width: 100%;
+    }
   }
   
   

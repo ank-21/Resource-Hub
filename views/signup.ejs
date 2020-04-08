@@ -110,8 +110,8 @@
 
             <div class="login form-peice switched">
                <form class="login-form" action="/users/login" method="post" style="top:43%;">
-                   <h3 class="heading" style="font-size: 4.2vh;">Sign In</h3>
-                   <p class="heading" style="font-size: 2.3vh;color:#562FC7">using</p>
+                   <h3 id="logh3" class="heading">Sign In</h3>
+                   <p id="logusing" class="heading">using</p>
                	 <div class="social-container1">
                 	<a class="sociallinkbtn" href="/users/facebook"><i class="fab fa-facebook-f"></i></a>
                 	<a class="sociallinkbtn" href="/users/google"><i class="fab fa-google-plus-g"></i></a>
@@ -130,7 +130,7 @@
 
                   <div class="form-group">
                      <label for="loginPassword">Password
-                      <div class="eye" onclick="passwordfnlog()">
+                      <div id="eye1" onclick="passwordfnlog()">
                         <i id="hide1" class="fa fa-eye"></i>
                         <i id="hide2" class="fa fa-eye-slash"></i>
                       </div>
@@ -157,8 +157,8 @@
                 </div>
                 
                <form class="signup-form" action="/users/signup" method="post" style="position:absolute;margin-top: 12px;">
-                   <h3 class="heading" style="font-size: 3.6vh;margin-top: 10vh;">Create Account</h3>
-                   <p class="heading" style="font-size: 1.7vh;color:#562FC7">using</p>
+                   <h3 id="signh3" class="heading">Create Account</h3>
+                   <p id="signusing" class="heading">using</p>
                	<div class="social-container1">
                 	<a class="sociallinkbtn" href="/users/facebook"><i class="fab fa-facebook-f"></i></a>
                 	<a class="sociallinkbtn" href="/users/google"><i class="fab fa-google-plus-g"></i></a>
@@ -180,7 +180,7 @@
 
                   <div class="form-group">
                      <label for="password">Password
-                      <div class="eye" onclick="passwordfnsign()">
+                      <div id="eye" onclick="passwordfnsign()">
                         <i id="hide3" class="fa fa-eye"></i>
                         <i id="hide4" class="fa fa-eye-slash"></i>
                       </div>
