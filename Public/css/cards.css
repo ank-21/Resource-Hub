@@ -865,7 +865,7 @@ figcaption a {
     align-items: center;
     flex-direction: row-reverse;
     justify-content: center;
-    top: -8vh;
+    top: -5vh;
     left: 3vw;
 }
 .stars__star-icon{
