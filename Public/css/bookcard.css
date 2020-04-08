@@ -185,6 +185,7 @@ body::-webkit-scrollbar-thumb {
     position: fixed;
     top: 0;
     width: 100%;
+    left:0vw;
   }
   .sticky + .grid-container {
     padding-top: 60px;
