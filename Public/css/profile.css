@@ -1137,6 +1137,7 @@ h5.breadcrumbs-header {
   margin: 0;
   color: #fff;
   font-weight: 300;
+  text-align:center;
 }
 
 #task-card .task-card-date {
@@ -2728,8 +2729,8 @@ header .brand-logo img {
 
 #smallnavbar {
   width: 100vw;
-  position: fixed;
-    top: 10vh;
+  position: sticky;
+    top: 15vh;
     left: 0;
     z-index:100;
 text-align: center;

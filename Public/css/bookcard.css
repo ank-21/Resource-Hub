@@ -185,6 +185,7 @@ body::-webkit-scrollbar-thumb {
     position: fixed;
     top: 0;
     width: 100%;
+    left:0vw;
   }
   .sticky + .grid-container {
     padding-top: 60px;
@@ -315,7 +316,7 @@ body::-webkit-scrollbar-thumb {
   #smallnavbar {
         width: 100vw;
     position: fixed;
-    top: 10vh;
+    top: 16vh;
     z-index:100;
     left: -2.5vw;
     text-align: center;

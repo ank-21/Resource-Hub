@@ -67,6 +67,10 @@
     .user-details{
   font-size:1.2rem;
 }
+.collections-title span{
+	display:block;
+	margin-left:1.6vw;
+}
   }
   .logout1{
     color:white !important;
@@ -78,6 +82,8 @@
     left:10vw;
     font-weight:700;
 }
+}
+.active { color: red; }
 </style>
 </head>
 <body>
@@ -114,7 +120,7 @@
         <a href="/users/home#about" class="nav-links">About</a>
       </li>
       <li>
-        <a href="/profile" class="nav-links">Profile</a>
+        <a href="/profile" class="nav-links active">Profile</a>
       </li>
       <li>
         <a href="/users/branch" class="nav-links">Notes</a>
@@ -138,7 +144,7 @@
           <a href="/users/home#about" class="nav-links smallnav">About</a>
         </li>
         <li>
-          <a href="/profile" class="nav-links smallnav">Profile</a>
+          <a href="/profile" class="nav-links smallnav active">Profile</a>
         </li>
         <li>
           <a href="/users/branch" class="nav-links smallnav">Notes</a>
@@ -270,7 +276,7 @@
               <li class="collection-item">
               <div class="row">
                 <div class="col s7">
-                  <p class="collections-title">Subject - <%= note.subject%> <span style="margin-left: 2vw;">Branch - <%= note.branch%></span> <span style="margin-left: 1.6vw;">Semester - <%= note.semester%></span> </p>
+                  <p class="collections-title"><span>Subject - <%= note.subject%></span><span style="margin-left: 2vw;">Branch - <%= note.branch%></span> <span style="margin-left: 1.6vw;">Semester - <%= note.semester%></span> </p>
                   <p class="collections-content">Professor Name - <%= note.profName%></p>
                   <a href="<%= note.notesLoc %>" class="collections-title">Click here to view / download the note</a>
                 </div>
@@ -280,7 +286,7 @@
                 <div class="col s3" style="margin-top: 7vh;">
                   <div class="progress">
                     <% var rating = floorvalue[countNote] %>
-                    <%= console.log("rating alue in profile.ejs",rating) %>
+                    <%= console.log("rating value in profile.ejs",rating) %>
                     <div class="determinate" style="width: <%= rating * 20 %>%"></div>
                   </div>
                 </div>
@@ -301,7 +307,7 @@
           <div class="col s12 m12 l4">
             <ul id="task-card" class="collection with-header">
               <li class="collection-header cyan">
-                <h4 class="task-card-title">Request of Notes</h4>
+                <h4 class="task-card-title">Requested Notes</h4>
               </li>
               <% if(reqNote.length!=0) { %>
                 <% reqNote.forEach((note) => { %>

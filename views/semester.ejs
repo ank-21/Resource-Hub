@@ -11,6 +11,11 @@
       .logout1{
     color:white !important;
 }
+@media (max-width:768px){
+	.grid-item:first-child{
+		margin-top:16vh;
+	}
+}
 @media (min-width: 767px){
 .logout1{
     color:black;
@@ -18,6 +23,7 @@
     left:10vw;
     font-weight:700;
 }
+    .active { color: red; }
 </style>
     </head>
     <body style="overflow-x: hidden;background:#f7edd5;">
@@ -41,7 +47,7 @@
                 <a href="/profile" class="nav-links">Profile</a>
               </li>
               <li>
-                <a href="/users/branch" class="nav-links">Notes</a>
+                <a href="/users/branch" class="nav-links active">Notes</a>
               </li>
               <li>
                 <a href="/users/home#contact" class="nav-links">Contact Us</a>
@@ -65,7 +71,7 @@
                     <a href="/profile" class="nav-links smallnav">Profile</a>
                   </li>
                 <li>
-                  <a href="/users/branch" class="nav-links smallnav">Notes</a>
+                  <a href="/users/branch" class="nav-links smallnav active">Notes</a>
                 </li>
                 <li>
                   <a href="/users/home#contact" class="nav-links smallnav">Contact Us</a>
