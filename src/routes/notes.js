@@ -119,7 +119,9 @@ router.get('/branch/semester/notes', ensureAuthenticated ,async(req,res)=>{
     
     res.render('notes',{
         notes:selectedNotesByBranchAndSemester,
-        floorvalue
+        floorvalue,
+        branchname,
+        semester
     })  
 });
 
