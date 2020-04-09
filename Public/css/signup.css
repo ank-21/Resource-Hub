@@ -158,9 +158,20 @@ section#formHolder {
   margin: 0;
   width: 70%;
   position: absolute;
-  top: 48%;
+  top: 53%;
   left: 60%;
   transform: translate(-50%, -50%);
+}
+.email-handle{
+   width: 100%; 
+  text-align: center; 
+  border-bottom: 1px solid #000; 
+  line-height: 0.1em;
+  margin: 4.2vh 0 20px;
+}
+.email-handle span{font-size:30px;}
+@media screen and (max-width: 768px){
+  .email-handle span{font-size:30px;}
 }
 .form form .form-group {
   margin-bottom: 5px;
