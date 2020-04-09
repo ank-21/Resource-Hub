@@ -316,10 +316,11 @@
       <div id="card-widgets" style="margin-top:4vh;">
         <div class="row">
           <div class="col s12 m12 l2"><h1></h1></div>
-          <div class="col s12 m12 l4">
+          <div class="col s12 m12 l4 tooltip">
             <ul id="task-card" class="collection with-header">
-              <li class="collection-header cyan">
+              <li class="collection-header cyan" style="height: 100px;" >
                 <h4 class="task-card-title">Requested Notes</h4>
+                <span class="tooltiptext">Notes requested from you</span>
               </li>
               <% if(reqNote.length!=0) { %>
                 <% reqNote.forEach((note) => { %>
@@ -356,8 +357,9 @@
           <div class="col s12 m6 l4">
             <div id="flight-card" class="card">
               <div class="card-header">
-                <div class="card-title signIn">
+                <div class="card-title signIn tooltip1">
                   <h4 class="flight-card-title">Add Notes</h4>
+                  <span class="tooltiptext1">Click here to add notes</span>
                   <!-- <p class="flight-card-date">June 18, Thu 04:50</p> -->
                 </div>
               </div>
