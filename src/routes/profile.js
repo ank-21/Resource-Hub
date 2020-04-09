@@ -79,7 +79,7 @@ const storage = multer.diskStorage({
   
   const uploadNotes = multer({
     storage:notesStorage,
-    limits:{fileSize:15000000},   //limit of 15mb
+    limits:{fileSize:25000000},   //limit of 25mb
     fileFilter: function(req,file,cb){  //to enter only pdf,docx,doc 
       checkFileTypeNotes(file,cb);
     }
@@ -87,22 +87,22 @@ const storage = multer.diskStorage({
   
 //post request for uploading image
 profile.post('/profile/:id',async function(req,res){
-    console.log("details of branch",req.body);
     const id = req.params.id;
-    console.log("id",id);
     let errors = [];
     var avatar;
     async.each(['abc'],(item,cb)=>{
         upload(req,res,(err)=>{
             if(err){
                 errors.push({msg:err})
+                req.flash('profile_msg',err.message? err.message : err );
                 console.log("err1",errors);
                 avatar='';
                 cb(avatar);
             } else{
                 console.log("file in uploads",req.file);
                 if(req.file== undefined){
-                    errors.push({msg:'No file Selected'})
+                    errors.push({msg:'No Image Selected'})
+                    req.flash('profile_msg','No Image Selected' );
                     console.log("err2",errors);
                     avatar = undefined;
                     cb(avatar);
@@ -150,16 +150,22 @@ profile.post('/profile/:id',async function(req,res){
             user.save()
                 .then(user => {
                     console.log("fun",avatar);
-                    req.flash('profile_msg', 'Profile Updated!');
+                    if(errors.length==0)
+                        req.flash('profile_msg', ' Profile Updated!');
+                    
                     res.redirect('/profile');
                 })
                 .catch(err =>{
+                    req.flash('profile_msg', 'Profile not Updated!');
                     console.log("profile not updated");
+                    res.redirect('/profile');
                     
                 })
         })
         .catch(err => {
-            console.log("error",err);   
+            req.flash('profile_msg', 'Profile not Updated!');
+            console.log("error",err); 
+            res.redirect('/profile');  
         })
     })
 });
@@ -175,13 +181,15 @@ profile.post('/notes/:id',async function(req,res){
         uploadNotes(req,res,(err)=>{
             if(err){
                 errors.push({msg:err})
+                req.flash('profile_msg',err.message? err.message : err );
                 console.log("err1",errors);
                 notes='';
                 cb(notes);
             } else{
                 console.log("file in uploads",req.file);
                 if(req.file== undefined){
-                    errors.push({msg:'No file Selected'})
+                    errors.push({msg:'No file Selected'});
+                    req.flash('profile_msg','No File Selected' );
                     console.log("err2",errors);
                     notes = undefined;
                     cb(notes);
@@ -233,21 +241,28 @@ profile.post('/notes/:id',async function(req,res){
                             }).catch(err=> console.log(err));
                             
                             newNotes.save()
-                                .then(note=> {                                    
-                                    req.flash('profile_msg', `Your notes is uploaded.You can check it at notes section!`);
+                                .then(note=> {    
+                                    if(errors.length!=0)                                
+                                        req.flash('profile_msg', `Notes uploaded.You can check it at notes section!`);
                                     res.redirect('/profile');
                                 })
                                 .catch(err => {
                                     console.log("error in uploading",err);
+                                    req.flash('profile_msg', `your Notes Couldnot be uploaded! Please Try again`);
+                                    res.redirect('/profile');
                                 })    
                         }
                     })
                     .catch(err =>{
-                        console.log("profile not updated",err);  
+                        console.log("profile not updated",err); 
+                        req.flash('profile_msg', `your Notes Couldnot be uploaded! Please Try again`);
+                        res.redirect('/profile'); 
                     })
             })
             .catch(err => {
-                console.log("error",err);   
+                console.log("error",err); 
+                req.flash('profile_msg', `your Notes Couldnot be uploaded! Please Try again`);
+                res.redirect('/profile');  
             })
     })
 });

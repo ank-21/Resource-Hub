@@ -23,7 +23,7 @@ router.get('/profile',ensureAuthenticated, async(req,res)=>{
     var passingvalue = [];
     //for listing of notes
     const notes = await Notes.find({userId:req.user._id}).sort({_id:-1}); //we have to add limit
-    console.log("notes for listing from index.js",notes);
+    //console.log("notes for listing from index.js",notes);
     //for notes rate
     notes.forEach((note)=>{
         var sumofnote =0;
@@ -37,7 +37,7 @@ router.get('/profile',ensureAuthenticated, async(req,res)=>{
         }
 
     })
-    console.log("passing value",passingvalue);
+    //console.log("passing value",passingvalue);
     const floorvalue = passingvalue.map((val) => {
         if(val%1==0){
             return val;
@@ -70,7 +70,7 @@ router.get('/profile',ensureAuthenticated, async(req,res)=>{
     if(ratingValue%1!=0){
         ratingValue = ratingValue.toFixed(1);
     }
-    console.log("rating value", ratingValue);
+    //console.log("rating value", ratingValue);
     
     
     

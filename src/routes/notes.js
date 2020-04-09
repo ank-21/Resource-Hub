@@ -38,9 +38,7 @@ router.get('/branch/semester',ensureAuthenticated, async(req,res)=>{
             allSemDetails.push(eachsemvariable);
             eachsemvariable.forEach(semNote => {
                 result = result + semNote.downloadCount;
-                if(semNote.ratings.length==0)
-                    sum += 0;
-                else{
+                if(semNote.ratings.length!=0){
                     semNote.ratings.forEach(rate=> {
                         sum = sum + rate.rating;
                         count++;
@@ -48,7 +46,12 @@ router.get('/branch/semester',ensureAuthenticated, async(req,res)=>{
                 }
                         
             });
-            ratingsPerSem.push(sum/count);
+            if(count==0){
+                ratingsPerSem.push(0);
+            }else{
+                ratingsPerSem.push(sum/count);
+            }
+           
             totalDownloadPerSem.push(result);
         }
 
@@ -150,6 +153,7 @@ router.post('/branch/semester/notes/request', (req,res)=> {
             res.redirect(`/profile`);
         })
         .catch(err => {
+            res.redirect('/users/branch/semester/notes')
             console.log("errror in request note save", err);
         })  
 })
