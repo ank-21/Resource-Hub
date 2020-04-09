@@ -2730,7 +2730,7 @@ header .brand-logo img {
 #smallnavbar {
   width: 100vw;
   position: sticky;
-    top: 15vh;
+    top: 11vh;
     left: 0;
     z-index:100;
 text-align: center;

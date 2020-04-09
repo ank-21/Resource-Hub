@@ -536,7 +536,7 @@ body::-webkit-scrollbar-thumb {
   }*/
   .logo {
     display: inline-block;
-    font-size: 22px;
+    font-size: 30px;
     margin-top: 10px;
     margin-left: 20px;
   }
@@ -594,7 +594,7 @@ body::-webkit-scrollbar-thumb {
   #smallnavbar {
     width: 100vw;
     position: fixed;
-    top: 16vh;
+    top: 12vh;
     z-index:100;
     left: -2.5vw;
     text-align: center;

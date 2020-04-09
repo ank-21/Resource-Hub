@@ -367,7 +367,6 @@ section#formHolder {
 .nav-links,
 .logo {
   color: #ffffff;
-    font-size: 1em;
     padding: 40px 20px;
     font-family: "Barlow Semi Condensed", sans-serif;
     text-transform: uppercase;
@@ -419,7 +418,6 @@ section#formHolder {
   display: inline-block;
     position: relative;
         left: -8%;
-    font-size: 1.6em;;
 }
   #chkToggle:checked + ul.main-nav {
     display: flex;
