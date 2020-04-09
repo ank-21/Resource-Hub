@@ -239,4 +239,11 @@ router.post('/branch/semester/notes/star_rating/:id', (req,res)=> {
    
 });
 
+router.get('/note/delete/:id',async(req,res)=> {
+    await User.findByIdAndUpdate(req.user._id,{$inc : {uploadsCount:-1}});
+    await Notes.findByIdAndDelete(req.params.id);
+    req.flash('profile_msg', ' Note deleted!');
+    res.redirect('/profile');
+})
+
 module.exports = router;

@@ -288,7 +288,7 @@
               
               <li class="collection-item">
               <div class="row">
-                <div class="col s7">
+                <div class="col s6">
                   <p class="collections-title"><span>Subject - <%= note.subject%></span><span style="margin-left: 2vw;">Branch - <%= note.branch%></span> <span style="margin-left: 1.6vw;">Semester - <%= note.semester%></span> </p>
                   <p class="collections-content">Professor Name - <%= note.profName%></p>
                   <a href="<%= note.notesLoc %>" class="collections-title">Click here to view / download the note</a>
@@ -297,11 +297,20 @@
                   <span class="task-cat pink accent-2"><%= floorvalue[countNote]%></span>
                 </div>
                 <div class="col s3" style="margin-top: 7vh;">
+                  
                   <div class="progress">
                     <% var rating = floorvalue[countNote] %>
                     <%= console.log("rating value in profile.ejs",rating) %>
                     <div class="determinate" style="width: <%= rating * 20 %>%"></div>
                   </div>
+                  
+                </div>
+                <div class="col s1" style="margin-top: 7vh;">
+                  
+                  <div class="">
+                    <a href="/users/note/delete/<%=note._id %>"<i class="fas fa-trash-alt"></i></a>
+                  </div>
+                  
                 </div>
               </div>
             </li>
@@ -320,7 +329,7 @@
             <ul id="task-card" class="collection with-header">
               <li class="collection-header cyan" style="height: 100px;" >
                 <h4 class="task-card-title">Requested Notes</h4>
-                <span class="tooltiptext">Notes requested from you</span>
+                <span class="tooltiptext">Notes requested by users</span>
               </li>
               <% if(reqNote.length!=0) { %>
                 <% reqNote.forEach((note) => { %>
