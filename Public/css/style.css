@@ -6584,3 +6584,16 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0.5;
   font-weight: bolder;
 }
+
+#imagemobile{
+  display: none;
+}
+
+@media screen and (max-width: 759px){
+  #imagemobile{
+    display: block;
+  }
+  #imagedesktop{
+    display: none;
+  }
+}
