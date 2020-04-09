@@ -128,17 +128,34 @@ router.get('/branch/semester/notes', ensureAuthenticated ,async(req,res)=>{
 //for downloading notes
 router.get('/branch/semester/notes/download',(req,res)=>{
     Notes.find({branch:req.query.branch,semester:req.query.semester,_id:req.query.noteId})
-        .then(note => {
+        .then(note => {            
+            //for notes downloaded by other user
+            const userId = note[0].userId;
             const user = req.user;
-            user.downloadCountUser = user.downloadCountUser + 1;
-            user.save();
+            console.log(userId,user._id);
             
-            note[0].downloadCount = note[0].downloadCount + 1;
-            note[0].save()
-                .then(note => {
-                    console.log("note in then",note);
-                    res.redirect(note.notesLoc);
-                })
+            if(userId != user._id){
+                User.findById(userId)
+                    .then(user =>{
+                        user.notesDownloadedByUsers = user.notesDownloadedByUsers+ 1;
+                        user.save();
+                    }).catch((e)=>{
+                        console.log("Error",e);                    
+                    });
+                    
+                user.downloadCountUser = user.downloadCountUser + 1;
+                user.save();
+                
+                note[0].downloadCount = note[0].downloadCount + 1;
+                note[0].save()
+                    .then(note => {
+                        console.log("note in then",note);
+                        res.redirect(note.notesLoc);
+                    })
+            }
+            else{                
+                res.redirect(note[0].notesLoc);
+            }    
         }).catch(e => {
             res.redirect('/users/branch');
         })

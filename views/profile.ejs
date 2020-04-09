@@ -208,7 +208,7 @@
               </div>
             </div>
 
-            <div class="col s12 m12 l5">
+            <div class="col s12 m12 l6">
               <ul id="projects-collection" class="collection">
                 <li class="collection-item avatar">
                   <i class="mdi-file-folder circle light-blue darken-2"><span style="font-size: 1.6rem;font-style: normal;position: relative;top:-2px"><%= ratingValue%></span></i>
@@ -217,7 +217,7 @@
                 </li>
                 <li class="collection-item">
                   <div class="row">
-                    <div class="col s6 l4">
+                    <div class="col s6 l6">
                       <span class="user-details">Branch - </span>
                     </div>
                     <div class="col s6 l2">
@@ -227,7 +227,7 @@
                 </li>
                 <li class="collection-item">
                     <div class="row">
-                      <div class="col s6 l4">
+                      <div class="col s6 l6">
                           <span class="user-details">Semester - </span> 
                         </div>
                       <div class="col s6 l2">
@@ -237,8 +237,8 @@
                   </li>
                 <li class="collection-item">
                   <div class="row">
-                    <div class="col s6 l4">
-                        <span class="user-details">Total Downloads - </span>
+                    <div class="col s6 l6">
+                        <span class="user-details">Total Downloads by you - </span>
                       </div>
                     <div class="col s6 l2">
                        <span style="font-size: 1.3rem;"><%= user.downloadCountUser %></span>
@@ -247,7 +247,17 @@
                 </li>
                 <li class="collection-item">
                   <div class="row">
-                    <div class="col s6 l4">
+                    <div class="col s6 l6">
+                        <span class="user-details">Your Notes downloaded - </span>
+                      </div>
+                    <div class="col s6 l2">
+                       <span style="font-size: 1.3rem;"><%= user.notesDownloadedByUsers %></span>
+                    </div>
+                  </div>
+                </li>
+                <li class="collection-item">
+                  <div class="row">
+                    <div class="col s6 l6">
                         <span class="user-details">Total Uploads - </span> 
                       </div>
                     <div class="col s6 l2">

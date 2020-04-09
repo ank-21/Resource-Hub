@@ -194,7 +194,7 @@ section#formHolder {
   cursor: text;
   z-index: -1;
 }
-.form form label.active {
+.form form label.active{
   transform: translateY(10px);
   font-size: 10px;
 }
@@ -259,6 +259,10 @@ section#formHolder {
 .form form .CTA a.switch:hover {
   color: #f95959;
 }
+
+
+
+
 
 @media (max-width: 768px) {
   .container {

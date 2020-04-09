@@ -209,55 +209,56 @@ profile.post('/notes/:id',async function(req,res){
                     res.render('signup',{
                         errors
                     })
-                }                
-                user.uploadsCount = user.uploadsCount + 1;                
-                user.save()
-                    .then(user => {                        
-                        if(!notes){
-                            req.flash('profile_msg', 'your Notes Couldnot be uploaded! Please Try again');
-                            res.redirect('/profile');
-                        }
-                        else{                            
-                            const newNotes = new Notes({
-                                userName:user.name,
-                                userId:user._id,
-                                branch:req.body.branch,
-                                semester:req.body.semester,
-                                profName:req.body.profName,
-                                subject:req.body.subject,
-                                notesLoc:`${notes}`
-                            })
-                            RequestNotes.find({
-                                branch:req.body.branch,
-                                semester:req.body.semester,
-                                profName:req.body.profName,
-                                subject:req.body.subject,
-                            }).then(data => {
-                                console.log("data got from req note",data);
-                                if(data.length!=0){
-                                    data[0].solved="true"
-                                    data[0].save();
-                                }
-                            }).catch(err=> console.log(err));
-                            
-                            newNotes.save()
-                                .then(note=> {    
-                                    if(errors.length!=0)                                
-                                        req.flash('profile_msg', `Notes uploaded.You can check it at notes section!`);
-                                    res.redirect('/profile');
+                }
+                console.log("error",errors);
+                
+                if(errors.length==0){
+                    user.uploadsCount = user.uploadsCount + 1;                
+                    user.save()
+                        .then(user => {                        
+                                const newNotes = new Notes({
+                                    userName:user.name,
+                                    userId:user._id,
+                                    branch:req.body.branch,
+                                    semester:req.body.semester,
+                                    profName:req.body.profName,
+                                    subject:req.body.subject,
+                                    notesLoc:`${notes}`
                                 })
-                                .catch(err => {
-                                    console.log("error in uploading",err);
-                                    req.flash('profile_msg', `your Notes Couldnot be uploaded! Please Try again`);
-                                    res.redirect('/profile');
-                                })    
-                        }
-                    })
-                    .catch(err =>{
-                        console.log("profile not updated",err); 
-                        req.flash('profile_msg', `your Notes Couldnot be uploaded! Please Try again`);
-                        res.redirect('/profile'); 
-                    })
+                                RequestNotes.find({
+                                    branch:req.body.branch,
+                                    semester:req.body.semester,
+                                    profName:req.body.profName,
+                                    subject:req.body.subject,
+                                }).then(data => {
+                                    console.log("data got from req note",data);
+                                    if(data.length!=0){
+                                        data[0].solved="true"
+                                        data[0].save();
+                                    }
+                                }).catch(err=> console.log(err));
+                                
+                                newNotes.save()
+                                    .then(note=> {    
+                                        if(errors.length!=0)                                
+                                            req.flash('profile_msg', `Notes uploaded.You can check it at notes section!`);
+                                        res.redirect('/profile');
+                                    })
+                                    .catch(err => {
+                                        console.log("error in uploading",err);
+                                        req.flash('profile_msg', `your Notes Couldnot be uploaded! Please Try again`);
+                                        res.redirect('/profile');
+                                    })    
+                            
+                        })
+                        .catch(err =>{
+                            console.log("profile not updated",err); 
+                            req.flash('profile_msg', `your Notes Couldnot be uploaded! Please Try again`);
+                            res.redirect('/profile'); 
+                        })
+                }else{
+                    res.redirect('/profile');    
+                }                   
             })
             .catch(err => {
                 console.log("error",err); 
