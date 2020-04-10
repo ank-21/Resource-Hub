@@ -188,45 +188,5 @@
     <!--::footer_part end::-->
 
     <script type="text/javascript" src="/js/branch-cards2.js"></script>
-<!--     <script>
-        
-        function myFunction(){
-         var x = document.getElementById("profilediv");
-         if(x.style.display == "none"){
-            x.style.display = "block";
-         } else {
-            x.style.display = "none";
-         }
-        }
-        
-        
-    </script> -->
-<!-- <script>
-var arr = document.getElementsByTagName("li");
-
-for(var i=0; i<arr.length; i++){
-    arr[i].addEventListener("click", function(){
-    
-            for(var j=0; j<document.getElementsByTagName("li").length; j++){
-                document.getElementsByTagName("li")[j].className = "";
-                event.target.className = "";
-            };
-    
-        event.target.className = "active"
-    });
-}
-</script> -->
-<script>
-$(function(){
-    var current = location.pathname;
-    $('#js-menu li a').each(function(){
-        var $this = $(this);
-        // if the current path is like this link, make it active
-        if($this.attr('href').indexOf(current) !== -1){
-            $this.addClass('active');
-        }
-    })
-})
-</script>
     </body>
 </html>
