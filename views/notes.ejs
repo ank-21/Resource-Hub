@@ -113,7 +113,7 @@
 </style>
 </head>
 <body style="background:#f7edd5;">
-  <nav class="navbar">
+  <nav class="navbar" style="height: 14vh;">
     <a href="/users/home" class="logo">Resource Hub</a>
     <ul class="main-nav" id="js-menu">
       <li>
@@ -248,15 +248,15 @@
               <div class="card-header">
                 <div class="card-title signIn tooltip">
                   <h4 class="flight-card-title">Request Notes</h4>
-                  <span class="tooltiptext">Clear here to request for Notes</span>
+                  <span class="tooltiptext">Click here to request for Notes</span>
                 </div>
               </div>
               <div class="fold">
                 <form action="/users/branch/semester/notes/request" method="post">
                   <div id="selectBranch">
                     
-                  <input type="text" name="branch" placeholder="Branch" value="<%= notes[0].branch%>" required readonly="readonly">
-                  <input type="text" name="semester" placeholder="Semester" value="<%= notes[0].semester %>"" required readonly="readonly">
+                  <input type="text" name="branch" placeholder="Branch" value="<%= branchname%>" required readonly="readonly">
+                  <input type="text" name="semester" placeholder="Semester" value="<%= semester %>"" required readonly="readonly">
                   <input type="text" name="subject" placeholder="Subject" required>
                   <input type="text" name="profName" placeholder="Professor Name" required>
                   <p style="text-align: center; display: block;"><input type="submit" value="Request Note"></p>

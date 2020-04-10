@@ -35,8 +35,6 @@ userRouter.get('/home',(req,res)=>{
             var flag=0;
         }
     }
-        console.log("flag here",flag);
-        console
         res.render('index',{
         user:req.user,
         message:msg,

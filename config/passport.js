@@ -21,7 +21,9 @@ module.exports = function(passport) {
                     //so if user exists we have to match the password
 
                     bcrypt.compare(password, user.password, (err,isMatch) => {
-                        if (err) throw err;
+                        if (err){
+                            return done(null,false, {message: 'Try again!'});
+                        }
 
                         if(isMatch){
                             return done(null,user);

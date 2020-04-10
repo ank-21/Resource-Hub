@@ -50,6 +50,10 @@ const UserSchema = new mongoose.Schema({
     avatar:{
         type:String
     },
+    notesDownloadedByUsers:{
+        type:Number,
+        default:0
+    },
     ratings: [{
         rating:{
             type:Number

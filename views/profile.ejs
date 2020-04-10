@@ -209,7 +209,7 @@
               </div>
             </div>
 
-            <div class="col s12 m12 l5">
+            <div class="col s12 m12 l6">
               <ul id="projects-collection" class="collection">
                 <li class="collection-item avatar">
                   <i class="mdi-file-folder circle light-blue darken-2"><span style="font-size: 1.6rem;font-style: normal;position: relative;top:-2px"><%= ratingValue%></span></i>
@@ -218,7 +218,7 @@
                 </li>
                 <li class="collection-item">
                   <div class="row">
-                    <div class="col s6 l4">
+                    <div class="col s6 l6">
                       <span class="user-details">Branch - </span>
                     </div>
                     <div class="col s6 l2">
@@ -228,7 +228,7 @@
                 </li>
                 <li class="collection-item">
                     <div class="row">
-                      <div class="col s6 l4">
+                      <div class="col s6 l6">
                           <span class="user-details">Semester - </span> 
                         </div>
                       <div class="col s6 l2">
@@ -238,8 +238,8 @@
                   </li>
                 <li class="collection-item">
                   <div class="row">
-                    <div class="col s6 l4">
-                        <span class="user-details">Total Downloads - </span>
+                    <div class="col s6 l6">
+                        <span class="user-details">Total Downloads by you - </span>
                       </div>
                     <div class="col s6 l2">
                        <span style="font-size: 1.3rem;"><%= user.downloadCountUser %></span>
@@ -248,7 +248,17 @@
                 </li>
                 <li class="collection-item">
                   <div class="row">
-                    <div class="col s6 l4">
+                    <div class="col s6 l6">
+                        <span class="user-details">Your Notes downloaded - </span>
+                      </div>
+                    <div class="col s6 l2">
+                       <span style="font-size: 1.3rem;"><%= user.notesDownloadedByUsers %></span>
+                    </div>
+                  </div>
+                </li>
+                <li class="collection-item">
+                  <div class="row">
+                    <div class="col s6 l6">
                         <span class="user-details">Total Uploads - </span> 
                       </div>
                     <div class="col s6 l2">
@@ -279,7 +289,7 @@
               
               <li class="collection-item">
               <div class="row">
-                <div class="col s7">
+                <div class="col s6">
                   <p class="collections-title"><span>Subject - <%= note.subject%></span><span style="margin-left: 2vw;">Branch - <%= note.branch%></span> <span style="margin-left: 1.6vw;">Semester - <%= note.semester%></span> </p>
                   <p class="collections-content">Professor Name - <%= note.profName%></p>
                   <a href="<%= note.notesLoc %>" class="collections-title">Click here to view / download the note</a>
@@ -288,11 +298,20 @@
                   <span class="task-cat pink accent-2"><%= floorvalue[countNote]%></span>
                 </div>
                 <div class="col s3" style="margin-top: 7vh;">
+                  
                   <div class="progress">
                     <% var rating = floorvalue[countNote] %>
                     <%= console.log("rating value in profile.ejs",rating) %>
                     <div class="determinate" style="width: <%= rating * 20 %>%"></div>
                   </div>
+                  
+                </div>
+                <div class="col s1" style="margin-top: 7vh;">
+                  
+                  <div class="">
+                    <a href="/users/note/delete/<%=note._id %>"<i class="fas fa-trash-alt"></i></a>
+                  </div>
+                  
                 </div>
               </div>
             </li>
@@ -307,10 +326,11 @@
       <div id="card-widgets" style="margin-top:4vh;">
         <div class="row">
           <div class="col s12 m12 l2"><h1></h1></div>
-          <div class="col s12 m12 l4">
+          <div class="col s12 m12 l4 tooltip">
             <ul id="task-card" class="collection with-header">
-              <li class="collection-header cyan">
+              <li class="collection-header cyan" style="height: 100px;" >
                 <h4 class="task-card-title">Requested Notes</h4>
+                <span class="tooltiptext">Notes requested by users</span>
               </li>
               <% if(reqNote.length!=0) { %>
                 <% reqNote.forEach((note) => { %>
@@ -347,8 +367,9 @@
           <div class="col s12 m6 l4">
             <div id="flight-card" class="card">
               <div class="card-header">
-                <div class="card-title signIn">
+                <div class="card-title signIn tooltip1">
                   <h4 class="flight-card-title">Add Notes</h4>
+                  <span class="tooltiptext1">Click here to add notes</span>
                   <!-- <p class="flight-card-date">June 18, Thu 04:50</p> -->
                 </div>
               </div>
@@ -433,6 +454,7 @@
     // On mobile this turns on default page scrolling after the end of a drag drop.
     $(document).off('touchstart');
 });
+
   </script>
 </body>
 </html>
