@@ -11,6 +11,12 @@ const async = require('async');
 const {ensureAuthenticated } = require('../../config/auth');
 const fs = require('fs');
 const RequestNotes = require('../models/RequestNotes');
+//var progress = require('progress-stream');
+
+
+
+
+
 
 //set disk storage of profile image
 const storage = multer.diskStorage({
