@@ -171,7 +171,7 @@ section#formHolder {
 }
 .email-handle span{font-size:30px;}
 @media screen and (max-width: 768px){
-  .email-handle span{font-size:30px;}
+  .email-handle span{font-size:2.8vh;}
 }
 .form form .form-group {
   margin-bottom: 5px;
