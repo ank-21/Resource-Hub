@@ -86,16 +86,20 @@ input {
  } 
 }
 .logout{
-    color:black !important;
+    color:black;
 }
     .active { color: red; }
 @media (min-width: 767px){
 .logout{
-    color:black;
+    color:white;
     position:relative;
-    left:15vw;
     font-size:1.3rem !important;
     font-weight:700;
+    float: right;
+    left: 85vw;
+    position: fixed;
+    padding: 10px 35px;
+    margin-top: 20px;
 }
 }
 @media (max-width: 991px){
@@ -210,7 +214,7 @@ input {
                                 <li class="nav-item">
                                     <a class="nav-link" href="#contact">Contact Us</a>
                                 </li>
-                                <li class="mobile-search">
+                                <li class="nav-item mobile-search">
                                  <div class="searchcontainer">
                                 <input type="text" id="search" placeholder="Search..." onkeyup="search()">
                                 <div class="search"></div>
@@ -228,7 +232,7 @@ input {
                       </li>
                                 <% if(flag==1){ %>
                                     <li class="nav-item">
-                                        <a href="/users/logout" class="nav-link logout">Logout</a>
+                                        <a href="/users/logout" class="  btn_1 home_page_btn button logout">Logout</a>
                                     </li>
                                 <% } %>
                                 
@@ -237,7 +241,7 @@ input {
                             </ul>
                         </div>
                         <% if(flag==0){ %>
-                            <a href="/users/signup" class="d-none d-sm-block btn_1 home_page_btn button"id="one">Login</a>
+                            <a href="/users/signup" class="d-none d-sm-block btn_1 home_page_btn button"id="one" style="left: 10vw;position: relative;">Login</a>
                         <% } %>
                         
                     </nav>
