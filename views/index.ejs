@@ -63,6 +63,7 @@ input {
   .mobile-view{
     display:none;
 }
+
 }
  @media (max-width: 767px){
      .menu_fixed .main_logo{
@@ -127,7 +128,7 @@ input {
 .search-view li{
 	padding: 10px;
     width: 100%;
-    display: block;
+    display: none;
     font-weight:600;
 }
 .search-view li a{
@@ -195,13 +196,13 @@ input {
                                 	<input type="text" id="search1" class="fontAwesome" placeholder="Search" onkeyup="search1()" style="padding-left:35px;"></div>
                                 <div class="search"></div>
                                 <ul class="search-view" id="search_list1">
-                                	<li><a href="">Topper</a></li>
-                                	<li><a href="">Topnkxsper</a></li>
-                                	<li><a href="">Topacsper</a></li>
-                                	<li><a href="">Toppxaer</a></li>
-                                	<li><a href="">Topxper</a></li>
-                                	<li><a href="">Topxczper</a></li>
-                                	<li><a href="">Topczxper</a></li>
+                                	<li class="collection-item2"><a href="">Topper</a></li>
+                                	<li class="collection-item2"><a href="">Topnkxsper</a></li>
+                                	<li class="collection-item2"><a href="">Topacsper</a></li>
+                                	<li class="collection-item2"><a href="">Toppxaer</a></li>
+                                	<li class="collection-item2"><a href="">Topxper</a></li>
+                                	<li class="collection-item2"><a href="">Topxczper</a></li>
+                                	<li class="collection-item2"><a href="">Topczxper</a></li>
 
                               </ul>
                           </div>
@@ -231,22 +232,27 @@ input {
                                 <li class="nav-item">
                                     <a class="nav-link" href="#contact">Contact Us</a>
                                 </li>
-                                <li class="nav-item mobile-search">
-                                 <div class="searchcontainer">
-                                <input type="text" id="search" placeholder="Search..." onkeyup="search()">
-                                <div class="search"></div>
-                                <ul class="search-view" id="search_list">
-                                	<li><a href="">Topper</a></li>
-                                	<li><a href="">Topnkxsper</a></li>
-                                	<li><a href="">Topacsper</a></li>
-                                	<li><a href="">Toppxaer</a></li>
-                                	<li><a href="">Topxper</a></li>
-                                	<li><a href="">Topxczper</a></li>
-                                	<li><a href="">Topczxper</a></li>
 
-                              </ul>
-                          </div>
-                      </li>
+                                <li class="nav-item mobile-search">
+                                    <div class="searchcontainer">
+                                    <input type="text" id="search" placeholder="Search...">
+                                    <div class="search"></div>
+                                    <ul class="search-view" id="search_list">
+                                        <li class="collection-item"><a href="">Topper</a></li>
+                                        <li class="collection-item"><a href="">Topnkxsper</a></li>
+                                        <li class="collection-item"><a href="">Topacsper</a></li>
+                                        <li class="collection-item"><a href="">Toppxaer</a></li>
+                                        <li class="collection-item"><a href="">Topxper</a></li>
+                                        <li class="collection-item"><a href="">Topxczper</a></li>
+                                        <li class="collection-item"><a href="">Topczxper</a></li>
+                                        <li class="collection-item"><a href="">Mak</a></li>
+                                        <li class="collection-item"><a href="">Makae</a></li>
+                                        <li class="collection-item"><a href="">Makki</a></li>
+                                        <li class="collection-item"><a href="">Makku</a></li>
+                                        <li class="collection-item"><a href="">Minal</a></li>
+                                    </ul>
+                                    </div>
+                                </li>
                                 <% if(flag==1){ %>
                                     <li class="nav-item">
                                         <a href="/users/logout" class="  btn_1 home_page_btn button logout">Logout</a>
@@ -487,48 +493,119 @@ input {
     <script src="/js/mail-script.js"></script>
     <script src="/js/custom.js"></script>
     <script>
-    	const search = ()=>{
-    		let filter = document.getElementById('search').value.toUpperCase();
-    		let searchList = document.getElementById('search_list');
-    		let li = searchList.getElementsByTagName('li');
-    		for(var i=0; i<li.length;i++){
-    			let a = li[i].getElementsByTagName('a')[0];
+    	// const search = ()=>{
+    	// 	let filter = document.getElementById('search').value.toUpperCase();
+    	// 	let searchList = document.getElementById('search_list');
+    	// 	let li = searchList.getElementsByTagName('li');
+    	// 	for(var i=0; i<li.length;i++){
+    	// 		let a = li[i].getElementsByTagName('a')[0];
 
-    			let textValue = a.textContent || a.innerHTML;
-    			if(textValue.toUpperCase().indexOf(filter) > -1){
-    				li[i].style.display = " ";
-    				searchList.style.display = "block";
-    			}
-    			else{
-    				li[i].style.display = "none";
-    				searchList.style.display = "none";
-    			}
-    		}
+    	// 		let textValue = a.textContent || a.innerHTML;
+    	// 		if(textValue.toUpperCase().indexOf(filter) > -1){
+    	// 			li[i].style.display = " ";
+    	// 			searchList.style.display = "block";
+    	// 		}
+    	// 		else{
+    	// 			li[i].style.display = "none";
+    	// 			searchList.style.display = "none";
+    	// 		}
+    	// 	}
 
-    	}
+        // }
+        
+        //for desktop view
+
+        //get input element
+        let filterInput = document.getElementById('search');
+
+        //add event listener
+        filterInput.addEventListener('keyup',filternames);
+
+        function filternames(){
+            //get value of input
+            let filterValue = document.getElementById('search').value.toUpperCase();
+            
+            //Get names ul
+            let ul = document.getElementById('search_list');
+            //get lis from ul
+            let li = ul.querySelectorAll('li.collection-item');
+
+            //loop through collection item lis
+
+            for(let i=0;i< li.length;i++){
+                let a = li[i].getElementsByTagName('a')[0];
+                console.log(a,filterValue)
+                //if matched
+
+                if(a.innerHTML.toUpperCase().indexOf(filterValue)>-1 && filterValue!=''){
+                    li[i].style.display = 'block';
+                }
+                else{
+                    li[i].style.display = 'none';
+                }
+            }
+            
+        }
+
+
+
     </script>
     <script>
-    	    	const search1 = ()=>{
-    		let filter = document.getElementById('search1').value.toUpperCase();
-    		let searchList = document.getElementById('search_list1');
-    		let li = searchList.getElementsByTagName('li');
-    		for(var i=0; i<li.length;i++){
-    			let a = li[i].getElementsByTagName('a')[0];
+    	//     	const search1 = ()=>{
+    	// 	let filter = document.getElementById('search1').value.toUpperCase();
+    	// 	let searchList = document.getElementById('search_list1');
+    	// 	let li = searchList.getElementsByTagName('li');
+    	// 	for(var i=0; i<li.length;i++){
+    	// 		let a = li[i].getElementsByTagName('a')[0];
 
-    			let textValue = a.textContent || a.innerHTML;
-    			if(textValue.toUpperCase().indexOf(filter) > -1){
-    				li[i].style.display = " ";
-    				searchList.style.display = "block";
-    			}
-    			else{
-    				li[i].style.display = "none";
-    				searchList.style.display = "none";
-    			}
-    		}
+    	// 		let textValue = a.textContent || a.innerHTML;
+    	// 		if(textValue.toUpperCase().indexOf(filter) > -1){
+    	// 			li[i].style.display = " ";
+    	// 			searchList.style.display = "block";
+    	// 		}
+    	// 		else{
+    	// 			li[i].style.display = "none";
+    	// 			searchList.style.display = "none";
+    	// 		}
+    	// 	}
 
-    	}
+        // }
+        
+
+        //get input element
+        let filterInput2 = document.getElementById('search1');
+
+        //add event listener
+        filterInput2.addEventListener('keyup',filternames2);
+
+        function filternames2(){
+            //get value of input
+            let filterValue = document.getElementById('search1').value.toUpperCase();
+            
+            //Get names ul
+            let ul = document.getElementById('search_list1');
+            //get lis from ul
+            let li = ul.querySelectorAll('li.collection-item2');
+
+            //loop through collection item lis
+
+            for(let i=0;i< li.length;i++){
+                let a = li[i].getElementsByTagName('a')[0];
+                console.log(a,filterValue)
+                //if matched
+
+                if(a.innerHTML.toUpperCase().indexOf(filterValue)>-1 && filterValue!=''){
+                    li[i].style.display = 'block';
+                }
+                else{
+                    li[i].style.display = 'none';
+                }
+            }
+            
+        }
     </script>
-    <script>
+    <!-- <script>
+        //this is for desktop view
     	$(document).click(function(event) { 
   $target = $(event.target);
   if(!$target.closest('#search_list').length && 
@@ -536,8 +613,8 @@ input {
     $('#search_list').hide();
   }        
 });
-    </script>
-    <script>
+    </script> -->
+    <!-- <script>
     	$(document).click(function(event) { 
   $target = $(event.target);
   if(!$target.closest('#search_list1').length && 
@@ -545,7 +622,7 @@ input {
     $('#search_list1').hide();
   }        
 });
-    </script>
+    </script> -->
 
 </body>
 
