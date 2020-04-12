@@ -234,7 +234,7 @@ input {
                                 </li>
 
                                 <li class="nav-item mobile-search">
-                                    <div class="searchcontainer">
+                                    <div class="searchcontainer" id="srh">
                                     <input type="text" id="search" placeholder="Search...">
                                     <div class="search"></div>
                                     <ul class="search-view" id="search_list">
@@ -517,14 +517,25 @@ input {
 
         //get input element
         let filterInput = document.getElementById('search');
-
+                    let srh = document.getElementById('srh');
+                    var flag = 1;
+                    srh.addEventListener('click',()=>{
+                        let ul = document.getElementById('search_list');
+                        if(ul.style.display === "none" || flag == 1){
+                            ul.style.display = "block";
+                            flag = 0;
+                        }
+                        else if(ul.style.display !== "none" || flag == 0){
+                            ul.style.display = "none";
+                            flag = 1;
+                        }
+                    });
         //add event listener
         filterInput.addEventListener('keyup',filternames);
 
         function filternames(){
             //get value of input
             let filterValue = document.getElementById('search').value.toUpperCase();
-            
             //Get names ul
             let ul = document.getElementById('search_list');
             //get lis from ul
@@ -581,7 +592,6 @@ input {
         function filternames2(){
             //get value of input
             let filterValue = document.getElementById('search1').value.toUpperCase();
-            
             //Get names ul
             let ul = document.getElementById('search_list1');
             //get lis from ul

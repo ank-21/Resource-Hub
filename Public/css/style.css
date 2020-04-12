@@ -852,6 +852,7 @@ ul {
   /* line 190, ../../01 cl html template/03_jun 2019/185 Ecobit SAAS html/sass/_menu.scss */
   .btn_1 {
     margin-top: 0;
+    border: none;
   }
 }
 
@@ -2142,7 +2143,7 @@ h1, h2, h3, h4, h5, h6 {
   position: fixed;
   margin: auto;
   top: 0;
-      left: 33vw;
+      left: 45vw;
   right: 0;
   /* bottom: 0; */
   width: 300px;
