@@ -1067,6 +1067,19 @@ h5.breadcrumbs-header {
   background: transparent;
   border: 1px solid #fff;
 }
+.fold form input[type="radio"]{
+  color: #fff;
+  opacity: 1; 
+}
+.fold form input[type="number"]{
+  color: #fff;
+}
+.radiolabel{
+  color: #fff;
+  font-size: 20px;
+  transform: translateX(80px);
+  /* transform: translateY(-8px); */
+}
 ::placeholder {
   color: #fff;
 }
