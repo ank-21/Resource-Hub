@@ -194,7 +194,7 @@ input {
                           <div class="mobile-view">
                                 <div><label><i class="fa fa-search" aria-hidden="true"></i></label>
                                 	<input type="text" id="search1" class="fontAwesome" placeholder="Search" onkeyup="search1()" style="padding-left:35px;"></div>
-                                <div class="search"></div>
+                                <div class="search" id="srh1"></div>
                                 <ul class="search-view" id="search_list1">
                                 	<li class="collection-item2"><a href="">Topper</a></li>
                                 	<li class="collection-item2"><a href="">Topnkxsper</a></li>
@@ -234,9 +234,9 @@ input {
                                 </li>
 
                                 <li class="nav-item mobile-search">
-                                    <div class="searchcontainer" id="srh">
+                                    <div class="searchcontainer">
                                     <input type="text" id="search" placeholder="Search...">
-                                    <div class="search"></div>
+                                    <div class="search" id="srh"></div>
                                     <ul class="search-view" id="search_list">
                                         <li class="collection-item"><a href="">Topper</a></li>
                                         <li class="collection-item"><a href="">Topnkxsper</a></li>
@@ -511,11 +511,11 @@ input {
                     var flag = 1;
                     srh.addEventListener('click',()=>{
                         let ul = document.getElementById('search_list');
-                        if(ul.style.display === "none" || flag == 1){
+                        if(ul.style.display === "none"){
                             ul.style.display = "block";
                             flag = 0;
                         }
-                        else if(ul.style.display !== "none" || flag == 0){
+                        else if(ul.style.display !== "none"){
                             ul.style.display = "none";
                             flag = 1;
                         }
@@ -575,7 +575,6 @@ input {
 
         //get input element
         let filterInput2 = document.getElementById('search1');
-
         //add event listener
         filterInput2.addEventListener('keyup',filternames2);
 

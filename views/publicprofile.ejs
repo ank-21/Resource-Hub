@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PORTFOLIO</title>
+  <title>PUBLIC PROFILE</title>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/chartist/0.9.7/chartist.min.css'>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jvectormap/2.0.4/jquery-jvectormap.min.css'>
@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="/css/profile.css">
   <link rel="icon" href="/img/favicon.png">
   <link rel="stylesheet" href="/css/signup.css">
+  <link rel="stylesheet" href="/css/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function(){
@@ -90,66 +91,31 @@
 .logo{font-size:1.8rem;}
 }
 .active { color: red; }
-   input[type='radio']:after {
-        width: 15px;
-        height: 15px;
-        border-radius: 15px;
-        
-        left: -1px;
-        position: relative;
-        background-color: #d1d3d1;
-        content: '';
-        display: inline-block;
-        visibility: visible;
-        border: 2px solid white;
-    }
 
-    input[type='radio']:checked:after {
-        width: 15px;
-        height: 15px;
-        border-radius: 15px;
-        top: -2px;
-        left: -1px;
-        position: relative;
-        background-color: #ffa500;
-        content: '';
-        display: inline-block;
-        visibility: visible;
-        border: 2px solid white;
-    }
-    input[type="radio"]:not(:checked){
-      pointer-events:all;
-    }
-    .radio1{left:4vw;top:5vh;}
-    .radio2{left:12.6vw;top:5vh;}
-    @media (max-width:768px){
-      .radio1{left: 7vw;top: 4.6vh;}
-      .radio2{left: 39vw;top: 4.6vh;}
-    }
+.grid-container{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+}
+@media screen and (max-width: 800px){
+    .grid-container{
+    grid-template-columns: auto auto auto auto;
+}
+@media screen and (max-width: 600px){
+    .grid-container{
+    grid-template-columns: auto auto auto;
+}
+@media screen and (max-width: 400px){
+    .grid-container{
+    grid-template-columns: auto auto;
+}
+@media screen and (max-width: 300px){
+    .grid-container{
+    grid-template-columns: auto;
+}
+}
 </style>
 </head>
 <body>
-  <div id="simpleModal" class="modal1">
-    <div class="modal-content fold1">
-      <form action="/users/profile/<%= user._id %>" method="post" enctype="multipart/form-data">
-        <p id="closeBtn">&times;</p>
-        <h5><b>COMPLETE YOUR PROFILE</b></h5>
-        <input type="text" name="branch" placeholder="Branch">
-        <input type="text" name="semester" placeholder="Semester">
-        <input type="text" name="phnNo" placeholder="Contact Number">
-        <label class="custom-file-upload" style="color:white !important;">
-          
-          <input name="profileImage" type="file" id="file-upload2" class="file-path validate" style="position: relative;left:0.2vw">
-          <span><i class="fas fa-upload"></i></span>
-          Upload Profile Image
-          <hr>
-          <span id="file-selected2"></span>
-        </label>
-        <p style="text-align: center; display: block;">
-        <input type="submit" value="Edit Details"></p>      
-      </form>
-    </div>
-  </div>
 
   <nav class="navbar">
     <a href="/" class="logo">Resource Hub</a>
@@ -232,11 +198,6 @@
                 </div>
                 <div class="card-content">
                   <img src="<%= user.avatar ? user.avatar : '/img/avatar.png' %>" alt="" class="circle responsive-img card-profile-image">
-                  <a id="modalBtn" class="btn-floating btn-move-up waves-effect waves-light darken-2 right">
-                    <p style="font-size: 15px; margin-top: 7.5px;">
-                      EDIT DETAILS
-                    </p>
-                  </a>
 
                   <span class="card-title activator grey-text text-darken-4" style="text-transform: capitalize;"><%= user.name %></span>
                   <p><i class="mdi-communication-email cyan-text text-darken-2"></i>Email Id: <%= user.email%></p>
@@ -286,7 +247,7 @@
                 <li class="collection-item">
                   <div class="row">
                     <div class="col s6 l6">
-                        <span class="user-details">Total Downloads of your uploads - </span>
+                        <span class="user-details">Your Notes downloaded - </span>
                       </div>
                     <div class="col s6 l2">
                        <span style="font-size: 1.3rem;"><%= user.notesDownloadedByUsers %></span>
@@ -339,7 +300,6 @@
                 <div class="col s6">
                   <p class="collections-title"><span>Subject - <%= note.subject%></span><span style="margin-left: 2vw;">Branch - <%= note.branch%></span> <span style="margin-left: 1.6vw;">Semester - <%= note.semester%></span> </p>
                   <p class="collections-content">Professor Name - <%= note.profName%></p>
-                  <p class="collections-content">Year - <%= note.year%> <span style="margin-left: 1.6vw;">Type - <%= note.noteType%></span></p>
                   <a href="<%= note.notesLoc %>" class="collections-title">Click here to view / download the note</a>
                 </div>
                 <div class="col s2" style="margin-top: 7vh;">
@@ -354,13 +314,6 @@
                   </div>
                   
                 </div>
-                <div class="col s1" style="margin-top: 7vh;">
-                  
-                  <div class="">
-                    <a href="/users/note/delete/<%=note._id %>"<i class="fas fa-trash-alt"></i></a>
-                  </div>
-                  
-                </div>
               </div>
             </li>
             <% countNote = countNote + 1 %>
@@ -369,122 +322,6 @@
         </div>
         <div class="col l2"><h1></h1></div>
       </div>
-      <!--end container-->
-      <!--card widgets start-->
-      <div id="card-widgets" style="margin-top:4vh;">
-        <div class="row">
-          <div class="col s12 m12 l2"><h1></h1></div>
-          <div class="col s12 m12 l4 tooltip">
-            <ul id="task-card" class="collection with-header">
-              <li class="collection-header cyan" style="height: 100px;" >
-                <h4 class="task-card-title">Requested Notes</h4>
-                <span class="tooltiptext">Notes requested by users</span>
-              </li>
-              <% if(reqNote.length!=0) { %>
-                <% reqNote.forEach((note) => { %>
-                  <li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-                  
-                  <label for="task1" style="text-decoration: none;font-size: 2.8vh;padding-bottom: 7px;padding-top: 7px;">Subject - <%= note.subject%>
-                    <a href="#" class="secondary-content" style="margin-top: 4px;"><span class="ultra-small"><%= note.date%></span></a>
-                  </label>
-                  <span class="task-cat teal">Branch - <%=note.branch%></span>
-                  <span class="task-cat purple" style="margin-left: 25px;">Sem - <%= note.semester%></span>
-                  <span class="task-cat cyan"style="margin-left: 25px;">Prof. Name - <%=note.profName %></span>
-                  <span class="task-cat green"style="margin-left: 25px;">Year - <%=note.year %></span>
-                  <span class="task-cat red"style="margin-left: 25px;">Type - <%=note.noteType %></span>
-                </li>
-                <% }); %>
-              <% } %>
-
-              <% if(doneNote.length!=0) { %>
-                <% doneNote.forEach((note) => { %>
-                  <li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-                  
-                  <label for="task1" style="text-decoration: line-through;font-size: 2.8vh;padding-bottom: 7px;padding-top: 7px;">Subject - <%= note.subject%>
-                    <a href="#" class="secondary-content" style="margin-top: 4px;"><span class="ultra-small"><%= note.date%></span></a>
-                  </label>
-                  <span class="task-cat teal">Branch - <%=note.branch%></span>
-                  <span class="task-cat purple" style="margin-left: 25px;">Sem - <%= note.semester%></span>
-                  <span class="task-cat cyan"style="margin-left: 25px;">Prof. Name - <%=note.profName %></span>
-                  <span class="task-cat green"style="margin-left: 25px;">Year - <%=note.year %></span>
-                  <span class="task-cat red"style="margin-left: 25px;">Type - <%=note.noteType %></span>
-                  <span class="task-cat blue"style="margin-left: 25px;">Uploaded</span>
-                </li>
-                <% }); %>
-              <% } %>
-              
-            </ul>
-          </div>
-
-          <div class="col s12 m6 l4">
-            <div id="flight-card" class="card">
-              <div class="card-header">
-                <div class="card-title signIn tooltip1">
-                  <h4 class="flight-card-title">Add Notes to Hub</h4>
-                  <span class="tooltiptext1">Click here to add notes</span>
-                  <!-- <p class="flight-card-date">June 18, Thu 04:50</p> -->
-                </div>
-              </div>
-              <div class="fold">
-                <form action="/users/notes/<%= user._id %>" method="post" enctype="multipart/form-data">
-                  <div id="note-ques" style="text-align: center;">
-                    <span>
-                      <input type="radio" id="note" name="noteType" value="note" class="radio1" required="true">
-                      <label class="radiolabel radio_btn" for="note" style="position: relative;left:-4vw">Notes</label>
-                    </span>
-                    <span>
-                      <input type="radio" id="question" name="noteType" value="question" class="radio2" required="true">
-                      <label class="radiolabel radio_btn" for="question" style="position: relative;left:1vw" >Question Papers</label>
-                    </span>
-                  </div>
-                  <div id="selectBranch">
-                    <p>Select Branch:</p>
-                    <select style="display: block;" required="true" name ="branch">
-                      <option value="CSE">Computer Science</option>
-                      <option value="ECE">Electronics & Communication</option>
-                      <option value="EE">Electrical</option>
-                      <option value="ME">Mechanical</option>
-                      <option value="CE">Civil</option>
-                      <option value="EIE">Electronics & Instrumentation</option>
-                    </select>
-                  </div>
-
-                  <div id="selectSem">
-                    <p>Select Semester:</p>
-                    <select style="display: block;" required="true" name="semester">
-                      <option value="1">1st</option>
-                      <option value="2">2nd</option>
-                      <option value="3">3rd</option>
-                      <option value="4">4th</option>
-                      <option value="5">5th</option>
-                      <option value="6">6th</option>
-                      <option value="7">7th</option>
-                      <option value="8">8th</option>
-                    </select>
-                  </div>
-                  <!-- <label for="year" style="color: #fff; font-size: 15px;">Year:</label> -->
-                  <input id="year" type="number" name = "year" placeholder="Year" style="width: 100%;background: transparent;border: 1px solid gray;width: 100%;margin-bottom: 5px;height: 40px;padding: 10px 20px;box-sizing: border-box;border-radius: 40px;box-shadow: none;outline: none;color: #fff;background: transparent;border: 1px solid #fff;">
-
-                  <input type="text" name="subject" placeholder="Subject" style="margin-top: 2vh;" required>
-                  <input type="text" name="profName" placeholder="Professor Name" required>
-                  <label class="custom-file-upload" style="color:white !important;">
-          
-                    <input name="notesSelected" type="file" id="file-upload1" class="file-path validate" style="position: relative;left:0.2vw" required>
-                    <span><i class="fas fa-upload"></i></span>
-                    Upload Files
-                    <hr>
-                    <span id="file-selected1"></span>
-                  </label>
-                  <p style="text-align: center; display: block;">
-                    <input type="submit" value="Upload"></p>
-                </form>
-              </div>
-            </div>
-            <div class="col l2"><h1></h1></div>
-          </div>
-
-
-        </div>
     </section>
     <!-- END CONTENT -->
     </div>
@@ -492,6 +329,66 @@
 
     </div>
     <!-- END MAIN -->
+
+     <!--::footer_part start::-->
+     <footer class="footer_part">
+        <!-- <div class="container grid-container"> -->
+            <div class="row grid-container">
+                <div class="col-sm-4 col-md-4 col-lg-3">
+                    <div class="single_footer_part">
+                        <h4>Developers</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="/developers">Ankit Srivastava</a></li>
+                            <li><a href="/developers">Ujjawal Jain</a></li>
+                            <li><a href="/developers">Anuva Bhattacharjee</a></li>
+                            <li><a href="/developers" class="developers-details">Know More About Developers</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-2">
+                    <div class="single_footer_part">
+                        <h4>Popular Notes</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="">Topper ke Notes</a></li>
+                            <li><a href="">Topper ke Notes</a></li>
+                            <li><a href="">Topper ke Notes</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-2">
+                    <div class="single_footer_part">
+                        <h4>Recent Uploads</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="">Newbie 1</a></li>
+                            <li><a href="">Newbie 2</a></li>
+                            <li><a href="">Newbie 3</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-2">
+                    <div class="single_footer_part">
+                        <h4>Most Downloaded</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="">Topper ke Notes</a></li>
+                            <li><a href="">Topper ke Notes</a></li>
+                            <li><a href="">Topper ke Notes</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-3 col-lg-3">
+                    <div class="single_footer_part">
+                        <h4>Popular Profiles</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="">Topper Nibba 1</a></li>
+                            <li><a href="">Topper Nibba 2</a></li>
+                            <li><a href="">Topper Nibba 3</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr>
+    </footer>
+    <!--::footer_part end::-->
 
     <!-- google map api -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAZnaZBXLqNBRXjd-82km_NO7GUItyKek"></script>
@@ -503,7 +400,6 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.1.1/Chart.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.10/js/min/perfect-scrollbar.jquery.min.js'></script>
 <script  src="/js/profile.js"></script>
-
 <script>
   drake = dragula({
     revertOnSpill: true,
@@ -517,6 +413,7 @@
     // On mobile this turns on default page scrolling after the end of a drag drop.
     $(document).off('touchstart');
 });
+
   </script>
 </body>
 </html>
