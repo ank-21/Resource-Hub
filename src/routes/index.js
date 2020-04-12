@@ -40,7 +40,7 @@ router.get('/',(req,res)=>{
         });
 });
 
-router.get('/developers',(req,res)=>{
+router.get('/developers',ensureAuthenticated,(req,res)=>{
     res.render('team');
 })
 
@@ -97,10 +97,7 @@ router.get('/profile',ensureAuthenticated, async(req,res)=>{
         ratingValue = ratingValue.toFixed(1);
     }
     //console.log("rating value", ratingValue);
-    
-    
-    
-    
+
     res.render('profile',{
         user:req.user,
         notes,

@@ -231,6 +231,7 @@ profile.post('/notes/:id',async function(req,res){
                                     subject:req.body.subject,
                                     notesLoc:`${notes}`
                                 })
+                                //for checking whether req notes is same add as added note
                                 RequestNotes.find({
                                     branch:req.body.branch,
                                     semester:req.body.semester,

@@ -4,6 +4,7 @@ const { ensureAuthenticated } = require('../../config/auth');
 const User = require('../models/User');
 const Notes = require('../models/Notes');
 const RequestNotes = require('../models/RequestNotes');
+const DeleteNote = require('../models/DeleteNote');
 const moment = require('moment');
 
 // /notes is in app.use
@@ -240,10 +241,19 @@ router.post('/branch/semester/notes/star_rating/:id', (req,res)=> {
 });
 
 router.get('/note/delete/:id',async(req,res)=> {
+
+    const note = await Notes.findById(req.params.id);
+    const newdeleteNote = new DeleteNote({
+        branch:note.branch,
+        subject:note.subject,
+        semester:note.semester,
+        notesLoc:note.notesLoc
+    })
+    await newdeleteNote.save()
     await User.findByIdAndUpdate(req.user._id,{$inc : {uploadsCount:-1}});
     await Notes.findByIdAndDelete(req.params.id);
     req.flash('profile_msg', ' Note deleted!');
-    res.redirect('/profile');
+    res.redirect('/profile');  
 })
 
 module.exports = router;
