@@ -90,6 +90,42 @@
 .logo{font-size:1.8rem;}
 }
 .active { color: red; }
+   input[type='radio']:after {
+        width: 15px;
+        height: 15px;
+        border-radius: 15px;
+        top: -2px;
+        left: -1px;
+        position: relative;
+        background-color: #d1d3d1;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 2px solid white;
+    }
+
+    input[type='radio']:checked:after {
+        width: 15px;
+        height: 15px;
+        border-radius: 15px;
+        top: -2px;
+        left: -1px;
+        position: relative;
+        background-color: #ffa500;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 2px solid white;
+    }
+    input[type="radio"]:not(:checked){
+      pointer-events:all;
+    }
+    .radio1{left:3vw;top:5vh;}
+    .radio2{left:11.6vw;top:5vh;}
+    @media (max-width:768px){
+      .radio1{left: 7vw;top: 4.6vh;}
+      .radio2{left: 39vw;top: 4.6vh;}
+    }
 </style>
 </head>
 <body>
@@ -387,13 +423,13 @@
               <div class="fold">
                 <form action="/users/notes/<%= user._id %>" method="post" enctype="multipart/form-data">
                   <div id="note-ques" style="text-align: center;">
-                    <span style="padding: 10px;">
-                      <input type="radio" id="note" name="noteques" value="note">
-                      <label class="radiolabel" for="note">Notes</label>
+                    <span style="padding: 10px;padding-right:10vh;">
+                      <input type="radio" id="note" name="noteques" value="note" class="radio1">
+                      <label class="radiolabel radio_btn" for="note">Notes</label>
                     </span>
                     <span style="padding: 10px;">
-                      <input type="radio" id="question" name="noteques" value="question">
-                      <label class="radiolabel" for="question">Question Papers</label>
+                      <input type="radio" id="question" name="noteques" value="question" class="radio2">
+                      <label class="radiolabel radio_btn" for="question" style="padding-right:5vw">Question Papers</label>
                     </span>
                   </div>
                   <div id="selectBranch">
