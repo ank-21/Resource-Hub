@@ -499,7 +499,7 @@ input {
         let big = document.getElementById('bigdiv');
         bigdiv.addEventListener('click',()=>{
             let ul = document.getElementById('search_list');
-                        if(ul.style.display !== "none" || flag == 0){
+                        if(ul.style.display !== "none"){
                             ul.style.display = "none";
                             flag = 1;
                         }
@@ -511,15 +511,19 @@ input {
                     var flag = 1;
                     srh.addEventListener('click',()=>{
                         let ul = document.getElementById('search_list');
-                        if(ul.style.display === "none"){
+                        if(ul.style.display === "none" ){
                             ul.style.display = "block";
                             flag = 0;
                         }
-                        else if(ul.style.display !== "none"){
+                        else if(ul.style.display !== "none" || flag ==0){
                             ul.style.display = "none";
                             flag = 1;
                         }
                     });
+        
+                    
+
+
         //add event listener
         filterInput.addEventListener('keyup',filternames);
 
@@ -530,7 +534,7 @@ input {
             let ul = document.getElementById('search_list');
             //get lis from ul
             let li = ul.querySelectorAll('li.collection-item');
-
+            ul.style.display = 'block';
             //loop through collection item lis
 
             for(let i=0;i< li.length;i++){
@@ -552,29 +556,23 @@ input {
 
     </script>
     <script>
-    	//     	const search1 = ()=>{
-    	// 	let filter = document.getElementById('search1').value.toUpperCase();
-    	// 	let searchList = document.getElementById('search_list1');
-    	// 	let li = searchList.getElementsByTagName('li');
-    	// 	for(var i=0; i<li.length;i++){
-    	// 		let a = li[i].getElementsByTagName('a')[0];
-
-    	// 		let textValue = a.textContent || a.innerHTML;
-    	// 		if(textValue.toUpperCase().indexOf(filter) > -1){
-    	// 			li[i].style.display = " ";
-    	// 			searchList.style.display = "block";
-    	// 		}
-    	// 		else{
-    	// 			li[i].style.display = "none";
-    	// 			searchList.style.display = "none";
-    	// 		}
-    	// 	}
-
-        // }
         
 
         //get input element
         let filterInput2 = document.getElementById('search1');
+                    let srh = document.getElementById('srh');
+                    var flag = 1;
+                    srh.addEventListener('click',()=>{
+                        let ul = document.getElementById('search_list1');
+                        if(ul.style.display === "none" ){
+                            ul.style.display = "block";
+                            flag = 0;
+                        }
+                        else if(ul.style.display !== "none" || flag ==0){
+                            ul.style.display = "none";
+                            flag = 1;
+                        }
+                    });
         //add event listener
         filterInput2.addEventListener('keyup',filternames2);
 
@@ -585,7 +583,7 @@ input {
             let ul = document.getElementById('search_list1');
             //get lis from ul
             let li = ul.querySelectorAll('li.collection-item2');
-
+            ul.style.display = 'block';
             //loop through collection item lis
 
             for(let i=0;i< li.length;i++){
