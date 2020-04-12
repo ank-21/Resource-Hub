@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PUBLIC PROFILE</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/chartist/0.9.7/chartist.min.css'>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jvectormap/2.0.4/jquery-jvectormap.min.css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/profile.css">
+  <link rel="icon" href="/img/favicon.png">
+  <link rel="stylesheet" href="/css/signup.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('.signIn').click(function(){
+        $('.fold').toggleClass('active');
+      })
+    })
+  </script>
+  <style>
+    
+.card-alert button {
+  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+  border: medium none;
+  color: #fff;
+  font-size: 2rem;
+  position: absolute;
+  right: 20px;
+  top: 11px;
+  color: white;
+}
+
+.card-alert a {
+  color: inherit;
+  font-weight: 500;
+}
+.card-style{
+  background:#26a69a;
+  font-size:1.2rem;
+  color:white;
+  letter-spacing:1.3px;
+}
+.card-alert a:hover {
+  color: inherit;
+  text-decoration: underline;
+}
+.user-details{
+  font-size:1.26rem;
+  font-weight: normal;
+  position: relative;
+  top:2px
+}
+
+@media screen and (max-width: 768px)
+ { 
+  #navtoggle{
+    display: block;
+    right: -10vw;
+    top: 25px;
+    }
+    .navbar{
+    width: 100vw;
+    }
+    .nav-links{
+    padding: 20px 20px;
+  }
+    .user-details{
+  font-size:1.2rem;
+}
+.collections-title span{
+	display:block;
+	margin-left:1.6vw;
+}
+  }
+  .logout1{
+    color:white !important;
+}
+@media (min-width: 767px){
+.logout1{
+    color:black;
+    position:relative;
+    left:10vw;
+    font-weight:700;
+}
+.logo,.nav-links{
+  font-size:1rem;
+}
+.logo{font-size:1.8rem;}
+}
+.active { color: red; }
+
+.grid-container{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+}
+@media screen and (max-width: 800px){
+    .grid-container{
+    grid-template-columns: auto auto auto auto;
+}
+@media screen and (max-width: 600px){
+    .grid-container{
+    grid-template-columns: auto auto auto;
+}
+@media screen and (max-width: 400px){
+    .grid-container{
+    grid-template-columns: auto auto;
+}
+@media screen and (max-width: 300px){
+    .grid-container{
+    grid-template-columns: auto;
+}
+}
+</style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="/" class="logo">Resource Hub</a>
+    <!-- <input type="checkbox" id="chkToggle"></input> -->
+    <ul class="main-nav" id="js-menu">
+      <li>
+        <a href="/" class="nav-links">Home</a>
+      </li>
+      <li>
+        <a href="/#about" class="nav-links">About</a>
+      </li>
+      <li>
+        <a href="/profile" class="nav-links active">Profile</a>
+      </li>
+      <li>
+        <a href="/users/branch" class="nav-links">Hub</a>
+      </li>
+      <li>
+        <a href="/#contact" class="nav-links">Contact Us</a>
+      </li>
+      <li>
+        <a href="/users/logout" class="nav-links logout1">Logout</a>
+      </li>
+    </ul>
+    <div id="navtoggle"> <i class="fas fa-bars"></i> </div>
+  </nav>
+
+  <div id="smallnavbar">
+    <ul class="smallmain-nav" id="smalljs-menu">
+        <li>
+          <a href="/" class="nav-links smallnav">Home</a>
+        </li>
+        <li>
+          <a href="/#about" class="nav-links smallnav">About</a>
+        </li>
+        <li>
+          <a href="/profile" class="nav-links smallnav active">Profile</a>
+        </li>
+        <li>
+          <a href="/users/branch" class="nav-links smallnav">Hub</a>
+        </li>
+        <li>
+          <a href="/#contact" class="nav-links smallnav">Contact Us</a>
+        </li>
+        <li>
+          <a href="/users/logout" class="nav-links smallnav">Logout</a>
+        </li>
+      </ul>
+</div>
+<!-- START MAIN -->
+<div id="main">
+  <!-- START WRAPPER -->
+  <div class="wrapper">
+
+    <!-- START CONTENT -->
+    <section id="content">
+      <div class="row">
+
+        <div class="col  m3">
+          
+        </div>
+        <div class="col  m3">
+        </div>       
+        <div class="col s12 m6" style="float:right;">
+          <%- include('./partials/messages') %>
+        </div>
+
+      </div>
+      <!--start container-->
+      <div class="container">
+
+        <div id="work-collections" style="margin-top: 6vh;">
+          <div class="row">
+            <div class="col l2"><h1></h1></div>
+            <div class="col s12 m6 l3">
+              <div id="profile-card" class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+                  <img src="http://demo.geekslabs.com/materialize/v2.1/layout03/images/user-bg.jpg" alt="user background">
+                  
+                </div>
+                <div class="card-content">
+                  <img src="<%= user.avatar ? user.avatar : '/img/avatar.png' %>" alt="" class="circle responsive-img card-profile-image">
+
+                  <span class="card-title activator grey-text text-darken-4" style="text-transform: capitalize;"><%= user.name %></span>
+                  <p><i class="mdi-communication-email cyan-text text-darken-2"></i>Email Id: <%= user.email%></p>
+                  <p><i class="mdi-action-perm-phone-msg cyan-text text-darken-2"></i>Contact Number : <%= user.phnNo%></p>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="col s12 m12 l6">
+              <ul id="projects-collection" class="collection">
+                <li class="collection-item avatar">
+                  <i class="mdi-file-folder circle light-blue darken-2"><span style="font-size: 1.6rem;font-style: normal;position: relative;top:-2px"><%= ratingValue%></span></i>
+                  <span class="collection-header" style="position: relative;top:10px;text-transform: uppercase;"><%= user.name %></span>
+                  <a href="#" class="secondary-content"><i class="mdi-action-grade"></i></a>
+                </li>
+                <li class="collection-item">
+                  <div class="row">
+                    <div class="col s6 l6">
+                      <span class="user-details">Branch - </span>
+                    </div>
+                    <div class="col s6 l2">
+                       <span style="font-size: 1.3rem;"><%= user.branch %></span>
+                    </div>
+                  </div>
+                </li>
+                <li class="collection-item">
+                    <div class="row">
+                      <div class="col s6 l6">
+                          <span class="user-details">Semester - </span> 
+                        </div>
+                      <div class="col s6 l2">
+                        <span style="font-size: 1.3rem;"><%= user.semester %></span>
+                      </div>
+                    </div>
+                  </li>
+                <li class="collection-item">
+                  <div class="row">
+                    <div class="col s6 l6">
+                        <span class="user-details">Total Downloads by you - </span>
+                      </div>
+                    <div class="col s6 l2">
+                       <span style="font-size: 1.3rem;"><%= user.downloadCountUser %></span>
+                    </div>
+                  </div>
+                </li>
+                <li class="collection-item">
+                  <div class="row">
+                    <div class="col s6 l6">
+                        <span class="user-details">Your Notes downloaded - </span>
+                      </div>
+                    <div class="col s6 l2">
+                       <span style="font-size: 1.3rem;"><%= user.notesDownloadedByUsers %></span>
+                    </div>
+                  </div>
+                </li>
+                <li class="collection-item">
+                  <div class="row">
+                    <div class="col s6 l6">
+                        <span class="user-details">Total Uploads - </span> 
+                      </div>
+                    <div class="col s6 l2">
+                        <span style="font-size: 1.3rem;"><%= user.uploadsCount%></span>
+                    </div>
+                  </div>
+                </li>
+                <li class="collection-item">
+                  <div class="row">
+                    <div class="col s6 l6">
+                        <span class="user-details">Profile Viewed - </span> 
+                      </div>
+                    <div class="col s6 l2">
+                        <span style="font-size: 1.3rem;">21</span>
+                    </div>
+                  </div>
+                </li>
+                
+              </ul>
+            </div>
+            <div class="col l2"><h1></h1></div>
+          </div>
+        </div>
+        <!--work collections end-->
+        <!-- Floating Action Button -->
+        <div class="row">
+          <div class="col s12 m12 l2"><h1></h1></div>
+        <div class="col s12 m12 l8">
+          <ul id="issues-collection" class="collection">
+            <li class="collection-item avatar">
+              <i class="mdi-action-bug-report circle red darken-2"><span style="font-size: 3vh;font-style: normal;position: relative;top:-2px"><%= user.uploadsCount%></span></i>
+              <span class="collection-header">Notes</span>
+              <p>Uploaded by you</p>
+              <a href="#" class="secondary-content"><i class="mdi-action-grade"></i></a>
+            </li>
+            <% var countNote =0 %>
+            <% notes.forEach((note) => { %>
+              
+              <li class="collection-item">
+              <div class="row">
+                <div class="col s6">
+                  <p class="collections-title"><span>Subject - <%= note.subject%></span><span style="margin-left: 2vw;">Branch - <%= note.branch%></span> <span style="margin-left: 1.6vw;">Semester - <%= note.semester%></span> </p>
+                  <p class="collections-content">Professor Name - <%= note.profName%></p>
+                  <a href="<%= note.notesLoc %>" class="collections-title">Click here to view / download the note</a>
+                </div>
+                <div class="col s2" style="margin-top: 7vh;">
+                  <span class="task-cat pink accent-2"><%= floorvalue[countNote]%></span>
+                </div>
+                <div class="col s3" style="margin-top: 7vh;">
+                  
+                  <div class="progress">
+                    <% var rating = floorvalue[countNote] %>
+                    <%= console.log("rating value in profile.ejs",rating) %>
+                    <div class="determinate" style="width: <%= rating * 20 %>%"></div>
+                  </div>
+                  
+                </div>
+              </div>
+            </li>
+            <% countNote = countNote + 1 %>
+        <% }); %>
+          </ul>
+        </div>
+        <div class="col l2"><h1></h1></div>
+      </div>
+    </section>
+    <!-- END CONTENT -->
+    </div>
+    <!-- END WRAPPER -->
+
+    </div>
+    <!-- END MAIN -->
+
+     <!--::footer_part start::-->
+     <footer class="footer_part">
+        <!-- <div class="container grid-container"> -->
+            <div class="row grid-container">
+                <div class="col-sm-4 col-md-4 col-lg-3">
+                    <div class="single_footer_part">
+                        <h4>Developers</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="/developers">Ankit Srivastava</a></li>
+                            <li><a href="/developers">Ujjawal Jain</a></li>
+                            <li><a href="/developers">Anuva Bhattacharjee</a></li>
+                            <li><a href="/developers" class="developers-details">Know More About Developers</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-2">
+                    <div class="single_footer_part">
+                        <h4>Popular Notes</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="">Topper ke Notes</a></li>
+                            <li><a href="">Topper ke Notes</a></li>
+                            <li><a href="">Topper ke Notes</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-2">
+                    <div class="single_footer_part">
+                        <h4>Recent Uploads</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="">Newbie 1</a></li>
+                            <li><a href="">Newbie 2</a></li>
+                            <li><a href="">Newbie 3</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-2">
+                    <div class="single_footer_part">
+                        <h4>Most Downloaded</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="">Topper ke Notes</a></li>
+                            <li><a href="">Topper ke Notes</a></li>
+                            <li><a href="">Topper ke Notes</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-3 col-lg-3">
+                    <div class="single_footer_part">
+                        <h4>Popular Profiles</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="">Topper Nibba 1</a></li>
+                            <li><a href="">Topper Nibba 2</a></li>
+                            <li><a href="">Topper Nibba 3</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr>
+    </footer>
+    <!--::footer_part end::-->
+
+    <!-- google map api -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAZnaZBXLqNBRXjd-82km_NO7GUItyKek"></script>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/chartist/0.9.7/chartist.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.1.1/Chart.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.10/js/min/perfect-scrollbar.jquery.min.js'></script>
+<script  src="/js/profile.js"></script>
+<script>
+  drake = dragula({
+    revertOnSpill: true,
+    mirrorContainer: document.querySelector('.movecontainer')
+}).on('drag', function(el, source) {
+    // On mobile this prevents the default page scrolling while dragging an item.
+    $(document).on('touchstart', function(e) {
+        e.preventDefault();
+    });
+}).on('drop', function(el, target, source, sibling) {
+    // On mobile this turns on default page scrolling after the end of a drag drop.
+    $(document).off('touchstart');
+});
+
+  </script>
+</body>
+</html>

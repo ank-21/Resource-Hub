@@ -111,6 +111,22 @@
     font-weight:700;
 }
 }
+.year-style{
+	    width: 100%;
+    background: transparent;
+    border: 1px solid gray;
+    width: 100%;
+    margin-bottom: 20px;
+    height: 40px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    border-radius: 40px;
+    box-shadow: none;
+    outline: none;
+    color: #fff;
+    background: transparent;
+    border: 1px solid #fff;
+}
 .portfolio-items{margin-top: 10vh;}
 </style>
 </head>
@@ -259,8 +275,7 @@
                     
                   <input type="text" name="branch" placeholder="Branch" value="<%= branchname%>" required readonly="readonly">
                   <input type="text" name="semester" placeholder="Semester" value="<%= semester %>"" required readonly="readonly">
-                  <label for="year" style="color: #fff; font-size: 15px;">Year:</label>
-                  <input id="year" type="number" name = "year" min="2000" max="2020" step="1">
+                  <input id="year" type="number" class="year-style" name="year"placeholder="Year">
                   <input type="text" name="subject" placeholder="Subject" required>
                   <input type="text" name="profName" placeholder="Professor Name" required>
                   <p style="text-align: center; display: block;"><input type="submit" value="Request Note"></p>
