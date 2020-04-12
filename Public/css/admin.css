@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:300,400,500,600,700|Rajdhani:400,500,600,700&display=swap");
+body{
+    margin: 0;
+    padding: 0;
+    background-color: whitesmoke;
+    font-family: "Barlow Semi Condensed", sans-serif;
+}
+#container{
+    text-align: center;
+}
+#loggedin{
+    background-color: #F8BEB4;
+    padding: 50px;
+    font-size: 20px;
+    font-family: "Barlow Semi Condensed", sans-serif;
+}
+#name{
+    font-size: 40px;
+}
+#options{
+    padding:30px;
+}
+#selectoption{
+    font-size: 40px;
+    font-family: "Barlow Semi Condensed", sans-serif;
+}
+#list_div{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+}
+@media screen and (max-width: 800px){
+    #list_div{
+        grid-template-columns: auto auto auto auto;
+    }
+}
+@media screen and (max-width: 600px){
+    #list_div{
+        grid-template-columns: auto auto auto;
+    }
+}
+@media screen and (max-width: 400px){
+    #list_div{
+        grid-template-columns: auto auto;
+    }
+}
+@media screen and (max-width: 300px){
+    #list_div{
+        grid-template-columns: auto;
+    }
+}
+.allul{
+    list-style-type: none;
+}
+.list{
+    line-height: 30px;
+}
+.list_title{
+    font-size: 30px;
+}

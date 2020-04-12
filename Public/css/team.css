@@ -10,7 +10,7 @@ body{
 }
 
 .team-section{
-	background-color:#009688;
+	background-color: whitesmoke;
 	min-height: 100vh;
 	padding:70px 15px 30px;
 	overflow:auto;
@@ -38,7 +38,7 @@ body{
 	font-size: 40px;
 	text-align: center;
 	margin:0;
-	color: #ffffff;
+	color: black;
 	font-weight: 700;
 }
 
@@ -75,7 +75,7 @@ body{
 	padding:0 15px;
 }
 .team-section .team-items .item .inner .info{
-	background-color:#009688;
+	background-color:#121277;
 	text-align: center;
 	padding: 20px 15px;
 	border-radius:8px;
