@@ -75,8 +75,8 @@ router.get('/profile',ensureAuthenticated, async(req,res)=>{
 
 
     //for request notes details
-    const reqNote = await RequestNotes.find({solved:"false"});
-    const doneNote = await RequestNotes.find({solved:"true"});
+    const reqNote = await RequestNotes.find({solved:"false"}).sort({_id:-1});;
+    const doneNote = await RequestNotes.find({solved:"true"}).sort({_id:-1});;
     //console.log("req note in indexjs for uploaded notes",doneNote);
     //console.log("reqNote in index.js",reqNote);
 
