@@ -124,6 +124,12 @@ router.post('/contactus',(req,res)=>{
         .catch(err => {
             res.redirect('/?message=false')
         })
+});
+
+
+//error page
+router.get('*',(req,res)=>{
+    res.render('error')
 })
 
 

@@ -35,7 +35,10 @@ const NotesSchema = new mongoose.Schema({
         userId:{
             type:String
         }
-    }]
+    }],
+    questionPaper: {
+        type:Boolean
+    }
 })
 
 const Notes = mongoose.model('Notes',NotesSchema);
