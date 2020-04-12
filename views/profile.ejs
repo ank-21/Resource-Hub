@@ -94,7 +94,7 @@
         width: 15px;
         height: 15px;
         border-radius: 15px;
-        top: -2px;
+        
         left: -1px;
         position: relative;
         background-color: #d1d3d1;
@@ -286,7 +286,7 @@
                 <li class="collection-item">
                   <div class="row">
                     <div class="col s6 l6">
-                        <span class="user-details">Your Notes downloaded - </span>
+                        <span class="user-details">Total Downloads of your uploads - </span>
                       </div>
                     <div class="col s6 l2">
                        <span style="font-size: 1.3rem;"><%= user.notesDownloadedByUsers %></span>
@@ -339,6 +339,7 @@
                 <div class="col s6">
                   <p class="collections-title"><span>Subject - <%= note.subject%></span><span style="margin-left: 2vw;">Branch - <%= note.branch%></span> <span style="margin-left: 1.6vw;">Semester - <%= note.semester%></span> </p>
                   <p class="collections-content">Professor Name - <%= note.profName%></p>
+                  <p class="collections-content">Year - <%= note.year%> <span style="margin-left: 1.6vw;">Type - <%= note.noteType%></span></p>
                   <a href="<%= note.notesLoc %>" class="collections-title">Click here to view / download the note</a>
                 </div>
                 <div class="col s2" style="margin-top: 7vh;">
@@ -389,6 +390,8 @@
                   <span class="task-cat teal">Branch - <%=note.branch%></span>
                   <span class="task-cat purple" style="margin-left: 25px;">Sem - <%= note.semester%></span>
                   <span class="task-cat cyan"style="margin-left: 25px;">Prof. Name - <%=note.profName %></span>
+                  <span class="task-cat cyan"style="margin-left: 25px;">Year - <%=note.year %></span>
+                  <span class="task-cat cyan"style="margin-left: 25px;">Type - <%=note.noteType %></span>
                 </li>
                 <% }); %>
               <% } %>
@@ -423,13 +426,13 @@
               <div class="fold">
                 <form action="/users/notes/<%= user._id %>" method="post" enctype="multipart/form-data">
                   <div id="note-ques" style="text-align: center;">
-                    <span style="padding: 10px;padding-right:10vh;">
-                      <input type="radio" id="note" name="noteques" value="note" class="radio1">
-                      <label class="radiolabel radio_btn" for="note">Notes</label>
+                    <span>
+                      <input type="radio" id="note" name="noteType" value="note" class="radio1" required="true">
+                      <label class="radiolabel radio_btn" for="note" style="position: relative;left:-4vw">Notes</label>
                     </span>
-                    <span style="padding: 10px;">
-                      <input type="radio" id="question" name="noteques" value="question" class="radio2">
-                      <label class="radiolabel radio_btn" for="question" style="padding-right:5vw">Question Papers</label>
+                    <span>
+                      <input type="radio" id="question" name="noteType" value="question" class="radio2" required="true">
+                      <label class="radiolabel radio_btn" for="question" style="position: relative;left:1vw" >Question Papers</label>
                     </span>
                   </div>
                   <div id="selectBranch">
@@ -458,10 +461,9 @@
                     </select>
                   </div>
                   <label for="year" style="color: #fff; font-size: 15px;">Year:</label>
-                  <input id="year" type="number" min="2000" max="2020" step="1">
-                  <!-- <input type="text" name="branch" placeholder="Branch">
-                  <input type="text" name="semester" placeholder="Semester"> -->
-                  <input type="text" name="subject" placeholder="Subject" required>
+                  <input id="year" type="number" name = "year" min="2000" max="2020" step="1">
+
+                  <input type="text" name="subject" placeholder="Subject" style="margin-top: 2vh;" required>
                   <input type="text" name="profName" placeholder="Professor Name" required>
                   <label class="custom-file-upload" style="color:white !important;">
           

@@ -249,16 +249,18 @@
             <div id="flight-card" class="card">
               <div class="card-header">
                 <div class="card-title signIn tooltip">
-                  <h4 class="flight-card-title">Request Notes</h4>
-                  <span class="tooltiptext">Click here to request for Notes</span>
+                  <h4 class="flight-card-title">Request <%= data%></h4>
+                  <span class="tooltiptext">Click here to request for <%= data%></span>
                 </div>
               </div>
               <div class="fold">
-                <form action="/users/branch/semester/notes/request" method="post">
+                <form action="/users/branch/semester/notes/request?data=<%= data%><" method="post">
                   <div id="selectBranch">
                     
                   <input type="text" name="branch" placeholder="Branch" value="<%= branchname%>" required readonly="readonly">
                   <input type="text" name="semester" placeholder="Semester" value="<%= semester %>"" required readonly="readonly">
+                  <label for="year" style="color: #fff; font-size: 15px;">Year:</label>
+                  <input id="year" type="number" name = "year" min="2000" max="2020" step="1">
                   <input type="text" name="subject" placeholder="Subject" required>
                   <input type="text" name="profName" placeholder="Professor Name" required>
                   <p style="text-align: center; display: block;"><input type="submit" value="Request Note"></p>

@@ -24,7 +24,13 @@ const RequestNotesSchema = new mongoose.Schema({
     },
     solved:{
         type:String
-    }
+    },
+    year:{
+        type:Number
+    },
+    noteType: {
+        type:String
+    },
 })
 
 const RequestNotes = mongoose.model('RequestNotes',RequestNotesSchema);

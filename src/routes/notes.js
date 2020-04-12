@@ -91,7 +91,7 @@ router.get('/branch/semester/notes', ensureAuthenticated ,async(req,res)=>{
     //now i have to average the total rating
     // const notesCount = req.query.count;
 
-    const selectedNotesByBranchAndSemester = await Notes.find({branch:branchname,semester:semester});
+    const selectedNotesByBranchAndSemester = await Notes.find({branch:branchname,semester:semester,noteType:'note'});
     // console.log("filtered notes in notes route",selectedNotesByBranchAndSemester);
 
     //for getting star rating
@@ -117,14 +117,71 @@ router.get('/branch/semester/notes', ensureAuthenticated ,async(req,res)=>{
     //for floor value
     console.log(floorvalue);
     
+
     
     res.render('notes',{
         notes:selectedNotesByBranchAndSemester,
         floorvalue,
         branchname,
-        semester
+        semester,
+        data:'Notes'   //this is for showing on bar
     })  
 });
+
+
+
+//for getting question page
+router.get('/branch/semester/question', ensureAuthenticated ,async(req,res)=>{
+    //console.log(req.query);
+    const branchname = req.query.branch;
+    const semester = req.query.semester;    
+    var rating =0;
+    var passingvalue = [];
+    if(req.query.starvalue)
+        rating = req.query.starvalue;
+    console.log(rating);
+    
+    //now i have to average the total rating
+    // const notesCount = req.query.count;
+
+    const selectedNotesByBranchAndSemester = await Notes.find({branch:branchname,semester:semester,noteType:'question'});
+    // console.log("filtered notes in notes route",selectedNotesByBranchAndSemester);
+
+    //for getting star rating
+    selectedNotesByBranchAndSemester.forEach((note)=>{
+        var sum =0;
+        if(note.ratings.length==0){
+            passingvalue.push(0);
+        }else{
+            note.ratings.forEach((rate)=> {
+                sum += rate.rating;
+            })
+            passingvalue.push(sum/note.ratings.length);
+        }
+
+    })
+    console.log(passingvalue);
+    const floorvalue = passingvalue.map((val) => {
+        if(val%1==0){
+            return val;
+        }
+        return val.toFixed(2);
+    })
+    //for floor value
+    console.log(floorvalue);
+    
+
+    
+    res.render('notes',{
+        notes:selectedNotesByBranchAndSemester,
+        floorvalue,
+        branchname,
+        semester,
+        data: 'Questions'
+    })  
+});
+
+
 
 //for downloading notes
 router.get('/branch/semester/notes/download',(req,res)=>{
@@ -163,10 +220,15 @@ router.get('/branch/semester/notes/download',(req,res)=>{
 });
 
 router.post('/branch/semester/notes/request', (req,res)=> {
+    const data = req.query.data;
     console.log("req in body",req.body);
     const note = new RequestNotes(req.body);
     note.date = moment().format('MMMM Do YYYY');
     note.solved = "false";
+    if(data == 'Notes')
+        note.noteType= 'note';
+    else if(data == 'Questions')
+        note.noteType = 'question';
     note.save()
         .then(data => {
             console.log(data);

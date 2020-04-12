@@ -217,7 +217,7 @@ profile.post('/notes/:id',async function(req,res){
                     })
                 }
                 console.log("error",errors);
-                
+                console.log("req.body",req.body)
                 if(errors.length==0){
                     user.uploadsCount = user.uploadsCount + 1;                
                     user.save()
@@ -229,7 +229,9 @@ profile.post('/notes/:id',async function(req,res){
                                     semester:req.body.semester,
                                     profName:req.body.profName,
                                     subject:req.body.subject,
-                                    notesLoc:`${notes}`
+                                    notesLoc:`${notes}`,
+                                    noteType:req.body.noteType,
+                                    year:req.body.year
                                 })
                                 //for checking whether req notes is same add as added note
                                 RequestNotes.find({
@@ -237,6 +239,8 @@ profile.post('/notes/:id',async function(req,res){
                                     semester:req.body.semester,
                                     profName:req.body.profName,
                                     subject:req.body.subject,
+                                    year:req.body.year,
+                                    noteType:req.body.noteType
                                 }).then(data => {
                                     console.log("data got from req note",data);
                                     if(data.length!=0){
@@ -244,6 +248,7 @@ profile.post('/notes/:id',async function(req,res){
                                         data[0].save();
                                     }
                                 }).catch(err=> console.log(err));
+                                console.log("data is here in",newNotes);
                                 
                                 newNotes.save()
                                     .then(note=> {    
@@ -255,6 +260,8 @@ profile.post('/notes/:id',async function(req,res){
                                     })
                                     .catch(err => {
                                         console.log("error in uploading",err);
+                                        user.uploadsCount = user.uploadsCount - 1;
+                                        user.save();
                                         req.flash('profile_msg', `your Notes Couldnot be uploaded! Please Try again`);
                                         res.redirect('/profile');
                                     })    

@@ -36,8 +36,11 @@ const NotesSchema = new mongoose.Schema({
             type:String
         }
     }],
-    questionPaper: {
-        type:Boolean
+    noteType: {
+        type:String
+    },
+    year:{
+        type:Number
     }
 })
 
