@@ -220,6 +220,8 @@ router.get('/branch/semester/notes/download',(req,res)=>{
 });
 
 router.post('/branch/semester/notes/request', (req,res)=> {
+    console.log("wanna have query",req.query);
+    
     const data = req.query.data;
     console.log("req in body",req.body);
     const note = new RequestNotes(req.body);
