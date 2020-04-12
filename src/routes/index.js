@@ -127,10 +127,7 @@ router.post('/contactus',(req,res)=>{
 });
 
 
-//error page
-router.get('*',(req,res)=>{
-    res.render('error')
-})
+
 
 
 
