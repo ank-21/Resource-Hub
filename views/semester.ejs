@@ -96,7 +96,8 @@
                     <div class="content">No. of notes : <%= note==0 ? 0 : note.length %></div>
                     <div class="content">No. of downloads : <%=downloadCount[count-1]%></div>
                     <div class="content">Overall Rating : <%= ratingsPerSemFloored[count-1] %></div>
-                    <div class="notes content"><a href="/users/branch/semester/notes?branch=<%= branchname %>&semester=<%=count %>&Notescount=<%= note==0 ? 0 : note.length %>">VIEW NOTES</a></div>
+                    <div class="notes content"style="position:relative;top:54px"><a href="/users/branch/semester/notes?branch=<%= branchname %>&semester=<%=count %>&Notescount=<%= note==0 ? 0 : note.length %>">View Notes</a></div>
+                    <div class="notes content" style="position:relative;top:45px"><a href="/users/branch/semester/questionPaper?branch=<%= branchname %>&semester=<%=count %>&Notescount=<%= note==0 ? 0 : note.length %>">VIEW Ques Paper</a></div>
                     <div class="cover">
                         <figure class="front">
                             <div class="heading1">SEMESTER</div>
