@@ -85,18 +85,26 @@ input {
     color:white !important;
  } 
 }
+
+.active { color: red; }
 .logout{
-    color:black !important;
+    background: transparent;
+    color: black !important;
 }
-    .active { color: red; }
 @media (min-width: 767px){
 .logout{
-    color:black;
+    background-color: #ff4800;
+    color: white !important;
     position:relative;
-    left:15vw;
     font-size:1.3rem !important;
     font-weight:700;
+    float: right;
+    left: 85vw;
+    position: fixed;
+    padding: 10px 35px;
+    margin-top: 20px;
 }
+.profile-img{display:none;}
 }
 @media (max-width: 991px){
 .navbar-collapse {
@@ -105,6 +113,67 @@ input {
     left: 0;
     top: 55px;;
 }
+}
+.search-view{
+	width: 17vw;
+    top: 10vh;
+    left: 0vw;
+    position:absolute;
+    /*display: none;*/
+    border-radius:0;
+    background:white;
+     box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.2), 0 20px 25px 0 rgba(0, 0, 0, 0.2); 
+}
+.search-view li{
+	padding: 10px;
+    width: 100%;
+    display: block;
+    font-weight:600;
+}
+.search-view li a{
+	color:black !important;
+	font-size:1.2rem;
+	padding:2vh 2vw;
+}
+.mobile-view{
+	display:none;
+}
+@media (max-width: 360px){
+	.search-view{top:9vh;}
+}
+@media (max-width: 767px){
+	.mobile-view{
+	display: block;
+    position: relative;
+    top: -1.5vh;
+    left: -20vw;
+    width: 50vw;
+	}
+    .mobile-search{display:none;}
+	.search-view{
+	width: 50vw;
+    top: 7vh;
+    left: 0vw;
+    /*display: none;*/
+    border-radius:0;
+	}
+	.mobile-view label{
+    position: absolute;
+    left: 14px;
+    top: 2.5vh;
+}
+
+    .profile-img img{
+    width: 11vw;
+    height: 6vh;
+    position: relative;
+    top: -1.3vh;
+    left: 2vw;
+    border-radius: 50%;
+    }
+}	
+.mobile-view:focus label{
+	display:none;
 }
     </style>
 </head>
@@ -116,8 +185,26 @@ input {
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand main_logo logo-text" href="/">Resource Hub</a>
-                        <a class="navbar-brand single_page_logo logo-text" href="/">Resource Hub</a>
+                        <!-- <a class="navbar-brand main_logo logo-text" href="/users/home">Resource Hub</a>
+                        <a class="navbar-brand single_page_logo logo-text" href="/users/home">Resource Hub</a> -->
+                        <div class="profile-img">
+                            <img src="/img/ujjawal.jpg">
+                        </div>
+                          <div class="mobile-view">
+                                <div><label><i class="fa fa-search" aria-hidden="true"></i></label>
+                                	<input type="text" id="search1" class="fontAwesome" placeholder="Search" onkeyup="search1()" style="padding-left:35px;"></div>
+                                <div class="search"></div>
+                                <ul class="search-view" id="search_list1">
+                                	<li><a href="">Topper</a></li>
+                                	<li><a href="">Topnkxsper</a></li>
+                                	<li><a href="">Topacsper</a></li>
+                                	<li><a href="">Toppxaer</a></li>
+                                	<li><a href="">Topxper</a></li>
+                                	<li><a href="">Topxczper</a></li>
+                                	<li><a href="">Topczxper</a></li>
+
+                              </ul>
+                          </div>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -125,7 +212,7 @@ input {
                         </button>
 
                         <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
-                            <ul class="navbar-nav">
+                            <ul class="navbar-nav" id="navs">
                                 <li class="nav-item">
                                     <a class="nav-link" href="/" style="color:red;">Home</a>
                                 </li>
@@ -144,10 +231,25 @@ input {
                                 <li class="nav-item">
                                     <a class="nav-link" href="#contact">Contact Us</a>
                                 </li>
-                               
+                                <li class="nav-item mobile-search">
+                                 <div class="searchcontainer">
+                                <input type="text" id="search" placeholder="Search..." onkeyup="search()">
+                                <div class="search"></div>
+                                <ul class="search-view" id="search_list">
+                                	<li><a href="">Topper</a></li>
+                                	<li><a href="">Topnkxsper</a></li>
+                                	<li><a href="">Topacsper</a></li>
+                                	<li><a href="">Toppxaer</a></li>
+                                	<li><a href="">Topxper</a></li>
+                                	<li><a href="">Topxczper</a></li>
+                                	<li><a href="">Topczxper</a></li>
+
+                              </ul>
+                          </div>
+                      </li>
                                 <% if(flag==1){ %>
                                     <li class="nav-item">
-                                        <a href="/users/logout" class="nav-link logout">Logout</a>
+                                        <a href="/users/logout" class="  btn_1 home_page_btn button logout">Logout</a>
                                     </li>
                                 <% } %>
                                 
@@ -156,7 +258,7 @@ input {
                             </ul>
                         </div>
                         <% if(flag==0){ %>
-                            <a href="/users/signup" class="d-none d-sm-block btn_1 home_page_btn button"id="one">Login</a>
+                            <a href="/users/signup" class="d-none d-sm-block btn_1 home_page_btn button"id="one" style="left: 10vw;position: relative;">Login</a>
                         <% } %>
                         
                     </nav>
@@ -183,7 +285,17 @@ input {
                             <!-- <div class="searchcontainer">
                                 <input type="text" placeholder="Search...">
                                 <div class="search"></div>
-                              </div> -->
+                                <ul class="search-view" id="search_list">
+                                	<li><a href="">Topper</a></li>
+                                	<li><a href="">Topnkxsper</a></li>
+                                	<li><a href="">Topacsper</a></li>
+                                	<li><a href="">Toppxaer</a></li>
+                                	<li><a href="">Topxper</a></li>
+                                	<li><a href="">Topxczper</a></li>
+                                	<li><a href="">Topczxper</a></li>
+
+                              </ul>
+                          </div> -->
                             <% if(flag==0){ %>
                                 <a href="/users/signup" class="btn_1 home_page_btn button"id="one">Login</a>
                             <% } %>
@@ -374,6 +486,67 @@ input {
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/mail-script.js"></script>
     <script src="/js/custom.js"></script>
+    <script>
+    	const search = ()=>{
+    		let filter = document.getElementById('search').value.toUpperCase();
+    		let searchList = document.getElementById('search_list');
+    		let li = searchList.getElementsByTagName('li');
+    		for(var i=0; i<li.length;i++){
+    			let a = li[i].getElementsByTagName('a')[0];
+
+    			let textValue = a.textContent || a.innerHTML;
+    			if(textValue.toUpperCase().indexOf(filter) > -1){
+    				li[i].style.display = " ";
+    				searchList.style.display = "block";
+    			}
+    			else{
+    				li[i].style.display = "none";
+    				searchList.style.display = "none";
+    			}
+    		}
+
+    	}
+    </script>
+    <script>
+    	    	const search1 = ()=>{
+    		let filter = document.getElementById('search1').value.toUpperCase();
+    		let searchList = document.getElementById('search_list1');
+    		let li = searchList.getElementsByTagName('li');
+    		for(var i=0; i<li.length;i++){
+    			let a = li[i].getElementsByTagName('a')[0];
+
+    			let textValue = a.textContent || a.innerHTML;
+    			if(textValue.toUpperCase().indexOf(filter) > -1){
+    				li[i].style.display = " ";
+    				searchList.style.display = "block";
+    			}
+    			else{
+    				li[i].style.display = "none";
+    				searchList.style.display = "none";
+    			}
+    		}
+
+    	}
+    </script>
+    <script>
+    	$(document).click(function(event) { 
+  $target = $(event.target);
+  if(!$target.closest('#search_list').length && 
+  $('#search_list').is(":visible")) {
+    $('#search_list').hide();
+  }        
+});
+    </script>
+    <script>
+    	$(document).click(function(event) { 
+  $target = $(event.target);
+  if(!$target.closest('#search_list1').length && 
+  $('#search_list1').is(":visible")) {
+    $('#search_list1').hide();
+  }        
+});
+    </script>
+
 </body>
 
 </html>

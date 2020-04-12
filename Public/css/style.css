@@ -719,12 +719,12 @@ ul {
 
 /* line 27, ../../01 cl html template/03_jun 2019/185 Ecobit SAAS html/sass/_menu.scss */
 .main_menu .main-menu-item {
-  justify-content: center;
+  justify-content: start;
 }
 
 /* line 30, ../../01 cl html template/03_jun 2019/185 Ecobit SAAS html/sass/_menu.scss */
 .main_menu .navbar-nav {
-  margin-left: -140px;
+  /*margin-left: -140px;*/
 }
 
 /* line 33, ../../01 cl html template/03_jun 2019/185 Ecobit SAAS html/sass/_menu.scss */
@@ -742,7 +742,7 @@ ul {
 .main_menu .main-menu-item ul li .nav-link {
   color: #ffffff;
   font-size: 14px;
-  padding: 40px 20px;
+  padding: 40px 35px;
   font-family: "Barlow Semi Condensed", sans-serif;
   text-transform: uppercase;
   line-height: 12px;
@@ -2141,8 +2141,8 @@ h1, h2, h3, h4, h5, h6 {
 .searchcontainer {
   position: fixed;
   margin: auto;
-  top: 75px;
-  left: 0;
+  top: 0;
+      left: 33vw;
   right: 0;
   /* bottom: 0; */
   width: 300px;

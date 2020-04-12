@@ -149,7 +149,23 @@ userRouter.get('/logout', ensureAuthenticated,(req,res)=>{
     req.logout();
     req.flash('success_msg', 'You are logged out');
     res.redirect('/users/signup');
-})
+});
+
+//profile view by public
+
+userRouter.get('/profile/:id',ensureAuthenticated,(req,res)=>{
+    const id = req.params.id;
+    User.findById(id)
+        .then(user => {
+            user.profileViewCount = user.profileViewCount + 1;
+            res.redirect('/publicProfile',{
+                user
+            })
+        })
+        .catch(e => {
+            res.redirect('/users');
+        })
+});
 
 
 module.exports = userRouter;
