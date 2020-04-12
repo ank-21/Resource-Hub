@@ -246,8 +246,10 @@ profile.post('/notes/:id',async function(req,res){
                                 
                                 newNotes.save()
                                     .then(note=> {    
-                                        if(errors.length!=0)                                
+                                        if(errors.length==0)
                                             req.flash('profile_msg', `Notes uploaded.You can check it at notes section!`);
+                                                                       
+                                            
                                         res.redirect('/profile');
                                     })
                                     .catch(err => {

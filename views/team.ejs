@@ -1,41 +1,25 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Branch</title>
-        <link rel="icon" href="/img/favicon.png">
-        <link rel="stylesheet" href="/css/branch-cards2.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-        <style>
-              .logout{
-    color:white !important;
+<head>
+     <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Resource Hub</title>
+  <link rel="stylesheet" href="/css/team.css">
+  <link rel="stylesheet" href="/css/branch-cards2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="icon" href="/img/favicon.png">
+       <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <style>
+.navbar {
+  top: 0vh;
+  left:0vw;
+  position:fixed;
 }
-    .active { color: red; }
-@media (min-width: 767px){
-.logout{
-    color:black;
-    position:relative;
-    left:10vw;
-    font-weight:700;
-}
-}
-.developers-details{
-    font-size:1rem;
-    position:relative;
-    top:1vh;
-    color:black !important;
-}
-@media (max-width:768px){
-    .grid-item:first-child{
-        margin-top:14vh;
-    }
-}
-        </style>
-    </head>
-    <body style="overflow-x: hidden;">
-
-        <nav class="navbar">
+#smallnavbar{left: 0;}
+</style>
+</head>
+<body>
+          <nav class="navbar">
             <a href="/" class="logo">Resource Hub</a>
             <!-- <input type="checkbox" id="chkToggle"></input> -->
             <ul class="main-nav" id="js-menu">
@@ -54,9 +38,9 @@
               <li>
                 <a href="/#contact" class="nav-links">Contact Us</a>
               </li>
-              <li>
+              <!-- <li>
                 <a href="/users/logout" class="nav-links logout">Logout</a>
-              </li>
+              </li> -->
             </ul>
             <div id="navtoggle"> <i class="fas fa-bars"></i> </div> 
           </nav>
@@ -81,54 +65,68 @@
                 <li>
                   <a href="/#contact" class="nav-links smallnav">Contact Us</a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="/users/logout" class="nav-links smallnav">Logout</a>
-                  </li>
+                  </li> -->
               </ul>
         </div>
-
-
-        <div class="grid-container">
-            <div class="container1 grid-item">
-                <div class="box box-1">
-                    <div class="cover"><img src="/img/1_UYV-gWa2_IYLFvISQl8Vkw.jpeg" alt=""></div>
-                    <a href="/users/branch/semester?branch=CSE"><button class="button-style"><div></div></button></a>
-                </div>
-            </div>
-            <div class="container2 grid-item">
-                <div class="box box-2">
-                    <div class="cover"><img src="/img/analog-integrated-circuit.jpg" alt=""></div>
-                        <a href="/users/branch/semester?branch=ECE"><button class="button-style"><div></div></button></a>
-                </div>
-            </div>
-            <div class="container3 grid-item">
-                <div class="box box-3">
-                    <div class="cover"><img src="/img/electrical-engineering-image.jpg" alt=""></div>
-                    <a href="/users/branch/semester?branch=EE"><button class="button-style"><div></div></button></a>
-                </div>
-            </div>
-            <div class="container4 grid-item">
-                <div class="box box-4">
-                    <div class="cover"><img src="/img/1568628323phplcvsyh.jpeg" alt=""></div>
-                    <a href="/users/branch/semester?branch=ME"><button class="button-style"><div></div></button></a>
-                </div>
-            </div>
-            <div class="container5 grid-item">
-                <div class="box box-5">
-                    <div class="cover"><img src="/img/civil.jpg" alt=""></div>
-                    <a href="/users/branch/semester?branch=CE"><button class="button-style"><div></div></button></a>
-                </div>
-            </div>
-            <div class="container6 grid-item">
-                <div class="box box-6">
-                    <div class="cover"><img src="/img/main-qimg-1e19dc5cf184f08d1c3378d7fa3cf5c9.jpg" alt=""></div>
-                    <a href="/users/branch/semester?branch=EIE"><button class="button-style"><div></div></button></a>
-                </div>
-            </div>
-        </div>
-
-        <!--::footer_part start::-->
-    <footer class="footer_part">
+      </nav>
+  <section class="team-section">
+     <div class="container">
+         <div class="row">
+             <div class="section-title">
+                 <h1>Our Team</h1>
+             </div>
+         </div>
+         <div class="row">
+             <div class="team-items">
+                  <div class="item">
+                      <img src="/img/ankit.jpg" alt="team" />
+                      <div class="inner">
+                          <div class="info">
+                               <h5>Ankit Srivastava</h5>
+                               <p>Developer</p>
+                               <div class="social-links">
+                                   <a href="https://facebook.com/ankitsri215"><span class="fa fa-facebook"></span></a>
+                                   <a href="https://github.com/ank-21"><span class="fa fa-github"></span></a>
+                                   <a href="https://www.linkedin.com/in/ankit-srivastava-oa68oa/"><span class="fa fa-linkedin"></span></a>
+                               </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="item">
+                      <img src="/img/ujjawal.jpg" alt="team" />
+                      <div class="inner">
+                          <div class="info">
+                               <h5>Ujjawal Jain</h5>
+                               <p>Developer</p>
+                               <div class="social-links">
+                                   <a href="https://www.facebook.com/jainujjawal1999"><span class="fa fa-facebook"></span></a>
+                                   <a href="https://github.com/ujjawal-1999"><span class="fa fa-github"></span></a>
+                                   <a href="https://www.linkedin.com/in/jainujjawal1999/"><span class="fa fa-linkedin"></span></a>
+                               </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="item">
+                      <img src="/img/anuva.jpeg" alt="team" />
+                      <div class="inner">
+                          <div class="info">
+                               <h5>Anuva Bhattacharjee</h5>
+                               <p>Developer</p>
+                               <div class="social-links">
+                                   <a href="https://m.facebook.com/anuva.bhattacharjee.37"><span class="fa fa-facebook"></span></a>
+                                   <a href="https://github.com/anuva04"><span class="fa fa-github"></span></a>
+                                   <a href="https://www.linkedin.com/in/anuva-bhattacharjee-2923b5170/"><span class="fa fa-linkedin"></span></a>
+                               </div>
+                          </div>
+                      </div>
+                  </div>
+             </div>
+         </div>
+     </div>
+  </section>
+   <footer class="footer_part" style="overflow-x:hidden;">
         <div class="grid-footer">
             <!-- <div class="row"> -->
                 <div class="col-sm-4 col-md-4 col-lg-3">
@@ -187,7 +185,6 @@
         </div>
     </footer>
     <!--::footer_part end::-->
-
     <script type="text/javascript" src="/js/branch-cards2.js"></script>
-    </body>
+</body>
 </html>

@@ -10,12 +10,38 @@ const {contactUs} = require('../account/nodemailer');
 
 router.get('/',(req,res)=>{
     if(req.user){
-        res.redirect('/users/home?user=true');
-    }
-    else{
-        res.redirect('/users/home?user=false');
+        var flag =1;
+        if(req.query.message=='true'){
+            var msg = `${req.user.name}, your request is sent! Check Your Email...`;
+        }
+        else if(req.query.message=='false'){
+            var msg = `${req.user.name}, your request could not be sent! Please Try again`;
+        }
+        else{
+            var msg = '';
+        }
+    }else{
+        var flag = 0;
+        if(req.query.message=='true'){
+            var msg = 'Your request is sent! Check Your Email...';
+        }
+        else if(req.query.message=='false'){
+            var msg = `Your request could not be sent! Please Try again`;
+        }
+        else{
+            var msg = '';
+        }
     }
     
+        res.render('index',{
+        user:req.user,
+        message:msg,
+        flag
+        });
+});
+
+router.get('/developers',(req,res)=>{
+    res.render('team');
 })
 
 router.get('/profile',ensureAuthenticated, async(req,res)=>{
@@ -96,10 +122,10 @@ router.post('/contactus',(req,res)=>{
         .then(data => {
             console.log("data her",data);
             
-            res.redirect('/users/home?message=true');
+            res.redirect('/?message=true');
         })
         .catch(err => {
-            res.redirect('/users/home?message=false')
+            res.redirect('/?message=false')
         })
 })
 

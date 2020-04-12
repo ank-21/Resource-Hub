@@ -7,41 +7,6 @@ const { ensureAuthenticated } = require('../../config/auth');
 
 
 
-userRouter.get('/home',(req,res)=>{
-    
-    if(req.query.message=='true'){
-        var msg = 'Your request is sent! Check Your Email...'
-        
-        
-        if(req.query.user=="true"){
-            var flag=1;
-        }else if(req.query.user=="false"){
-            var flag=0;
-        }
-    }
-    else if(req.query.message=='false'){
-        var msg = 'Your request could not be sent! Please Try again';
-        if(req.query.user=="true"){
-            var flag=1;
-        }else if(req.query.user=="false"){
-            var flag=0;
-        }
-    }
-    else{
-        var msg = '';
-        if(typeof req.query.user=='undefined'||req.query.user=="true"){
-            var flag=1;
-        }else if(req.query.user=="false"){
-            var flag=0;
-        }
-    }
-        res.render('index',{
-        user:req.user,
-        message:msg,
-        flag
-    });
-});
-
 //signup Route
 userRouter.get('/signup',(req,res)=>{
     let flag= req.query.flag;
