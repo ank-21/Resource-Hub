@@ -276,7 +276,7 @@ input {
 
     <!--::banner part start::-->
     <section class="banner_part" id="home">
-        <div class="container">
+        <div class="container" id="bigdiv">
            <div class="row align-items-center justify-content-between">
                 <div class="col-lg-5">
                     <div class="banner_img d-none d-lg-block">
@@ -493,27 +493,17 @@ input {
     <script src="/js/mail-script.js"></script>
     <script src="/js/custom.js"></script>
     <script>
-    	// const search = ()=>{
-    	// 	let filter = document.getElementById('search').value.toUpperCase();
-    	// 	let searchList = document.getElementById('search_list');
-    	// 	let li = searchList.getElementsByTagName('li');
-    	// 	for(var i=0; i<li.length;i++){
-    	// 		let a = li[i].getElementsByTagName('a')[0];
-
-    	// 		let textValue = a.textContent || a.innerHTML;
-    	// 		if(textValue.toUpperCase().indexOf(filter) > -1){
-    	// 			li[i].style.display = " ";
-    	// 			searchList.style.display = "block";
-    	// 		}
-    	// 		else{
-    	// 			li[i].style.display = "none";
-    	// 			searchList.style.display = "none";
-    	// 		}
-    	// 	}
-
-        // }
         
         //for desktop view
+
+        let big = document.getElementById('bigdiv');
+        bigdiv.addEventListener('click',()=>{
+            let ul = document.getElementById('search_list');
+                        if(ul.style.display !== "none" || flag == 0){
+                            ul.style.display = "none";
+                            flag = 1;
+                        }
+        })
 
         //get input element
         let filterInput = document.getElementById('search');
