@@ -184,7 +184,7 @@ input {
     <header class="main_menu">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-12">
+                <div class="col-lg-12" id ="bigdiv2">
                     <nav class="navbar navbar-expand-lg navbar-light">
                         <!-- <a class="navbar-brand main_logo logo-text" href="/users/home">Resource Hub</a>
                         <a class="navbar-brand single_page_logo logo-text" href="/users/home">Resource Hub</a> -->
@@ -496,7 +496,7 @@ input {
         
         //for desktop view
 
-        let big = document.getElementById('bigdiv');
+        let bigdiv = document.getElementById('bigdiv');
         bigdiv.addEventListener('click',()=>{
             let ul = document.getElementById('search_list');
                         if(ul.style.display !== "none"){
@@ -504,6 +504,16 @@ input {
                             flag = 1;
                         }
         })
+        let bigdiv2 = document.getElementById('bigdiv2');
+        bigdiv2.addEventListener('click',()=>{
+            let ul = document.getElementById('search_list');
+                        if(ul.style.display !== "none"){
+                            ul.style.display = "none";
+                            flag = 1;
+                        }
+        })
+        
+        
 
         //get input element
         let filterInput = document.getElementById('search');
@@ -511,11 +521,7 @@ input {
                     var flag = 1;
                     srh.addEventListener('click',()=>{
                         let ul = document.getElementById('search_list');
-                        if(ul.style.display === "none" ){
-                            ul.style.display = "block";
-                            flag = 0;
-                        }
-                        else if(ul.style.display !== "none" || flag ==0){
+                        if(ul.style.display !== "none" || flag ==0){
                             ul.style.display = "none";
                             flag = 1;
                         }
@@ -556,19 +562,30 @@ input {
 
     </script>
     <script>
-        
+        let bigdiv = document.getElementById('bigdiv');
+        bigdiv.addEventListener('click',()=>{
+            let ul = document.getElementById('search_list1');
+                        if(ul.style.display !== "none"){
+                            ul.style.display = "none";
+                            flag = 1;
+                        }
+        })
+        let bigdiv2 = document.getElementById('bigdiv2');
+        bigdiv2.addEventListener('click',()=>{
+            let ul = document.getElementById('search_list1');
+                        if(ul.style.display !== "none"){
+                            ul.style.display = "none";
+                            flag = 1;
+                        }
+        })
 
         //get input element
         let filterInput2 = document.getElementById('search1');
-                    let srh = document.getElementById('srh');
+                    let srh2 = document.getElementById('srh');
                     var flag = 1;
-                    srh.addEventListener('click',()=>{
+                    srh2.addEventListener('click',()=>{
                         let ul = document.getElementById('search_list1');
-                        if(ul.style.display === "none" ){
-                            ul.style.display = "block";
-                            flag = 0;
-                        }
-                        else if(ul.style.display !== "none" || flag ==0){
+                        if(ul.style.display !== "none" || flag ==0){
                             ul.style.display = "none";
                             flag = 1;
                         }
