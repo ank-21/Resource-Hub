@@ -6,6 +6,7 @@ const FacebookStrategy = require('passport-facebook')
 const keys = require('../config/keys');
 const User = require('../src/models/User');
 var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy; 
+const {confirmUser} = require('../src/account/nodemailerLogin');
 
 
 module.exports = function(passport) {
@@ -26,9 +27,19 @@ module.exports = function(passport) {
                         }
 
                         if(isMatch){
-                            return done(null,user);
+                            // const timeNow = Date.now();
+                            // if(timeNow - user.date<3*60*1000){
+                            //     return done(null,user);
+                            // }
+                            if(user.verified == true){
+                                return done(null,user);
+                            }
+                            else{
+                                console.log("i m stuck");
+                                return done(null,false, {message: 'Verify your Email first'});
+                            }
                         }else{
-                            return done(null,false, {message: 'Incorrect password!'});
+                            return done(null,false, {message: 'Incorrect Password!'});
                         }
                     })
 

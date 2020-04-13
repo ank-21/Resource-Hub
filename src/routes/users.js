@@ -4,6 +4,7 @@ const User = require('../models/User');
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
 const { ensureAuthenticated } = require('../../config/auth');
+const {confirmUser} = require('../account/nodemailerLogin');
 
 
 
@@ -59,12 +60,14 @@ userRouter.post('/signup',(req,res)=>{
                     const newUser = new User({
                         name,
                         email,
-                        password
+                        password,
+                        date:Date.now()
                     });
                     bcrypt.genSalt(10, (err, salt) => {
                         bcrypt.hash(newUser.password, salt, (err, hash) => {
                           if (err) throw err;
                           newUser.password = hash;
+                          const token = newUser.generateAuthToken();
                             newUser.save()
                                 .then(user => {
                                 console.log("New user: ",user);
@@ -72,7 +75,7 @@ userRouter.post('/signup',(req,res)=>{
                                     name:user.name,
                                     email:user.email,
                                     id:user._id,
-                                    route:`/users/verifyauth/${id}/2020-2021`
+                                    token:user.token
                                 })
                                 req.flash('success_msg','Successfuly registered, verify your account at email');
                                 //req.flash('success_msg', 'You are now registered and can log in');   

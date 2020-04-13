@@ -8,6 +8,8 @@ const RequestNotes = require('../models/RequestNotes');
 const DeleteNote = require('../models/DeleteNote');
 const path = require('path');
 const {contactUs} = require('../account/nodemailer');
+const {confirmUser} = require('../account/nodemailerLogin');
+const uuid = require('uuid');
 
 
 router.get('/', async(req,res)=>{
@@ -228,6 +230,58 @@ router.get('/hub/admin/21',async(req,res)=>{
             deleteNote
         })
     }
+});
+
+//verify email
+router.get('/users/signup/:token',(req,res)=>{
+
+    const token = req.params.token;
+    const id = req.query.data;
+    console.log(token,id);
+    
+    User.find({_id:id,token})
+        .then(user => {
+            console.log("user",user);
+            
+            const timeNow = Date.now();
+            console.log(timeNow,user[0].date);
+            
+            if(timeNow - user[0].date<2*60*1000){
+                console.log("Successful");
+                
+                user[0].verified = true;
+                user[0].save()
+                req.flash('success_msg', 'Verified Successfully,can login by clicking on login link');
+                res.redirect('/users/signup');
+            }
+            else{                
+                user[0].date = Date.now();
+                user[0].token = user[0].token + uuid.v4();
+                user[0].save()
+                .then(()=>{
+                    confirmUser({
+                        name:user[0].name,
+                        email:user[0].email,
+                        id:user[0]._id,
+                        token:user[0].token
+                    })
+                    req.flash('error_msg', 'Token Expired, Click on the new link within 12hrs');
+                    res.redirect('/users/signup');
+                }).catch(e=>{
+                    console.log(e);
+                    
+                })
+                
+                
+            }
+            
+        })
+        .catch(e => {
+            console.log(e);
+            
+            req.flash('error_msg','Please signup again!');
+            res.redirect('/users/signup')
+        })
 })
 
 

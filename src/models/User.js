@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const Secret = require('../../config/keys');
+const jwt = require('jsonwebtoken')
 
 const UserSchema = new mongoose.Schema({
     name: {
@@ -28,8 +30,8 @@ const UserSchema = new mongoose.Schema({
         type:String
     },
     date:{
-        type:Date,
-        default: Date.now()
+        type:String,
+        default: Date.now
     },
     branch:{
         type:String
@@ -64,11 +66,24 @@ const UserSchema = new mongoose.Schema({
             type:Number
         }
     }],
-    verified:[{
+    verified:{
         type:Boolean,
         default:false
-    }]
+    },
+    token:{
+        type:String
+    }
 })
+
+
+UserSchema.methods.generateAuthToken = function() {
+    const user = this
+    const token = jwt.sign( { _id: user._id.toString() } , Secret.Secret.key,{ expiresIn: 30000 })
+    user.token = token;
+
+    return token
+
+}
 
 const User = mongoose.model('User',UserSchema);
 
