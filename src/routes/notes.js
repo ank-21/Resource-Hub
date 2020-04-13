@@ -219,28 +219,48 @@ router.get('/branch/semester/notes/download',(req,res)=>{
         })
 });
 
-router.post('/branch/semester/notes/request', (req,res)=> {
-    console.log("wanna have query",req.query);
-    
-    const data = req.query.data;
-    console.log("req in body",req.body);
-    const note = new RequestNotes(req.body);
-    note.date = moment().format('MMMM Do YYYY');
-    note.solved = "false";
+//request page
+router.post('/branch/semester/notes/request',ensureAuthenticated,async(req,res)=> {
+    var data = req.query.data;
     if(data == 'Notes')
-        note.noteType= 'note';
+        data= 'note';
     else if(data == 'Questions')
-        note.noteType = 'question';
-    note.save()
-        .then(data => {
-            console.log(data);
-            res.redirect(`/profile`);
-        })
-        .catch(err => {
-            res.redirect('/users/branch/semester/notes')
-            console.log("errror in request note save", err);
-        })  
-})
+        data = 'question';
+    console.log(data);
+    
+    const requestmade = await RequestNotes.find({
+        branch:req.body.branch,
+        semester:req.body.semester,
+        year:req.body.year,
+        subject:req.body.subject,
+        profName:req.body.profName,
+        noteType:data,
+        solved:"false"
+    })
+        
+        if(requestmade.length>0){
+            console.log("hii");
+            
+            req.flash('notes_msg', `${data} has already been requested`);
+            res.redirect(`/users/branch/semester/notes?branch=${req.body.branch}&semester=${req.body.semester}`)
+        }
+        else{
+            const note = new RequestNotes(req.body);
+            note.date = moment().format('MMMM Do YYYY');
+            note.solved = "false";
+            note.noteType = data;
+            note.save()
+            .then(data => {
+                req.flash('notes_msg', 'Request Submitted');
+                res.redirect(`/users/branch/semester/notes?branch=${req.body.branch}&semester=${req.body.semester}`)
+            })
+            .catch(err => {
+                res.redirect(`/users/branch/semester/notes?branch=${req.body.branch}&semester=${req.body.semester}`)
+                console.log("errror in request note save", err);
+            })
+        }
+    })  
+
 
 //for rating page
 
@@ -304,6 +324,7 @@ router.post('/branch/semester/notes/star_rating/:id', (req,res)=> {
    
 });
 
+//deleting a note
 router.get('/note/delete/:id',async(req,res)=> {
 
     const note = await Notes.findById(req.params.id);

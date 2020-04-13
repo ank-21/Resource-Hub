@@ -51,10 +51,33 @@ router.get('/developers',ensureAuthenticated,(req,res)=>{
 })
 
 router.get('/profile',ensureAuthenticated, async(req,res)=>{
+    var page = parseInt(req.query.page)
+    var limit = parseInt(req.query.limit)   //will always be 5
+    const notesAll = await Notes.find({userId:req.user._id});
+    const lenghtofNotes = notesAll.length;
+    var notes = [];
+    var last,startIndex,endIndex;
+    if(!limit){
+       limit = 3;
+       page = 1; 
+    }
+    last = lenghtofNotes/limit;
+    const lastExact = Math.ceil(last); 
+    
+    if(page > lastExact || page < 1)
+    {
+        page = 1;
+    }
+    startIndex = (page - 1) * limit;
+    endIndex = page * limit;
+    //for listing of notes
+    notes = await Notes.find({userId:req.user._id}).sort({_id:-1}).limit(limit).skip(startIndex); 
+    console.log("length",notes.length);
+    
+       
+
     var ratingValue = 0;
     var passingvalue = [];
-    //for listing of notes
-    const notes = await Notes.find({userId:req.user._id}).sort({_id:-1}); //we have to add limit
     //console.log("notes for listing from index.js",notes);
     //for notes rate
     notes.forEach((note)=>{
@@ -76,13 +99,38 @@ router.get('/profile',ensureAuthenticated, async(req,res)=>{
         }
         return val.toFixed(2);
     })
-    console.log("floor value",floorvalue)
+    console.log("floor value",floorvalue);
 
 
+
+
+    var pageRequest = parseInt(req.query.pageRequest)
+    var limit2 = parseInt(req.query.limit2)/2   //will always be 2
+    const RequestAll = await RequestNotes.find();
+    const lenghtofRequests = RequestAll.length;
+    var requests = [];
+    var last2,startIndex,endIndex;
+    if(!limit2){
+       limit2 = 2;
+       pageRequest = 1; 
+    }
+    last2 = lenghtofRequests/(limit2*2);
+    const lastExactRequest = Math.ceil(last2); 
+    if(pageRequest > lastExactRequest || pageRequest < 1)
+    {
+        pageRequest = 1;
+    }
+
+    startIndex2 = (pageRequest - 1) * limit2;
+    endIndex2 = pageRequest * limit2;
 
     //for request notes details
-    const reqNote = await RequestNotes.find({solved:"false"}).sort({_id:-1});;
-    const doneNote = await RequestNotes.find({solved:"true"}).sort({_id:-1});;
+    const reqNote = await RequestNotes.find({solved:"false"}).sort({_id:-1}).limit(limit2).skip(startIndex2);
+    const doneNote = await RequestNotes.find({solved:"true"}).sort({_id:-1}).limit(limit2).skip(startIndex2); 
+    
+     
+    console.log(reqNote.length,doneNote.length);
+    
     //console.log("req note in indexjs for uploaded notes",doneNote);
     //console.log("reqNote in index.js",reqNote);
 
@@ -110,7 +158,11 @@ router.get('/profile',ensureAuthenticated, async(req,res)=>{
         reqNote,
         doneNote,
         ratingValue,
-        floorvalue
+        floorvalue,
+        lastExact,
+        lastExactRequest,
+        page,
+        pageRequest
     });
 });
 
@@ -125,12 +177,36 @@ router.get('/users/publicProfile/:id',ensureAuthenticated,async(req,res)=>{
     }else{
         searchUser.profileViewCount = searchUser.profileViewCount + 1;
     searchUser.save();
-    var ratingValue = 0;
-    var passingvalue = [];
+
+    var page = parseInt(req.query.page)
+    var limit = parseInt(req.query.limit)   //will always be 5
+    const notesAll = await Notes.find({userId:id});
+    const lenghtofNotes = notesAll.length;
+    var notes = [];
+    var last,startIndex,endIndex;
+    if(!limit){
+       limit = 3;
+       page = 1; 
+    }
+    last = lenghtofNotes/limit;
+    const lastExact = Math.ceil(last); 
+    
+    if(page > lastExact || page < 1)
+    {
+        page = 1;
+    }
+    startIndex = (page - 1) * limit;
+    endIndex = page * limit;
     //for listing of notes
-    const notes = await Notes.find({userId:id}).sort({_id:-1}); //we have to add limit
+    notes = await Notes.find({userId:id}).sort({_id:-1}).limit(limit).skip(startIndex); 
+    console.log("length",notes.length);
+    
+    //for listing of notes
+    //const notes = await Notes.find({userId:id}).sort({_id:-1}); //we have to add limit
     //console.log("notes for listing from index.js",notes);
     //for notes rate
+    var ratingValue = 0;
+    var passingvalue = [];
     notes.forEach((note)=>{
         var sumofnote =0;
         if(note.ratings.length==0){
@@ -153,14 +229,6 @@ router.get('/users/publicProfile/:id',ensureAuthenticated,async(req,res)=>{
     console.log("floor value",floorvalue)
 
 
-
-    //for request notes details
-    const reqNote = await RequestNotes.find({solved:"false"}).sort({_id:-1});;
-    const doneNote = await RequestNotes.find({solved:"true"}).sort({_id:-1});;
-    //console.log("req note in indexjs for uploaded notes",doneNote);
-    //console.log("reqNote in index.js",reqNote);
-
-
     //for rating of user
     if(searchUser.ratings.length != 0){
         searchUser.ratings.forEach(rate => {
@@ -181,10 +249,10 @@ router.get('/users/publicProfile/:id',ensureAuthenticated,async(req,res)=>{
     res.render('publicprofile',{
         user:searchUser,
         notes,
-        reqNote,
-        doneNote,
         ratingValue,
-        floorvalue
+        floorvalue,
+        page,
+        lastExact
     });
     }
     
@@ -209,6 +277,7 @@ router.post('/contactus',(req,res)=>{
         })
 });
 
+//admin requests
 router.get('/hub/admin/21',async(req,res)=>{
     const admins_id = ['5e8f94ee8500c35ebc9a11c9','5e936a7f2350706f9a0c5542','5e9325bd2350706f9a0c5541'];
     const auth = admins_id.indexOf(String(req.user._id));
@@ -246,7 +315,7 @@ router.get('/users/signup/:token',(req,res)=>{
             const timeNow = Date.now();
             console.log(timeNow,user[0].date);
             
-            if(timeNow - user[0].date<2*60*1000){
+            if(timeNow - user[0].date<12*60*60*1000){
                 console.log("Successful");
                 
                 user[0].verified = true;
@@ -269,10 +338,9 @@ router.get('/users/signup/:token',(req,res)=>{
                     res.redirect('/users/signup');
                 }).catch(e=>{
                     console.log(e);
-                    
-                })
-                
-                
+                    req.flash('error_msg', 'Token Expired, Click on the new link within 12hrs');
+                    res.redirect('/users/signup');
+                })    
             }
             
         })

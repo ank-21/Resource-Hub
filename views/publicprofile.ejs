@@ -234,16 +234,7 @@
                       </div>
                     </div>
                   </li>
-                <li class="collection-item">
-                  <div class="row">
-                    <div class="col s6 l6">
-                        <span class="user-details">Total Downloads by <%= user.name%> - </span>
-                      </div>
-                    <div class="col s6 l2">
-                       <span style="font-size: 1.3rem;"><%= user.downloadCountUser %></span>
-                    </div>
-                  </div>
-                </li>
+                
                 <li class="collection-item">
                   <div class="row">
                     <div class="col s6 l6">
@@ -290,7 +281,7 @@
                 <div class="col s6">
                   <p class="collections-title"><span>Subject - <%= note.subject%></span><span style="margin-left: 2vw;">Branch - <%= note.branch%></span> <span style="margin-left: 1.6vw;">Semester - <%= note.semester%></span> </p>
                   <p class="collections-content">Professor Name - <%= note.profName%></p>
-                  <a href="<%= note.notesLoc %>" class="collections-title">Click here to view / download the note</a>
+                  <a href="/users/branch/semester/notes/download?branch=<%= note.branch %>&semester=<%= note.semester %>&noteId=<%= note._id%>" class="collections-title">Click here to view / download the note</a>
                 </div>
                 <div class="col s2" style="margin-top: 7vh;">
                   <span class="task-cat pink accent-2"><%= floorvalue[countNote]%></span>
@@ -310,13 +301,17 @@
         <% }); %>
           </ul>
           <div class="pagination">
-              <a href="#" class="prev"><i class="fas fa-angle-left"></i></a>
-              <a href="#" class="num numactive">1</a>
-              <a href="#" class="num">2</a>
-              <a href="#" class="num">3</a>
-              <a href="#" class="num">4</a>
-              <a href="#" class="num">5</a>
-              <a href="#" class="next"><i class="fas fa-angle-right"></i></a>
+            <a href="/users/publicProfile/<%=user._id%>?page=<%=page-1%>&limit=3" class="prev"><i class="fas fa-angle-left"></i></a>
+            
+            <% for(var i=1;i<=lastExact;i++){%>
+              <% if(i==page){ %>
+                <a href="/users/publicProfile/<%=user._id%>?page=<%=i%>&limit=3" class="num numactive"><%=i%></a>
+              <% }else{%>
+                <a href="/users/publicProfile/<%=user._id%>?page=<%=i%>&limit=3" class="num"><%=i%></a>
+              <% } %>
+              
+            <% }%>
+            <a href="/users/publicProfile/<%=user._id%>?page=<%=page+1%>&limit=3" class="next"><i class="fas fa-angle-right"></i></a>
             </div>
         </div>
         <div class="col l2"><h1></h1></div>
