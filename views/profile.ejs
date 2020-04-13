@@ -31,7 +31,41 @@
   top: 11px;
   color: white;
 }
-
+.branch-view,.sem-view,.prof-view,.type-view,.year-view{
+  margin-left:40px;
+}
+@media (max-width: 768px){
+  .requested-notes{height:15vh;}
+  .branch-view{
+        position: relative;
+    left: 0vw;
+    margin-left:0;
+  }
+  .date-view{margin-top: 0px;}
+  .sem-view{
+    position: relative;
+    left: 20vw;
+    margin-left:0;
+  }
+  .prof-view{
+        position: relative;
+    left: -28vw;
+    top: 3vh;
+    margin-left:0;
+  }
+  .year-view{
+    position: relative;
+    left: -50vw;
+    top: 6vh;
+    margin-left:0;
+  }
+  .type-view{
+        position: relative;
+    left: 35vw;
+    top: 3.7vh;
+    margin-left:0;
+  }
+}
 .card-alert a {
   color: inherit;
   font-weight: 500;
@@ -122,9 +156,13 @@
     }
     .radio1{left:4vw;top:5vh;}
     .radio2{left:12.6vw;top:5vh;}
+    .radio1-label{position: relative;left: -3.4vw;}
+    .radio2-label{position: relative;left: 1.4vw;}
     @media (max-width:768px){
-      .radio1{left: 7vw;top: 4.6vh;}
-      .radio2{left: 39vw;top: 4.6vh;}
+      .radio1{left: 14vw;top: 4.6vh;}
+      .radio2{left: 40vw;top: 4.6vh;}
+      .radio1-label{left:-4.4vw;}
+      .radio2-label{left:9vw;}
     }
 </style>
 </head>
@@ -391,16 +429,16 @@
               </li>
               <% if(reqNote.length!=0) { %>
                 <% reqNote.forEach((note) => { %>
-                  <li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                  <li class="collection-item dismissable requested-notes" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
                   
                   <label for="task1" style="text-decoration: none;font-size: 2.8vh;padding-bottom: 7px;padding-top: 7px;">Subject - <%= note.subject%>
-                    <a href="#" class="secondary-content" style="margin-top: 4px;"><span class="ultra-small"><%= note.date%></span></a>
+                    <a href="#" class="secondary-content" style="margin-top: 4px;"><span class="ultra-small date-view"><%= note.date%></span></a>
                   </label>
-                  <span class="task-cat teal">Branch - <%=note.branch%></span>
-                  <span class="task-cat purple" style="margin-left: 25px;">Sem - <%= note.semester%></span>
-                  <span class="task-cat cyan"style="margin-left: 25px;">Prof. Name - <%=note.profName %></span>
-                  <span class="task-cat green"style="margin-left: 25px;">Year - <%=note.year %></span>
-                  <span class="task-cat red"style="margin-left: 25px;">Type - <%=note.noteType %></span>
+                  <span class="task-cat teal branch-view">Branch - <%=note.branch%></span>
+                  <span class="task-cat purple sem-view">Sem - <%= note.semester%></span>
+                  <span class="task-cat cyan prof-view">Prof. Name - <%=note.profName %></span>
+                  <span class="task-cat green year-view">Year - <%=note.year %></span>
+                  <span class="task-cat red type-view"style="text-transform:capitalize;">Type - <%=note.noteType %></span>
                 </li>
                 <% }); %>
               <% } %>
@@ -449,11 +487,11 @@
                   <div id="note-ques" style="text-align: center;">
                     <span>
                       <input type="radio" id="note" name="noteType" value="note" class="radio1" required="true">
-                      <label class="radiolabel radio_btn" for="note" style="position: relative;left:-3.4vw">Notes</label>
+                      <label class="radiolabel radio_btn radio1-label" for="note">Notes</label>
                     </span>
                     <span>
                       <input type="radio" id="question" name="noteType" value="question" class="radio2" required="true">
-                      <label class="radiolabel radio_btn" for="question" style="position: relative;left:1.4vw" >Question Papers</label>
+                      <label class="radiolabel radio_btn radio2-label" for="question">Question Papers</label>
                     </span>
                   </div>
                   <div id="selectBranch">
