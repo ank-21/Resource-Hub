@@ -18,7 +18,6 @@ router.get('/branch',ensureAuthenticated,(req,res)=>{
 router.get('/branch/semester',ensureAuthenticated, async(req,res)=>{
     const branchname = req.query.branch;
     const selectedNotesByBranch = await Notes.find({branch:branchname});
-    // console.log("all branch note",selectedNotesByBranch);
     //it will give an array of object
     const allSemDetails = [];
     const totalDownloadPerSem = [];
@@ -57,7 +56,6 @@ router.get('/branch/semester',ensureAuthenticated, async(req,res)=>{
         }
 
     }
-    console.log("ratings",ratingsPerSem);
 
     const ratingsPerSemFloored = ratingsPerSem.map((val) => {
         if(val%1==0){
@@ -107,7 +105,6 @@ router.get('/branch/semester/notes', ensureAuthenticated ,async(req,res)=>{
         }
 
     })
-    console.log(passingvalue);
     const floorvalue = passingvalue.map((val) => {
         if(val%1==0){
             return val;
@@ -160,17 +157,12 @@ router.get('/branch/semester/question', ensureAuthenticated ,async(req,res)=>{
         }
 
     })
-    console.log(passingvalue);
     const floorvalue = passingvalue.map((val) => {
         if(val%1==0){
             return val;
         }
         return val.toFixed(2);
     })
-    //for floor value
-    console.log(floorvalue);
-    
-
     
     res.render('notes',{
         notes:selectedNotesByBranchAndSemester,
@@ -215,6 +207,7 @@ router.get('/branch/semester/notes/download',(req,res)=>{
                 res.redirect(note[0].notesLoc);
             }    
         }).catch(e => {
+            req.flash('notes_msg', `Note couldn't be downloaded`);
             res.redirect('/users/branch');
         })
 });

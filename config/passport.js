@@ -27,15 +27,19 @@ module.exports = function(passport) {
                         }
 
                         if(isMatch){
-                            // const timeNow = Date.now();
-                            // if(timeNow - user.date<3*60*1000){
-                            //     return done(null,user);
-                            // }
                             if(user.verified == true){
                                 return done(null,user);
                             }
                             else{
-                                console.log("i m stuck");
+                                const timeNow = Date.now();
+                                if(timeNow - user.date<12*60*60*1000){
+                                    confirmUser({
+                                        name:user[0].name,
+                                        email:user[0].email,
+                                        id:user[0]._id,
+                                        token:user[0].token
+                                    })
+                                }
                                 return done(null,false, {message: 'Verify your Email first'});
                             }
                         }else{

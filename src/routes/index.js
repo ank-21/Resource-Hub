@@ -71,10 +71,7 @@ router.get('/profile',ensureAuthenticated, async(req,res)=>{
     startIndex = (page - 1) * limit;
     endIndex = page * limit;
     //for listing of notes
-    notes = await Notes.find({userId:req.user._id}).sort({_id:-1}).limit(limit).skip(startIndex); 
-    console.log("length",notes.length);
-    
-       
+    notes = await Notes.find({userId:req.user._id}).sort({_id:-1}).limit(limit).skip(startIndex);     
 
     var ratingValue = 0;
     var passingvalue = [];
@@ -99,10 +96,6 @@ router.get('/profile',ensureAuthenticated, async(req,res)=>{
         }
         return val.toFixed(2);
     })
-    console.log("floor value",floorvalue);
-
-
-
 
     var pageRequest = parseInt(req.query.pageRequest)
     var limit2 = parseInt(req.query.limit2)/2   //will always be 2
@@ -128,11 +121,9 @@ router.get('/profile',ensureAuthenticated, async(req,res)=>{
     const reqNote = await RequestNotes.find({solved:"false"}).sort({_id:-1}).limit(limit2).skip(startIndex2);
     const doneNote = await RequestNotes.find({solved:"true"}).sort({_id:-1}).limit(limit2).skip(startIndex2); 
     
-     
-    console.log(reqNote.length,doneNote.length);
     
-    //console.log("req note in indexjs for uploaded notes",doneNote);
-    //console.log("reqNote in index.js",reqNote);
+    console.log("req note in indexjs for uploaded notes",doneNote);
+    console.log("reqNote in index.js",reqNote);
 
 
     //for rating of user
@@ -150,7 +141,6 @@ router.get('/profile',ensureAuthenticated, async(req,res)=>{
     if(ratingValue%1!=0){
         ratingValue = ratingValue.toFixed(1);
     }
-    //console.log("rating value", ratingValue);
 
     res.render('profile',{
         user:req.user,
@@ -226,7 +216,6 @@ router.get('/users/publicProfile/:id',ensureAuthenticated,async(req,res)=>{
         }
         return val.toFixed(2);
     })
-    console.log("floor value",floorvalue)
 
 
     //for rating of user
@@ -244,7 +233,6 @@ router.get('/users/publicProfile/:id',ensureAuthenticated,async(req,res)=>{
     if(ratingValue%1!=0){
         ratingValue = ratingValue.toFixed(1);
     }
-    //console.log("rating value", ratingValue);
 
     res.render('publicprofile',{
         user:searchUser,
@@ -278,7 +266,7 @@ router.post('/contactus',(req,res)=>{
 });
 
 //admin requests
-router.get('/hub/admin/21',async(req,res)=>{
+router.get('/hub/admin/21',ensureAuthenticated,async(req,res)=>{
     const admins_id = ['5e8f94ee8500c35ebc9a11c9','5e936a7f2350706f9a0c5542','5e9325bd2350706f9a0c5541'];
     const auth = admins_id.indexOf(String(req.user._id));
     if(auth==-1){
