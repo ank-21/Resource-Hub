@@ -309,7 +309,7 @@
                         <span class="user-details">Profile Viewed - </span> 
                       </div>
                     <div class="col s6 l2">
-                        <span style="font-size: 1.3rem;">21</span>
+                        <span style="font-size: 1.3rem;"><%= user.profileViewCount %></span>
                     </div>
                   </div>
                 </li>
@@ -430,11 +430,11 @@
                   <div id="note-ques" style="text-align: center;">
                     <span>
                       <input type="radio" id="note" name="noteType" value="note" class="radio1" required="true">
-                      <label class="radiolabel radio_btn" for="note" style="position: relative;left:-4vw">Notes</label>
+                      <label class="radiolabel radio_btn" for="note" style="position: relative;left:-3.4vw">Notes</label>
                     </span>
                     <span>
                       <input type="radio" id="question" name="noteType" value="question" class="radio2" required="true">
-                      <label class="radiolabel radio_btn" for="question" style="position: relative;left:1vw" >Question Papers</label>
+                      <label class="radiolabel radio_btn" for="question" style="position: relative;left:1.4vw" >Question Papers</label>
                     </span>
                   </div>
                   <div id="selectBranch">
@@ -477,6 +477,9 @@
                   </label>
                   <p style="text-align: center; display: block;">
                     <input type="submit" value="Upload"></p>
+                    <!-- <button class="btn btn-primary d-none" id="upload_btn" class="btn btn-primary" style="display: none;">
+                      <span class="spinner-border spinner-border-sm">Uploading</span>
+                    </button> -->
                 </form>
               </div>
             </div>

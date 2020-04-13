@@ -189,20 +189,16 @@ input {
                         <!-- <a class="navbar-brand main_logo logo-text" href="/users/home">Resource Hub</a>
                         <a class="navbar-brand single_page_logo logo-text" href="/users/home">Resource Hub</a> -->
                         <div class="profile-img">
-                            <img src="/img/ujjawal.jpg">
+                            <a href="/profile"><img src="<%= user.avatar ? user.avatar : '/img/avatar.png' %>" alt=""></a>
                         </div>
                           <div class="mobile-view">
                                 <div><label><i class="fa fa-search" aria-hidden="true"></i></label>
-                                	<input type="text" id="search1" class="fontAwesome" placeholder="Search" onkeyup="search1()" style="padding-left:35px;"></div>
+                                <input type="text" id="search1" class="fontAwesome" placeholder="Search user" onkeyup="search1()" style="padding-left:35px;"></div>
                                 <div class="search" id="srh1"></div>
                                 <ul class="search-view" id="search_list1">
-                                	<li class="collection-item2"><a href="">Topper</a></li>
-                                	<li class="collection-item2"><a href="">Topnkxsper</a></li>
-                                	<li class="collection-item2"><a href="">Topacsper</a></li>
-                                	<li class="collection-item2"><a href="">Toppxaer</a></li>
-                                	<li class="collection-item2"><a href="">Topxper</a></li>
-                                	<li class="collection-item2"><a href="">Topxczper</a></li>
-                                	<li class="collection-item2"><a href="">Topczxper</a></li>
+                                    <% users.forEach((user)=>{  %>
+                                        <li class="collection-item2"><a href="/users/publicProfile/<%=user._id%>"><%= user.name%></a></li>
+                                    <% }) %>
 
                               </ul>
                           </div>
@@ -235,21 +231,12 @@ input {
 
                                 <li class="nav-item mobile-search">
                                     <div class="searchcontainer">
-                                    <input type="text" id="search" placeholder="Search...">
+                                    <input type="text" id="search" placeholder="Search user">
                                     <div class="search" id="srh"></div>
                                     <ul class="search-view" id="search_list">
-                                        <li class="collection-item"><a href="">Topper</a></li>
-                                        <li class="collection-item"><a href="">Topnkxsper</a></li>
-                                        <li class="collection-item"><a href="">Topacsper</a></li>
-                                        <li class="collection-item"><a href="">Toppxaer</a></li>
-                                        <li class="collection-item"><a href="">Topxper</a></li>
-                                        <li class="collection-item"><a href="">Topxczper</a></li>
-                                        <li class="collection-item"><a href="">Topczxper</a></li>
-                                        <li class="collection-item"><a href="">Mak</a></li>
-                                        <li class="collection-item"><a href="">Makae</a></li>
-                                        <li class="collection-item"><a href="">Makki</a></li>
-                                        <li class="collection-item"><a href="">Makku</a></li>
-                                        <li class="collection-item"><a href="">Minal</a></li>
+                                        <% users.forEach((user)=>{  %>
+                                            <li class="collection-item"><a href="/users/publicProfile/<%=user._id%>"><%= user.name%></a></li>
+                                        <% }) %>
                                     </ul>
                                     </div>
                                 </li>
@@ -562,16 +549,16 @@ input {
 
     </script>
     <script>
-        let bigdiv = document.getElementById('bigdiv');
-        bigdiv.addEventListener('click',()=>{
+        let bigdiv3 = document.getElementById('bigdiv');
+        bigdiv3.addEventListener('click',()=>{
             let ul = document.getElementById('search_list1');
                         if(ul.style.display !== "none"){
                             ul.style.display = "none";
                             flag = 1;
                         }
         })
-        let bigdiv2 = document.getElementById('bigdiv2');
-        bigdiv2.addEventListener('click',()=>{
+        let bigdiv4 = document.getElementById('bigdiv2');
+        bigdiv4.addEventListener('click',()=>{
             let ul = document.getElementById('search_list1');
                         if(ul.style.display !== "none"){
                             ul.style.display = "none";
@@ -581,7 +568,7 @@ input {
 
         //get input element
         let filterInput2 = document.getElementById('search1');
-                    let srh2 = document.getElementById('srh');
+                    let srh2 = document.getElementById('srh1');
                     var flag = 1;
                     srh2.addEventListener('click',()=>{
                         let ul = document.getElementById('search_list1');

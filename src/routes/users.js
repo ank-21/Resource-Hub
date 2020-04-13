@@ -68,7 +68,14 @@ userRouter.post('/signup',(req,res)=>{
                             newUser.save()
                                 .then(user => {
                                 console.log("New user: ",user);
-                                req.flash('success_msg', 'You are now registered and can log in');   
+                                confirmUser({
+                                    name:user.name,
+                                    email:user.email,
+                                    id:user._id,
+                                    route:`/users/verifyauth/${id}/2020-2021`
+                                })
+                                req.flash('success_msg','Successfuly registered, verify your account at email');
+                                //req.flash('success_msg', 'You are now registered and can log in');   
                                 //to display the flash message we will use messages.ejs in partials
                                 
                                 //redirect to login page
@@ -151,21 +158,7 @@ userRouter.get('/logout', ensureAuthenticated,(req,res)=>{
     res.redirect('/users/signup');
 });
 
-//profile view by public
 
-userRouter.get('/profile/:id',ensureAuthenticated,(req,res)=>{
-    const id = req.params.id;
-    User.findById(id)
-        .then(user => {
-            user.profileViewCount = user.profileViewCount + 1;
-            res.redirect('/publicProfile',{
-                user
-            })
-        })
-        .catch(e => {
-            res.redirect('/users');
-        })
-});
 
 
 module.exports = userRouter;

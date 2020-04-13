@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PUBLIC PROFILE</title>
+  <title>Profile - <%= user.name %></title>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/chartist/0.9.7/chartist.min.css'>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jvectormap/2.0.4/jquery-jvectormap.min.css'>
@@ -237,7 +237,7 @@
                 <li class="collection-item">
                   <div class="row">
                     <div class="col s6 l6">
-                        <span class="user-details">Total Downloads by you - </span>
+                        <span class="user-details">Total Downloads by <%= user.name%> - </span>
                       </div>
                     <div class="col s6 l2">
                        <span style="font-size: 1.3rem;"><%= user.downloadCountUser %></span>
@@ -247,7 +247,7 @@
                 <li class="collection-item">
                   <div class="row">
                     <div class="col s6 l6">
-                        <span class="user-details">Your Notes downloaded - </span>
+                        <span class="user-details"><%= user.name %>'s notes downloaded - </span>
                       </div>
                     <div class="col s6 l2">
                        <span style="font-size: 1.3rem;"><%= user.notesDownloadedByUsers %></span>
@@ -257,20 +257,10 @@
                 <li class="collection-item">
                   <div class="row">
                     <div class="col s6 l6">
-                        <span class="user-details">Total Uploads - </span> 
+                        <span class="user-details">Total Uploads by <%= user.name%> - </span> 
                       </div>
                     <div class="col s6 l2">
                         <span style="font-size: 1.3rem;"><%= user.uploadsCount%></span>
-                    </div>
-                  </div>
-                </li>
-                <li class="collection-item">
-                  <div class="row">
-                    <div class="col s6 l6">
-                        <span class="user-details">Profile Viewed - </span> 
-                      </div>
-                    <div class="col s6 l2">
-                        <span style="font-size: 1.3rem;">21</span>
                     </div>
                   </div>
                 </li>

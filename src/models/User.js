@@ -8,6 +8,7 @@ const UserSchema = new mongoose.Schema({
     },
     email:{
         type: String,
+        unique:true,
         validator(value){
             if(!validator.isEmail(value)){
                 throw new Error('Email is invalid')
@@ -62,6 +63,10 @@ const UserSchema = new mongoose.Schema({
         rating:{
             type:Number
         }
+    }],
+    verified:[{
+        type:Boolean,
+        default:false
     }]
 })
 
