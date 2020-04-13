@@ -426,13 +426,14 @@
                   <li class="collection-item dismissable requested-notes" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
                   
                   <label for="task1" style="text-decoration: none;font-size: 2.8vh;padding-bottom: 7px;padding-top: 7px;">Subject - <%= note.subject%>
-                    <a href="#" class="secondary-content" style="margin-top: 4px;"><span class="ultra-small date-view"><%= note.date%></span></a>
+                    <a href="#" class="secondary-content" style="margin-top: 4px;"><span class="ultra-small"><%= note.date%></span></a>
                   </label>
-                  <span class="task-cat teal branch-view">Branch - <%=note.branch%></span>
-                  <span class="task-cat purple sem-view">Sem - <%= note.semester%></span>
-                  <span class="task-cat cyan prof-view">Prof. Name - <%=note.profName %></span>
-                  <span class="task-cat green year-view">Year - <%=note.year %></span>
-                  <span class="task-cat red type-view"style="text-transform:capitalize;">Type - <%=note.noteType %></span>
+                  <span class="task-cat teal">Branch - <%=note.branch%></span>
+                  <span class="task-cat purple" style="margin-left: 25px;">Sem - <%= note.semester%></span>
+                  <span class="task-cat red"style="margin-left: 30px;">Type - <%=note.noteType %></span>
+                  <span class="task-cat green"style="margin-left: 3.6vw;">Year - <%=note.year %></span>
+                  <br>
+                  <span class="task-cat cyan"style="margin-left: 3px;">Prof. Name - <%=note.profName %></span>
                 </li>
                 <% }); %>
               <% } %>
@@ -446,10 +447,10 @@
                   </label>
                   <span class="task-cat teal">Branch - <%=note.branch%></span>
                   <span class="task-cat purple" style="margin-left: 25px;">Sem - <%= note.semester%></span>
-                  <span class="task-cat red"style="margin-left: 25px;">Type - <%=note.noteType %></span>
-                  <br>
-                  <span class="task-cat green"style="margin-left: 25px;">Year - <%=note.year %></span>
-                  <span class="task-cat cyan"style="margin-left: 25px;">Prof. Name - <%=note.profName %></span>
+                  <span class="task-cat red"style="margin-left: 30px;">Type - <%=note.noteType %></span>
+                  
+                  <span class="task-cat green"style="margin-left: 3.6vw;">Year - <%=note.year %></span>
+                  <span class="task-cat cyan"style="margin-left: 4.8vw;">Prof. Name - <%=note.profName %></span>
                   <span class="task-cat blue"style="margin-left: 25px;">Uploaded</span>
                 </li>
                 <% }); %>
