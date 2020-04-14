@@ -31,39 +31,72 @@
   top: 11px;
   color: white;
 }
-.branch-view,.sem-view,.prof-view,.type-view,.year-view{
+.sem-view,.type-view,.year-view{
   margin-left:40px;
 }
+.branch-view,.prof-view{margin-left:0px;}
 @media (max-width: 768px){
   .requested-notes{height:15vh;}
   .branch-view{
-        position: relative;
+  position: relative;
     left: 0vw;
-    margin-left:0;
+    margin-left: 0;
   }
   .date-view{margin-top: 0px;}
   .sem-view{
-    position: relative;
+        position: relative;
     left: 20vw;
-    margin-left:0;
+    margin-left: 0;
   }
   .prof-view{
         position: relative;
-    left: -28vw;
-    top: 3vh;
-    margin-left:0;
+    left: 0vw;
+    top: 3.5vh;
+    margin-left: 0;
   }
   .year-view{
-    position: relative;
-    left: -50vw;
-    top: 6vh;
-    margin-left:0;
+        position: relative;
+    left: -8vw;
+    top: 3.2vh;
+    margin-left: 0;
   }
   .type-view{
+  position: relative;
+    left: -27vw;
+    top: 3.3vh;
+    margin-left: 0;
+  }
+}
+@media (max-width: 360px){
+  .requested-notes{height:25vh;}
+  .branch-view{
+     position: relative;
+    left: 0vw;
+    margin-left: 0;
+  }
+  .date-view{margin-top: 0px;}
+  .sem-view{
+     position: relative;
+       left: 14vw;
+    margin-left: 0;
+  }
+  .prof-view{
+         position: relative;
+    left: 0vw;
+    top: 3.5vh;
+    margin-left: 0;
+  }
+  .year-view{
         position: relative;
-    left: 35vw;
-    top: 3.7vh;
-    margin-left:0;
+        left: -19vw;
+    top: 3.2vh;
+    margin-left: 0;
+  }
+  .type-view{
+      position: relative;
+    left: -36vw;
+    top: 3.3vh;
+    margin-left: 0;
   }
 }
 .card-alert a {
@@ -154,6 +187,16 @@
     input[type="radio"]:not(:checked){
       pointer-events:all;
     }
+/*   .radio1{left:4vw;top:5vh;}
+   .radio2{left:12.6vw;top:5vh;}
+   .radio1-label{position: relative;left: -3.4vw;}
+    .radio2-label{position: relative;left: 1.4vw;}
+    @media (max-width:768px){
+    	 .radio1{left: 14vw;top: 4.6vh;}
+    	  .radio2{left: 40vw;top: 4.6vh;}
+      .radio1-label{left:-4.4vw;}
+      .radio2-label{left:9vw;}
+  }*/
 </style>
 </head>
 <body>
@@ -426,14 +469,14 @@
                   <li class="collection-item dismissable requested-notes" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
                   
                   <label for="task1" style="text-decoration: none;font-size: 2.8vh;padding-bottom: 7px;padding-top: 7px;">Subject - <%= note.subject%>
-                    <a href="#" class="secondary-content" style="margin-top: 4px;"><span class="ultra-small"><%= note.date%></span></a>
+                    <a href="#" class="secondary-content"><span class="ultra-small date-view"><%= note.date%></span></a>
                   </label>
-                  <span class="task-cat teal">Branch - <%=note.branch%></span>
-                  <span class="task-cat purple" style="margin-left: 25px;">Sem - <%= note.semester%></span>
-                  <span class="task-cat red"style="margin-left: 30px;">Type - <%=note.noteType %></span>
-                  <span class="task-cat green"style="margin-left: 3.6vw;">Year - <%=note.year %></span>
+                  <span class="task-cat teal branch-view">Branch - <%=note.branch%></span>
+                  <span class="task-cat purple sem-view">Sem - <%= note.semester%></span>
+                  <span class="task-cat red type-view">Type - <%=note.noteType %></span>
+                  <span class="task-cat green year-view">Year - <%=note.year %></span>
                   <br>
-                  <span class="task-cat cyan"style="margin-left: 3px;">Prof. Name - <%=note.profName %></span>
+                  <span class="task-cat cyan prof-view">Prof. Name - <%=note.profName %></span>
                 </li>
                 <% }); %>
               <% } %>
@@ -486,11 +529,11 @@
                   <div id="note-ques" style="text-align: center;">
                     <span>
                       <input type="radio" id="note" name="noteType" value="note" class="radio1" required="true">
-                      <label class="radiolabel radio_btn radio1-label" for="note" style="position: relative;left: -3vw;">Notes</label>
+                      <label class="radiolabel radio_btn radio1-label" for="note">Notes</label>
                     </span>
                     <span>
                       <input type="radio" id="question" name="noteType" value="question" class="radio2" required="true">
-                      <label class="radiolabel radio_btn radio2-label" for="question" style="position: relative;left:2vw">Question Papers</label>
+                      <label class="radiolabel radio_btn radio2-label" for="question">Question Papers</label>
                     </span>
                   </div>
                   <div id="selectBranch">
