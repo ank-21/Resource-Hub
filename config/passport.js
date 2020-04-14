@@ -31,15 +31,6 @@ module.exports = function(passport) {
                                 return done(null,user);
                             }
                             else{
-                                const timeNow = Date.now();
-                                if(timeNow - user.date<12*60*60*1000){
-                                    confirmUser({
-                                        name:user[0].name,
-                                        email:user[0].email,
-                                        id:user[0]._id,
-                                        token:user[0].token
-                                    })
-                                }
                                 return done(null,false, {message: 'Verify your Email first'});
                             }
                         }else{
