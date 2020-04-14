@@ -2912,3 +2912,42 @@ display: none;
   border-right: 20px solid #F7EDD5;
   right: 0;
 }
+
+.radio1{left:4vw;top:5vh;}
+.radio2{left:12.6vw;top:5vh;}
+
+@media (max-width:768px){
+  .radio1{left: 7vw;top: 4.6vh;}
+  .radio2{left: 39vw;top: 4.6vh;}
+}
+@media (max-width:550px) and (min-width:500px){
+  .radio1{left: 20vw;top: 4.9vh;}
+  .radio2{left: 35vw;top: 4.9vh;}
+}
+@media (max-width:500px) and (min-width:460px){
+  .radio1{left: 15vw;top: 4.9vh;}
+  .radio2{left: 33vw;top: 4.9vh;}
+}
+@media (max-width:460px) and (min-width:420px){
+  .radio1{left: 12vw;top: 4.9vh;}
+  .radio2{left: 31vw;top: 4.9vh;}
+}
+@media (max-width:420px) and (min-width:400px){
+  .radio1{left: 12vw;top: 4.9vh;}
+  .radio2{left: 31vw;top: 4.9vh;}
+}
+@media (max-width:400px) and (min-width:370px){
+  .radio1{left: 10vw;top: 4.9vh;}
+  .radio2{left: 30vw;top: 4.9vh;}
+}
+@media (max-width:370px) and (min-width:330px){
+  .radio1{left: 8vw;top: 5.1vh;}
+  .radio2{left: 29vw;top: 5.1vh;}
+}
+@media (max-width:330px){
+  .radio1{left: 3vw;top: 5.5vh;}
+  .radio2{left: 26vw;top: 5.5vh;}
+  .signIn h4{
+    font-size: 30px;
+  }
+}

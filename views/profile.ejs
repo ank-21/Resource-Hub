@@ -154,16 +154,6 @@
     input[type="radio"]:not(:checked){
       pointer-events:all;
     }
-    .radio1{left:4vw;top:5vh;}
-    .radio2{left:12.6vw;top:5vh;}
-    .radio1-label{position: relative;left: -3.4vw;}
-    .radio2-label{position: relative;left: 1.4vw;}
-    @media (max-width:768px){
-      .radio1{left: 14vw;top: 4.6vh;}
-      .radio2{left: 40vw;top: 4.6vh;}
-      .radio1-label{left:-4.4vw;}
-      .radio2-label{left:9vw;}
-    }
 </style>
 </head>
 <body>
@@ -314,7 +304,7 @@
                 <li class="collection-item">
                   <div class="row">
                     <div class="col s6 l6">
-                        <span class="user-details">Total Downloads by you - </span>
+                        <span class="user-details">Downloads - </span>
                       </div>
                     <div class="col s6 l2">
                        <span style="font-size: 1.3rem;"><%= user.downloadCountUser %></span>
@@ -334,7 +324,7 @@
                 <li class="collection-item">
                   <div class="row">
                     <div class="col s6 l6">
-                        <span class="user-details">Total Uploads - </span> 
+                        <span class="user-details">Uploads - </span> 
                       </div>
                     <div class="col s6 l2">
                         <span style="font-size: 1.3rem;"><%= user.uploadsCount%></span>
@@ -405,13 +395,17 @@
         <% }); %>
           </ul>
           <div class="pagination">
-            <a href="#" class="prev"><i class="fas fa-angle-left"></i></a>
-            <a href="#" class="num numactive">1</a>
-            <a href="#" class="num">2</a>
-            <a href="#" class="num">3</a>
-            <a href="#" class="num">4</a>
-            <a href="#" class="num">5</a>
-            <a href="#" class="next"><i class="fas fa-angle-right"></i></a>
+            <a href="/profile?page=<%=page-1%>&limit=3" class="prev"><i class="fas fa-angle-left"></i></a>
+            
+            <% for(var i=1;i<=lastExact;i++){%>
+              <% if(i==page){ %>
+                <a href="/profile?page=<%=i%>&limit=3" class="num numactive"><%=i%></a>
+              <% }else{%>
+                <a href="/profile?page=<%=i%>&limit=3" class="num"><%=i%></a>
+              <% } %>
+              
+            <% }%>
+            <a href="/profile?page=<%=page+1%>&limit=3" class="next"><i class="fas fa-angle-right"></i></a>
           </div>
         </div>
         <div class="col l2"><h1></h1></div>
@@ -432,13 +426,14 @@
                   <li class="collection-item dismissable requested-notes" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
                   
                   <label for="task1" style="text-decoration: none;font-size: 2.8vh;padding-bottom: 7px;padding-top: 7px;">Subject - <%= note.subject%>
-                    <a href="#" class="secondary-content" style="margin-top: 4px;"><span class="ultra-small date-view"><%= note.date%></span></a>
+                    <a href="#" class="secondary-content" style="margin-top: 4px;"><span class="ultra-small"><%= note.date%></span></a>
                   </label>
-                  <span class="task-cat teal branch-view">Branch - <%=note.branch%></span>
-                  <span class="task-cat purple sem-view">Sem - <%= note.semester%></span>
-                  <span class="task-cat cyan prof-view">Prof. Name - <%=note.profName %></span>
-                  <span class="task-cat green year-view">Year - <%=note.year %></span>
-                  <span class="task-cat red type-view"style="text-transform:capitalize;">Type - <%=note.noteType %></span>
+                  <span class="task-cat teal">Branch - <%=note.branch%></span>
+                  <span class="task-cat purple" style="margin-left: 25px;">Sem - <%= note.semester%></span>
+                  <span class="task-cat red"style="margin-left: 30px;">Type - <%=note.noteType %></span>
+                  <span class="task-cat green"style="margin-left: 3.6vw;">Year - <%=note.year %></span>
+                  <br>
+                  <span class="task-cat cyan"style="margin-left: 3px;">Prof. Name - <%=note.profName %></span>
                 </li>
                 <% }); %>
               <% } %>
@@ -452,9 +447,10 @@
                   </label>
                   <span class="task-cat teal">Branch - <%=note.branch%></span>
                   <span class="task-cat purple" style="margin-left: 25px;">Sem - <%= note.semester%></span>
-                  <span class="task-cat cyan"style="margin-left: 25px;">Prof. Name - <%=note.profName %></span>
-                  <span class="task-cat green"style="margin-left: 25px;">Year - <%=note.year %></span>
-                  <span class="task-cat red"style="margin-left: 25px;">Type - <%=note.noteType %></span>
+                  <span class="task-cat red"style="margin-left: 30px;">Type - <%=note.noteType %></span>
+                  
+                  <span class="task-cat green"style="margin-left: 3.6vw;">Year - <%=note.year %></span>
+                  <span class="task-cat cyan"style="margin-left: 4.8vw;">Prof. Name - <%=note.profName %></span>
                   <span class="task-cat blue"style="margin-left: 25px;">Uploaded</span>
                 </li>
                 <% }); %>
@@ -462,13 +458,16 @@
               
             </ul>
             <div class="pagination">
-              <a href="#" class="prev"><i class="fas fa-angle-left"></i></a>
-              <a href="#" class="num numactive">1</a>
-              <a href="#" class="num">2</a>
-              <a href="#" class="num">3</a>
-              <a href="#" class="num">4</a>
-              <a href="#" class="num">5</a>
-              <a href="#" class="next"><i class="fas fa-angle-right"></i></a>
+              <a href="/profile?pageRequest=<%=pageRequest-1%>&limit2=4" class="prev"><i class="fas fa-angle-left"></i></a>
+              <% for(var i=1;i<=lastExactRequest;i++){%>
+                <% if(i==pageRequest){ %>
+                  <a href="/profile?pageRequest=<%=i%>&limit2=4" class="num numactive"><%=i%></a>
+                <% }else{%>
+                  <a href="/profile?pageRequest=<%=i%>&limit2=4" class="num"><%=i%></a>
+                <% } %>
+                
+              <% }%>
+              <a href="/profile?pageRequest=<%=pageRequest+1%>&limit2=4" class="next"><i class="fas fa-angle-right"></i></a>
             </div>
           </div>
           
@@ -487,11 +486,11 @@
                   <div id="note-ques" style="text-align: center;">
                     <span>
                       <input type="radio" id="note" name="noteType" value="note" class="radio1" required="true">
-                      <label class="radiolabel radio_btn radio1-label" for="note">Notes</label>
+                      <label class="radiolabel radio_btn radio1-label" for="note" style="position: relative;left: -3vw;">Notes</label>
                     </span>
                     <span>
                       <input type="radio" id="question" name="noteType" value="question" class="radio2" required="true">
-                      <label class="radiolabel radio_btn radio2-label" for="question">Question Papers</label>
+                      <label class="radiolabel radio_btn radio2-label" for="question" style="position: relative;left:2vw">Question Papers</label>
                     </span>
                   </div>
                   <div id="selectBranch">

@@ -85,7 +85,7 @@ const storage = multer.diskStorage({
   
   const uploadNotes = multer({
     storage:notesStorage,
-    limits:{fileSize:25000000},   //limit of 25mb
+    limits:{fileSize:50000000},   //limit of 50mb
     fileFilter: function(req,file,cb){  //to enter only pdf,docx,doc 
       checkFileTypeNotes(file,cb);
     }
