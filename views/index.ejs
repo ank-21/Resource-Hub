@@ -61,7 +61,7 @@ input {
     font-size: 1.1rem;
     color: #464646;
   }
-  .mobile-view{
+  .mobile-view,.mobile-view1{
     display:none;
 }
 
@@ -75,7 +75,7 @@ input {
 .main_menu{
     background:#562FC7 !important;
 }
-.mobile-view{
+.mobile-view,.mobile-view1{
     display:inline-block;
 }
 .profileicon{
@@ -137,7 +137,7 @@ input {
 	font-size:1.2rem;
 	padding:2vh 2vw;
 }
-.mobile-view{
+.mobile-view,.mobile-view1{
 	display:none;
 }
 @media (max-width: 360px){
@@ -151,6 +151,13 @@ input {
     left: -20vw;
     width: 50vw;
 	}
+    .mobile-view1{
+        display: block;
+    position: relative;
+    top: -1.5vh;
+    left: 20vw;
+    width: 50vw;
+    }
     .mobile-search{display:none;}
 	.search-view{
 	width: 50vw;
@@ -159,7 +166,7 @@ input {
     /*display: none;*/
     border-radius:0;
 	}
-	.mobile-view label{
+	.mobile-view label,.mobile-view1 label{
     position: absolute;
     left: 14px;
     top: 2.5vh;
@@ -174,7 +181,7 @@ input {
     border-radius: 50%;
     }
 }	
-.mobile-view:focus label{
+.mobile-view:focus label,.mobile-view1:focus label{
 	display:none;
 }
     </style>
@@ -193,7 +200,6 @@ input {
                         <div class="profile-img">
                             <a href="/profile"><img src="<%= user.avatar ? user.avatar : '/img/avatar.png' %>" alt=""></a>
                         </div>
-                        <% } %>
                           <div class="mobile-view">
                                 <div><label><i class="fa fa-search" aria-hidden="true"></i></label>
                                 <input type="text" id="search1" class="fontAwesome" placeholder="Search user" onkeyup="search1()" style="padding-left:35px;"></div>
@@ -205,6 +211,20 @@ input {
 
                               </ul>
                           </div>
+                    <% } %>
+                    <% if(flag == 0) { %>
+                              <div class="mobile-view1">
+                                <div><label><i class="fa fa-search" aria-hidden="true"></i></label>
+                                <input type="text" id="search1" class="fontAwesome" placeholder="Search user" onkeyup="search1()" style="padding-left:35px;"></div>
+                                <div class="search" id="srh1"></div>
+                                <ul class="search-view" id="search_list1">
+                                    <% users.forEach((user)=>{  %>
+                                        <li class="collection-item2"><a href="/users/publicProfile/<%=user._id%>"><%= user.name%></a></li>
+                                    <% }) %>
+
+                              </ul>
+                          </div>
+                         <% } %>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -370,13 +390,13 @@ input {
     <!--::about_us part end::-->
 
     <!--FAQ Section -->
-<!--     <section class="faq">
+    <section class="faq">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-8 col-lg-8 text-center">
                     <div class="section-title">
-                        <h4>FAQ's</h4>
-                        <h2>Frequently Asking <span>Question’s</span></h2>
+                        <!-- <h4>FAQ's</h4> -->
+                        <h2>Frequently Asked <span>Question’s</span></h2>
                     </div>
                 </div>
             </div>
@@ -391,14 +411,17 @@ input {
                                         <h5 class="mb-0">
                                             <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                                                 data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                                What is Lorem Ipsum?
+                                                How to login?
                                             </button>
                                         </h5>
                                     </div>
     
                                     <div id="collapseOne" class="collapse" data-parent="#accordionExample">
                                         <div class="card-body">
-                                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.
+                                        Click on the login button on the home page. If you have not signed up earlier, fill the details and click on the signup button. 
+                                        A verification email will be sent to the registered email address. Go to your email and click on that link. 
+                                        A 'Verified Successfully' message will appear. 
+                                        Click on the login link at the bottom, add your login details and click on login.  
                                         </div>
                                     </div>
                                 </div>
@@ -408,13 +431,13 @@ input {
                                         <h5 class="mb-0">
                                             <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                                                 data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                Where does it come from?
+                                               How to add a material (note/question paper)?
                                             </button>
                                         </h5>
                                     </div>
                                     <div id="collapseTwo" class="collapse" data-parent="#accordionExample">
                                         <div class="card-body">
-                                            Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. 
+                                            Go to the profile page, click on add note button, fill the options and submit. (Kindly, see the uploading percentage in the bottom left of screen). 
                                         </div>
                                     </div>
                                 </div>
@@ -424,13 +447,13 @@ input {
                                         <h5 class="mb-0">
                                             <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                                                 data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                               Why do we use it?
+                                               How to Remove a material (note/question paper)? 
                                             </button>
                                         </h5>
                                     </div>
                                     <div id="collapseThree" class="collapse" data-parent="#accordionExample">
                                         <div class="card-body">
-                                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. 
+                                            Go to the profile section. See the list of notes you have uploaded. Click on the delete icon along with the material you want to delete.  
                                         </div>
                                     </div>
                                 </div>
@@ -440,64 +463,64 @@ input {
                                         <h5 class="mb-0">
                                             <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                                                 data-target="#collapse4" aria-expanded="false" aria-controls="collapseThree">
-                                                Where can I get some?
+                                                How to check the materials (notes/question papers) available? 
                                             </button>
                                         </h5>
                                     </div>
                                     <div id="collapse4" class="collapse" data-parent="#accordionExample">
                                         <div class="card-body">
-                                            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour
+                                            Go to the Hub section from Navbar. Click on the branch button, click on either the view note or view question paper in the desired semester. The material page will appear. 
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-    
-                            <div class="col-xl-6 col-lg-6">
-                                <div class="card">
+                                           <div class="card">
                                     <div class="card-header">
                                         <h5 class="mb-0">
                                             <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                                                 data-target="#collapse5" aria-expanded="false" aria-controls="collapseOne">
-                                                What is Lorem Ipsum?
+                                                How to request materials (notes/question papers) ? 
                                             </button>
                                         </h5>
                                     </div>
     
                                     <div id="collapse5" class="collapse" data-parent="#accordionExample">
                                         <div class="card-body">
-                                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.
+                                            In the notes page, click on the request note/question button. Fill all the details and submit it.
                                         </div>
                                     </div>
                                 </div>
-    
                                 <div class="card">
                                     <div class="card-header">
                                         <h5 class="mb-0">
                                             <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                                                 data-target="#collapse6" aria-expanded="false" aria-controls="collapseTwo">
-                                                Where does it come from?
+                                                How to check the requested items? 
                                             </button>
                                         </h5>
                                     </div>
                                     <div id="collapse6" class="collapse" data-parent="#accordionExample">
                                         <div class="card-body">
-                                            Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. 
+                                            Go to the profile page and check the request bar. 
+                                            The subject with a strike in it means it is already being uploaded by some user. 
                                         </div>
                                     </div>
                                 </div>
     
+                            </div>
+                    
+                            <div class="col-xl-6 col-lg-6">
                                 <div class="card">
                                     <div class="card-header">
                                         <h5 class="mb-0">
                                             <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                                                 data-target="#collapse7" aria-expanded="false" aria-controls="collapseThree">
-                                                Why do we use it?
+                                                How to check other profiles? 
                                             </button>
                                         </h5>
                                     </div>
                                     <div id="collapse7" class="collapse" data-parent="#accordionExample">
                                         <div class="card-body">
-                                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+                                            Click on the search button on the home page. Type the name, click on the name which will appear.
                                         </div>
                                     </div>
                                 </div>
@@ -506,14 +529,71 @@ input {
                                         <h5 class="mb-0">
                                             <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                                                 data-target="#collapse8" aria-expanded="false" aria-controls="collapseThree">
-                                                Where can I get some?
+                                                How to check materials related to a particular user? 
                                             </button>
                                         </h5>
                                     </div>
                                     <div id="collapse8" class="collapse" data-parent="#accordionExample">
                                         <div class="card-body">
-                                            
-                                            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour
+                                           Go to the search bar on the home page. Search for the user name and click on user name.After going to the particular user's profile page, check the notes he/she has uploaded. 
+                                        </div>
+                                    </div>
+                                </div>
+                                                               <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                                data-target="#collapse9" aria-expanded="false" aria-controls="collapseThree">
+                                                How does the profile view count work?  
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapse9" class="collapse" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                           Whenever someone visits another profile page, the count will increase by one. 
+                                        </div>
+                                    </div>
+                                </div>
+                                                               <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                                data-target="#collapse10" aria-expanded="false" aria-controls="collapseThree">
+                                                How does the download/upload count work?                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapse10" class="collapse" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                           Whenever someone downloads a material, the download/upload count increase by one.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                                data-target="#collapse11" aria-expanded="false" aria-controls="collapseThree">
+                                                How does the rating system work?                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapse11" class="collapse" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                           A user can rate the materials uploaded by other users. The average of all the ratings will appear on the profile page of the user who uploaded it. However, a user cannot rate his own materials.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                                data-target="#collapse12" aria-expanded="false" aria-controls="collapseThree">
+                                                How to update profile?  
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapse12" class="collapse" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                        Click on the edit detail button on the profile page and add details in it.
                                         </div>
                                     </div>
                                 </div>
@@ -527,7 +607,7 @@ input {
                 </div>
             </div>
         </div>
-    </section> -->
+    </section>
 
 
     <!-- End FAQ Section -->
@@ -603,9 +683,9 @@ input {
                     <div class="single_footer_part">
                         <h4>Popular Notes</h4>
                         <ul class="list-unstyled">
+                            <!-- <li><a href="">Topper ke Notes</a></li>
                             <li><a href="">Topper ke Notes</a></li>
-                            <li><a href="">Topper ke Notes</a></li>
-                            <li><a href="">Topper ke Notes</a></li>
+                            <li><a href="">Topper ke Notes</a></li> -->
                         </ul>
                     </div>
                 </div>
@@ -613,9 +693,9 @@ input {
                     <div class="single_footer_part">
                         <h4>Recent Uploads</h4>
                         <ul class="list-unstyled">
-                            <li><a href="">Newbie 1</a></li>
+                            <!-- <li><a href="">Newbie 1</a></li>
                             <li><a href="">Newbie 2</a></li>
-                            <li><a href="">Newbie 3</a></li>
+                            <li><a href="">Newbie 3</a></li> -->
                         </ul>
                     </div>
                 </div>
@@ -623,9 +703,9 @@ input {
                     <div class="single_footer_part">
                         <h4>Most Downloaded</h4>
                         <ul class="list-unstyled">
+                            <!-- <li><a href="">Topper ke Notes</a></li>
                             <li><a href="">Topper ke Notes</a></li>
-                            <li><a href="">Topper ke Notes</a></li>
-                            <li><a href="">Topper ke Notes</a></li>
+                            <li><a href="">Topper ke Notes</a></li> -->
                         </ul>
                     </div>
                 </div>
@@ -633,9 +713,9 @@ input {
                     <div class="single_footer_part">
                         <h4>Popular Profiles</h4>
                         <ul class="list-unstyled">
-                            <li><a href="">Topper Nibba 1</a></li>
+                            <!-- <li><a href="">Topper Nibba 1</a></li>
                             <li><a href="">Topper Nibba 2</a></li>
-                            <li><a href="">Topper Nibba 3</a></li>
+                            <li><a href="">Topper Nibba 3</a></li> -->
                         </ul>
                     </div>
                 </div>
