@@ -80,8 +80,8 @@ h1 {
 
 .item {
   width: 300px;
-  height: 300px;
-  margin: 150px 20px 0;
+  height: 350px;
+  margin: 100px 20px 0;
   padding: 5px;
   border-radius: 2px;
   background-color: white;
@@ -104,7 +104,7 @@ h1 {
 }
 
 .item:hover {
-  height: 330px;
+  height: 380px;
   padding: 15px;
   -webkit-transform: translateY(-68px);
   -ms-transform: translateY(-68px);
@@ -145,6 +145,11 @@ h1 {
   -webkit-animation: slideOut .15s ease-out .55s forwards;
   -o-animation: slideOut .15s ease-out .55s forwards;
   animation: slideOut .15s ease-out .55s forwards
+}
+.item:hover p:nth-of-type(5) span {
+  -webkit-animation: slideOut .10s ease-out .60s forwards;
+  -o-animation: slideOut .10s ease-out .60s forwards;
+  animation: slideOut .10s ease-out .60s forwards
 }
 
 .item:hover .view {
@@ -190,7 +195,7 @@ figure {
 }
 
 figcaption {
-  height: 130px;
+  height: 160px;
   width: 100%;
   padding: 0;
   position: absolute;
