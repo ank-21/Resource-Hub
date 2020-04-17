@@ -267,24 +267,45 @@ router.post('/contactus',(req,res)=>{
 
 //admin requests
 router.get('/hub/admin/21',ensureAuthenticated,async(req,res)=>{
-    const admins_id = ['5e8f94ee8500c35ebc9a11c9','5e936a7f2350706f9a0c5542','5e9325bd2350706f9a0c5541'];
+    const admins_id = ['5e8f94ee8500c35ebc9a11c9','5e936a7f2350706f9a0c5542','5e960d662287d91ca0703452'];
     const auth = admins_id.indexOf(String(req.user._id));
     if(auth==-1){
         res.render('error');
     }else{
-        const users = await User.find();
-        const notes = await Notes.find();
-        const reports = await Report.find();
-        const requestNotes = await RequestNotes.find();
-        const deleteNote = await DeleteNote.find(); 
+        const data = req.query.model;
+        console.log(data);
+        var arr = [];
+        if(data==undefined ||data=='User'){
+            var dataDetails = await User.find();
+            arr = ['name','email','date','branch','semester','phnNo','verified','uploadsCount','downloadCountUser'];
+        }else if(data=='Notes'){
+            var dataDetails = await Notes.find();
+            arr = ['branch','semester','subject','notesLoc','profName','userName','downloadCount','noteType','year'];
+        }else if(data=='Report'){
+            var dataDetails = await Report.find();
+            arr = ['name','email','subject','notesLoc','message'];
+        }else if(data=='RequestNotes'){
+            var dataDetails = await RequestNotes.find();
+            arr = ['branch','semester','subject','solved','profName','noteType','year'];
+        }else if(data=='DeleteNote'){
+            var dataDetails = await DeleteNote.find();
+            arr = ['branch','semester','subject','notesLoc'];
+        }
+        console.log("details",dataDetails);
+        var obj = dataDetails[0];
+        console.log(obj);
+        console.log(arr[0]);
+        
+        //console.log(obj.arr[0]);
 
+        //console.log(Object.getOwnPropertyNames(obj));
+        
+        //console.log(arr);
+                
         res.render('admin',{
             name:req.user.name,
-            users,
-            notes,
-            reports,
-            requestNotes,
-            deleteNote
+            dataDetails,
+            arr
         })
     }
 });
