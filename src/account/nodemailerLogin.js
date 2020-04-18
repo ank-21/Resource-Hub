@@ -13,8 +13,8 @@ var transporter = nodemailer.createTransport({
     },
     pool: true
   });
-  //const url = `http://18.191.249.98:3000/users/signup/${data.token}?data=${data.id}`;
-  const url = `http://localhost:3000/users/signup/${data.token}?data=${data.id}`;
+  const url = `http://18.191.249.98:3000/users/signup/${data.token}?data=${data.id}`;
+  //const url = `http://localhost:3000/users/signup/${data.token}?data=${data.id}`;
   var mailOptions = {
     from: keys.mail.email,
     to: `${data.email}`,
