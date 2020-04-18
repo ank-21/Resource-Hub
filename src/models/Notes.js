@@ -41,6 +41,10 @@ const NotesSchema = new mongoose.Schema({
     },
     year:{
         type:Number
+    },
+    reports:{
+        type:Number,
+        default:0
     }
 })
 

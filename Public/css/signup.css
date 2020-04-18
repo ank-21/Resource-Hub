@@ -169,7 +169,7 @@ section#formHolder {
   line-height: 0.1em;
   margin: 4.2vh 0 20px;
 }
-.email-handle span{font-size:30px;}
+.email-handle span{font-size:19px;}
 @media screen and (max-width: 768px){
   .email-handle span{font-size:2.8vh;}
 }
@@ -231,7 +231,7 @@ section#formHolder {
   color: #f95959;
 }
 .form form .CTA {
-      margin-top: 40px;
+      margin-top: 2.4vh;
     /* margin-left: 19%; */
     text-align: center;
 }
@@ -551,8 +551,8 @@ video{
 }
 
 #signh3{
-  font-size: 3.6vh;
-  margin-top: 10vh;
+  font-size: 3.4vh;
+  margin-top: 13.4vh;
 }
 
 @media screen and (max-width: 700px) and (min-width: 400px){

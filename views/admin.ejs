@@ -20,8 +20,10 @@
                 <span>Logged in as: </span>
                 <hr>
                 <span id="name"><b><%= name %></b></span>
+                
             </div>
             <div id="options" class="col-md-6">
+              
                 <!-- <select id="selectoption">
                     <option value="1"><a href="/hub/admin/21?model=User">Users</a></option>
                     <option value="2"><a href="/hub/admin/21?model=Notes">Notes</a></option>
@@ -30,12 +32,15 @@
                     <option value="5"><a href="/hub/admin/21?model=RequestNotes">Question Papers</a></option>
                 </select> -->
                 <select name="forma" onchange="location = this.value;" id="selectoption">
+                    <option value="/hub/admin/21?model=User" hidden>Users</option>
                     <option value="/hub/admin/21?model=User">Users</option>
                     <option value="/hub/admin/21?model=Notes">Notes</option>
                     <option value="/hub/admin/21?model=Report">Report</option>
                     <option value="/hub/admin/21?model=DeleteNote">Delete Notes</option>
                     <option value="/hub/admin/21?model=RequestNotes">Request Notes</option>
-                   </select>
+                </select>
+                   <h1 style="    position: relative;
+                   top: 14vh;">Model - <span style="color: blueviolet;"><%=data%></span></h1>
             </div>
         </div>
     </div>
@@ -43,19 +48,159 @@
   <div class="row">
     <div class="col-xs-12">
       <table class="table table-bordered table-hover dt-responsive">
-        <thead>
-          <tr>
-            <% for(var i=0;i<arr.length;i++){%>
-                <th><%=arr[i]%></th>
-              <% }%>
+        
+          <% if(data==undefined||data=='User'){ %>
+            <thead>
+              <tr>
+                <th>User Id</th>
+                <th>Name</th>
+                <th>Email Id</th>
+                <th>branch</th>
+                <th>Semester</th>
+                <th>Contact No</th>
+                <th>Verified</th>
+                <th>Uploads</th>
+                <th>Downloads</th>
+                <th>Other's download</th>
+                <th>Reports</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% dataDetails.forEach((data) => { %>
+                <tr>
+                  <td><%= data._id %></td>
+                  <td><%= data.name %></td>
+                  <td><%= data.email %></td>
+                  <td><%= data.branch %></td>
+                  <td><%= data.Semester %></td>
+                  <td><%= data.phnNo %></td>
+                  <td><%= data.verified %></td>
+                  <td><%= data.uploadsCount %></td>
+                  <td><%= data.downloadCountUser %></td>
+                  <td><%= data.notesDownloadedByUsers %></td>
+                  <td><%= data.reports %></td>  
+                </tr>
+              <% })%>
+  
+            </tbody>
+          <%}%>
+          <% if(data=='Notes'){ %>
+            <thead>
+              <tr>
+                <th>Note Id</th>
+                <th>Branch</th>
+                <th>Semester</th>
+                <th>Subject</th>
+                <th>year</th>
+                <th>Notes Location</th>
+                <th>Note Type</th>
+                <th>prof Name</th>
+                <th>Uploaded by</th>
+                <th>Download Count</th>
+                <th>Reports</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% dataDetails.forEach((data) => { %>
+                <tr>
+                  <td><%= data._id %></td>
+                  <td><%= data.branch %></td>
+                  <td><%= data.semester %></td>
+                  <td><%= data.subject %></td>
+                  <td><%= data.year %></td>
+                  <td><%= data.notesLoc %></td>
+                  <td><%= data.noteType %></td>
+                  <td><%= data.profName %></td>
+                  <td><%= data.userName %></td>
+                  <td><%= data.downloadCount %></td>
+                  <td><%= data.reports %></td>
+                </tr>
+              <% })%>
+            </tbody>
+
+          <%}%>
+          <% if(data=='Report'){ %>
+            <thead>
+              <tr>
+                <th>User Id</th>
+                <th>Name</th>
+                <th>Email Id</th>
+                <th>Subject</th>
+                <th>Message</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% dataDetails.forEach((data) => { %>
+                <tr>
+                  <td><%= data._id %></td>
+                  <td><%= data.name %></td>
+                  <td><%= data.email %></td>
+                  <td><%= data.subject %></td>
+                  <td><%= data.message %></td>
+                </tr>
+              <% })%>
+  
+            </tbody>
+
+          <%}%>
+          <% if(data=='RequestNotes'){ %>
+            <thead>
+              <tr>
+                <th>Note Id</th>
+                <th>Branch</th>
+                <th>Semester</th>
+                <th>Subject</th>
+                <th>Solved</th>
+                <th>Note Type</th>
+                <th>prof Name</th>
+                <th>year</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% dataDetails.forEach((data) => { %>
+                <tr>
+                  <td><%= data._id %></td>
+                  <td><%= data.branch %></td>
+                  <td><%= data.semester %></td>
+                  <td><%= data.subject %></td>
+                  <td><%= data.solved %></td>
+                  <td><%= data.noteType %></td>
+                  <td><%= data.profName %></td>
+                  <td><%= data.year %></td>
+                </tr>
+              <% })%>
+  
+            </tbody>
+
+          <%}%>
+          <% if(data=='DeleteNote'){ %>
+            <thead>
+              <tr>
+                <th>Note Id</th>
+                <th>Deleted Via</th>
+                <th>Branch</th>
+                <th>Semester</th>
+                <th>Subject</th>
+                <th>Note Location</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% dataDetails.forEach((data) => { %>
+              <tr>
+                <td><%= data._id %></td>
+                <td><%= data.via %></td>
+                <td><%= data.branch %></td>
+                <td><%= data.Semester %></td>
+                <td><%= data.subject %></td>
+                <td><%= data.notesLoc %></td>  
+              </tr>
+              <% })%>
+  
+            </tbody>
+          <%}%>
             
-          </tr>
-        </thead>
-        <tbody>
             
           
-
-        </tbody>
       </table>
     </div>
   </div>

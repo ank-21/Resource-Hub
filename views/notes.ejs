@@ -206,7 +206,7 @@
                         <p><span>Subject - <%= note.subject %></span></p>
                         <p><span>Professor - <%= note.profName %></span></p>
                         <p><span>By <%= note.userName %></span></p>
-                        <p><span><a href="">Report Inappropriate</a></span></p>
+                        <p><span><a href="/users/branch/semester/notes/report?branch=<%= note.branch %>&semester=<%= note.semester %>&noteId=<%= note._id%>&noteType=<%= note.noteType %>">Report Inappropriate - <%= note.reports%></a></span></p>
                     </figcaption>
                 </figure>
 

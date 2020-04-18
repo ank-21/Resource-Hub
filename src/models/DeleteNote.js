@@ -12,6 +12,10 @@ const DeleteNoteSchema = new mongoose.Schema({
     },
     notesLoc:{
         type: String
+    },
+    via:{
+        type:String,
+        default:'user'
     }
 });
 

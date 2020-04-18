@@ -17,9 +17,13 @@ userRouter.get('/signup',(req,res)=>{
 
 userRouter.post('/signup',(req,res)=>{
     console.log("req.body ",req.body);
-    const {name,email,password,password2} = req.body;  
+    const {name,email,password,password2,terms} = req.body;  
     let errors = [];
     //error handling
+    
+    if(terms!='yes'){
+        errors.push({msg : "Please check the terms & Conditions box." })
+    }
 
     if(password !== password2){
         errors.push({msg : "Password and Confirm Password Should be same." })
@@ -61,7 +65,7 @@ userRouter.post('/signup',(req,res)=>{
                         name,
                         email,
                         password,
-                        date:Date.now()
+                        date:Date.now(),
                     });
                     bcrypt.genSalt(10, (err, salt) => {
                         bcrypt.hash(newUser.password, salt, (err, hash) => {

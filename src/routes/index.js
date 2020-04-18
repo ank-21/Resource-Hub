@@ -137,10 +137,18 @@ router.get('/profile',ensureAuthenticated, async(req,res)=>{
         ratingValue = 0;
     }
     
+    //for report of notes decrementing user rating
+    if(req.user.reports>=5 && ratingValue != 0){
+        ratingValue = ratingValue - req.user.reports/5;
+    }
+    console.log("rationg value",ratingValue);
+    
 
     if(ratingValue%1!=0){
         ratingValue = ratingValue.toFixed(1);
     }
+
+    
 
     res.render('profile',{
         user:req.user,
@@ -229,6 +237,10 @@ router.get('/users/publicProfile/:id',ensureAuthenticated,async(req,res)=>{
         ratingValue = 0;
     }
     
+    //for report of notes decrementing user rating
+    if(searchUser.reports>=5&&ratingValue!=0){
+        ratingValue = ratingValue - searchUser.reports/5;
+    }
 
     if(ratingValue%1!=0){
         ratingValue = ratingValue.toFixed(1);
@@ -246,6 +258,8 @@ router.get('/users/publicProfile/:id',ensureAuthenticated,async(req,res)=>{
     
             
 })
+
+
 
 //form in index.js
 router.post('/contactus',(req,res)=>{
@@ -265,9 +279,13 @@ router.post('/contactus',(req,res)=>{
         })
 });
 
+
+
+
+
 //admin requests
 router.get('/hub/admin/21',ensureAuthenticated,async(req,res)=>{
-    const admins_id = ['5e8f94ee8500c35ebc9a11c9','5e936a7f2350706f9a0c5542','5e960d662287d91ca0703452'];
+    const admins_id = ['5e95c02f6a12672fe41ba35e','5e95ab7d684e942e865c884d','5e94dd539d2c72236dbe41cc'];
     const auth = admins_id.indexOf(String(req.user._id));
     if(auth==-1){
         res.render('error');
@@ -277,35 +295,23 @@ router.get('/hub/admin/21',ensureAuthenticated,async(req,res)=>{
         var arr = [];
         if(data==undefined ||data=='User'){
             var dataDetails = await User.find();
-            arr = ['name','email','date','branch','semester','phnNo','verified','uploadsCount','downloadCountUser'];
         }else if(data=='Notes'){
             var dataDetails = await Notes.find();
-            arr = ['branch','semester','subject','notesLoc','profName','userName','downloadCount','noteType','year'];
+            
         }else if(data=='Report'){
             var dataDetails = await Report.find();
-            arr = ['name','email','subject','notesLoc','message'];
         }else if(data=='RequestNotes'){
             var dataDetails = await RequestNotes.find();
-            arr = ['branch','semester','subject','solved','profName','noteType','year'];
         }else if(data=='DeleteNote'){
             var dataDetails = await DeleteNote.find();
-            arr = ['branch','semester','subject','notesLoc'];
         }
-        console.log("details",dataDetails);
-        var obj = dataDetails[0];
-        console.log(obj);
-        console.log(arr[0]);
         
-        //console.log(obj.arr[0]);
-
-        //console.log(Object.getOwnPropertyNames(obj));
-        
-        //console.log(arr);
-                
+        console.log(dataDetails);
+         
         res.render('admin',{
             name:req.user.name,
             dataDetails,
-            arr
+            data
         })
     }
 });

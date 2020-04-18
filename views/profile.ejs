@@ -386,6 +386,16 @@
                     </div>
                   </div>
                 </li>
+                <li class="collection-item">
+                  <div class="row">
+                    <div class="col s6 l6">
+                        <span class="user-details">Reports - </span> 
+                      </div>
+                    <div class="col s6 l2">
+                        <span style="font-size: 1.3rem;"><%= user.reports %></span>
+                    </div>
+                  </div>
+                </li>
                 
               </ul>
             </div>
@@ -440,7 +450,10 @@
         <% }); %>
           </ul>
           <div class="pagination">
-            <a href="/profile?page=<%=page-1%>&limit=3" class="prev"><i class="fas fa-angle-left"></i></a>
+            <% if(lastExact!=0){ %>
+              <a href="/profile?page=<%=page-1%>&limit=3" class="prev"><i class="fas fa-angle-left"></i></a>
+            <% }%>
+            
             
             <% for(var i=1;i<=lastExact;i++){%>
               <% if(i==page){ %>
@@ -450,7 +463,9 @@
               <% } %>
               
             <% }%>
+            <% if(lastExact!=0){ %>
             <a href="/profile?page=<%=page+1%>&limit=3" class="next"><i class="fas fa-angle-right"></i></a>
+            <% }%>
           </div>
         </div>
         <div class="col l2"><h1></h1></div>
@@ -503,7 +518,9 @@
               
             </ul>
             <div class="pagination">
+              <% if(lastExactRequest!=0){ %>
               <a href="/profile?pageRequest=<%=pageRequest-1%>&limit2=4" class="prev"><i class="fas fa-angle-left"></i></a>
+              <% } %>
               <% for(var i=1;i<=lastExactRequest;i++){%>
                 <% if(i==pageRequest){ %>
                   <a href="/profile?pageRequest=<%=i%>&limit2=4" class="num numactive"><%=i%></a>
@@ -512,7 +529,9 @@
                 <% } %>
                 
               <% }%>
+              <% if(lastExactRequest!=0){ %>
               <a href="/profile?pageRequest=<%=pageRequest+1%>&limit2=4" class="next"><i class="fas fa-angle-right"></i></a>
+              <% }%>
             </div>
           </div>
           

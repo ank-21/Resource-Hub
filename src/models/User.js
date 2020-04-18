@@ -72,6 +72,10 @@ const UserSchema = new mongoose.Schema({
     },
     token:{
         type:String
+    },
+    reports:{
+        type:Number,
+        default:0
     }
 })
 

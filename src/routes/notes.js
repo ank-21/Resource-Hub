@@ -6,6 +6,7 @@ const Notes = require('../models/Notes');
 const RequestNotes = require('../models/RequestNotes');
 const DeleteNote = require('../models/DeleteNote');
 const moment = require('moment');
+const {reportsMail,DeleteMail} = require('../account/nodemailer');
 
 // /notes is in app.use
 //for getting branch page
@@ -184,7 +185,7 @@ router.get('/branch/semester/notes/download',(req,res)=>{
             const user = req.user;
             console.log(userId,user._id);
             
-            if(userId != user._id){
+            if(String(userId) != String(user._id)){
                 User.findById(userId)
                     .then(user =>{
                         user.notesDownloadedByUsers = user.notesDownloadedByUsers+ 1;
@@ -208,9 +209,12 @@ router.get('/branch/semester/notes/download',(req,res)=>{
             }    
         }).catch(e => {
             req.flash('notes_msg', `Note couldn't be downloaded`);
-            res.redirect('/users/branch');
+            res.redirect(`/users/branch/semester/notes?branch=${note.branch}&semester=${note.semester}`);
         })
 });
+
+
+
 
 //request page
 router.post('/branch/semester/notes/request',ensureAuthenticated,async(req,res)=> {
@@ -319,19 +323,87 @@ router.post('/branch/semester/notes/star_rating/:id', (req,res)=> {
 
 //deleting a note
 router.get('/note/delete/:id',async(req,res)=> {
-
     const note = await Notes.findById(req.params.id);
-    const newdeleteNote = new DeleteNote({
-        branch:note.branch,
-        subject:note.subject,
-        semester:note.semester,
-        notesLoc:note.notesLoc
-    })
-    await newdeleteNote.save()
-    await User.findByIdAndUpdate(req.user._id,{$inc : {uploadsCount:-1}});
-    await Notes.findByIdAndDelete(req.params.id);
-    req.flash('profile_msg', ' Note deleted!');
-    res.redirect('/profile');  
+    
+    if(req.query.via=='admin'){
+        var newdeleteNote = new DeleteNote({
+            branch:note.branch,
+            subject:note.subject,
+            semester:note.semester,
+            notesLoc:note.notesLoc,
+            via:'admin'
+        })
+        await newdeleteNote.save()
+        await User.findByIdAndUpdate(req.query.userId,{$inc : {uploadsCount:-1}});
+        await Notes.findByIdAndDelete(req.params.id);
+        req.flash('notes_msg', 'Note reported as well as deleted');
+        res.redirect(`/users/branch/semester/notes?branch=${req.query.branch}&semester=${req.query.semester}`);
+        
+    }else{
+        var newdeleteNote = new DeleteNote({
+            branch:note.branch,
+            subject:note.subject,
+            semester:note.semester,
+            notesLoc:note.notesLoc
+        })
+        await newdeleteNote.save()
+        await User.findByIdAndUpdate(req.user._id,{$inc : {uploadsCount:-1}});
+        await Notes.findByIdAndDelete(req.params.id);
+        req.flash('profile_msg', ' Note deleted!');
+        res.redirect('/profile');
+    }
+      
 })
+
+
+//report route
+
+router.get('/branch/semester/notes/report',(req,res)=>{
+    Notes.find({branch:req.query.branch,semester:req.query.semester,_id:req.query.noteId})
+        .then(note => {            
+            //for notes downloaded by other user
+            const userId = note[0].userId;
+            User.findById(userId)
+                .then(user=>{
+                    if(String(user._id)==String(req.user._id)){
+                        req.flash('notes_msg', `Instead of Reporting, delete your note from profile page, if it is inappropiate`);
+                        res.redirect(`/users/branch/semester/notes?branch=${note[0].branch}&semester=${note[0].semester}`);
+                    }else{
+                        note[0].reports = note[0].reports + 1;
+                        user.reports = user.reports+1;
+                        user.save();
+                        if(note[0].reports>=3 && note[0].reports<=5 ){
+                            reportsMail({
+                                noteType:req.query.noteType,
+                                branch:req.query.branch,
+                                semester:req.query.semester,
+                                name:user.name,
+                                email:user.email,
+                            })
+                        }
+                        if(note[0].reports>5){
+                            DeleteMail({
+                                noteType:req.query.noteType,
+                                branch:req.query.branch,
+                                semester:req.query.semester,
+                                name:user.name,
+                                email:user.email,
+                            })
+                            res.redirect(`/users/note/delete/${note[0]._id}?branch=${req.query.branch}&semester=${req.query.semester}&userId=${user._id}&via=admin`)
+                        }  
+                    }
+                    note[0].save()
+                        .then(note => {
+                            console.log("note in then",note);
+                            req.flash('notes_msg', `Note Reported`);
+                            res.redirect(`/users/branch/semester/notes?branch=${note.branch}&semester=${note.semester}`);
+                        })
+                    }).catch(e=>{
+                        console.log(e);
+                        
+                        res.redirect(`/users/branch/semester/notes?branch=${req.query.branch}&semester=${req.query.semester}`)
+                    })    
+            })       
+});
 
 module.exports = router;
