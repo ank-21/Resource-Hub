@@ -304,7 +304,7 @@
                   
                 </div>
                 <div class="card-content">
-                  <img src="<%= user.avatar ? user.avatar : '/img/avatar.png' %>" alt="" class="circle responsive-img card-profile-image">
+                  <img src="<%= user.avatar ? user.avatar : '/img/avatar.png' %>" alt="" class="circle responsive-img card-profile-image" style="width: 140px;height: 120px;">
                   <a id="modalBtn" class="btn-floating btn-move-up waves-effect waves-light darken-2 right">
                     <p style="font-size: 15px; margin-top: 7.5px;">
                       EDIT DETAILS
@@ -331,7 +331,7 @@
                     <div class="col s6 l6">
                       <span class="user-details">Branch - </span>
                     </div>
-                    <div class="col s6 l2">
+                    <div class="col s6 l6">
                        <span style="font-size: 1.3rem;"><%= user.branch %></span>
                     </div>
                   </div>

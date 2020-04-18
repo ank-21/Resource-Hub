@@ -285,7 +285,7 @@ router.post('/contactus',(req,res)=>{
 
 //admin requests
 router.get('/hub/admin/21',ensureAuthenticated,async(req,res)=>{
-    const admins_id = ['5e95c02f6a12672fe41ba35e','5e95ab7d684e942e865c884d','5e94dd539d2c72236dbe41cc'];
+    const admins_id = ['5e95c02f6a12672fe41ba35e','5e95ab7d684e942e865c884d','5e94dd539d2c72236dbe41cc','5e9ae832f5e826571041ee7e'];
     const auth = admins_id.indexOf(String(req.user._id));
     if(auth==-1){
         res.render('error');
