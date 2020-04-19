@@ -23,6 +23,14 @@ body {
   vertical-align: middle;
   top: -20%;
 }
+#editModal .modal-content{
+  margin: 10% auto !important;
+}
+@media screen and (max-width: 1500px) and (min-width: 800px){
+  #editModal .modal-content{
+    margin: 20% auto !important;
+  }
+}
 @keyframes modalopen {
   from {
     opacity: 0;
@@ -61,6 +69,20 @@ body {
 }
 
 #closeBtn:hover,.closeBtn:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#editClose {
+  color: #ccc;
+  float: right;
+  font-size: 50px;
+  margin-top: -10px;
+  margin-right: -2px;
+}
+
+#editClose:hover,.editClose:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;

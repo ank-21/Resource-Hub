@@ -421,7 +421,7 @@ var editmodal = document.getElementById('editModal');
 var editmodalBtn = document.getElementById('editBtn');
 var editcloseBtn = document.getElementById('editClose');
 
-editBtn.addEventListener('click', openEditModal);
+editmodalBtn.addEventListener('click', openEditModal);
 function openEditModal(){
   editmodal.style.display = 'block';
 }

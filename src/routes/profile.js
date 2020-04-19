@@ -65,6 +65,8 @@ const storage = multer.diskStorage({
     destination: function(req,file,cb){
         console.log("inside multer for notes",req.user);
         var newDestination = __dirname + `/../../Public/uploadsNotes/${req.user._id}`;
+        
+
         var stat = null;
         try {
             stat = fs.statSync(newDestination);

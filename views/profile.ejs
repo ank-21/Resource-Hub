@@ -199,6 +199,11 @@
   }*/
   .radio1-label{position: relative;left: -3.4vw;}
 .radio2-label{position: relative;left: 1.4vw;}
+
+#editBtn{
+  color: #00BCD4;
+  cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -230,8 +235,33 @@
         <p id="editClose">&times;</p>
         <h5><b>EDIT DETAILS</b></h5>
         <input type="text" name="" placeholder="Name">
-        <input type="numberr" name="" placeholder="Year">
         <input type="text" name="" placeholder="Professor's Name">
+        <input id="year" type="number" name = "year" placeholder="Year" style="width: 100%;background: transparent;border: 1px solid gray;width: 100%;margin-bottom: 5px;height: 40px;padding: 10px 20px;box-sizing: border-box;border-radius: 40px;box-shadow: none;outline: none;color: #fff;background: transparent;border: 1px solid #fff;">
+        <div id="selectBranch">
+          <p>Select Branch:</p>
+          <select style="display: block;" required="true" name ="branch">
+            <option value="CSE">Computer Science</option>
+            <option value="ECE">Electronics & Communication</option>
+            <option value="EE">Electrical</option>
+            <option value="ME">Mechanical</option>
+            <option value="CE">Civil</option>
+            <option value="EIE">Electronics & Instrumentation</option>
+          </select>
+        </div>
+
+        <div id="selectSem">
+          <p>Select Semester:</p>
+          <select style="display: block;" required="true" name="semester">
+            <option value="1">1st</option>
+            <option value="2">2nd</option>
+            <option value="3">3rd</option>
+            <option value="4">4th</option>
+            <option value="5">5th</option>
+            <option value="6">6th</option>
+            <option value="7">7th</option>
+            <option value="8">8th</option>
+          </select>
+        </div>
         <p style="text-align: center; display: block;">
           <input type="submit" value="Edit Details">
         </p>      
@@ -456,7 +486,7 @@
                   
                   <div class="">
                     <a href="/users/note/delete/<%=note._id %>"<i class="fas fa-trash-alt"></i></a>
-                    <a href=""  id="editBtn"><i class="fas fa-edit"></i></a>
+                    <i class="fas fa-edit" id="editBtn"></i>
                   </div>
                   
                 </div>
