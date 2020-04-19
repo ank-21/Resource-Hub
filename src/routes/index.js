@@ -100,6 +100,8 @@ router.get('/profile',ensureAuthenticated, async(req,res)=>{
     var pageRequest = parseInt(req.query.pageRequest)
     var limit2 = parseInt(req.query.limit2)/2   //will always be 2
     const RequestAll = await RequestNotes.find();
+    console.log("revdwd",RequestAll);
+    
     const lenghtofRequests = RequestAll.length;
     var requests = [];
     var last2,startIndex,endIndex;
@@ -107,7 +109,7 @@ router.get('/profile',ensureAuthenticated, async(req,res)=>{
        limit2 = 2;
        pageRequest = 1; 
     }
-    last2 = lenghtofRequests/(limit2*2);
+    last2 = lenghtofRequests/(limit2);
     const lastExactRequest = Math.ceil(last2); 
     if(pageRequest > lastExactRequest || pageRequest < 1)
     {
