@@ -109,8 +109,16 @@ router.get('/profile',ensureAuthenticated, async(req,res)=>{
        limit2 = 2;
        pageRequest = 1; 
     }
-    last2 = lenghtofRequests/(limit2);
-    const lastExactRequest = Math.ceil(last2); 
+    const reqNoteOnly = await RequestNotes.find({solved:"false"});  //4
+    const doneNoteOnly = await RequestNotes.find({solved:"true"});   //1
+    if(reqNoteOnly.length>doneNoteOnly.length){
+        last2 = reqNoteOnly.length/limit2;
+    }else{
+        last2 = doneNoteOnly.length/limit2;
+    }
+    
+    const lastExactRequest = Math.ceil(last2);
+    
     if(pageRequest > lastExactRequest || pageRequest < 1)
     {
         pageRequest = 1;
@@ -122,6 +130,7 @@ router.get('/profile',ensureAuthenticated, async(req,res)=>{
     //for request notes details
     const reqNote = await RequestNotes.find({solved:"false"}).sort({_id:-1}).limit(limit2).skip(startIndex2);
     const doneNote = await RequestNotes.find({solved:"true"}).sort({_id:-1}).limit(limit2).skip(startIndex2); 
+     
     
     
     console.log("req note in indexjs for uploaded notes",doneNote);
