@@ -60,7 +60,7 @@ body {
   
 }
 
-#closeBtn {
+#closeBtn0,#closeBtn1 ,#closeBtn2,#closeBtn  {
   color: #ccc;
   float: right;
   font-size: 50px;
@@ -68,13 +68,13 @@ body {
   margin-right: -2px;
 }
 
-#closeBtn:hover,.closeBtn:focus {
+#closeBtn:hover,.closeBtn:focus,#closeBtn0:hover,.closeBtn0:focus,#closeBtn1:hover,.closeBtn1:focus,#closeBtn2:hover,.closeBtn2:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
 }
 
-#editClose {
+#editClose0,#editClose1,#editClose2 {
   color: #ccc;
   float: right;
   font-size: 50px;
@@ -82,7 +82,7 @@ body {
   margin-right: -2px;
 }
 
-#editClose:hover,.editClose:focus {
+#editClose0:hover,.editClose0:focus,#editClose1:hover,.editClose1:focus,#editClose2:hover,.editClose2:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
