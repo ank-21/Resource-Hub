@@ -290,6 +290,4 @@ profile.post('/notes/:id',async function(req,res){
 
 
 
-
-
 module.exports = profile;

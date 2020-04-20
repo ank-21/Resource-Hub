@@ -230,20 +230,34 @@
 
   <div id="editModal<%= countModal%>" class="modal1">
     <div class="modal-content fold1">
-      <form action="/users/editnote/<%= note._id %> " method="post">
+      <form action="/users/editNote/profile/<%= note._id %> " method="post">
         <p id="editClose<%= countModal%>">&times;</p>
         <h5><b>EDIT DETAILS</b></h5>
-
-        <div id="note-ques" style="text-align: center;">
-          <span>
-            <input type="radio" id="note" name="noteType" value="note" class="radio1 radioedit1" style="opacity: 1;">
-            <label class="radiolabel radio_btn radio1-label" for="note">Notes</label>
-          </span>
-          <span>
-            <input type="radio" id="question" name="noteType" value="question" class="radio2 radioedit2" style="opacity: 1;">
-            <label class="radiolabel radio_btn radio2-label" for="question">Question Papers</label>
-          </span>
-        </div>
+        <% if(note.noteType == "note"){ %>
+          <div id="note-ques" style="text-align: center;">
+            <span>
+              <input type="radio" id="note" name="noteType" value="note" checked="checked" class="radio1 radioedit1" style="opacity: 1;">
+              <label class="radiolabel radio_btn radio1-label" for="note">Notes</label>
+            </span>
+            <span>
+              <input type="radio" id="question" name="noteType" value="question" class="radio2 radioedit2" style="opacity: 1;">
+              <label class="radiolabel radio_btn radio2-label" for="question">Question Papers</label>
+            </span>
+          </div>
+        <% } %>
+        <% if(note.noteType == "question"){ %>
+          <div id="note-ques" style="text-align: center;">
+            <span>
+              <input type="radio" id="note" name="noteType" value="note" checked="checked" class="radio1 radioedit1" style="opacity: 1;">
+              <label class="radiolabel radio_btn radio1-label" for="note">Notes</label>
+            </span>
+            <span>
+              <input type="radio" id="question" name="noteType" value="question" checked="checked" class="radio2 radioedit2" style="opacity: 1;">
+              <label class="radiolabel radio_btn radio2-label" for="question">Question Papers</label>
+            </span>
+          </div>
+          <% } %>
+        
         <div id="selectBranch">
           <p>Select Branch:</p>
           <select style="display: block;" required="true" name ="branch">
