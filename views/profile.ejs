@@ -247,6 +247,7 @@
         <div id="selectBranch">
           <p>Select Branch:</p>
           <select style="display: block;" required="true" name ="branch">
+            <option value="<%= note.branch%>" hidden><%= note.branch%></option>
             <option value="CSE">Computer Science</option>
             <option value="ECE">Electronics & Communication</option>
             <option value="EE">Electrical</option>
@@ -259,6 +260,7 @@
         <div id="selectSem">
           <p>Select Semester:</p>
           <select style="display: block;" required="true" name="semester">
+            <option value="<%= note.semester%>" hidden><%= note.semester%></option>
             <option value="1">1st</option>
             <option value="2">2nd</option>
             <option value="3">3rd</option>
@@ -271,7 +273,7 @@
         </div>
         <input type="text" name="subject" placeholder="Subject" value="<%= note.subject %>">
         <input type="text" name="profName" placeholder="Professor's Name" value="<%= note.profName %>">
-        <input id="year" type="number" name = "year" placeholder="Year of the note" value="<%= note.year %>" style="width: 100%;background: transparent;border: 1px solid gray;width: 100%;margin-bottom: 5px;height: 40px;padding: 10px 20px;box-sizing: border-box;border-radius: 40px;box-shadow: none;outline: none;color: #fff;background: transparent;border: 1px solid #fff;">
+        <input id="year" type="number" name = "year" placeholder="Year of the note" value=<%=note.year %> style="width: 100%;background: transparent;border: 1px solid gray;width: 100%;margin-bottom: 5px;height: 40px;padding: 10px 20px;box-sizing: border-box;border-radius: 40px;box-shadow: none;outline: none;color: #fff;background: transparent;border: 1px solid #fff;">
         <p style="text-align: center; display: block;">
           <input type="submit" value="Edit Details">
         </p>      
