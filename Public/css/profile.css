@@ -2973,3 +2973,41 @@ display: none;
     font-size: 30px;
   }
 }
+.radioedit1{left:2.5vw;top:10vh;}
+.radioedit2{left:11vw;top:10vh;}
+
+@media (max-width:768px){
+  .radioedit1{left: 8vw;top: 9.6vh;}
+  .radioedit2{left: 25vw;top: 9.6vh;}
+}
+@media (max-width:550px) and (min-width:500px){
+  .radioedit1{left: 7vw;top: 9.6vh;}
+  .radioedit2{left: 23vw;top: 9.6vh;}
+}
+@media (max-width:500px) and (min-width:460px){
+  .radioedit1{left: 4vw;top: 9.6vh;}
+  .radioedit2{left: 20vw;top: 9.6vh;}
+}
+@media (max-width:460px) and (min-width:420px){
+  .radioedit1{left: 2vw;top: 9.6vh;}
+  .radioedit2{left: 20vw;top: 9.6vh;}
+}
+@media (max-width:420px) and (min-width:400px){
+  .radioedit1{left: 1vw;top: 11vh;}
+  .radioedit2{left: 19vw;top: 11vh;}
+}
+@media (max-width:400px) and (min-width:370px){
+  .radioedit1{left: 6.5vw;top: 11.5vh;}
+  .radioedit2{left: 25vw;top: 11.5vh;}
+}
+@media (max-width:370px) and (min-width:330px){
+  .radioedit1{left: 4vw;top: 11.5vh;}
+  .radioedit2{left: 25vw;top: 11.5vh;}
+}
+@media (max-width:330px){
+  .radioedit1{left: 3vw;top: 12vh;}
+  .radioedit2{left: 26vw;top: 12vh;}
+  .signIn h4{
+    font-size: 30px;
+  }
+}
