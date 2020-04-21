@@ -44,7 +44,7 @@
   left: 38vw;
   bottom:5vh;
 }
-}
+
 .card-alert a:hover {
   color: inherit;
   text-decoration: underline;
@@ -127,7 +127,7 @@
     background: transparent;
     border: 1px solid #fff;
 }
-.portfolio-items{margin-top: 10vh;}
+/* .portfolio-items{margin-top: 10vh;} */
   .search-sort-box {
         margin: 3vh;
         font-size: 1.1rem;
@@ -142,11 +142,11 @@
         font-size: 1.3rem;
     }
 
-    .search-sort-box>button {
+    .search-sort-box button {
         margin-left: 3px;
     }
 
-    .search-box>select {
+    .search-box select {
         font-size: 1.3rem;
         border-radius: 20px;
         outline: none;
@@ -159,25 +159,29 @@
     .search-box{
         display: flex;
         justify-content: center;
-        margin:30px 0;
-        margin-top:15vh;
+        /* margin:30px 0; */
+        margin-top:2vh;
+        margin-bottom: -40px;
         /*top:15vh;*/
         align-items: center;
+        display: grid;
+        grid-template-columns: auto auto auto;
+        width: 100%;
     }
-    .search-box>label{
+    .search-box label{
         font-size: 1.2rem;
-        /*font-weight: bold;*/
+        font-weight: bold;
         /*margin-left:20px;*/
     }
-    .search-box>input{
-        width:200px;
-        margin-left:8px;
-        border-radius: 30px;
-        outline:none;
-        border:1px solid black;
-        padding:5px 10px;
-        /* margin:15px 20px 15px; */
-        font-size:15px;
+    .search-box input{
+        border-radius: 10px;
+         border: 2px solid darkblue; 
+         padding: 5px 10px 5px 10px;
+    }
+    .search-box input:hover{
+        border-radius: 10px;
+         border: 2px solid orangered; 
+         padding: 5px 10px 5px 10px;
     }
     @media screen and (max-width: 768px){
       .search-box{
@@ -189,6 +193,15 @@
       background: darkblue; 
       color: white; 
       margin: 10px;
+      cursor: pointer;
+    }
+    @media screen and (max-width: 750px){
+      #sortRating{
+        margin-bottom: 0;
+      }
+      #sortYear{
+        margin-bottom: 0;
+      }
     }
     #sortRating:hover{
       background: orange;
@@ -200,25 +213,26 @@
       background: darkblue; 
       color: white; 
       margin: 10px;
+      cursor: pointer;
     }
     #sortYear:hover{
       background: orange;
       color: darkblue;
       transition: 0.3s ease-in-out;
     }
-    .search-box{
-      display: grid;
-      grid-template-columns: auto auto auto;
-      width: 100%;
-    }
     .grid-item{
       text-align: center;
-      padding: 20px;
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-top: 40px;
     }
     @media screen and (max-width: 750px){
       .search-box{
         display: grid;
         grid-template-columns: auto;
+      }
+      .grid-item{
+        padding-top: 10px;
       }
     }
 </style>
@@ -280,7 +294,7 @@
     <div class="search-box">
       <div class="grid-item" id="grid1">
           <label class="col s6 m2"><p>Search By Subject:</p></label>
-          <input id="nameInput" onkeyup=searchBySubject() class="col s6 m2" style="margin-right: 30px; border-bottom: 1px solid darkblue; transform: translateX(10px);"></input>
+          <input id="nameInput" onkeyup=searchBySubject() class="col s6 m2"></input>
           <!-- <span class="sort-text" class="col s6 m2">Sort By Rating</span>
             <select onChange=sortByRating() id="myrating" class="col s6 m2">
               <option value="0">0</option>
@@ -291,14 +305,15 @@
                 <option value="5" >5</option>
             </select> -->
       </div>
-      <div class="grid-item" id="grid2">
-          <button onClick=sortRating() id="sortRating">Sort By Rating<span id="arrow">&uarr;</span></button>
-          <button onClick=sortYear() id="sortYear">Sort By Year<span id="arrow1">&uarr;</span></button>
-      </div>
+      
       <div class="grid-item" id="grid3">
           <label class="col s6 m2" style="margin-left: 30px;">Search By Professor:</label><br>
-          <input id="profname" onkeyup=searchByProf() class="col s6 m2" style="margin: 10px; border-bottom: 1px solid darkblue; transform: translateX(10px)"></input>
+          <input id="profname" onkeyup=searchByProf() class="col s6 m2" style="transform: translateX(10px) !important;"></input>
       </div>
+      <div class="grid-item" id="grid2">
+        <button onClick=sortRating() id="sortRating" style="transform: translateY(15px);">Sort By Rating<span id="arrow" style="padding: 8px; font-size: larger;">&uarr;</span></button>
+        <button onClick=sortYear() id="sortYear"style="transform: translateY(15px);" >Sort By Year<span id="arrow1" style="padding: 8px; font-size: larger;">&uarr;</span></button>
+    </div>
        </div>
 <div class="stickycontent">
 <div class="demo-wrapper">
