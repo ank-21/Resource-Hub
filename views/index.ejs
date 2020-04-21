@@ -188,7 +188,7 @@ input {
     </style>
 </head>
 
-<body>
+<body id="bodydiv">
     <!--::header part start::-->
     <header class="main_menu">
         <div class="container">
@@ -899,6 +899,14 @@ input {
                 }
             }
             
+        }
+        var bodydiv = document.getElementById('bodydiv');
+        bodydiv.addEventListener('click', clickOutside);
+        function clickOutside(e){ let ul = document.getElementById('search_list');
+                        if(ul.style.display !== "none"){
+                            ul.style.display = "none";
+                            flag = 1;
+                        }
         }
     </script>
     <!-- <script>

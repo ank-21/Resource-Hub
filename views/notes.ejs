@@ -184,6 +184,43 @@
         margin-top:15vh;
       }
     }
+    #sortRating{
+      padding: 10px;
+      background: darkblue; 
+      color: white; 
+      margin: 10px;
+    }
+    #sortRating:hover{
+      background: orange;
+      color: darkblue;
+      transition: 0.3s ease-in-out;
+    }
+    #sortYear{
+      padding: 10px;
+      background: darkblue; 
+      color: white; 
+      margin: 10px;
+    }
+    #sortYear:hover{
+      background: orange;
+      color: darkblue;
+      transition: 0.3s ease-in-out;
+    }
+    .search-box{
+      display: grid;
+      grid-template-columns: auto auto auto;
+      width: 100%;
+    }
+    .grid-item{
+      text-align: center;
+      padding: 20px;
+    }
+    @media screen and (max-width: 750px){
+      .search-box{
+        display: grid;
+        grid-template-columns: auto;
+      }
+    }
 </style>
 </head>
 <body style="background:#f7edd5;">
@@ -240,11 +277,11 @@
   <%- include('./partials/notes') %>
 
 </div>
-<div class="container" id="container">
     <div class="search-box">
-            <label class="col s6 m2">Search By Subject</label>
-            <input id="nameInput" onkeyup=searchBySubject() class="col s6 m2"></input>
-            <!-- <span class="sort-text" class="col s6 m2">Sort By Rating</span>
+      <div class="grid-item" id="grid1">
+          <label class="col s6 m2"><p>Search By Subject:</p></label>
+          <input id="nameInput" onkeyup=searchBySubject() class="col s6 m2" style="margin-right: 30px; border-bottom: 1px solid darkblue; transform: translateX(10px);"></input>
+          <!-- <span class="sort-text" class="col s6 m2">Sort By Rating</span>
             <select onChange=sortByRating() id="myrating" class="col s6 m2">
               <option value="0">0</option>
                 <option value="1">1</option>
@@ -253,12 +290,16 @@
                 <option value="4">4</option>
                 <option value="5" >5</option>
             </select> -->
-            <button onClick=sortRating() id="sortRating">Sort By Rating<span id="arrow">&uarr;</span></button>
-            <button onClick=sortYear() id="sortYear">Sort By Year<span id="arrow1">&uarr;</span></button>
-            <label class="col s6 m2">Search By Professor</label>
-            <input id="profname" onkeyup=searchByProf() class="col s6 m2"></input>
-        </div>
       </div>
+      <div class="grid-item" id="grid2">
+          <button onClick=sortRating() id="sortRating">Sort By Rating<span id="arrow">&uarr;</span></button>
+          <button onClick=sortYear() id="sortYear">Sort By Year<span id="arrow1">&uarr;</span></button>
+      </div>
+      <div class="grid-item" id="grid3">
+          <label class="col s6 m2" style="margin-left: 30px;">Search By Professor:</label><br>
+          <input id="profname" onkeyup=searchByProf() class="col s6 m2" style="margin: 10px; border-bottom: 1px solid darkblue; transform: translateX(10px)"></input>
+      </div>
+       </div>
 <div class="stickycontent">
 <div class="demo-wrapper">
   
