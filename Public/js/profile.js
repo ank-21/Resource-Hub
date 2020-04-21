@@ -417,28 +417,5 @@ function myfunction() {
   }
 }
 
-var editmodal = document.getElementById('editModal');
-var editmodalBtn = document.getElementById('editBtn');
-var editcloseBtn = document.getElementById('editClose');
 
-editmodalBtn.addEventListener('click', openEditModal);
-function openEditModal(){
-  editmodal.style.display = 'block';
-}
 
-editcloseBtn.addEventListener('click', closeEditModal);
-function closeEditModal(){
-  editmodal.style.display = 'none';
-}
-
-window.addEventListener('click', clickOutside);
-function clickOutside(e){
-  if(e.target == editmodal){
-    editmodal.style.display = 'none';
-  }
-}
-window.onkeyup = function (e){
-  if(e.keyCode == 27){
-    this.editmodal.style.display = 'none';
-  }
-}

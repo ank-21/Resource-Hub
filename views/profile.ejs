@@ -200,10 +200,7 @@
   .radio1-label{position: relative;left: -3.4vw;}
 .radio2-label{position: relative;left: 1.4vw;}
 
-#editBtn{
-  color: #00BCD4;
-  cursor: pointer;
-}
+
 </style>
 </head>
 <body>
@@ -228,18 +225,43 @@
       </form>
     </div>
   </div>
+  <% var countModal =0 %>
+  <% notes.forEach((note) => { %>
 
-  <div id="editModal" class="modal1">
+  <div id="editModal<%= countModal%>" class="modal1">
     <div class="modal-content fold1">
-      <form action="" method="post" enctype="">
-        <p id="editClose">&times;</p>
+      <form action="/users/editNote/profile/<%= note._id %> " method="post">
+        <p id="editClose<%= countModal%>">&times;</p>
         <h5><b>EDIT DETAILS</b></h5>
-        <input type="text" name="" placeholder="Name">
-        <input type="text" name="" placeholder="Professor's Name">
-        <input id="year" type="number" name = "year" placeholder="Year" style="width: 100%;background: transparent;border: 1px solid gray;width: 100%;margin-bottom: 5px;height: 40px;padding: 10px 20px;box-sizing: border-box;border-radius: 40px;box-shadow: none;outline: none;color: #fff;background: transparent;border: 1px solid #fff;">
+        <% if(note.noteType == "note"){ %>
+          <div id="note-ques" style="text-align: center;">
+            <span>
+              <input type="radio" id="note" name="noteType" value="note" checked="checked" class="radio1 radioedit1" style="opacity: 1;">
+              <label class="radiolabel radio_btn radio1-label" for="note">Notes</label>
+            </span>
+            <span>
+              <input type="radio" id="question" name="noteType" value="question" class="radio2 radioedit2" style="opacity: 1;">
+              <label class="radiolabel radio_btn radio2-label" for="question">Question Papers</label>
+            </span>
+          </div>
+        <% } %>
+        <% if(note.noteType == "question"){ %>
+          <div id="note-ques" style="text-align: center;">
+            <span>
+              <input type="radio" id="note" name="noteType" value="note" checked="checked" class="radio1 radioedit1" style="opacity: 1;">
+              <label class="radiolabel radio_btn radio1-label" for="note">Notes</label>
+            </span>
+            <span>
+              <input type="radio" id="question" name="noteType" value="question" checked="checked" class="radio2 radioedit2" style="opacity: 1;">
+              <label class="radiolabel radio_btn radio2-label" for="question">Question Papers</label>
+            </span>
+          </div>
+          <% } %>
+        
         <div id="selectBranch">
           <p>Select Branch:</p>
           <select style="display: block;" required="true" name ="branch">
+            <option value="<%= note.branch%>" hidden><%= note.branch%></option>
             <option value="CSE">Computer Science</option>
             <option value="ECE">Electronics & Communication</option>
             <option value="EE">Electrical</option>
@@ -252,6 +274,7 @@
         <div id="selectSem">
           <p>Select Semester:</p>
           <select style="display: block;" required="true" name="semester">
+            <option value="<%= note.semester%>" hidden><%= note.semester%></option>
             <option value="1">1st</option>
             <option value="2">2nd</option>
             <option value="3">3rd</option>
@@ -262,12 +285,17 @@
             <option value="8">8th</option>
           </select>
         </div>
+        <input type="text" name="subject" placeholder="Subject" value="<%= note.subject %>">
+        <input type="text" name="profName" placeholder="Professor's Name" value="<%= note.profName %>">
+        <input id="year" type="number" name = "year" placeholder="Year of the note" value=<%=note.year %> style="width: 100%;background: transparent;border: 1px solid gray;width: 100%;margin-bottom: 5px;height: 40px;padding: 10px 20px;box-sizing: border-box;border-radius: 40px;box-shadow: none;outline: none;color: #fff;background: transparent;border: 1px solid #fff;">
         <p style="text-align: center; display: block;">
           <input type="submit" value="Edit Details">
         </p>      
       </form>
     </div>
   </div>
+  <% countModal = countModal + 1 %>
+  <% }); %>
 
   <nav class="navbar">
     <a href="/" class="logo">Resource Hub</a>
@@ -485,7 +513,8 @@
                   
                   <div class="">
                     <a href="/users/note/delete/<%=note._id %>"<i class="fas fa-trash-alt"></i></a>
-                    <i class="fas fa-edit" id="editBtn"></i>
+                    <i class="fas fa-edit" id="editBtn<%= countNote %>" style="color: #00BCD4;
+                      cursor: pointer;margin-left:0.5vw"></i>
                   </div>
                   
                 </div>
@@ -662,6 +691,94 @@
     <!-- END MAIN -->
 
     <!-- google map api -->
+    <script>
+        editmodal = document.getElementById(`editModal0`);
+        editmodalBtn = document.getElementById(`editBtn0`);
+        editcloseBtn = document.getElementById(`editClose0`);
+        
+        editmodalBtn.addEventListener('click', openEditModal);
+        function openEditModal(){
+          editmodal.style.display = 'block';
+        }
+        
+        editcloseBtn.addEventListener('click', closeEditModal);
+        function closeEditModal(){
+          editmodal.style.display = 'none';
+        }
+        
+        window.addEventListener('click', clickOutside);
+        function clickOutside(e){
+          if(e.target == editmodal){
+            editmodal.style.display = 'none';
+          }
+        }
+        window.onkeyup = function (e){
+          if(e.keyCode == 27){
+            this.editmodal.style.display = 'none';
+          }
+        }
+
+
+
+
+        editmodal1 = document.getElementById(`editModal1`);
+        editmodalBtn1 = document.getElementById(`editBtn1`);
+        editcloseBtn1 = document.getElementById(`editClose1`);
+        
+        editmodalBtn1.addEventListener('click', openEditModal1);
+        function openEditModal1(){
+          editmodal1.style.display = 'block';
+        }
+        
+        editcloseBtn1.addEventListener('click', closeEditModal1);
+        function closeEditModal1(){
+          editmodal1.style.display = 'none';
+        }
+        
+        window.addEventListener('click', clickOutside1);
+        function clickOutside1(e){
+          if(e.target == editmodal1){
+            editmodal1.style.display = 'none';
+          }
+        }
+        window.onkeyup = function (e){
+          if(e.keyCode == 27){
+            this.editmodal1.style.display = 'none';
+          }
+        }
+
+
+
+
+
+        editmodal2 = document.getElementById(`editModal2`);
+        editmodalBtn2 = document.getElementById(`editBtn2`);
+        editcloseBtn2 = document.getElementById(`editClose2`);
+        
+        editmodalBtn2.addEventListener('click', openEditModal2);
+        function openEditModal2(){
+          editmodal2.style.display = 'block';
+        }
+        
+        editcloseBtn2.addEventListener('click', closeEditModal2);
+        function closeEditModal2(){
+          editmodal2.style.display = 'none';
+        }
+        
+        window.addEventListener('click', clickOutside2);
+        function clickOutside2(e){
+          if(e.target == editmodal2){
+            editmodal2.style.display = 'none';
+          }
+        }
+        window.onkeyup = function (e){
+          if(e.keyCode == 27){
+            this.editmodal2.style.display = 'none';
+          }
+        }
+      
+    
+    </script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAZnaZBXLqNBRXjd-82km_NO7GUItyKek"></script>
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
@@ -671,6 +788,7 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.1.1/Chart.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.10/js/min/perfect-scrollbar.jquery.min.js'></script>
 <script  src="/js/profile.js"></script>
+
 
 <script>
   drake = dragula({

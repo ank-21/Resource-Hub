@@ -60,7 +60,7 @@ body {
   
 }
 
-#closeBtn {
+#closeBtn0,#closeBtn1 ,#closeBtn2,#closeBtn  {
   color: #ccc;
   float: right;
   font-size: 50px;
@@ -68,13 +68,13 @@ body {
   margin-right: -2px;
 }
 
-#closeBtn:hover,.closeBtn:focus {
+#closeBtn:hover,.closeBtn:focus,#closeBtn0:hover,.closeBtn0:focus,#closeBtn1:hover,.closeBtn1:focus,#closeBtn2:hover,.closeBtn2:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
 }
 
-#editClose {
+#editClose0,#editClose1,#editClose2 {
   color: #ccc;
   float: right;
   font-size: 50px;
@@ -82,7 +82,7 @@ body {
   margin-right: -2px;
 }
 
-#editClose:hover,.editClose:focus {
+#editClose0:hover,.editClose0:focus,#editClose1:hover,.editClose1:focus,#editClose2:hover,.editClose2:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
@@ -2969,6 +2969,44 @@ display: none;
 @media (max-width:330px){
   .radio1{left: 3vw;top: 5.5vh;}
   .radio2{left: 26vw;top: 5.5vh;}
+  .signIn h4{
+    font-size: 30px;
+  }
+}
+.radioedit1{left:2.5vw;top:10vh;}
+.radioedit2{left:11vw;top:10vh;}
+
+@media (max-width:768px){
+  .radioedit1{left: 8vw;top: 9.6vh;}
+  .radioedit2{left: 25vw;top: 9.6vh;}
+}
+@media (max-width:550px) and (min-width:500px){
+  .radioedit1{left: 7vw;top: 9.6vh;}
+  .radioedit2{left: 23vw;top: 9.6vh;}
+}
+@media (max-width:500px) and (min-width:460px){
+  .radioedit1{left: 4vw;top: 9.6vh;}
+  .radioedit2{left: 20vw;top: 9.6vh;}
+}
+@media (max-width:460px) and (min-width:420px){
+  .radioedit1{left: 2vw;top: 9.6vh;}
+  .radioedit2{left: 20vw;top: 9.6vh;}
+}
+@media (max-width:420px) and (min-width:400px){
+  .radioedit1{left: 1vw;top: 11vh;}
+  .radioedit2{left: 19vw;top: 11vh;}
+}
+@media (max-width:400px) and (min-width:370px){
+  .radioedit1{left: 6.5vw;top: 11.5vh;}
+  .radioedit2{left: 25vw;top: 11.5vh;}
+}
+@media (max-width:370px) and (min-width:330px){
+  .radioedit1{left: 4vw;top: 11.5vh;}
+  .radioedit2{left: 25vw;top: 11.5vh;}
+}
+@media (max-width:330px){
+  .radioedit1{left: 3vw;top: 12vh;}
+  .radioedit2{left: 26vw;top: 12vh;}
   .signIn h4{
     font-size: 30px;
   }

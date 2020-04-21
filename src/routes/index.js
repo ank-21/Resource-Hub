@@ -46,9 +46,35 @@ router.get('/', async(req,res)=>{
         });
 });
 
+//getting developers page
+
 router.get('/developers',ensureAuthenticated,(req,res)=>{
     res.render('team');
+});
+
+
+
+//for editing notes in the profile page
+
+router.post('/users/editNote/profile/:id',ensureAuthenticated,async(req,res)=>{
+    const id = req.params.id;
+    const note = await Notes.findById(id);
+    note.branch = req.body.branch;
+    note.semester = req.body.semester;
+    note.subject = req.body.subject;
+    note.year = req.body.year;
+    note.profName = req.body.profName;
+    note.noteType = req.body.noteType;
+    await note.save();
+    req.flash('profile_msg','your note is edited.You can check it in your notes list!');
+    res.redirect('/profile');
+        
 })
+
+
+
+
+//getting profile page
 
 router.get('/profile',ensureAuthenticated, async(req,res)=>{
     var page = parseInt(req.query.page)
@@ -377,6 +403,7 @@ router.get('/users/signup/:token',(req,res)=>{
             res.redirect('/users/signup')
         })
 })
+
 
 
 

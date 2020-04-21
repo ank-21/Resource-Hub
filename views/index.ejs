@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <link rel="stylesheet" href="/css/all.css">
       <link rel="stylesheet" href="https://demo.voidcoders.com/htmldemo/fitgear/main-files/assets/css/animate.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="/css/flaticon.css">
     <link rel="stylesheet" href="/css/themify-icons.css">
     <link rel="stylesheet" href="/css/style.css">
@@ -198,7 +199,6 @@ input {
 
     </style>
 </head>
-
 <body>
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
@@ -226,6 +226,7 @@ input {
     </div>
   </div>
 </div>
+<body id="bodydiv">
     <!--::header part start::-->
     <header class="main_menu">
         <div class="container">
@@ -417,7 +418,9 @@ input {
                             6. You can check any user's profile for all the materials related to a particular user. <br>
                             7. The count of views of your Profile will also be displayed in the profile page.<br>
                             8. User can search any uploader and download his/her material from the page.<br>
-                            9. The Rating of user which will be displayed in the profile page will help the user have some perks in future.
+                            9. The Rating of user which will be displayed in the profile page will help the user have some perks in future.<br>
+                            10. You can edit the details of notes you have uploaded in case of any mistake.<br>
+                            11. You can search particular notes in the notes section of the hub by typing in the subject's or professor's name. Also you sort materials by year or by rating.
 
                         </p>
                     </div>
@@ -498,6 +501,24 @@ input {
                                             <ul style="list-style-type:disc">
                                             <li>Go to the profile section.See the list of notes you have uploaded. </li> <li>Click on the delete icon along with the material you want to delete.</li>
                                             </ul>  
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                                data-target="#collapse13" aria-expanded="false" aria-controls="collapseThree">
+                                                How to edit a material(note/question)?                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapse13" class="collapse" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <ul style="list-style-type:disc">
+                                                <li>Open your profile and move to the Notes List</li>
+                                                <li>click on the Edit Icon on the right of the concerned note</li>
+                                                <li>Fill in the details and click "Edit Details" button</li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -632,6 +653,27 @@ input {
                                     <div class="card-header">
                                         <h5 class="mb-0">
                                             <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                                data-target="#collapse14" aria-expanded="false" aria-controls="collapseThree">
+                                                How to rate materials?                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapse14" class="collapse" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                             <ul style="list-style-type:disc">
+                                                <li>
+                                                    In the Notes Section, click on the particular note.
+                                                </li>
+                                                <li>
+                                                    You will find a 5-star rating section at the bottom of the note where you can input the desired rating.
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                                                 data-target="#collapse11" aria-expanded="false" aria-controls="collapseThree">
                                                 How does the rating system work?                                            </button>
                                         </h5>
@@ -661,6 +703,7 @@ input {
                                         </div>
                                     </div>
                                 </div>
+                                
     
                             </div>
     
@@ -720,6 +763,18 @@ input {
                     </div>
                   </div>
                 </div>
+                <p>Upload screenshots of errors if any!</p><br>
+                <label class="custom-file-upload" style="color:black !important; font-size: 15px; font-weight: bold;">
+          
+                    <input name="notesSelected" type="file" id="file-upload1" class="file-path validate" style="position: relative;left:0.2vw" required>
+                    <span><i class="fas fa-upload"></i></span>
+                    UPLOAD
+                    <hr>
+                    <span id="file-selected1"></span>
+                </label>
+                <p style="text-align: center; display: none;">
+                    <input type="submit" value="Upload">
+                </p><br>
                 <div class="form-group mt-3">
                     <button type="submit" class="button button-contactForm btn_1">Send Message <i class="flaticon-right-arrow"></i> </button>
                 </div>
@@ -793,6 +848,10 @@ input {
     <script src="/js/mail-script.js"></script>
     <script src="/js/custom.js"></script>
     <script>
+        $('#file-upload1').bind('change', function() { 
+        var fileName = ''; 
+        fileName = $(this).val(); $('#file-selected1').html(fileName); 
+        })
         
         //for desktop view
 
@@ -916,6 +975,14 @@ input {
                 }
             }
             
+        }
+        var bodydiv = document.getElementById('bodydiv');
+        bodydiv.addEventListener('click', clickOutside);
+        function clickOutside(e){ let ul = document.getElementById('search_list');
+                        if(ul.style.display !== "none"){
+                            ul.style.display = "none";
+                            flag = 1;
+                        }
         }
     </script>
     <!-- <script>
