@@ -101,12 +101,12 @@
        <% if(data != 'Report'){ %>
             <span class="sort-text" class="col-sm-12 col-md-1">Search By Branch</span>
             <select onChange=sortByBranch() id="mySelect" class="col-sm-12 col-md-2">
-                <option value="CSE">Computer</option>
-                <option value="ECE">Electronics</option>
-                <option value="EE">Electrical</option>
-                <option value="CE">Civil</option>
-                <option value="ME" >Mechanical</option>
-                <option value="EIE">Instrumentation</option>
+                <option value="Computer">Computer</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Electrical">Electrical</option>
+                <option value="Civil">Civil</option>
+                <option value="Mechanical" >Mechanical</option>
+                <option value="Instrumentation">Instrumentation</option>
             </select>
             <span class="sort-text" class="col-sm-12 col-md-1">Search By Semester</span>
             <select onChange=sortBySemester() id="mySemester" class="col-sm-12 col-md-1">
@@ -126,7 +126,7 @@
             <% }%>
             <% if(data!='User'){ %>
             <label class="col-sm-12 col-md-1">Search By Subject</label>
-            <input id="subjectName"onkeyup=searchBySubject() class="col-sm-12 col-md-2"></input>
+            <input id="subjectName" onkeyup=searchBySubject() class="col-sm-12 col-md-2"></input>
       <% }%>
         </div>
       </div>

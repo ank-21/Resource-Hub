@@ -19,13 +19,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
-	$(document).ready(function(){
-		$("#myModal").modal({
-			show:true,
-			focus:true,
-			keyboard:true
-		});
-	});
+	$(document).ready(openModal());
+    setTimeout(openModal,1500);
+    function openModal(){
+        $("#myModal").modal({
+            show:true,
+            focus:true,
+            keyboard:true
+        });
+    }
 </script>
     <style>
     	form {
@@ -214,8 +216,10 @@ input {
             <div class="collapse" style="display:block;">
                 <div class="card-body">
                 <ul style="list-style-type:disc;font-size:1.2rem;margin-left:2vw;">
-                  <li>Go to the profile page and check the request bar. </li>
-            <li> The subject with a strike in it means it is already being uploaded by some user. </li>
+                  <li>A new feature of editing already uploaded notes has been added to the profile page</li>
+            <li>You can now report your queries by adding screenshots of your issues in the 'Get In Touch' form. We will try our best to resolve them.</li>
+            <li>You can now search and sort the notes based on various options available in the Notes section.</li>
+            <li><b style="color:black;">Please Note:- The year field in the form available in 'Add Notes to Hub' section of the profile page indicates the year of the note than the batch year.</b></li>
         </div>
       </div>
 
