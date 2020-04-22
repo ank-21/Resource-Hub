@@ -85,7 +85,7 @@ router.get('/branch/semester/notes', ensureAuthenticated ,async(req,res)=>{
     var passingvalue = [];
     if(req.query.starvalue)
         rating = req.query.starvalue;
-    console.log(rating);
+    //console.log(rating);
     
     //now i have to average the total rating
     // const notesCount = req.query.count;
@@ -113,7 +113,7 @@ router.get('/branch/semester/notes', ensureAuthenticated ,async(req,res)=>{
         return val.toFixed(2);
     })
     //for floor value
-    console.log(floorvalue);
+    //console.log(floorvalue);
     
 
     
@@ -137,7 +137,7 @@ router.get('/branch/semester/question', ensureAuthenticated ,async(req,res)=>{
     var passingvalue = [];
     if(req.query.starvalue)
         rating = req.query.starvalue;
-    console.log(rating);
+    //console.log(rating);
     
     //now i have to average the total rating
     // const notesCount = req.query.count;
@@ -183,7 +183,7 @@ router.get('/branch/semester/notes/download',ensureAuthenticated,(req,res)=>{
             //for notes downloaded by other user
             const userId = note[0].userId;
             const user = req.user;
-            console.log(userId,user._id);
+            //console.log(userId,user._id);
             
             if(String(userId) != String(user._id)){
                 User.findById(userId)
@@ -200,7 +200,7 @@ router.get('/branch/semester/notes/download',ensureAuthenticated,(req,res)=>{
                 note[0].downloadCount = note[0].downloadCount + 1;
                 note[0].save()
                     .then(note => {
-                        console.log("note in then",note);
+                        //console.log("note in then",note);
                         res.redirect(note.notesLoc);
                     })
             }
@@ -223,7 +223,7 @@ router.post('/branch/semester/notes/request',ensureAuthenticated,async(req,res)=
         data= 'note';
     else if(data == 'Questions')
         data = 'question';
-    console.log(data);
+    //console.log(data);
     
     const requestmade = await RequestNotes.find({
         branch:req.body.branch,
@@ -236,7 +236,7 @@ router.post('/branch/semester/notes/request',ensureAuthenticated,async(req,res)=
     })
         
         if(requestmade.length>0){
-            console.log("hii");
+            //console.log("hii");
             
             req.flash('notes_msg', `${data} has already been requested`);
             res.redirect(`/users/branch/semester/notes?branch=${req.body.branch}&semester=${req.body.semester}`)
@@ -269,7 +269,7 @@ router.post('/branch/semester/notes/star_rating/:id', (req,res)=> {
     const rating = req.body.star;
     Notes.findById({_id:id})
         .then(note => {
-            console.log(note);
+            //console.log(note);
             User.findById({_id:note.userId})
                 .then(user => {
                    
@@ -293,7 +293,7 @@ router.post('/branch/semester/notes/star_rating/:id', (req,res)=> {
 
                             note.save()
                             .then(data=>{
-                                console.log("data0",data);
+                                //console.log("data0",data);
                                 res.redirect(`/users/branch/semester/notes?branch=${note.branch}&semester=${note.semester}&starvalue=${rating}`);
                             })
                             .catch(err => {
@@ -302,7 +302,7 @@ router.post('/branch/semester/notes/star_rating/:id', (req,res)=> {
                             })
                         }
                         else{
-                            console.log("already rated",alreadyRated);
+                            //console.log("already rated",alreadyRated);
                             req.flash('notes_msg', 'You can not rate the same note more than once!');
                         }
                     }
@@ -397,7 +397,7 @@ router.get('/branch/semester/notes/report',ensureAuthenticated,(req,res)=>{
                     }
                     note[0].save()
                         .then(note => {
-                            console.log("note in then",note);
+                            //console.log("note in then",note);
                             req.flash('notes_msg', `Note Reported`);
                             res.redirect(`/users/branch/semester/notes?branch=${note.branch}&semester=${note.semester}`);
                         })

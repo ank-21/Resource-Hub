@@ -21,7 +21,7 @@ const RequestNotes = require('../models/RequestNotes');
 //set disk storage of profile image
 const storage = multer.diskStorage({
     destination: function(req,file,cb){
-        console.log("inside multer",req.user);
+        //console.log("inside multer",req.user);
         // var newDestination = `./public/uploads/${req.user._id}`;
         
             var newDestination = __dirname + `/../../Public/uploads/${req.user._id}`;
@@ -63,7 +63,7 @@ const storage = multer.diskStorage({
 
   const notesStorage = multer.diskStorage({
     destination: function(req,file,cb){
-        console.log("inside multer for notes",req.user);
+        //console.log("inside multer for notes",req.user);
         var newDestination = __dirname + `/../../Public/uploadsNotes/${req.user._id}`;
         
 
@@ -107,7 +107,7 @@ profile.post('/profile/:id',async function(req,res){
                 avatar='';
                 cb(avatar);
             } else{
-                console.log("file in uploads",req.file);
+                //console.log("file in uploads",req.file);
                 if(req.file== undefined){
                     errors.push({msg:'No Image Selected'})
                     req.flash('profile_msg','No Image Selected' );
@@ -157,7 +157,7 @@ profile.post('/profile/:id',async function(req,res){
             
             user.save()
                 .then(user => {
-                    console.log("fun",avatar);
+                    console.log("avatar value",avatar);
                     if(errors.length==0)
                         req.flash('profile_msg', ' Profile Updated!');
                     
@@ -182,7 +182,7 @@ profile.post('/profile/:id',async function(req,res){
 //post request for uploading notes
 profile.post('/notes/:id',async function(req,res){
     const id = req.params.id;
-    console.log("id",id);
+    //console.log("id",id);
     let errors = [];
     var notes;
     async.each(['func'],(item,cb)=>{
@@ -219,7 +219,7 @@ profile.post('/notes/:id',async function(req,res){
                     })
                 }
                 console.log("error",errors);
-                console.log("req.body",req.body)
+                //console.log("req.body",req.body)
                 if(errors.length==0){
                     user.uploadsCount = user.uploadsCount + 1;                
                     user.save()
@@ -244,13 +244,13 @@ profile.post('/notes/:id',async function(req,res){
                                     year:req.body.year,
                                     noteType:req.body.noteType
                                 }).then(data => {
-                                    console.log("data got from req note",data);
+                                    //console.log("data got from req note",data);
                                     if(data.length!=0){
                                         data[0].solved="true"
                                         data[0].save();
                                     }
                                 }).catch(err=> console.log(err));
-                                console.log("data is here in",newNotes);
+                                //console.log("data is here in",newNotes);
                                 
                                 newNotes.save()
                                     .then(note=> {    

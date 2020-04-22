@@ -134,7 +134,7 @@ router.get('/profile',ensureAuthenticated, async(req,res)=>{
     var pageRequest = parseInt(req.query.pageRequest)
     var limit2 = parseInt(req.query.limit2)/2   //will always be 2
     const RequestAll = await RequestNotes.find();
-    console.log("revdwd",RequestAll);
+    //console.log("revdwd",RequestAll);
     
     const lenghtofRequests = RequestAll.length;
     var requests = [];
@@ -167,8 +167,8 @@ router.get('/profile',ensureAuthenticated, async(req,res)=>{
      
     
     
-    console.log("req note in indexjs for uploaded notes",doneNote);
-    console.log("reqNote in index.js",reqNote);
+    //console.log("req note in indexjs for uploaded notes",doneNote);
+    //console.log("reqNote in index.js",reqNote);
 
 
     //for rating of user
@@ -186,7 +186,7 @@ router.get('/profile',ensureAuthenticated, async(req,res)=>{
     if(req.user.reports>=5 && ratingValue != 0){
         ratingValue = ratingValue - req.user.reports/5;
     }
-    console.log("rationg value",ratingValue);
+    //console.log("rationg value",ratingValue);
     
 
     if(ratingValue%1!=0){
@@ -242,7 +242,7 @@ router.get('/users/publicProfile/:id',ensureAuthenticated,async(req,res)=>{
     endIndex = page * limit;
     //for listing of notes
     notes = await Notes.find({userId:id}).sort({_id:-1}).limit(limit).skip(startIndex); 
-    console.log("length",notes.length);
+    //console.log("length",notes.length);
     
     //for listing of notes
     //const notes = await Notes.find({userId:id}).sort({_id:-1}); //we have to add limit
@@ -393,7 +393,7 @@ router.post('/contactus',async function(req,res){
     },(avatar)=>{
         if(avatar.length == 0)
         {
-            res.redirect('/?message=false&err= and only upto 3 images of total maximu size 1 MB each');
+            res.redirect('/?message=false&err= and only upto 3 images of total maximum size 1 MB each');
         }else{
             contactUs({
                 email:req.body.email,
@@ -474,17 +474,17 @@ router.get('/users/signup/:token',(req,res)=>{
 
     const token = req.params.token;
     const id = req.query.data;
-    console.log(token,id);
+    //console.log(token,id);
     
     User.find({_id:id,token})
         .then(user => {
-            console.log("user",user);
+            //console.log("user",user);
             
             const timeNow = Date.now();
-            console.log(timeNow,user[0].date);
+            //console.log(timeNow,user[0].date);
             
             if(timeNow - user[0].date<12*60*60*1000){
-                console.log("Successful");
+                //console.log("Successful");
                 
                 user[0].verified = true;
                 user[0].save()
