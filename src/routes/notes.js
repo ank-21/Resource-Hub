@@ -177,7 +177,7 @@ router.get('/branch/semester/question', ensureAuthenticated ,async(req,res)=>{
 
 
 //for downloading notes
-router.get('/branch/semester/notes/download',(req,res)=>{
+router.get('/branch/semester/notes/download',ensureAuthenticated,(req,res)=>{
     Notes.find({branch:req.query.branch,semester:req.query.semester,_id:req.query.noteId})
         .then(note => {            
             //for notes downloaded by other user
@@ -322,7 +322,7 @@ router.post('/branch/semester/notes/star_rating/:id', (req,res)=> {
 });
 
 //deleting a note
-router.get('/note/delete/:id',async(req,res)=> {
+router.get('/note/delete/:id',ensureAuthenticated,async(req,res)=> {
     const note = await Notes.findById(req.params.id);
     
     if(req.query.via=='admin'){
@@ -331,7 +331,8 @@ router.get('/note/delete/:id',async(req,res)=> {
             subject:note.subject,
             semester:note.semester,
             notesLoc:note.notesLoc,
-            via:'admin'
+            via:'admin',
+            userName:'Admin'
         })
         await newdeleteNote.save()
         await User.findByIdAndUpdate(req.query.userId,{$inc : {uploadsCount:-1}});
@@ -344,7 +345,9 @@ router.get('/note/delete/:id',async(req,res)=> {
             branch:note.branch,
             subject:note.subject,
             semester:note.semester,
-            notesLoc:note.notesLoc
+            notesLoc:note.notesLoc,
+            userName:req.user.name,
+            userEmailId:req.user.email
         })
         await newdeleteNote.save()
         await User.findByIdAndUpdate(req.user._id,{$inc : {uploadsCount:-1}});
@@ -358,7 +361,7 @@ router.get('/note/delete/:id',async(req,res)=> {
 
 //report route
 
-router.get('/branch/semester/notes/report',(req,res)=>{
+router.get('/branch/semester/notes/report',ensureAuthenticated,(req,res)=>{
     Notes.find({branch:req.query.branch,semester:req.query.semester,_id:req.query.noteId})
         .then(note => {            
             //for notes downloaded by other user

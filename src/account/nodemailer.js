@@ -2,7 +2,8 @@ var nodemailer = require('nodemailer')
 
 const keys = require('../../config/keys')
 
-const contactUs = ({data}) => {
+//for sending to user
+const contactUs = (data) => {
 var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -16,7 +17,7 @@ var transporter = nodemailer.createTransport({
     from: keys.mail.email,
     to: `${data.email}`,
     subject:`Resource Hub - ${data.subject}`,
-    html:`<p>Hii ${data.name},<br>your message - ${data.message} has been recieved and we will solve this issue soon!!</p>`
+    html:`<p>Hii ${data.name},<br>"your message" - ${data.message} has been recieved and we will solve this issue soon!!</p>`
   };
   console.log("mailOptions : " ,mailOptions);
   
@@ -28,6 +29,33 @@ var transporter = nodemailer.createTransport({
     }
   });
 }
+
+//for sending to admin
+const contactAdmin = (data) => {
+  var transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: keys.mail.email,           //email id
+        pass: keys.mail.pass           //my gmail password
+      },
+      pool: true
+    });
+    
+    var mailOptions = {
+      from: keys.mail.email,
+      to: 'ankitsrivastava21345@gmail.com',
+      subject:`Resource Hub User Report`,
+      html:`A new Report has been issued.<p>Name - ${data.name}</p><p>Email Id - ${data.email}</p><p>Subject - ${data.subject}</p><p>Message - ${data.message}</p><p>Is Image - ${data.isImg}</p>`};
+    console.log("mailOptions : " ,mailOptions);
+    
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
+  }
 
 
 const reportsMail = (data) => {
@@ -89,5 +117,6 @@ const reportsMail = (data) => {
 module.exports = {
     contactUs,
     reportsMail,
-    DeleteMail
+    DeleteMail,
+    contactAdmin
 }

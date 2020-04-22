@@ -232,7 +232,7 @@
     <div class="modal-content fold1">
       <form action="/users/editNote/profile/<%= note._id %> " method="post">
         <p id="editClose<%= countModal%>">&times;</p>
-        <h5><b>EDIT DETAILS</b></h5>
+        <h5><b style="text-transform: uppercase;">EDIT <%= note.noteType %> DETAILS</b></h5>
         <% if(note.noteType == "note"){ %>
           <div id="note-ques" style="text-align: center;">
             <span>

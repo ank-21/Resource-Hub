@@ -88,7 +88,7 @@
                     <option value="/hub/admin/21?model=RequestNotes">Request Notes</option>
                 </select>
                    <h1 style="    position: relative;
-                   top: 14vh;">Model - <span style="color: blueviolet;"><%=data%></span></h1>
+                   top: 14vh;">Model - <span style="color: blueviolet;"><%=data%></span><span style="color: #dacc13ea;margin-left: 1vw;">Size - <%=dataDetails.length%></span></h1>
             </div>
         </div>
     </div>
@@ -222,6 +222,7 @@
                 <th>Email Id</th>
                 <th>Message</th>
                 <th>Subject</th>
+                <th>Image Loc</th>
               </tr>
             </thead>
             <tbody>
@@ -234,6 +235,7 @@
                   <td><%= data.email %></td>
                   <td><%= data.message %></td>
                   <td><%= data.subject %></td>
+                  <td><%= data.issueImageLoc %></td>
                 </tr>
                 <% count = count+1 %>
               <% })%>
@@ -281,6 +283,8 @@
                 <th>S.No.</th>
                 <th>Note Id</th>
                 <th>Deleted Via</th>
+                <th>User Name</th>
+                <th>User Email Id</th>
                 <th>Branch</th>
                 <th>Semester</th>
                 <th>Subject</th>
@@ -294,6 +298,8 @@
                 <td><%= count%>.</td>
                 <td><%= data._id %></td>
                 <td><%= data.via %></td>
+                <td><%= data.userName %></td>
+                <td><%= data.userEmailId %></td>
                 <td><%= data.branch %></td>
                 <td><%= data.semester %></td>
                 <td><%= data.subject %></td>

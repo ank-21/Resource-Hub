@@ -7,9 +7,13 @@ const Report = require('../models/Report');
 const RequestNotes = require('../models/RequestNotes');
 const DeleteNote = require('../models/DeleteNote');
 const path = require('path');
-const {contactUs} = require('../account/nodemailer');
+const {contactUs,contactAdmin} = require('../account/nodemailer');
 const {confirmUser} = require('../account/nodemailerLogin');
 const uuid = require('uuid');
+const multer = require('multer');
+const async = require('async');
+const fs = require('fs');
+const {checkFileType} = require('../../config/checkFileType');
 
 
 router.get('/', async(req,res)=>{
@@ -19,6 +23,7 @@ router.get('/', async(req,res)=>{
             var msg = `${req.user.name}, your request is sent! Check Your Email...`;
         }
         else if(req.query.message=='false'){
+            var msg2 = req.query.err;
             var msg = `${req.user.name}, your request could not be sent! Please Try again`;
         }
         else{
@@ -35,6 +40,9 @@ router.get('/', async(req,res)=>{
         else{
             var msg = '';
         }
+    }
+    if(msg2 != undefined){
+        msg = msg + " " + msg2;
     }
         const user = await User.find();        
     
@@ -298,26 +306,134 @@ router.get('/users/publicProfile/:id',ensureAuthenticated,async(req,res)=>{
 
 
 
-//form in index.js
-router.post('/contactus',(req,res)=>{
-    console.log("req.body in post route",req.body);
-    const data = req.body;
-    contactUs({ data });
-    const report = new Report(req.body);
-    console.log("report",report);
-    report.save()
-        .then(data => {
-            console.log("data her",data);
+//contact us form in index.js
+//Now file upload is also to be added
+
+// old version
+// router.post('/contactus',(req,res)=>{
+//     console.log("req.body in post route",req.body);
+//     const data = req.body;
+//     contactUs({ data });
+//     const report = new Report(req.body);
+//     console.log("report",report);
+//     report.save()
+//         .then(data => {
+//             console.log("data her",data);
             
-            res.redirect('/?message=true');
+//             res.redirect('/?message=true');
+//         })
+//         .catch(err => {
+//             res.redirect('/?message=false')
+//         })
+// });
+
+
+//set disk storage of profile image
+const storage = multer.diskStorage({
+    destination: function(req,file,cb){
+            var newDestination = __dirname + `/../../Public/issue/${req.user._id}`;
+            console.log("new d",newDestination);
+        var stat = null;
+        try {
+            stat = fs.statSync(newDestination);
+        } catch (err) {
+            fs.mkdir(newDestination,{recursive:true},err =>{
+                console.log("error in making directory",err);    
+            });
+        }
+        if (stat && !stat.isDirectory()) {
+            throw new Error('Directory cannot be created because an inode of a different type exists at "' + dest + '"');
+        }
+        
+        cb(null,newDestination);
+    },
+    filename: function(req,file,cb){
+      cb(null,file.fieldname + '-' + uuid.v4()+ path.extname(file.originalname));
+    }
+  });
+
+  const upload = multer({
+    storage:storage,
+    limits:{fileSize:1000000},
+    fileFilter: function(req,file,cb){  //to enter only image 
+      checkFileType(file,cb);
+    }
+  }).array('issue',3);
+
+
+//post request for issue
+router.post('/contactus',async function(req,res){
+    let errors = [];
+    var avatar = [];
+    async.each(['abc'],(item,cb)=>{
+        upload(req,res,(err)=>{            
+            if(err){
+                errors.push({msg:err})
+                //req.flash('profile_msg',err.message? err.message : err );
+                console.log("err1",errors);
+                avatar=[];
+                cb(avatar);
+            } else{
+                console.log("file in uploads",req.files);
+                if(req.files.length== 0){
+                    errors.push({msg:'No Image Selected'})
+                    console.log("err2",errors);
+                    avatar = ['admin'];
+                    cb(avatar);
+                }
+                else{
+                    for(var i=0;i<req.files.length;i++){
+                        avatar[i] = `/issue/${req.user._id}/${req.files[i].filename}`;
+                    }
+                    console.log("avatar",avatar);
+                    cb(avatar);  
+                }
+            }
+      }) 
+    },(avatar)=>{
+        if(avatar.length == 0)
+        {
+            res.redirect('/?message=false&err= and only upto 3 images of total maximu size 1 MB each');
+        }else{
+            contactUs({
+                email:req.body.email,
+                name:req.body.name,
+                subject:req.body.subject,
+                message:req.body.message
+            })
+
+            const report = new Report({
+                email:req.body.email,
+                name:req.body.name,
+                subject:req.body.subject,
+                message:req.body.message
+            })
+            if(avatar[0]!='admin')
+            {
+                var loc = '';
+                for(var i=0;i<avatar.length;i++){
+                    loc += `${avatar[i]}------`;
+                }
+                report.issueImageLoc = loc;              
+            }
+            
+            contactAdmin({
+                email:report.email,
+                name:report.name,
+                subject:report.subject,
+                message:report.message,
+                isImg:report.issueImageLoc?'yes':'No'
+            })
+            report.save()
+            .then(data=> {
+                console.log("check",data);
+                res.redirect('/?message=true')
+            }).catch(err => {
+                res.redirect('/?message=false')
+            })
+        } 
         })
-        .catch(err => {
-            res.redirect('/?message=false')
-        })
-});
-
-
-
+    });
 
 
 //admin requests
@@ -327,8 +443,7 @@ router.get('/hub/admin/21',ensureAuthenticated,async(req,res)=>{
     if(auth==-1){
         res.render('error');
     }else{
-        const data = req.query.model;
-        console.log(data);
+        let data = req.query.model;
         var arr = [];
         if(data==undefined ||data=='User'){
             var dataDetails = await User.find();
@@ -343,7 +458,8 @@ router.get('/hub/admin/21',ensureAuthenticated,async(req,res)=>{
             var dataDetails = await DeleteNote.find();
         }
         
-        console.log(dataDetails);
+        if(data == undefined)
+            data = 'User';
          
         res.render('admin',{
             name:req.user.name,
