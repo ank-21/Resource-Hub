@@ -208,7 +208,7 @@ input {
       <div class="modal-header">
         <h3 class="modal-title" id="exampleModalScrollableTitle">Important Updates</h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+          <span aria-hidden="true" style="font-size: 6vh;position: relative;top: -2vh;">&times;</span>
         </button>
       </div>
       <div class="modal-body">
@@ -219,7 +219,7 @@ input {
                   <li>A new feature of editing already uploaded notes has been added to the profile page</li>
             <li>You can now report your queries by adding screenshots of your issues in the 'Get In Touch' form. We will try our best to resolve them.</li>
             <li>You can now search and sort the notes based on various options available in the Notes section.</li>
-            <li><b style="color:black;">Please Note:- The year field in the form available in 'Add Notes to Hub' section of the profile page indicates the year of the note than the batch year.</b></li>
+            <li><b style="color:black;">Please Note:- The year field in the form available in 'Add Notes to Hub' section of the profile page indicates the "year of the note" rather than "the batch year". - If you have mentioned some wrong information you can edit it now from the profile page.</b></li>
         </div>
       </div>
 
@@ -424,7 +424,7 @@ input {
                             8. User can search any uploader and download his/her material from the page.<br>
                             9. The Rating of user which will be displayed in the profile page will help the user have some perks in future.<br>
                             10. You can edit the details of notes you have uploaded in case of any mistake.<br>
-                            11. You can search particular notes in the notes section of the hub by typing in the subject's or professor's name. Also you sort materials by year or by rating.
+                            11. You can search particular notes in the notes section of the hub by typing in the subject's or professor's name. Also you can sort materials by year or by rating.
 
                         </p>
                     </div>
@@ -738,7 +738,7 @@ input {
             </div>
             <!-- </div> -->
             <!-- <div class="col-lg-6"> -->
-              <form class="form-contact contact_form" action="/contactus" method="post" id="contactForm">
+              <form class="form-contact contact_form" action="/contactus" method="post" id="contactForm" enctype="multipart/form-data">
                 <div class="row">
                   <div class="col-12">
                     <div class="form-group">
@@ -768,9 +768,9 @@ input {
                   </div>
                 </div>
                 <p>Upload screenshots of errors if any!</p><br>
-                <label class="custom-file-upload" style="color:black !important; font-size: 15px; font-weight: bold;">
+                <label class="custom-file-upload" style="color:black !important; font-size: 15px; font-weight: bold;width: 45vw;">
           
-                    <input name="notesSelected" type="file" id="file-upload1" class="file-path validate" style="position: relative;left:0.2vw" required>
+                    <input name="issue" type="file" id="file-upload1" class="file-path validate" style="position: relative;left:0.2vw" multiple />
                     <span><i class="fas fa-upload"></i></span>
                     UPLOAD
                     <hr>

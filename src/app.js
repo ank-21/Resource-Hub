@@ -21,7 +21,8 @@ app.use(express.json())
 mongoose.connect(process.env.MONGOLAB_URI||'mongodb://localhost:27017/ResourceHub',{
     useNewUrlParser:true,
     useUnifiedTopology:true,
-    useFindAndModify:false
+    useFindAndModify:false,
+    useCreateIndex:true
 }).then(()=> console.log("MongoDB connected"))
   .catch(err => console.log(err));
 

@@ -12,6 +12,9 @@ const ReportSchema = new mongoose.Schema({
     },
     message:{
         type:String
+    },
+    issueImageLoc:{
+        type:String
     }
 })
 
