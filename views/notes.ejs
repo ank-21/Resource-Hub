@@ -309,6 +309,26 @@
         transform: rotate(360deg);
     }
 }
+@keyframes hide {
+  to {
+    opacity: 0
+  }
+}
+.notes-content{
+	opacity: 1;
+    top: 35vh;
+    height: auto;
+    padding-top: 4vh;
+}
+.notes-content span{
+	opacity:1;
+	left:30%;
+}
+.item:hover .notes-content {
+  -webkit-animation: hide .45s ease-in .120s forwards;
+  -o-animation: hide .45s ease-in .120s forwards;
+  animation: hide .45s ease-in .120s forwards
+}
 </style>
 </head>
 <body style="background:#f7edd5;">
@@ -409,6 +429,10 @@
                     <div class="view">
                         <img src="/img/notes.jpeg" />
                     </div>
+                    <figcaption class="notes-content">
+                        	<p><span style="color:#562fc7;">Subject - <%= note.subject %></span></p>
+                        	<p><span style="color:#CC320F;">Professor - <%= note.profName %></span></p>
+                        </figcaption>
                     <figcaption>
                         <p><span><a href="/users/branch/semester/notes/download?branch=<%= note.branch %>&semester=<%= note.semester %>&noteId=<%= note._id%>">Click here to view / download</a></span></p>
                         <p><span>Subject - <%= note.subject %></span></p>

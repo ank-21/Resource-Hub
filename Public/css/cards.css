@@ -84,8 +84,8 @@ h1 {
 
 .item {
   width: 300px;
-  height: 350px;
-  margin: 100px 20px 0;
+  height: 400px;
+  margin: 70px 20px 0;
   padding: 5px;
   border-radius: 2px;
   background-color: white;
@@ -199,13 +199,16 @@ figure {
 }
 
 figcaption {
-  height: 160px;
+  height: 100px;
   width: 100%;
   padding: 0;
   position: absolute;
   bottom: 0;
   overflow: hidden;
   opacity: 0
+}
+figcaption div{
+  opacity: 1;
 }
 
 figcaption p {
@@ -281,7 +284,8 @@ figcaption a {
 
 @keyframes show {
   to {
-    opacity: 1
+    opacity: 1;
+    height:160px;
   }
 }
 

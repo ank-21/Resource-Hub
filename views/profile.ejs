@@ -197,8 +197,8 @@
       .radio1-label{left:-4.4vw;}
       .radio2-label{left:9vw;}
   }*/
-  .radio1-label{position: relative;left: -3.4vw;}
-.radio2-label{position: relative;left: 1.4vw;}
+  .radio1-label{position: relative;left: -2.4vw;}
+.radio2-label{position: relative;left: 2.4vw;}
 
 #preloader {
     position: fixed;
@@ -273,6 +273,36 @@
         transform: rotate(360deg);
     }
 }
+progress[value] {
+  /* Reset the default appearance */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  opacity: 1;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  height: 15px;
+  border-radius:10px;
+}
+progress{
+  border:none;
+  background:crimson;
+}
+progress{
+  color:#0288d1 !important;
+}
+progress::-webkit-progress-value{
+  background:#0288d1 !important;
+}
+progress::-moz-progress-value{
+  background:#0288d1 !important;
+}
+@media (max-width: 768px) {
+  progress[value] {
+    width: 12rem !important;
+  }
+}
 </style>
 </head>
 <body>
@@ -287,14 +317,25 @@
         <input type="text" name="branch" placeholder="Branch">
         <input type="text" name="semester" placeholder="Semester">
         <input type="text" name="phnNo" placeholder="Contact Number">
-        <label class="custom-file-upload" style="color:white !important;">
+        <label class="custom-file-upload" id="lb" style="color:white !important;">
           
-          <input name="profileImage" type="file" id="file-upload2" class="file-path validate" style="position: relative;left:0.2vw">
+          <input name="profileImage" onchange="uploadFile()" type="file" id="file-upload2" class="file-path validate" style="position: relative;left:0.2vw">
           <span><i class="fas fa-upload"></i></span>
           Upload Profile Image
           <hr>
           <span id="file-selected2"></span>
         </label>
+        <center>
+        <progress
+        class="progress"
+        id="progressBar"
+        value="0"
+        max="100"
+        style="width: 300px;"
+      ></progress>
+      </center>
+      <h3 id="status" class="status"></h3>
+      <p id="loaded_n_total" class="loaded_n_total"></p>
         <p style="text-align: center; display: block;">
         <input type="submit" value="Save Details"></p>      
       </form>
@@ -736,14 +777,25 @@
 
                   <input type="text" name="subject" placeholder="Subject" style="margin-top: 2vh;" required>
                   <input type="text" name="profName" placeholder="Professor Name" required>
-                  <label class="custom-file-upload" style="color:white !important;">
+                  <label class="custom-file-upload" id="lb1" style="color:white !important;">
           
-                    <input name="notesSelected" type="file" id="file-upload1" class="file-path validate" style="position: relative;left:0.2vw" required>
+                    <input name="notesSelected" onchange="fileInput1()" type="file" id="file-upload1" class="file-path validate" style="position: relative;left:0.2vw" required>
                     <span><i class="fas fa-upload"></i></span>
                     Upload Files
                     <hr>
                     <span id="file-selected1"></span>
                   </label>
+                  <center>
+                      <progress
+                      class="progress"
+                      id="progressBar1"
+                      value="0"
+                      max="100"
+                      style="width: 300px;"
+                    ></progress>
+                    </center>
+                    <h3 id="status1" class="status"></h3>
+                    <p id="loaded_n_total1" class="loaded_n_total"></p>
                   <p style="text-align: center; display: block;">
                     <input type="submit" value="Upload"></p>
                     <!-- <button class="btn btn-primary d-none" id="upload_btn" class="btn btn-primary" style="display: none;">
@@ -853,6 +905,105 @@
         }
       
     
+    </script>
+    <script>
+      function _(el) {
+  return document.getElementById(el);
+}
+
+function uploadFile() {
+  var file = _("file-upload2").files[0];
+
+  var formdata = new FormData();
+  formdata.append("file-upload2", file);
+  var ajax = new XMLHttpRequest();
+  ajax.upload.addEventListener("progress", progressHandler, false);
+  ajax.addEventListener("load", completeHandler, false);
+  ajax.addEventListener("error", errorHandler, false);
+  ajax.addEventListener("abort", abortHandler, false);
+  ajax.open("POST", " ");
+
+  ajax.send(formdata);
+}
+
+function progressHandler(event) {
+  var percent = (event.loaded / event.total) * 100;
+  _("status").style.fontSize = "0.8rem";
+  _("status").style.fontWeight = "200";
+  _("status").style.marginTop = "1rem";
+  _("progressBar").value = Math.round(percent);
+  _("status").innerHTML = Math.round(percent) + "% uploaded";
+}
+
+function completeHandler(event) {
+  // _("status").innerHTML = event.target.responseText;
+  _("progressBar").value = "100";
+}
+
+function errorHandler(event) {
+  _("status").innerHTML = "Upload Failed";
+}
+
+function abortHandler(event) {
+  _("status").innerHTML = "Upload Aborted";
+}
+
+var file = document.getElementById("file-upload2");
+var lb = document.getElementById("lb");
+
+lb.addEventListener("mousedown", function () {
+  // console.log("cankn");
+  file.click();
+});
+    </script>
+     <script>
+      function __(el) {
+  return document.getElementById(el);
+}
+
+function fileInput1() {
+  var file1 = __("file-upload1").files[0];
+
+  var formdata1 = new FormData();
+  formdata1.append("file-upload1", file1);
+  var ajax = new XMLHttpRequest();
+  ajax.upload.addEventListener("progress", progressHandler1, false);
+  ajax.addEventListener("load", completeHandler1, false);
+  ajax.addEventListener("error", errorHandler1, false);
+  ajax.addEventListener("abort", abortHandler1, false);
+  ajax.open("POST", " ");
+
+  ajax.send(formdata1);
+}
+
+function progressHandler1(event) {
+  var percent1 = (event.loaded / event.total) * 100;
+  __("status1").style.fontSize = "0.8rem";
+  __("status1").style.fontWeight = "200";
+  __("status1").style.marginTop = "1rem";
+  __("progressBar1").value = Math.round(percent1);
+  __("status1").innerHTML = Math.round(percent1) + "% uploaded";
+}
+
+function completeHandler1(event) {
+  __("progressBar1").value = "100";
+}
+
+function errorHandler1(event) {
+  __("status1").innerHTML = "Upload Failed";
+}
+
+function abortHandler1(event) {
+  __("status1").innerHTML = "Upload Aborted";
+}
+
+var file1 = document.getElementById("file-upload1");
+var lb1 = document.getElementById("lb1");
+
+lb1.addEventListener("mousedown", function () {
+  // console.log("cankn");
+  file1.click();
+});
     </script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAZnaZBXLqNBRXjd-82km_NO7GUItyKek"></script>
 
