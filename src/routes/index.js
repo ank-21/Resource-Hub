@@ -44,14 +44,14 @@ router.get('/', async(req,res)=>{
     if(msg2 != undefined){
         msg = msg + " " + msg2;
     }
-        const user = await User.find();        
-    
-        res.render('index',{
-        user:req.user,
-        message:msg,
-        flag,
-        users:user
-        });
+    // console.log(User)
+    const user = await User.find();
+    res.render('index',{
+    user:req.user,
+    message:msg,
+    flag,
+    users:user
+    });
 });
 
 //getting developers page
