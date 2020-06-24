@@ -32,9 +32,40 @@ var transporter = nodemailer.createTransport({
   });
 }
 
+const sendForgotPasswordMail = (data) => {
+    console.log(data);
+    
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: keys.mail.email,           //email id
+      pass: keys.mail.pass           //my gmail password
+    },
+    pool: true
+  });
+  const url = `http://18.191.249.98:3000/users/forgotPassword/${data.token}?data=${data.id}`;
+  // const url = `http://localhost:3000/users/forgotPassword/${data.token}?data=${data.id}`;
+  var mailOptions = {
+    from: keys.mail.email,
+    to: `${data.email}`,
+    subject:`Resource Hub - Reset Password`,
+    html:`<div><h4>Hi, ${data.name}.
+    Click on the given link to reset your password</h4><a href="${url}" style="color:red;">Click Here</a></div>`
+  };
+  console.log("mailOptions : " ,mailOptions);
+  
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
+}
 
 
 
 module.exports = {
-    confirmUser
+    confirmUser,
+    sendForgotPasswordMail
 }

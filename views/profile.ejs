@@ -325,17 +325,6 @@ progress::-moz-progress-value{
           <hr>
           <span id="file-selected2"></span>
         </label>
-        <center>
-        <progress
-        class="progress"
-        id="progressBar"
-        value="0"
-        max="100"
-        style="width: 300px;"
-      ></progress>
-      </center>
-      <h3 id="status" class="status"></h3>
-      <p id="loaded_n_total" class="loaded_n_total"></p>
         <p style="text-align: center; display: block;">
         <input type="submit" value="Save Details"></p>      
       </form>
@@ -785,17 +774,6 @@ progress::-moz-progress-value{
                     <hr>
                     <span id="file-selected1"></span>
                   </label>
-                  <center>
-                      <progress
-                      class="progress"
-                      id="progressBar1"
-                      value="0"
-                      max="100"
-                      style="width: 300px;"
-                    ></progress>
-                    </center>
-                    <h3 id="status1" class="status"></h3>
-                    <p id="loaded_n_total1" class="loaded_n_total"></p>
                   <p style="text-align: center; display: block;">
                     <input type="submit" value="Upload"></p>
                     <!-- <button class="btn btn-primary d-none" id="upload_btn" class="btn btn-primary" style="display: none;">
@@ -905,105 +883,6 @@ progress::-moz-progress-value{
         }
       
     
-    </script>
-    <script>
-      function _(el) {
-  return document.getElementById(el);
-}
-
-function uploadFile() {
-  var file = _("file-upload2").files[0];
-
-  var formdata = new FormData();
-  formdata.append("file-upload2", file);
-  var ajax = new XMLHttpRequest();
-  ajax.upload.addEventListener("progress", progressHandler, false);
-  ajax.addEventListener("load", completeHandler, false);
-  ajax.addEventListener("error", errorHandler, false);
-  ajax.addEventListener("abort", abortHandler, false);
-  ajax.open("POST", " ");
-
-  ajax.send(formdata);
-}
-
-function progressHandler(event) {
-  var percent = (event.loaded / event.total) * 100;
-  _("status").style.fontSize = "0.8rem";
-  _("status").style.fontWeight = "200";
-  _("status").style.marginTop = "1rem";
-  _("progressBar").value = Math.round(percent);
-  _("status").innerHTML = Math.round(percent) + "% uploaded";
-}
-
-function completeHandler(event) {
-  // _("status").innerHTML = event.target.responseText;
-  _("progressBar").value = "100";
-}
-
-function errorHandler(event) {
-  _("status").innerHTML = "Upload Failed";
-}
-
-function abortHandler(event) {
-  _("status").innerHTML = "Upload Aborted";
-}
-
-var file = document.getElementById("file-upload2");
-var lb = document.getElementById("lb");
-
-lb.addEventListener("mousedown", function () {
-  // console.log("cankn");
-  file.click();
-});
-    </script>
-     <script>
-      function __(el) {
-  return document.getElementById(el);
-}
-
-function fileInput1() {
-  var file1 = __("file-upload1").files[0];
-
-  var formdata1 = new FormData();
-  formdata1.append("file-upload1", file1);
-  var ajax = new XMLHttpRequest();
-  ajax.upload.addEventListener("progress", progressHandler1, false);
-  ajax.addEventListener("load", completeHandler1, false);
-  ajax.addEventListener("error", errorHandler1, false);
-  ajax.addEventListener("abort", abortHandler1, false);
-  ajax.open("POST", " ");
-
-  ajax.send(formdata1);
-}
-
-function progressHandler1(event) {
-  var percent1 = (event.loaded / event.total) * 100;
-  __("status1").style.fontSize = "0.8rem";
-  __("status1").style.fontWeight = "200";
-  __("status1").style.marginTop = "1rem";
-  __("progressBar1").value = Math.round(percent1);
-  __("status1").innerHTML = Math.round(percent1) + "% uploaded";
-}
-
-function completeHandler1(event) {
-  __("progressBar1").value = "100";
-}
-
-function errorHandler1(event) {
-  __("status1").innerHTML = "Upload Failed";
-}
-
-function abortHandler1(event) {
-  __("status1").innerHTML = "Upload Aborted";
-}
-
-var file1 = document.getElementById("file-upload1");
-var lb1 = document.getElementById("lb1");
-
-lb1.addEventListener("mousedown", function () {
-  // console.log("cankn");
-  file1.click();
-});
     </script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAZnaZBXLqNBRXjd-82km_NO7GUItyKek"></script>
 

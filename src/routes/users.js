@@ -4,9 +4,9 @@ const User = require('../models/User');
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
 const { ensureAuthenticated } = require('../../config/auth');
-const {confirmUser} = require('../account/nodemailerLogin');
-
-
+const {confirmUser, sendForgotPasswordMail} = require('../account/nodemailerLogin');
+const jwt = require('jsonwebtoken')
+const Secret = require('../../config/keys');
 
 //signup Route
 userRouter.get('/signup',(req,res)=>{
@@ -14,6 +14,80 @@ userRouter.get('/signup',(req,res)=>{
     res.render('signup'); 
 });
 
+userRouter.get('/forgotPassword',(req,res)=>{
+    res.render('forgotPassword');
+})
+
+userRouter.post('/forgotPassword',async (req,res)=>{
+    errors = [];
+    const user = await User.findOne({ email:req.body.email});
+    if(!user){
+        errors.push( { msg: "Email Address doesn't exist"});
+        res.render('forgotPassword',{
+            errors
+        });
+    }
+    const token = jwt.sign( { _id: user._id.toString() } , Secret.Secret.key)
+    console.log(token);
+    sendForgotPasswordMail({
+        name:user.name,
+        email:user.email,
+        id:user._id,
+        token:token
+    })
+    req.flash('success_msg','A link has been sent to you email address');
+    res.redirect('/users/signup');
+})
+
+userRouter.get('/forgotPassword/:token',async (req,res)=>{
+    const id = req.query.data;
+    const user = await User.find({_id:id});
+    if(!user){
+        req.flash('error_msg','User not found, try resetting again');
+        res.redirect('/users/forgotPassword');
+    }
+    else{
+        res.render('updatePassword',{
+            email:user[0].email
+        });
+    }
+});
+userRouter.post('/forgotPassword/updatePassword',async(req,res)=>{
+    const errors = [];
+    const { password, confirmPassword, email } = req.body;
+    if(password !== confirmPassword){
+        errors.push({msg:'Password and confirm password must be same'})
+    }
+    if(password.toLowerCase() === "password" || password.length<6){
+        errors.push({ msg: "Try some strong password"})
+    }
+    if(errors.length>0){
+        res.render('updatePassword',{
+            errors,
+            email,
+            password,
+            confirmPassword
+        })
+    }
+    else{
+        let newPassword;
+        bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(password, salt, async (err, hash) => {
+                if (err) throw err;
+                newPassword = hash;
+                const user = await User.findOne({email});
+                if(!user){
+                    req.flash('error_msg','User does not exist');
+                    res.redirect('/users/signup');
+                }
+                user.password = newPassword;
+                await user.save();
+                req.flash('success_msg','Password reset successful. You can now login');
+                res.redirect('/users/signup');
+                })
+        })
+    }
+})
 
 userRouter.post('/signup',(req,res)=>{
     console.log("req.body ",req.body);
@@ -164,8 +238,6 @@ userRouter.get('/logout', ensureAuthenticated,(req,res)=>{
     req.flash('success_msg', 'You are logged out');
     res.redirect('/users/signup');
 });
-
-
 
 
 module.exports = userRouter;
