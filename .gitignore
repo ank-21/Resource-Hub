@@ -3,3 +3,4 @@ node_modules
 /Public/uploadsNotes/
 /Public/issue/
 /config/keys.js
+/config/keys_dev.js
