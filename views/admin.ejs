@@ -164,6 +164,7 @@
       <% }%>
         </div> -->
     </div>
+    
     <div class="container-table100">
       <div class="wrap-table100">
           <div class="table" id="1">
@@ -192,6 +193,9 @@
               </div>
               <div class="cell">
                 Verified
+              </div>
+              <div class="cell">
+                Blocked
               </div>
               <div class="cell">
                 Uploads
@@ -237,6 +241,9 @@
                 <%= data.verified %>
               </div>
               <div class="cell">
+                <%= data.blocked %>
+              </div>
+              <div class="cell">
                 <%= data.uploadsCount %>
               </div>
               <div class="cell">
@@ -254,12 +261,9 @@
                 </a>
               </div>
               <div class="cell">
-              <form action="/hub/admin/21/delete/<%= data._id %>" method="POST" id="delete-form">
-                  <input type="hidden" name="_method" value="DELETE">
-                  <button type="submit" class="btn red">
-                      <i class="fas fa-trash"></i>
-                  </button>
-              </form>
+                <a href="/hub/admin/21/delete/<%= data._id %>" class="btn btn-float">
+                  <i class="fa fa-trash"></i>
+                </a>
               </div>
             </div>
               <% count = count+1 %>

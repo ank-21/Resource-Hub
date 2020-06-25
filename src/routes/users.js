@@ -27,6 +27,12 @@ userRouter.post('/forgotPassword',async (req,res)=>{
             errors
         });
     }
+    if(user.blocked === true){
+        errors.push( { msg: "Email Address blocked by admin"});
+        res.render('forgotPassword',{
+            errors
+        });
+    }
     const token = jwt.sign( { _id: user._id.toString() } , Secret.Secret.key)
     console.log(token);
     sendForgotPasswordMail({
@@ -45,6 +51,10 @@ userRouter.get('/forgotPassword/:token',async (req,res)=>{
     if(!user){
         req.flash('error_msg','User not found, try resetting again');
         res.redirect('/users/forgotPassword');
+    }
+    if(user.blocked === true){
+        req.flash('error_msg','Email address blocked by admin');
+        res.redirect('/users/signup');
     }
     else{
         res.render('updatePassword',{

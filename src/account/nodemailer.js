@@ -63,7 +63,7 @@ const sendCorrectionMail = (data) => {
       service: 'gmail',
       auth: {
         user: keys.helpMail.email,           //email id
-        pass: keys.mahelpMailil.pass           //my gmail password
+        pass: keys.helpMail.pass           //my gmail password
       },
       pool: true
     });

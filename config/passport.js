@@ -18,7 +18,6 @@ module.exports = function(passport) {
                     if(!user){
                         return done(null, false , { message: 'Email is not registered' });
                     }
-
                     //so if user exists we have to match the password
 
                     bcrypt.compare(password, user.password, (err,isMatch) => {
@@ -27,8 +26,11 @@ module.exports = function(passport) {
                         }
 
                         if(isMatch){
-                            if(user.verified == true){
+                            if(user.verified == true && user.blocked === false){
                                 return done(null,user);
+                            }
+                            else if(user.blocked === true){
+                                return done(null,false,{message:'You are blocked by the admin'});
                             }
                             else{
                                 return done(null,false, {message: 'Verify your Email first'});

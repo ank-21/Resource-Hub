@@ -70,6 +70,10 @@ const UserSchema = new mongoose.Schema({
         type:Boolean,
         default:false
     },
+    blocked:{
+        type:Boolean,
+        default:false
+    },
     token:{
         type:String
     },

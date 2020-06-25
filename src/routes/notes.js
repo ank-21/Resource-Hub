@@ -375,13 +375,18 @@ router.get('/branch/semester/notes/report',ensureAuthenticated,(req,res)=>{
                         note[0].reports = note[0].reports + 1;
                         user.reports = user.reports+1;
                         user.save();
+                        let userEmail;
+                        if(user.blocked === true)
+                            userEmail = 'resourcehub2020@gmail.com';
+                        else
+                            userEmail = user.email;
                         if(note[0].reports>=3 && note[0].reports<=5 ){
                             reportsMail({
                                 noteType:req.query.noteType,
                                 branch:req.query.branch,
                                 semester:req.query.semester,
                                 name:user.name,
-                                email:user.email,
+                                email:userEmail,
                             })
                         }
                         if(note[0].reports>5){
@@ -390,7 +395,7 @@ router.get('/branch/semester/notes/report',ensureAuthenticated,(req,res)=>{
                                 branch:req.query.branch,
                                 semester:req.query.semester,
                                 name:user.name,
-                                email:user.email,
+                                email:userEmail,
                             })
                             res.redirect(`/users/note/delete/${note[0]._id}?branch=${req.query.branch}&semester=${req.query.semester}&userId=${user._id}&via=admin`)
                         }  
