@@ -832,14 +832,26 @@ input {
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <input class="form-control" name="name" id="name" type="text" value="<%= typeof user != 'undefined' ? user.name : '' %>"onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Name'"
-                      placeholder='Enter Name' readonly="readonly">
+                    <% if(typeof user !== 'undefined') { %>
+                      <input class="form-control" name="name" id="name" type="text" value="<%= typeof user !== 'undefined' ? user.name : '' %>" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Name'"
+                      placeholder='Enter Name' readonly>
+                    <% } %>
+                    <% if(typeof user === 'undefined') { %>
+                        <input class="form-control" name="name" id="name" type="text" value="<%= typeof user !== 'undefined' ? user.name : '' %>" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Name'"
+                        placeholder='Enter Name'>
+                    <% } %>
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <input class="form-control" name="email" id="email" type="email" value="<%= typeof user != 'undefined' ? user.email : '' %>" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email'"
-                      placeholder='Enter Email' readonly="readonly">
+                    <% if(typeof user !== 'undefined') { %>
+                      <input class="form-control" name="email" id="email" type="email" value="<%= typeof user !== 'undefined' ? user.email : '' %>" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email'"
+                      placeholder='Enter Email' readonly>
+                    <% } %>
+                    <% if(typeof user === 'undefined') { %>
+                        <input class="form-control" name="email" id="email" type="email" value="<%= typeof user !== 'undefined' ? user.email : '' %>" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email'"
+                        placeholder='Enter Email'>
+                      <% } %>
                     </div>
                   </div>
                   <div class="col-12">

@@ -112,7 +112,10 @@
             <!-- Login Form -->
 
             <div class="login form-peice">
-               <form class="login-form" action="/users/login" method="post" style="top:43%;">
+              <div class="error-scroll" id="error">
+                <%- include('./partials/messages') %>
+            </div>
+               <form class="login-form" action="/users/login" method="post" style="top:49%;">
                    <h3 id="logh3" class="heading">Log In</h3>
                    <p id="logusing" class="heading">using</p>
                	 <div class="social-container1">
@@ -144,13 +147,10 @@
                     <p style="margin-top: 5vh;color: #524f4f;">Don't have an account? - <a href="#" class="switch" style="font-size: 13px;"><b>Sign Up</b></a></p>
                   </div>
                </form>
-                 <p style="position: relative;top: 70vh;left: 25vw;color: #524f4f;"><a href="/users/forgotPassword" style="font-size: 13px;"><b>Forgot Password</b></a></p>
+                 <p style="position: relative;top: 75vh;left: 25vw;color: #524f4f;font-size: 13px;"><a href="/users/forgotPassword"><b>Forgot Password</b></a></p>
             </div><!-- End Login Form -->
             <!-- Signup Form -->
             <div class="signup form-peice switched">
-                <div class="error-scroll" id="error">
-                    <%- include('./partials/messages') %>
-                </div>
                 
                <form class="signup-form" action="/users/signup" method="post" style="position:absolute;margin-top: 12px;">
                    <h3 id="signh3" class="heading">Create Account</h3>
