@@ -7,14 +7,13 @@ const Report = require('../models/Report');
 const RequestNotes = require('../models/RequestNotes');
 const DeleteNote = require('../models/DeleteNote');
 const path = require('path');
-const {contactUs,contactAdmin} = require('../account/nodemailer');
+const {contactUs,contactAdmin, sendCorrectionMail } = require('../account/nodemailer');
 const {confirmUser} = require('../account/nodemailerLogin');
 const uuid = require('uuid');
 const multer = require('multer');
 const async = require('async');
 const fs = require('fs');
 const {checkFileType} = require('../../config/checkFileType');
-
 
 router.get('/', async(req,res)=>{
     if(req.user){
@@ -469,9 +468,58 @@ router.get('/hub/admin/21',ensureAuthenticated,async(req,res)=>{
     }
 });
 
+// Delete a particular user by admin
+router.delete('/hub/admin/21/delete/:id',ensureAuthenticated,async (req,res)=>{
+    const admins_id = ['5e95c02f6a12672fe41ba35e','5e95ab7d684e942e865c884d','5e94dd539d2c72236dbe41cc','5e9ae832f5e826571041ee7e'];
+    const auth = admins_id.indexOf(String(req.user._id));
+    if(auth==-1){
+        res.render('error');
+    }else{
+        try {
+            await User.deleteOne({_id:req.params.id},(err,res)=>{
+                if (err) {
+                    console.log(err);
+                  } else {
+                    console.log(res);
+                  }
+            });
+            res.redirect('/hub/admin/21');
+        } catch (err) {
+            console.error(err);
+            res.redirect('/hub/admin/21');
+        }
+    }
+});
+
+// Send mail to a particular user by admin
+router.get('/hub/admin/21/mail/:id',ensureAuthenticated,async (req,res)=>{
+    const admins_id = ['5e95c02f6a12672fe41ba35e','5e95ab7d684e942e865c884d','5e94dd539d2c72236dbe41cc','5e9ae832f5e826571041ee7e'];
+    const auth = admins_id.indexOf(String(req.user._id));
+    if(auth==-1){
+        res.render('error');
+    }else{
+        try {
+            const user = await User.findOne({_id:req.params.id});
+            if(!user){
+                res.redirect('/hub/admin/21');
+            }
+            else{
+                sendCorrectionMail({
+                    name:user.name,
+                    id: user._id,
+                    email:user.email
+                });
+                res.redirect('/hub/admin/21');
+            }
+        } catch (err) {
+            console.error(err);
+            res.redirect('/hub/admin/21');
+        }
+    }
+})
+
 //verify email
 router.get('/users/signup/:token',(req,res)=>{
-
     const token = req.params.token;
     const id = req.query.data;
     //console.log(token,id);

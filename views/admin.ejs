@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css">
         <link rel="stylesheet" href="/css/admin_util.css">
   <link rel="stylesheet" type="text/css" href="/css/admin_main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
   <style>
   .search-sort-box {
         margin: 3vh;
@@ -77,12 +78,12 @@
             </div>
             <div id="options" style="display:flex;height:10vh;justify-content:center;align-items:end">
                 <select name="forma" onchange="location = this.value;" id="selectoption">
-                    <option value="/hub/admin/new?model=User" hidden>Users</option>
-                    <option value="/hub/admin/new?model=User">Users</option>
-                    <option value="/hub/admin/new?model=Notes">Notes</option>
-                    <option value="/hub/admin/new?model=Report">Report</option>
-                    <option value="/hub/admin/new?model=DeleteNote">Delete Notes</option>
-                    <option value="/hub/admin/new?model=RequestNotes">Request Notes</option>
+                    <option value="/hub/admin/21?model=User" hidden>Users</option>
+                    <option value="/hub/admin/21?model=User">Users</option>
+                    <option value="/hub/admin/21?model=Notes">Notes</option>
+                    <option value="/hub/admin/21?model=Report">Report</option>
+                    <option value="/hub/admin/21?model=DeleteNote">Delete Notes</option>
+                    <option value="/hub/admin/21?model=RequestNotes">Request Notes</option>
                 </select>
                    <h1 style="font-size:1.4rem;margin-left:3rem;">Model - <span style="color: blueviolet;" id="data"><%=data%></span><span style="color: #dacc13ea;">Size - <%=dataDetails.length%></span></h1>
             </div>
@@ -171,9 +172,9 @@
               <div class="cell">
                 Sl No.
               </div>
-              <div class="cell">
+              <!-- <div class="cell">
                 User ID
-              </div>
+              </div> -->
               <div class="cell">
                 Name
               </div>
@@ -204,45 +205,61 @@
               <div class="cell">
                 Reports
               </div>
+              <div class='cell'>Mail</div>
+              <div class="cell">Delete</div>
+
             </div>
             <% var count = 1 %>
                   <% dataDetails.forEach((data) => { %>
             <div class="row rows">
-              <div class="cell" data-title="Full Name">
+              <div class="cell">
                 <%= count%>
               </div>
-              <div class="cell" data-title="Age">
+              <!-- <div class="cell">
                 <%= data._id %>
-              </div>
-              <div class="cell" data-title="Job Title">
+              </div> -->
+              <div class="cell">
                 <%= data.name %>
               </div>
-              <div class="cell" data-title="Location">
+              <div class="cell">
                 <%= data.branch %>
               </div>
-              <div class="cell" data-title="Age">
+              <div class="cell">
                 <%= data.semester %>
               </div>
-              <div class="cell" data-title="Age">
+              <div class="cell">
                 <%= data.email %>
               </div>
-              <div class="cell" data-title="Age">
+              <div class="cell">
                 <%= data.phnNo %>
               </div>
-              <div class="cell" data-title="Age">
+              <div class="cell">
                 <%= data.verified %>
               </div>
-              <div class="cell" data-title="Age">
+              <div class="cell">
                 <%= data.uploadsCount %>
               </div>
-              <div class="cell" data-title="Age">
+              <div class="cell">
                 <%= data.downloadCountUser %>
               </div>
-              <div class="cell" data-title="Age">
+              <div class="cell">
                 <%= data.notesDownloadedByUsers %>
               </div>
-              <div class="cell" data-title="Age">
+              <div class="cell">
                 <%= data.reports %>
+              </div>
+              <div class="cell">
+                <a href="/hub/admin/21/mail/<%= data._id %>" class="btn btn-float">
+                  <i class="fa fa-envelope"></i>
+                </a>
+              </div>
+              <div class="cell">
+              <form action="/hub/admin/21/delete/<%= data._id %>" method="POST" id="delete-form">
+                  <input type="hidden" name="_method" value="DELETE">
+                  <button type="submit" class="btn red">
+                      <i class="fas fa-trash"></i>
+                  </button>
+              </form>
               </div>
             </div>
               <% count = count+1 %>

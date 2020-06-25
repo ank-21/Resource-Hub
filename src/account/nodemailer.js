@@ -57,6 +57,34 @@ const contactAdmin = (data) => {
     });
   }
 
+//for sending to user to correct their credentials
+const sendCorrectionMail = (data) => {
+  var transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: keys.mail.email,           //email id
+        pass: keys.mail.pass           //my gmail password
+      },
+      pool: true
+    });
+    
+    var mailOptions = {
+      from: keys.mail.email,
+      to: `${data.email}`,
+      subject:`Resource Hub - Inappropriate Credentials`,
+      html:`<p>Hii ${data.name},<br>Your account contains information (some inappropriate words) which are against the rules of Resouce Hub. Kindly, change them within the next 6 hours or else we'll have to remove your account </p>`
+    };
+    console.log("mailOptions : " ,mailOptions);
+    
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
+  }
+
 
 const reportsMail = (data) => {
   var transporter = nodemailer.createTransport({
@@ -118,5 +146,6 @@ module.exports = {
     contactUs,
     reportsMail,
     DeleteMail,
-    contactAdmin
+    contactAdmin,
+    sendCorrectionMail
 }
