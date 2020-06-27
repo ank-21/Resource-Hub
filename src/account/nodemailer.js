@@ -35,15 +35,15 @@ const contactAdmin = (data) => {
   var transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: keys.helpMail.email,           //email id
-        pass: keys.helpMail.pass           //my gmail password
+        user: keys.mail.email,           //email id
+        pass: keys.mail.pass           //my gmail password
       },
       pool: true
     });
     
     var mailOptions = {
-      from: keys.helpMail.email,
-      to: 'ankitsrivastava21345@gmail.com',
+      from: keys.mail.email,
+      to: keys.helpMail.email,
       subject:`Resource Hub User Report`,
       html:`A new Report has been issued.<p>Name - ${data.name}</p><p>Email Id - ${data.email}</p><p>Subject - ${data.subject}</p><p>Message - ${data.message}</p><p>Is Image - ${data.isImg}</p>`};
     console.log("mailOptions : " ,mailOptions);
