@@ -153,7 +153,10 @@ profile.post('/profile/:id',async function(req,res){
             if(req.body.phnNo){
                 user.phnNo = req.body.phnNo;
             }
-            
+            //for chaning name
+            if(req.body.name){
+                user.name = req.body.name;
+            }
             
             user.save()
                 .then(user => {
