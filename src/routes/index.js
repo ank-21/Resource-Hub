@@ -14,6 +14,7 @@ const multer = require('multer');
 const async = require('async');
 const fs = require('fs');
 const {checkFileType} = require('../../config/checkFileType');
+const { popularNotesList, recentUploads, mostDownloadedNotes, popularProfiles } = require('../../config/footerInfo');
 
 router.get('/', async(req,res)=>{
     if(req.user){
@@ -44,19 +45,37 @@ router.get('/', async(req,res)=>{
         msg = msg + " " + msg2;
     }
     // console.log(User)
+    const mostDownloaded = await mostDownloadedNotes();
     const user = await User.find();
+    const popularProfile = await popularProfiles();
+    const recentNotes = await recentUploads();
+    const popularNotes = await popularNotesList();
+
     res.render('index',{
     user:req.user,
     message:msg,
     flag,
-    users:user
+    users:user,
+    mostDownloaded,
+    popularProfile,
+    recentNotes,
+    popularNotes
     });
 });
 
 //getting developers page
 
-router.get('/developers',ensureAuthenticated,(req,res)=>{
-    res.render('team');
+router.get('/developers',ensureAuthenticated,async (req,res)=>{
+    const mostDownloaded = await mostDownloadedNotes();
+    const popularProfile = await popularProfiles();
+    const recentNotes = await recentUploads();
+    const popularNotes = await popularNotesList();
+    res.render('team',{
+        mostDownloaded,
+        popularProfile,
+        recentNotes,
+        popularNotes
+    });
 });
 
 

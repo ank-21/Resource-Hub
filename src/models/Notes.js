@@ -45,6 +45,10 @@ const NotesSchema = new mongoose.Schema({
     reports:{
         type:Number,
         default:0
+    },
+    timeStamp:{
+        type:String,
+        default:Date.now
     }
 })
 

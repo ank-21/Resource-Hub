@@ -7,12 +7,21 @@ const RequestNotes = require('../models/RequestNotes');
 const DeleteNote = require('../models/DeleteNote');
 const moment = require('moment');
 const {reportsMail,DeleteMail} = require('../account/nodemailer');
-
+const { popularNotesList, recentUploads, mostDownloadedNotes, popularProfiles } = require('../../config/footerInfo');
 // /notes is in app.use
 //for getting branch page
 
-router.get('/branch',ensureAuthenticated,(req,res)=>{
-    res.render('branch');
+router.get('/branch',ensureAuthenticated,async (req,res)=>{
+    const mostDownloaded = await mostDownloadedNotes();
+    const popularProfile = await popularProfiles();
+    const recentNotes = await recentUploads();
+    const popularNotes = await popularNotesList();
+    res.render('branch',{
+        mostDownloaded,
+        popularProfile,
+        recentNotes,
+        popularNotes
+    });
 });
 
 //for semester page
@@ -67,12 +76,19 @@ router.get('/branch/semester',ensureAuthenticated, async(req,res)=>{
     
     //allsemdetails has every details of a particular branch now
     // console.log("all sem detail",allSemDetails);
-    
+    const mostDownloaded = await mostDownloadedNotes();
+    const popularProfile = await popularProfiles();
+    const recentNotes = await recentUploads();
+    const popularNotes = await popularNotesList();
     res.render('semester',{
         notes:allSemDetails,
         branchname,
         downloadCount:totalDownloadPerSem,
-        ratingsPerSemFloored
+        ratingsPerSemFloored,
+        mostDownloaded,
+        popularProfile,
+        recentNotes,
+        popularNotes
     });
 });
 
@@ -115,14 +131,21 @@ router.get('/branch/semester/notes', ensureAuthenticated ,async(req,res)=>{
     //for floor value
     //console.log(floorvalue);
     
-
+    const mostDownloaded = await mostDownloadedNotes();
+    const popularProfile = await popularProfiles();
+    const recentNotes = await recentUploads();
+    const popularNotes = await popularNotesList();
     
     res.render('notes',{
         notes:selectedNotesByBranchAndSemester,
         floorvalue,
         branchname,
         semester,
-        data:'Notes'   //this is for showing on bar
+        data:'Notes',   //this is for showing on bar
+        mostDownloaded,
+        popularProfile,
+        recentNotes,
+        popularNotes
     })  
 });
 
@@ -164,13 +187,20 @@ router.get('/branch/semester/question', ensureAuthenticated ,async(req,res)=>{
         }
         return val.toFixed(2);
     })
-    
+    const mostDownloaded = await mostDownloadedNotes();
+    const popularProfile = await popularProfiles();
+    const recentNotes = await recentUploads();
+    const popularNotes = await popularNotesList();
     res.render('notes',{
         notes:selectedNotesByBranchAndSemester,
         floorvalue,
         branchname,
         semester,
-        data: 'Questions'
+        data: 'Questions',
+        mostDownloaded,
+        popularProfile,
+        recentNotes,
+        popularNotes
     })  
 });
 
