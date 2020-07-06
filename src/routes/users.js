@@ -104,7 +104,10 @@ userRouter.post('/signup',(req,res)=>{
     const {name,email,password,password2,terms} = req.body;  
     let errors = [];
     //error handling
-    
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if(!re.test(email)){
+        errors.push({msg:"Email address invalid"})
+    }
     if(terms!='yes'){
         errors.push({msg : "Please check the terms & Conditions box." })
     }
@@ -125,7 +128,7 @@ userRouter.post('/signup',(req,res)=>{
             password,
             password2
         })
-        console.log("password", password);
+        // console.log("password", password);
         
         console.log("errors: ",errors);
         

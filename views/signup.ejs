@@ -67,6 +67,13 @@
   font-size:2.7rem;
 }
 .nav-links{font-size:1.6rem;}
+.wrong{
+  color:red !important;
+  border-bottom: 1px solid red !important;
+}
+.dis{
+  background: slategrey !important;
+}
 </style>
 </head>
 <body>
@@ -152,7 +159,7 @@
             <!-- Signup Form -->
             <div class="signup form-peice switched">
                 
-               <form class="signup-form" action="/users/signup" method="post" style="position:absolute;margin-top: 12px;">
+               <form class="signup-form" id="signupForm" action="/users/signup" method="post" style="position:absolute;margin-top: 12px;">
                    <h3 id="signh3" class="heading">Create Account</h3>
                    <p id="signusing" class="heading">using</p>
                	<div class="social-container1">
@@ -164,13 +171,13 @@
                                 
                 <div class="form-group">
                      <label for="name">Name</label>
-                     <input type="text" name="name" id="name" class="name" value="<%= typeof name != 'undefined' ? name : '' %>" required="true">
+                     <input type="text" name="name" id="name" class="name" value="<%= typeof name != 'undefined' ? name : '' %>" required="true" >
                      <span class="error"></span>
                 </div>
 
                   <div class="form-group">
                      <label for="email">Email Address</label>
-                     <input type="email" name="email" id="email" class="email" value="<%= typeof email != 'undefined' ? email : '' %>" required="true">
+                     <input type="email" name="email" id="email" class="email" value="<%= typeof email != 'undefined' ? email : '' %>" onchange="validateEmail()" required="true">
                      <span class="error"></span>
                   </div>
 
@@ -210,7 +217,29 @@
 
 </div>
 <!-- partial -->
-  
+  <script>
+
+  function validate(email) {
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
+function validateEmail() {
+  const email = document.getElementById('email');
+  const value = email.value;
+
+  if (!validate(value)) {
+    email.classList.add('wrong');
+    document.getElementById('sub').disabled = true;
+    document.getElementById('sub').classList.add('dis');
+  } else {
+    email.classList.remove('wrong');
+    document.getElementById('sub').disabled = false;
+    document.getElementById('sub').classList.remove('dis');
+  }
+  return false;
+}
+  </script>
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
